@@ -1,4 +1,5 @@
 nemorl/
+nemorl_new/
 trl/training_run/
 dpo/
-preference_data/*.jsonl
+*.jsonl
