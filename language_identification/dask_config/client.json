@@ -1,0 +1,7 @@
+{
+    "cluster_type": "gpu",
+    "nvlink_only": false,
+    "protocol": "tcp",
+    "rmm_pool_size": "20GB",
+    "rmm_async": false
+}

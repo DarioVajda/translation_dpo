@@ -1,0 +1,2 @@
+Training completed!
+Outputs are saved in /ceph/hpc/data/s24o01-42-users/translation_optimization/nemorl_new/result_dir

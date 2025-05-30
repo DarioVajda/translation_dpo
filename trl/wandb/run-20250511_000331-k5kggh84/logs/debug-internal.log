@@ -1,0 +1,15 @@
+{"time":"2025-05-11T00:03:31.903047364+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250511_000331-k5kggh84/logs/debug-core.log"}
+{"time":"2025-05-11T00:03:32.274844544+02:00","level":"INFO","msg":"created new stream","id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.274889522+02:00","level":"INFO","msg":"stream: started","id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.275004969+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.276468776+02:00","level":"INFO","msg":"sender: started","stream_id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.27656858+02:00","level":"INFO","msg":"handler: started","stream_id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.301818568+02:00","level":"ERROR","msg":"sender: upsertRun:","error":"failed to upsert bucket: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post \"https://api.wandb.ai/graphql\": tls: failed to verify certificate: x509: certificate signed by unknown authority"}
+{"time":"2025-05-11T00:03:32.551360667+02:00","level":"INFO","msg":"stream: closing","id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.551497835+02:00","level":"ERROR","msg":"sender: upsertConfig: RunRecord is nil"}
+{"time":"2025-05-11T00:03:32.626031232+02:00","level":"ERROR","msg":"runfiles: CreateRunFiles returned error: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post \"https://api.wandb.ai/graphql\": tls: failed to verify certificate: x509: certificate signed by unknown authority"}
+{"time":"2025-05-11T00:03:32.627072079+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-11T00:03:32.627141641+02:00","level":"INFO","msg":"handler: closed","stream_id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.627153933+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.62747709+02:00","level":"INFO","msg":"sender: closed","stream_id":"k5kggh84"}
+{"time":"2025-05-11T00:03:32.627493642+02:00","level":"INFO","msg":"stream: closed","id":"k5kggh84"}

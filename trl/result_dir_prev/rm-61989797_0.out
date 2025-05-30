@@ -1,0 +1,444 @@
+cpu-bind=MASK - gn41, task  0  0 [3069361]: mask 0x1000000000000000000000000000000010000000000000000000000000000 set
+*******STARTING********
+--- Running on Node Rank: 0 ---
+Total Nodes: 2
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
+GPUs per Node: 4
+Master Address: gn41
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 2     --machine_rank 0     --main_process_ip gn41     --main_process_port 29500     --num_processes 8     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=64 --learning_rate=3e-7 --total_epochs=3 --beta=0.2
+-------------------------------------------
+[2025-05-29 17:55:37,112] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+WARNING: Skipping NVIDIA_REQUIRE_CUDA=cuda>=12.1 brand=tesla,driver>=470,driver<471 brand=unknown,driver>=470,driver<471 brand=nvidia,driver>=470,driver<471 brand=nvidiartx,driver>=470,driver<471 brand=geforce,driver>=470,driver<471 brand=geforcertx,driver>=470,driver<471 brand=quadro,driver>=470,driver<471 brand=quadrortx,driver>=470,driver<471 brand=titan,driver>=470,driver<471 brand=titanrtx,driver>=470,driver<471 brand=tesla,driver>=525,driver<526 brand=unknown,driver>=525,driver<526 brand=nvidia,driver>=525,driver<526 brand=nvidiartx,driver>=525,driver<526 brand=geforce,driver>=525,driver<526 brand=geforcertx,driver>=525,driver<526 brand=quadro,driver>=525,driver<526 brand=quadrortx,driver>=525,driver<526 brand=titan,driver>=525,driver<526 brand=titanrtx,driver>=525,driver<526 as it contains forbidden characters or missing values.
+WARNING: Skipping __LMOD_REF_COUNT_MODULEPATH=/usr/share/Modules/modulefiles:6;/ceph/hpc/software/modulefiles:3;/cvmfs/sling.si/modules/el7/modules/all:1;/etc/modulefiles:1;/usr/share/modulefiles:1;/usr/share/modulefiles/Linux:1;/usr/share/modulefiles/Core:1;/usr/share/lmod/lmod/modulefiles/Core:1 as it contains forbidden characters or missing values.
+WARNING: Skipping LS_COLORS=rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:*.xspf=38;5;45: as it contains forbidden characters or missing values.
+WARNING: Skipping PROMPT_COMMAND=PS1="Apptainer> "; unset PROMPT_COMMAND as it contains forbidden characters or missing values.
+WARNING: Skipping SSH_CONNECTION=2001:1470:faca:1513:50ec:218d:1788:59a7 57744 2001:1470:ff94:d:153:5:68:43 22 as it contains forbidden characters or missing values.
+WARNING: Skipping PMIX_SERVER_URI2=pmix-server.3069351;tcp4://127.0.0.1:49299 as it contains forbidden characters or missing values.
+WARNING: Skipping PMIX_SERVER_URI3=pmix-server.3069351;tcp4://127.0.0.1:49299 as it contains forbidden characters or missing values.
+WARNING: Skipping VSCODE_GIT_ASKPASS_EXTRA_ARGS= as it contains forbidden characters or missing values.
+WARNING: Skipping PMIX_SERVER_URI21=pmix-server.3069351;tcp4://127.0.0.1:49299 as it contains forbidden characters or missing values.
+WARNING: Skipping LESSOPEN=||/usr/bin/lesspipe.sh %s as it contains forbidden characters or missing values.
+WARNING: Skipping SINGULARITY_BIND= as it contains forbidden characters or missing values.
+WARNING: Skipping SSH_CLIENT=2001:1470:faca:1513:50ec:218d:1788:59a7 57744 22 as it contains forbidden characters or missing values.
+WARNING: Skipping which_declare=declare -f as it contains forbidden characters or missing values.
+WARNING: Skipping BASH_FUNC_ml%%=() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+} as it contains forbidden characters or missing values.
+WARNING: Skipping BASH_FUNC_which%%=() {  ( alias;
+ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+} as it contains forbidden characters or missing values.
+WARNING: Skipping BASH_FUNC_module%%=() {  if [ -z "${LMOD_SH_DBG_ON+x}" ]; then
+ case "$-" in 
+ *v*x*)
+ __lmod_sh_dbg='vx'
+ ;;
+ *v*)
+ __lmod_sh_dbg='v'
+ ;;
+ *x*)
+ __lmod_sh_dbg='x'
+ ;;
+ esac;
+ fi;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ set +$__lmod_sh_dbg;
+ echo "Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output" 1>&2;
+ fi;
+ eval "$($LMOD_CMD shell "$@")" && eval "$(${LMOD_SETTARG_CMD:-:} -s sh)";
+ __lmod_my_status=$?;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ echo "Shell debugging restarted" 1>&2;
+ set -$__lmod_sh_dbg;
+ fi;
+ unset __lmod_sh_dbg;
+ return $__lmod_my_status
+} as it contains forbidden characters or missing values.
+[2025-05-29 17:55:42,182] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 17:56:16,459] [WARNING] [runner.py:215:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+Detected VISIBLE_DEVICES=0,1,2,3 but ignoring it because one or several of --include/--exclude/--num_gpus/--num_nodes cl args were used. If you want to use CUDA_VISIBLE_DEVICES don't pass any of these arguments to deepspeed.
+[2025-05-29 17:56:16,486] [INFO] [runner.py:607:main] cmd = /usr/bin/python3 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgM119 --master_addr=127.0.0.1 --master_port=29500 --no_local_rank --enable_each_rank_log=None train.py --rank=64 --learning_rate=3e-7 --total_epochs=3 --beta=0.2
+[2025-05-29 17:56:19,008] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 17:56:53,376] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.17.1-1+cuda12.1
+[2025-05-29 17:56:53,412] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_VERSION=2.17.1-1
+[2025-05-29 17:56:53,412] [INFO] [launch.py:139:main] 0 NCCL_VERSION=2.17.1-1
+[2025-05-29 17:56:53,412] [INFO] [launch.py:139:main] 0 NCCL_DEBUG=INFO
+[2025-05-29 17:56:53,412] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
+[2025-05-29 17:56:53,412] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE=libnccl2=2.17.1-1+cuda12.1
+[2025-05-29 17:56:53,412] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_NAME=libnccl2
+[2025-05-29 17:56:53,412] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_VERSION=2.17.1-1
+[2025-05-29 17:56:53,412] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3]}
+[2025-05-29 17:56:53,412] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=4, node_rank=0
+[2025-05-29 17:56:53,412] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3]})
+[2025-05-29 17:56:53,412] [INFO] [launch.py:164:main] dist_world_size=4
+[2025-05-29 17:56:53,412] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3
+[2025-05-29 17:56:53,413] [INFO] [launch.py:256:main] process 3069557 spawned with command: ['/usr/bin/python3', '-u', 'train.py', '--rank=64', '--learning_rate=3e-7', '--total_epochs=3', '--beta=0.2']
+[2025-05-29 17:56:53,414] [INFO] [launch.py:256:main] process 3069558 spawned with command: ['/usr/bin/python3', '-u', 'train.py', '--rank=64', '--learning_rate=3e-7', '--total_epochs=3', '--beta=0.2']
+[2025-05-29 17:56:53,415] [INFO] [launch.py:256:main] process 3069559 spawned with command: ['/usr/bin/python3', '-u', 'train.py', '--rank=64', '--learning_rate=3e-7', '--total_epochs=3', '--beta=0.2']
+[2025-05-29 17:56:53,416] [INFO] [launch.py:256:main] process 3069560 spawned with command: ['/usr/bin/python3', '-u', 'train.py', '--rank=64', '--learning_rate=3e-7', '--total_epochs=3', '--beta=0.2']
+[2025-05-29 17:57:16,780] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 17:57:16,827] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 17:57:16,876] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 17:57:16,892] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+World size: 4
+Setting gradient accumulation steps to: 4
+[2025-05-29 17:57:26,733] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-29 17:57:26,777] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-29 17:57:26,814] [INFO] [comm.py:658:init_distributed] cdb=None
+Created datasets
+Steps per epoch: 2141
+Eval steps: 1070
+[2025-05-29 17:57:26,839] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-29 17:57:26,839] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+Set up DPO configuration
+[2025-05-29 17:57:30,755] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 4
+[2025-05-29 17:57:30,755] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 4
+hpZeRO group size: 4
+[2025-05-29 17:57:30,755] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 4
+[2025-05-29 17:57:30,755] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 4
+gn41:3069557:3069557 [0] NCCL INFO Bootstrap : Using ib0:10.210.4.25<0>
+gn41:3069557:3069557 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gn41:3069557:3069557 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gn41:3069557:3069557 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gn41:3069557:3069557 [0] NCCL INFO cudaDriverVersion 12070
+NCCL version 2.21.5+cuda12.4
+gn41:3069557:3069557 [0] NCCL INFO Comm config Blocking set to 1
+gn41:3069558:3069558 [1] NCCL INFO cudaDriverVersion 12070
+gn41:3069558:3069558 [1] NCCL INFO Bootstrap : Using ib0:10.210.4.25<0>
+gn41:3069558:3069558 [1] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gn41:3069558:3069558 [1] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gn41:3069558:3069558 [1] NCCL INFO NET/Plugin: Using internal network plugin.
+gn41:3069558:3069558 [1] NCCL INFO Comm config Blocking set to 1
+gn41:3069559:3069559 [2] NCCL INFO cudaDriverVersion 12070
+gn41:3069559:3069559 [2] NCCL INFO Bootstrap : Using ib0:10.210.4.25<0>
+gn41:3069559:3069559 [2] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gn41:3069559:3069559 [2] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gn41:3069559:3069559 [2] NCCL INFO NET/Plugin: Using internal network plugin.
+gn41:3069560:3069560 [3] NCCL INFO cudaDriverVersion 12070
+gn41:3069560:3069560 [3] NCCL INFO Bootstrap : Using ib0:10.210.4.25<0>
+gn41:3069560:3069560 [3] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gn41:3069560:3069560 [3] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gn41:3069560:3069560 [3] NCCL INFO NET/Plugin: Using internal network plugin.
+gn41:3069559:3069559 [2] NCCL INFO Comm config Blocking set to 1
+gn41:3069560:3069560 [3] NCCL INFO Comm config Blocking set to 1
+gn41:3069557:3069737 [0] NCCL INFO Failed to open libibverbs.so[.1]
+gn41:3069557:3069737 [0] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.25<0>
+gn41:3069559:3069739 [2] NCCL INFO Failed to open libibverbs.so[.1]
+gn41:3069558:3069738 [1] NCCL INFO Failed to open libibverbs.so[.1]
+gn41:3069557:3069737 [0] NCCL INFO Using non-device net plugin version 0
+gn41:3069557:3069737 [0] NCCL INFO Using network Socket
+gn41:3069559:3069739 [2] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.25<0>
+gn41:3069559:3069739 [2] NCCL INFO Using non-device net plugin version 0
+gn41:3069559:3069739 [2] NCCL INFO Using network Socket
+gn41:3069558:3069738 [1] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.25<0>
+gn41:3069558:3069738 [1] NCCL INFO Using non-device net plugin version 0
+gn41:3069558:3069738 [1] NCCL INFO Using network Socket
+gn41:3069560:3069740 [3] NCCL INFO Failed to open libibverbs.so[.1]
+gn41:3069560:3069740 [3] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.25<0>
+gn41:3069560:3069740 [3] NCCL INFO Using non-device net plugin version 0
+gn41:3069560:3069740 [3] NCCL INFO Using network Socket
+gn41:3069557:3069737 [0] NCCL INFO ncclCommInitRank comm 0x55f4e892aeb0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 3000 commId 0xe713d2faef59475c - Init START
+gn41:3069558:3069738 [1] NCCL INFO ncclCommInitRank comm 0x563c8141ecd0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 44000 commId 0xe713d2faef59475c - Init START
+gn41:3069559:3069739 [2] NCCL INFO ncclCommInitRank comm 0x55d06f128b80 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 84000 commId 0xe713d2faef59475c - Init START
+gn41:3069560:3069740 [3] NCCL INFO ncclCommInitRank comm 0x56421ef27940 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId c4000 commId 0xe713d2faef59475c - Init START
+gn41:3069558:3069738 [1] NCCL INFO NVLS multicast support is not available on dev 1
+gn41:3069559:3069739 [2] NCCL INFO Setting affinity for GPU 2 to 010000,00000000,00000000,00000000,00010000,00000000,00000000,00000000
+gn41:3069559:3069739 [2] NCCL INFO NVLS multicast support is not available on dev 2
+gn41:3069557:3069737 [0] NCCL INFO NVLS multicast support is not available on dev 0
+gn41:3069560:3069740 [3] NCCL INFO NVLS multicast support is not available on dev 3
+gn41:3069559:3069739 [2] NCCL INFO comm 0x55d06f128b80 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+gn41:3069559:3069739 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 1/-1/-1->2->0 [5] 1/-1/-1->2->0 [6] 1/-1/-1->2->0 [7] 1/-1/-1->2->0 [8] -1/-1/-1->2->3 [9] -1/-1/-1->2->3 [10] -1/-1/-1->2->3 [11] -1/-1/-1->2->3 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 1/-1/-1->2->0 [17] 1/-1/-1->2->0 [18] 1/-1/-1->2->0 [19] 1/-1/-1->2->0 [20] -1/-1/-1->2->3 [21] -1/-1/-1->2->3 [22] -1/-1/-1->2->3 [23] -1/-1/-1->2->3
+gn41:3069559:3069739 [2] NCCL INFO P2P Chunksize set to 524288
+gn41:3069560:3069740 [3] NCCL INFO comm 0x56421ef27940 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+gn41:3069560:3069740 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->1 [5] -1/-1/-1->3->1 [6] -1/-1/-1->3->1 [7] -1/-1/-1->3->1 [8] 2/-1/-1->3->0 [9] 2/-1/-1->3->0 [10] 2/-1/-1->3->0 [11] 2/-1/-1->3->0 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->1 [17] -1/-1/-1->3->1 [18] -1/-1/-1->3->1 [19] -1/-1/-1->3->1 [20] 2/-1/-1->3->0 [21] 2/-1/-1->3->0 [22] 2/-1/-1->3->0 [23] 2/-1/-1->3->0
+gn41:3069560:3069740 [3] NCCL INFO P2P Chunksize set to 524288
+gn41:3069557:3069737 [0] NCCL INFO comm 0x55f4e892aeb0 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+gn41:3069558:3069738 [1] NCCL INFO comm 0x563c8141ecd0 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+gn41:3069557:3069737 [0] NCCL INFO Channel 00/24 :    0   1   2   3
+gn41:3069557:3069737 [0] NCCL INFO Channel 01/24 :    0   1   3   2
+gn41:3069557:3069737 [0] NCCL INFO Channel 02/24 :    0   2   3   1
+gn41:3069557:3069737 [0] NCCL INFO Channel 03/24 :    0   2   1   3
+gn41:3069557:3069737 [0] NCCL INFO Channel 04/24 :    0   3   1   2
+gn41:3069557:3069737 [0] NCCL INFO Channel 05/24 :    0   3   2   1
+gn41:3069557:3069737 [0] NCCL INFO Channel 06/24 :    0   1   2   3
+gn41:3069557:3069737 [0] NCCL INFO Channel 07/24 :    0   1   3   2
+gn41:3069557:3069737 [0] NCCL INFO Channel 08/24 :    0   2   3   1
+gn41:3069557:3069737 [0] NCCL INFO Channel 09/24 :    0   2   1   3
+gn41:3069558:3069738 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 3/-1/-1->1->2 [5] 3/-1/-1->1->2 [6] 3/-1/-1->1->2 [7] 3/-1/-1->1->2 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 3/-1/-1->1->2 [17] 3/-1/-1->1->2 [18] 3/-1/-1->1->2 [19] 3/-1/-1->1->2 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
+gn41:3069557:3069737 [0] NCCL INFO Channel 10/24 :    0   3   1   2
+gn41:3069558:3069738 [1] NCCL INFO P2P Chunksize set to 524288
+gn41:3069557:3069737 [0] NCCL INFO Channel 11/24 :    0   3   2   1
+gn41:3069557:3069737 [0] NCCL INFO Channel 12/24 :    0   1   2   3
+gn41:3069557:3069737 [0] NCCL INFO Channel 13/24 :    0   1   3   2
+gn41:3069557:3069737 [0] NCCL INFO Channel 14/24 :    0   2   3   1
+gn41:3069557:3069737 [0] NCCL INFO Channel 15/24 :    0   2   1   3
+gn41:3069557:3069737 [0] NCCL INFO Channel 16/24 :    0   3   1   2
+gn41:3069557:3069737 [0] NCCL INFO Channel 17/24 :    0   3   2   1
+gn41:3069557:3069737 [0] NCCL INFO Channel 18/24 :    0   1   2   3
+gn41:3069557:3069737 [0] NCCL INFO Channel 19/24 :    0   1   3   2
+gn41:3069557:3069737 [0] NCCL INFO Channel 20/24 :    0   2   3   1
+gn41:3069557:3069737 [0] NCCL INFO Channel 21/24 :    0   2   1   3
+gn41:3069557:3069737 [0] NCCL INFO Channel 22/24 :    0   3   1   2
+gn41:3069557:3069737 [0] NCCL INFO Channel 23/24 :    0   3   2   1
+gn41:3069557:3069737 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 2/-1/-1->0->-1 [5] 2/-1/-1->0->-1 [6] 2/-1/-1->0->-1 [7] 2/-1/-1->0->-1 [8] 3/-1/-1->0->1 [9] 3/-1/-1->0->1 [10] 3/-1/-1->0->1 [11] 3/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 2/-1/-1->0->-1 [17] 2/-1/-1->0->-1 [18] 2/-1/-1->0->-1 [19] 2/-1/-1->0->-1 [20] 3/-1/-1->0->1 [21] 3/-1/-1->0->1 [22] 3/-1/-1->0->1 [23] 3/-1/-1->0->1
+gn41:3069557:3069737 [0] NCCL INFO P2P Chunksize set to 524288
+gn41:3069560:3069740 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 01/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 04/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 07/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 10/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 02/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 13/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 02/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 16/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 04/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 03/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 08/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 19/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 08/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 01/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 03/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 10/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 22/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 09/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 14/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 07/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 14/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 09/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 15/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 16/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 13/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 20/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 20/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 22/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 15/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 21/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 19/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 21/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 04/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 05/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 10/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 11/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 16/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 17/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 22/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 23/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Connected all rings
+gn41:3069557:3069737 [0] NCCL INFO Connected all rings
+gn41:3069558:3069738 [1] NCCL INFO Connected all rings
+gn41:3069559:3069739 [2] NCCL INFO Connected all rings
+gn41:3069557:3069737 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 05/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 04/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 06/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 05/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 07/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 04/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 06/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 17/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 07/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 05/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 18/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 06/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 16/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 05/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 19/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 16/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 06/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 17/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 17/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 17/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 18/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 18/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 18/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 19/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 08/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 09/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069560:3069740 [3] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 20/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069557:3069737 [0] NCCL INFO Channel 21/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069558:3069738 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn41:3069559:3069739 [2] NCCL INFO Connected all trees
+gn41:3069559:3069739 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gn41:3069559:3069739 [2] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+gn41:3069558:3069738 [1] NCCL INFO Connected all trees
+gn41:3069557:3069737 [0] NCCL INFO Connected all trees
+gn41:3069558:3069738 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gn41:3069558:3069738 [1] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+gn41:3069557:3069737 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gn41:3069557:3069737 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+gn41:3069560:3069740 [3] NCCL INFO Connected all trees
+gn41:3069560:3069740 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gn41:3069560:3069740 [3] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+gn41:3069560:3069740 [3] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gn41:3069559:3069739 [2] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gn41:3069560:3069740 [3] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gn41:3069559:3069739 [2] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gn41:3069560:3069740 [3] NCCL INFO ncclCommInitRank comm 0x56421ef27940 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId c4000 commId 0xe713d2faef59475c - Init COMPLETE
+gn41:3069559:3069739 [2] NCCL INFO ncclCommInitRank comm 0x55d06f128b80 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 84000 commId 0xe713d2faef59475c - Init COMPLETE
+gn41:3069557:3069737 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gn41:3069557:3069737 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gn41:3069557:3069737 [0] NCCL INFO ncclCommInitRank comm 0x55f4e892aeb0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 3000 commId 0xe713d2faef59475c - Init COMPLETE
+gn41:3069558:3069738 [1] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gn41:3069558:3069738 [1] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gn41:3069558:3069738 [1] NCCL INFO ncclCommInitRank comm 0x563c8141ecd0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 44000 commId 0xe713d2faef59475c - Init COMPLETE
+[2025-05-29 17:58:58,222] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3069557
+[2025-05-29 17:59:05,237] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3069558
+[2025-05-29 17:59:07,226] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3069559
+[2025-05-29 17:59:07,269] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3069560
+[2025-05-29 17:59:08,668] [ERROR] [launch.py:325:sigkill_handler] ['/usr/bin/python3', '-u', 'train.py', '--rank=64', '--learning_rate=3e-7', '--total_epochs=3', '--beta=0.2'] exits with return code = -9
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 849, in deepspeed_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['deepspeed', '--no_local_rank', '--hostfile', 'None', '--launcher', 'pdsh', '--num_gpus', '4', '--master_addr', 'gn41', '--master_port', '29500', 'train.py', '--rank=64', '--learning_rate=3e-7', '--total_epochs=3', '--beta=0.2']' returned non-zero exit status 247.
+slurmstepd: error: Detected 1 oom_kill event in StepId=61989797.0. Some of the step tasks have been OOM Killed.

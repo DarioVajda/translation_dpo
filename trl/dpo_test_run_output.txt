@@ -1,0 +1,3 @@
+Creating hostfile at /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62038266
+gn27 slots=4
+gn28 slots=4

@@ -1,0 +1,316 @@
+cpu-bind=MASK - gn25, task  0  0 [3826623]: mask 0x1000000000000000000000000000000010000000000000000000000000000 set
+*******STARTING********
+--- Running on Node Rank: 0 ---
+Total Nodes: 2
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
+GPUs per Node: 4
+Master Address: gn25
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 2     --machine_rank 0     --main_process_ip gn25     --main_process_port 29500     --num_processes 8     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62005374     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=64 --learning_rate=3e-7 --total_epochs=3 --beta=0.2
+-------------------------------------------
+[2025-05-29 18:29:44,071] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+W0529 18:29:47.469000 3826666 torch/distributed/run.py:792] 
+W0529 18:29:47.469000 3826666 torch/distributed/run.py:792] *****************************************
+W0529 18:29:47.469000 3826666 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0529 18:29:47.469000 3826666 torch/distributed/run.py:792] *****************************************
+[2025-05-29 18:30:21,983] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 18:30:22,008] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 18:30:22,009] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 18:30:22,024] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Created datasets
+Created datasetsCreated datasetsCreated datasets
+Number of training examples: 
+
+Number of training examples:8564
+Number of training examples: Number of training examples: Number of validation examples: 8564 85648564
+953
+
+
+Number of validation examples:Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+Number of validation examples: Number of validation examples: 9533e-07
+953
+ 
+[2025-05-29 18:30:34,199] [INFO] [comm.py:658:init_distributed] cdb=None
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+3e-07
+
+World size: 8[2025-05-29 18:30:35,208] [INFO] [comm.py:658:init_distributed] cdb=None
+
+Setting gradient accumulation steps to:[2025-05-29 18:30:35,335] [INFO] [comm.py:658:init_distributed] cdb=None
+ 2
+Created datasets
+Steps per epoch: 4282
+Eval steps: 2141
+[2025-05-29 18:30:36,726] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-29 18:30:36,751] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+Set up DPO configuration
+[2025-05-29 18:30:39,653] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[2025-05-29 18:30:39,653] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[2025-05-29 18:30:39,653] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[2025-05-29 18:30:39,653] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+hpZeRO group size: 4
+gn25:3826730:3826730 [0] NCCL INFO Bootstrap : Using ib0:10.210.4.9<0>
+gn25:3826730:3826730 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gn25:3826730:3826730 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gn25:3826730:3826730 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gn25:3826730:3826730 [0] NCCL INFO cudaDriverVersion 12070
+gn25:3826732:3826732 [2] NCCL INFO cudaDriverVersion 12070
+gn25:3826731:3826731 [1] NCCL INFO cudaDriverVersion 12070
+gn25:3826733:3826733 [3] NCCL INFO cudaDriverVersion 12070
+NCCL version 2.21.5+cuda12.4
+gn25:3826732:3826732 [2] NCCL INFO Bootstrap : Using ib0:10.210.4.9<0>
+gn25:3826731:3826731 [1] NCCL INFO Bootstrap : Using ib0:10.210.4.9<0>
+gn25:3826733:3826733 [3] NCCL INFO Bootstrap : Using ib0:10.210.4.9<0>
+gn25:3826730:3826730 [0] NCCL INFO Comm config Blocking set to 1
+gn25:3826732:3826732 [2] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gn25:3826731:3826731 [1] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gn25:3826733:3826733 [3] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gn25:3826732:3826732 [2] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gn25:3826731:3826731 [1] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gn25:3826733:3826733 [3] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gn25:3826733:3826733 [3] NCCL INFO NET/Plugin: Using internal network plugin.
+gn25:3826732:3826732 [2] NCCL INFO NET/Plugin: Using internal network plugin.
+gn25:3826731:3826731 [1] NCCL INFO NET/Plugin: Using internal network plugin.
+gn25:3826733:3826733 [3] NCCL INFO Comm config Blocking set to 1
+gn25:3826732:3826732 [2] NCCL INFO Comm config Blocking set to 1
+gn25:3826731:3826731 [1] NCCL INFO Comm config Blocking set to 1
+gn25:3826731:3827050 [1] NCCL INFO Failed to open libibverbs.so[.1]
+gn25:3826731:3827050 [1] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.9<0>
+gn25:3826730:3827000 [0] NCCL INFO Failed to open libibverbs.so[.1]
+gn25:3826733:3827048 [3] NCCL INFO Failed to open libibverbs.so[.1]
+gn25:3826732:3827049 [2] NCCL INFO Failed to open libibverbs.so[.1]
+gn25:3826731:3827050 [1] NCCL INFO Using non-device net plugin version 0
+gn25:3826730:3827000 [0] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.9<0>
+gn25:3826733:3827048 [3] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.9<0>
+gn25:3826732:3827049 [2] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.9<0>
+gn25:3826731:3827050 [1] NCCL INFO Using network Socket
+gn25:3826730:3827000 [0] NCCL INFO Using non-device net plugin version 0
+gn25:3826730:3827000 [0] NCCL INFO Using network Socket
+gn25:3826733:3827048 [3] NCCL INFO Using non-device net plugin version 0
+gn25:3826733:3827048 [3] NCCL INFO Using network Socket
+gn25:3826732:3827049 [2] NCCL INFO Using non-device net plugin version 0
+gn25:3826732:3827049 [2] NCCL INFO Using network Socket
+gn25:3826733:3827048 [3] NCCL INFO ncclCommInitRank comm 0x55ef7e9a9fa0 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId c4000 commId 0x26aa58b6a42bd721 - Init START
+gn25:3826731:3827050 [1] NCCL INFO ncclCommInitRank comm 0x556e412a0470 rank 1 nranks 8 cudaDev 1 nvmlDev 1 busId 44000 commId 0x26aa58b6a42bd721 - Init START
+gn25:3826730:3827000 [0] NCCL INFO ncclCommInitRank comm 0x563779f8f840 rank 0 nranks 8 cudaDev 0 nvmlDev 0 busId 3000 commId 0x26aa58b6a42bd721 - Init START
+gn25:3826732:3827049 [2] NCCL INFO ncclCommInitRank comm 0x55ea1588e9c0 rank 2 nranks 8 cudaDev 2 nvmlDev 2 busId 84000 commId 0x26aa58b6a42bd721 - Init START
+gn25:3826731:3827050 [1] NCCL INFO NVLS multicast support is not available on dev 1
+gn25:3826733:3827048 [3] NCCL INFO NVLS multicast support is not available on dev 3
+gn25:3826732:3827049 [2] NCCL INFO Setting affinity for GPU 2 to 010000,00000000,00000000,00000000,00010000,00000000,00000000,00000000
+gn25:3826732:3827049 [2] NCCL INFO NVLS multicast support is not available on dev 2
+gn25:3826730:3827000 [0] NCCL INFO NVLS multicast support is not available on dev 0
+gn25:3826730:3827000 [0] NCCL INFO comm 0x563779f8f840 rank 0 nRanks 8 nNodes 2 localRanks 4 localRank 0 MNNVL 0
+gn25:3826731:3827050 [1] NCCL INFO comm 0x556e412a0470 rank 1 nRanks 8 nNodes 2 localRanks 4 localRank 1 MNNVL 0
+gn25:3826732:3827049 [2] NCCL INFO comm 0x55ea1588e9c0 rank 2 nRanks 8 nNodes 2 localRanks 4 localRank 2 MNNVL 0
+gn25:3826733:3827048 [3] NCCL INFO comm 0x55ef7e9a9fa0 rank 3 nRanks 8 nNodes 2 localRanks 4 localRank 3 MNNVL 0
+gn25:3826730:3827000 [0] NCCL INFO Channel 00/02 :    0   1   2   3   4   5   6   7
+gn25:3826731:3827050 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
+gn25:3826732:3827049 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1
+gn25:3826733:3827048 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2
+gn25:3826730:3827000 [0] NCCL INFO Channel 01/02 :    0   1   2   3   4   5   6   7
+gn25:3826731:3827050 [1] NCCL INFO P2P Chunksize set to 131072
+gn25:3826732:3827049 [2] NCCL INFO P2P Chunksize set to 131072
+gn25:3826733:3827048 [3] NCCL INFO P2P Chunksize set to 131072
+gn25:3826730:3827000 [0] NCCL INFO Trees [0] 1/4/-1->0->-1 [1] 1/-1/-1->0->4
+gn25:3826730:3827000 [0] NCCL INFO P2P Chunksize set to 131072
+gn25:3826731:3827050 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn25:3826732:3827049 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn25:3826733:3827048 [3] NCCL INFO Channel 00/0 : 3[3] -> 4[0] [send] via NET/Socket/0
+gn25:3826730:3827000 [0] NCCL INFO Channel 00/0 : 7[3] -> 0[0] [receive] via NET/Socket/0
+gn25:3826731:3827050 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+gn25:3826732:3827049 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+gn25:3826733:3827048 [3] NCCL INFO Channel 01/0 : 3[3] -> 4[0] [send] via NET/Socket/0
+gn25:3826730:3827000 [0] NCCL INFO Channel 01/0 : 7[3] -> 0[0] [receive] via NET/Socket/0
+gn25:3826730:3827000 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn25:3826733:3827048 [3] NCCL INFO Connected all rings
+gn25:3826730:3827000 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+gn25:3826733:3827048 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn25:3826733:3827048 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+gn25:3826731:3827050 [1] NCCL INFO Connected all rings
+gn25:3826732:3827049 [2] NCCL INFO Connected all rings
+gn25:3826730:3827000 [0] NCCL INFO Connected all rings
+gn25:3826731:3827050 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn25:3826732:3827049 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn25:3826730:3827000 [0] NCCL INFO Channel 00/0 : 4[0] -> 0[0] [receive] via NET/Socket/0
+gn25:3826731:3827050 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+gn25:3826732:3827049 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+gn25:3826730:3827000 [0] NCCL INFO Channel 01/0 : 4[0] -> 0[0] [receive] via NET/Socket/0
+gn25:3826733:3827048 [3] NCCL INFO Connected all trees
+gn25:3826733:3827048 [3] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+gn25:3826730:3827000 [0] NCCL INFO Channel 00/0 : 0[0] -> 4[0] [send] via NET/Socket/0
+gn25:3826733:3827048 [3] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 1 p2p channels per peer
+gn25:3826730:3827000 [0] NCCL INFO Channel 01/0 : 0[0] -> 4[0] [send] via NET/Socket/0
+gn25:3826732:3827049 [2] NCCL INFO Connected all trees
+gn25:3826732:3827049 [2] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+gn25:3826730:3827000 [0] NCCL INFO Connected all trees
+gn25:3826730:3827000 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+gn25:3826731:3827050 [1] NCCL INFO Connected all trees
+gn25:3826731:3827050 [1] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+gn25:3826732:3827049 [2] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 1 p2p channels per peer
+gn25:3826730:3827000 [0] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 1 p2p channels per peer
+gn25:3826731:3827050 [1] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 1 p2p channels per peer
+gn25:3826732:3827049 [2] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gn25:3826733:3827048 [3] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gn25:3826731:3827050 [1] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gn25:3826730:3827000 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gn25:3826732:3827049 [2] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gn25:3826733:3827048 [3] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gn25:3826731:3827050 [1] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gn25:3826730:3827000 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gn25:3826730:3827000 [0] NCCL INFO ncclCommInitRank comm 0x563779f8f840 rank 0 nranks 8 cudaDev 0 nvmlDev 0 busId 3000 commId 0x26aa58b6a42bd721 - Init COMPLETE
+gn25:3826732:3827049 [2] NCCL INFO ncclCommInitRank comm 0x55ea1588e9c0 rank 2 nranks 8 cudaDev 2 nvmlDev 2 busId 84000 commId 0x26aa58b6a42bd721 - Init COMPLETE
+gn25:3826733:3827048 [3] NCCL INFO ncclCommInitRank comm 0x55ef7e9a9fa0 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId c4000 commId 0x26aa58b6a42bd721 - Init COMPLETE
+gn25:3826731:3827050 [1] NCCL INFO ncclCommInitRank comm 0x556e412a0470 rank 1 nranks 8 cudaDev 1 nvmlDev 1 busId 44000 commId 0x26aa58b6a42bd721 - Init COMPLETE
+[2025-05-29 18:32:09,653] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 465, num_elems = 10.16B
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [01:20<04:00, 80.07s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [01:20<04:00, 80.09s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [01:20<04:00, 80.06s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [01:20<04:00, 80.08s/it]Loading checkpoint shards:  50%|█████     | 2/4 [02:47<02:48, 84.44s/it]Loading checkpoint shards:  50%|█████     | 2/4 [02:47<02:48, 84.46s/it]Loading checkpoint shards:  50%|█████     | 2/4 [02:47<02:48, 84.45s/it]Loading checkpoint shards:  50%|█████     | 2/4 [02:47<02:48, 84.44s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [04:12<01:24, 84.53s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [04:12<01:24, 84.55s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [04:12<01:24, 84.53s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [04:12<01:24, 84.55s/it]Loading checkpoint shards: 100%|██████████| 4/4 [05:16<00:00, 76.64s/it]Loading checkpoint shards: 100%|██████████| 4/4 [05:16<00:00, 76.64s/it]Loading checkpoint shards: 100%|██████████| 4/4 [05:16<00:00, 76.63s/it]Loading checkpoint shards: 100%|██████████| 4/4 [05:16<00:00, 76.63s/it]Loading checkpoint shards: 100%|██████████| 4/4 [05:16<00:00, 79.22s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [05:16<00:00, 79.22s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [05:16<00:00, 79.22s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [05:16<00:00, 79.21s/it]
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+[2025-05-29 18:37:39,066] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[2025-05-29 18:37:39,099] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[2025-05-29 18:37:39,102] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 153, in <module>
+[rank2]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank2]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 107, in main
+[rank2]:     ref_model = AutoModelForCausalLM.from_pretrained(model_path)   # Reference model for DPO
+[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+[rank2]:     return model_class.from_pretrained(
+[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4332, in from_pretrained
+[rank2]:     model_init_context = cls.get_init_context(is_quantized, _is_ds_init_called)
+[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3727, in get_init_context
+[rank2]:     init_contexts.extend([deepspeed.zero.Init(config_dict_or_path=deepspeed_config()), set_zero3_state()])
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/partition_parameters.py", line 978, in __init__
+[rank2]:     groups._create_zero_param_parallel_group(_ds_config.zero_config.zero_hpz_partition_size)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/utils/groups.py", line 663, in _create_zero_param_parallel_group
+[rank2]:     assert _ZERO_PARAM_INTRA_PARALLEL_GROUP is None, \
+[rank2]: AssertionError: ZeRO parameter intra parallel group is already initialized
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 153, in <module>
+[rank0]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank0]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 107, in main
+[rank0]:     ref_model = AutoModelForCausalLM.from_pretrained(model_path)   # Reference model for DPO
+[rank0]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+[rank0]:     return model_class.from_pretrained(
+[rank0]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4332, in from_pretrained
+[rank0]:     model_init_context = cls.get_init_context(is_quantized, _is_ds_init_called)
+[rank0]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3727, in get_init_context
+[rank0]:     init_contexts.extend([deepspeed.zero.Init(config_dict_or_path=deepspeed_config()), set_zero3_state()])
+[rank0]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/partition_parameters.py", line 978, in __init__
+[rank0]:     groups._create_zero_param_parallel_group(_ds_config.zero_config.zero_hpz_partition_size)
+[rank0]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/utils/groups.py", line 663, in _create_zero_param_parallel_group
+[rank0]:     assert _ZERO_PARAM_INTRA_PARALLEL_GROUP is None, \
+[rank0]: AssertionError: ZeRO parameter intra parallel group is already initialized
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 153, in <module>
+[rank3]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank3]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 107, in main
+[rank3]:     ref_model = AutoModelForCausalLM.from_pretrained(model_path)   # Reference model for DPO
+[rank3]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+[rank3]:     return model_class.from_pretrained(
+[rank3]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+[rank3]:     return func(*args, **kwargs)
+[rank3]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4332, in from_pretrained
+[rank3]:     model_init_context = cls.get_init_context(is_quantized, _is_ds_init_called)
+[rank3]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3727, in get_init_context
+[rank3]:     init_contexts.extend([deepspeed.zero.Init(config_dict_or_path=deepspeed_config()), set_zero3_state()])
+[rank3]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/partition_parameters.py", line 978, in __init__
+[rank3]:     groups._create_zero_param_parallel_group(_ds_config.zero_config.zero_hpz_partition_size)
+[rank3]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/utils/groups.py", line 663, in _create_zero_param_parallel_group
+[rank3]:     assert _ZERO_PARAM_INTRA_PARALLEL_GROUP is None, \
+[rank3]: AssertionError: ZeRO parameter intra parallel group is already initialized
+[2025-05-29 18:37:39,507] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 153, in <module>
+[rank1]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank1]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 107, in main
+[rank1]:     ref_model = AutoModelForCausalLM.from_pretrained(model_path)   # Reference model for DPO
+[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+[rank1]:     return model_class.from_pretrained(
+[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4332, in from_pretrained
+[rank1]:     model_init_context = cls.get_init_context(is_quantized, _is_ds_init_called)
+[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3727, in get_init_context
+[rank1]:     init_contexts.extend([deepspeed.zero.Init(config_dict_or_path=deepspeed_config()), set_zero3_state()])
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/partition_parameters.py", line 978, in __init__
+[rank1]:     groups._create_zero_param_parallel_group(_ds_config.zero_config.zero_hpz_partition_size)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/utils/groups.py", line 663, in _create_zero_param_parallel_group
+[rank1]:     assert _ZERO_PARAM_INTRA_PARALLEL_GROUP is None, \
+[rank1]: AssertionError: ZeRO parameter intra parallel group is already initialized
+W0529 18:37:54.676000 3826666 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 3826730 closing signal SIGTERM
+W0529 18:37:54.796000 3826666 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 3826731 closing signal SIGTERM
+W0529 18:37:54.881000 3826666 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 3826732 closing signal SIGTERM
+E0529 18:37:56.433000 3826666 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 3 (pid: 3826733) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 861, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-05-29_18:37:54
+  host      : pm5-nod72.vega.pri
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 3826733)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

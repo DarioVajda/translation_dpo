@@ -1,0 +1,7 @@
+{"time":"2025-05-11T14:05:41.515264379+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250511_140541-mvrshrjb/logs/debug-core.log"}
+{"time":"2025-05-11T14:05:41.896384234+02:00","level":"INFO","msg":"created new stream","id":"mvrshrjb"}
+{"time":"2025-05-11T14:05:41.896431098+02:00","level":"INFO","msg":"stream: started","id":"mvrshrjb"}
+{"time":"2025-05-11T14:05:41.896440037+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"mvrshrjb"}
+{"time":"2025-05-11T14:05:41.897075941+02:00","level":"INFO","msg":"handler: started","stream_id":"mvrshrjb"}
+{"time":"2025-05-11T14:05:41.897104785+02:00","level":"INFO","msg":"sender: started","stream_id":"mvrshrjb"}
+{"time":"2025-05-11T14:05:42.166197584+02:00","level":"INFO","msg":"Starting system monitor"}

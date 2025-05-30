@@ -1,0 +1,15 @@
+{"time":"2025-05-10T19:55:13.302707413+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250510_195513-ne9zacm4/logs/debug-core.log"}
+{"time":"2025-05-10T19:55:13.517915259+02:00","level":"INFO","msg":"created new stream","id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.517954199+02:00","level":"INFO","msg":"stream: started","id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.51798719+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.520019283+02:00","level":"INFO","msg":"sender: started","stream_id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.520087493+02:00","level":"INFO","msg":"handler: started","stream_id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.544408445+02:00","level":"ERROR","msg":"sender: upsertRun:","error":"failed to upsert bucket: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post \"https://api.wandb.ai/graphql\": tls: failed to verify certificate: x509: certificate signed by unknown authority"}
+{"time":"2025-05-10T19:55:13.650453957+02:00","level":"INFO","msg":"stream: closing","id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.650572848+02:00","level":"ERROR","msg":"sender: upsertConfig: RunRecord is nil"}
+{"time":"2025-05-10T19:55:13.725407674+02:00","level":"ERROR","msg":"runfiles: CreateRunFiles returned error: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post \"https://api.wandb.ai/graphql\": tls: failed to verify certificate: x509: certificate signed by unknown authority"}
+{"time":"2025-05-10T19:55:13.725808087+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-10T19:55:13.725831537+02:00","level":"INFO","msg":"handler: closed","stream_id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.725838807+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.725879507+02:00","level":"INFO","msg":"sender: closed","stream_id":"ne9zacm4"}
+{"time":"2025-05-10T19:55:13.725886707+02:00","level":"INFO","msg":"stream: closed","id":"ne9zacm4"}

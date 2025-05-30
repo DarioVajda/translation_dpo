@@ -1,0 +1,7 @@
+{"time":"2025-05-11T15:04:08.363543208+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250511_150408-u2tbqqgv/logs/debug-core.log"}
+{"time":"2025-05-11T15:04:08.755134212+02:00","level":"INFO","msg":"created new stream","id":"u2tbqqgv"}
+{"time":"2025-05-11T15:04:08.755179608+02:00","level":"INFO","msg":"stream: started","id":"u2tbqqgv"}
+{"time":"2025-05-11T15:04:08.755306859+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"u2tbqqgv"}
+{"time":"2025-05-11T15:04:08.755373068+02:00","level":"INFO","msg":"sender: started","stream_id":"u2tbqqgv"}
+{"time":"2025-05-11T15:04:08.755400027+02:00","level":"INFO","msg":"handler: started","stream_id":"u2tbqqgv"}
+{"time":"2025-05-11T15:04:09.00804537+02:00","level":"INFO","msg":"Starting system monitor"}
