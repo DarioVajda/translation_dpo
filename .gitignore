@@ -1,3 +1,4 @@
 nemorl/
 trl/training_run/
 dpo/
+preference_data/*.jsonl
