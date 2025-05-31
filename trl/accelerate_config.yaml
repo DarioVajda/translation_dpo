@@ -5,11 +5,11 @@ deepspeed_config:
   # gradient_clipping: auto
   # offload_optimizer_device: cpu
   # offload_param_device: cpu
-  zero3_init_flag: true
+  #zero3_init_flag: true
   # zero3_save_16bit_model: true
   # zero_stage: 3
   # zero_hpz_partition_size: 4
-  deepspeed_config_file: /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/deepspeed_config.json
+  deepspeed_config_file: /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/deepspeed_config_stage2.json
 distributed_type: DEEPSPEED
 downcast_bf16: 'no'
 enable_cpu_affinity: false

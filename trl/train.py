@@ -37,6 +37,8 @@ def use_lora(model, rank=128):
         ],  # Specify the target modules for LoRA
     )
 
+    #return lora_config
+
     # Wrap your model with LoRA
     model = get_peft_model(model, lora_config)
 
@@ -60,7 +62,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
     local_rank = int(os.environ.get("LOCAL_RANK", os.environ.get("ACCELERATE_LOCAL_RANK", 0)))
 
     batch_size=16
-    micro_batch_size=2
+    micro_batch_size=1
     world_size = int(os.environ["WORLD_SIZE"])
     if local_rank == 0: print("World size:", world_size)
     gradient_accumulation_steps = batch_size // (world_size * micro_batch_size)
@@ -105,6 +107,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
         bf16=True,                                                  # Use bf16 (mixed precision) instead of fp16
         bf16_full_eval=True,                                        # Use bf16 (mixed precision) for evaluation
         gradient_checkpointing=True,                                # Enable gradient checkpointing to save memory
+        # gradient_checkpointing_kwargs={"use_reentrant": False},     # DOCS SAID I SHOULD SET THIS (I HOPE)
         max_grad_norm=1.0,                                          # Max gradient norm for gradient clipping
 
         # WandB configuration:
@@ -122,18 +125,45 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
 
     # Load the model
     model_path = "cjvt/GaMS-9B-Instruct"                           # Path to the model
-    model = AutoModelForCausalLM.from_pretrained(
-        model_path,
-        attn_implementation="eager",
-    )       # Model to be trained
-    # ref_model = AutoModelForCausalLM.from_pretrained(model_path)   # Reference model for DPO
-    # if local_rank == 0: print("Loaded model and reference model")
+    model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")
+    model.config.use_cache = False
+    if local_rank == 0: print("Loaded model")
+
+    # # Set input gradients to True
+    # if hasattr(model, "enable_input_require_grads"):
+    #     model.enable_input_require_grads()  # enables grad on embedding outputs
+    # else:
+    #     # Fallback for older versions:
+    #     def make_inputs_require_grad(module, inputs, output):
+    #         output.requires_grad_(True)
+    #     model.get_input_embeddings().register_forward_hook(make_inputs_require_grad)
+    # if local_rank == 0:
+    #     # check if input gradients are enabled
+    #     print("Input gradients enabled:", model.get_input_embeddings().weight.requires_grad)
+
+    #ref_model = model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")   # Reference model for DPO
+    #ref_model.config.use_cache = False
+
+    def print_trainable_parameters(model):
+        trainable_params = 0
+        all_params = 0
+
+        for param in model.parameters():
+            all_params += param.numel()
+            if param.requires_grad:
+                trainable_params += param.numel()
+
+        print(f"Total Parameters: {all_params/1e6:.2f}M")
+        print(f"Trainable Parameters (LoRA): {trainable_params/1e6:.2f}M")
+        print(f"Percentage of Trainable Params: {(trainable_params/all_params) * 100:.4f}%")
 
     # Using LoRA
     model = use_lora(model, RANK) # Speed up training and reduce memory usage with LoRA
-    if local_rank == 0: print("Using LoRA and set up the model model")
+    peft_config = use_lora(model, RANK)  # Get the LoRA configuration
+    print_trainable_parameters(model)
+    if local_rank == 0: print("Using LoRA and set up the model")
 
-    if local_rank == 0: check_gradients(model)  # Check if the model has gradients enabled
+    # if local_rank == 0: check_gradients(model)  # Check if the model has gradients enabled
 
     # Load the tokenizer
     tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=False, add_eos_token=True)    # Tokenizer for the model
@@ -141,17 +171,16 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
         tokenizer.pad_token = tokenizer.eos_token
     if local_rank == 0: print("Loaded tokenizer")
 
-
-
     # PERFORM TRAINING HERE
     dpo_trainer = DPOTrainer(
         model=model,
-        # ref_model=ref_model,
+        #ref_model=ref_model,
         ref_model=None,  # Reference model is copied from the model
         train_dataset=train_dataset,
         eval_dataset=val_dataset,
         processing_class=tokenizer,
         args=dpo_config,
+        # peft_config=peft_config,  # Pass the LoRA configuration
     )
     if local_rank == 0: print("Set up DPO trainer")
     dpo_trainer.train()

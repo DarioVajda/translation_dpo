@@ -2,12 +2,13 @@
 #SBATCH --job-name=dpo_fine_tuning
 #SBATCH --output=dpo_test_run_output.txt
 #SBATCH --error=dpo_test_run_error.txt
-#SBATCH --time=1:00:00
+#SBATCH --time=8:00:00
 #SBATCH --partition=gpu
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:4
-#SBATCH --mem=40G
+#SBATCH --mem=0
+#SBATCH --exclusive
 
 # Get the list of hostnames from SLURM
 mapfile -t HOSTS < <(scontrol show hostnames "$SLURM_JOB_NODELIST")
