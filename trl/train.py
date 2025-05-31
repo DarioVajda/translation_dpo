@@ -188,7 +188,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
 
     if local_rank == 0: 
         print("Saving model")
-        model.save_pretrained(f"Translation_DPO_GaMS-9B_r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}") # Save the model
+        model.save_pretrained(f"trained_models/Translation_DPO_GaMS-9B_r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}") # Save the model
 
 
 

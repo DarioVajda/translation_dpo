@@ -3,3 +3,4 @@ nemorl_new/
 trl/training_run/
 dpo/
 *.jsonl
+trl/trained_models/
