@@ -73,7 +73,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
     val_dataset = Dataset.from_list(val_data)
     if local_rank == 0: print("Created datasets")
 
-    STEPS_PER_EPOCH = len(train_dataset) // gradient_accumulation_steps
+    STEPS_PER_EPOCH = len(train_dataset) // batch_size
     EVAL_STEPS = int(0.5 * STEPS_PER_EPOCH)
     if local_rank == 0: print("Steps per epoch:", STEPS_PER_EPOCH)
     if local_rank == 0: print("Eval steps:", EVAL_STEPS)
@@ -84,7 +84,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
         per_device_eval_batch_size=micro_batch_size,                # Batch size per GPU/TPU core/CPU for evaluation
         gradient_accumulation_steps=gradient_accumulation_steps,    # Number of updates steps to accumulate before performing a backward/update pass
         output_dir=f"training_run/r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}",     # Directory where the model predictions and checkpoints will be written
-        logging_steps=1,                                            # Log every X updates steps
+        logging_steps=10,                                           # Log every X updates steps
         save_strategy="steps",                                      # Save checkpoint every X epochs
         save_steps=EVAL_STEPS,                                      # Save checkpoint every X updates steps
         beta=BETA,                                                  # Beta parameter for the DPO loss
@@ -159,7 +159,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
 
     # Using LoRA
     model = use_lora(model, RANK) # Speed up training and reduce memory usage with LoRA
-    peft_config = use_lora(model, RANK)  # Get the LoRA configuration
+    # peft_config = use_lora(model, RANK)  # Get the LoRA configuration
     print_trainable_parameters(model)
     if local_rank == 0: print("Using LoRA and set up the model")
 

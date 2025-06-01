@@ -1,5 +1,7 @@
-Creating hostfile at /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62116400
-gn56 slots=4
-gn60 slots=4
+Creating hostfile at /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62175320
+gn04 slots=4
+gn05 slots=4
+Training completed!
+Outputs are saved in /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir
 Training completed!
 Outputs are saved in /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir
