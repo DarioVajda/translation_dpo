@@ -1,27 +1,34 @@
 import torch
+print("imported torch version:", torch.__version__)
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+print("imported transformers")
 
 # Path to your local Hugging Face 9B parameter model
-MODEL_PATH = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v0"
+MODEL_PATH = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v1"
+# MODEL_PATH = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct"
 
 # Load tokenizer
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
+print("Tokenizer loaded successfully.")
 
 # Load model with automatic device mapping (will spread across GPUs if needed)
 # Use half-precision for memory efficiency
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_PATH,
-    device_map="auto",           # Automatically place layers on available GPUs
+    # device_map=0,           # Automatically place layers on available GPUs
     torch_dtype=torch.float16,     # Use fp16
     low_cpu_mem_usage=True         # Reduce CPU memory usage during init
 )
+print("cuda" if torch.cuda.is_available() else "cpu")
+model = model.to("cuda" if torch.cuda.is_available() else "cpu")  # Move model to GPU if available
+print("Model loaded successfully.")
 
 # Create a text-generation pipeline
 generator = pipeline(
     "text-generation",
     model=model,
     tokenizer=tokenizer,
-    device_map="auto"           # Ensure pipeline uses the same device mapping
+    device_map=0           # Ensure pipeline uses the same device mapping
 )
 
 
@@ -56,7 +63,7 @@ if __name__ == "__main__":
         "\n" +
         "Vallcarca is a Barcelona Metro station in the Vallcarca i els Penitents neighbourhood, in the Gràcia district of Barcelona.The station is served by line L3.\n" +
         "\n" +
-        # "The station opened in 1985 when the section of line L3 between Lesseps and Montbau stations was inaugurated.\n" +
+        "The station opened in 1985 when the section of line L3 between Lesseps and Montbau stations was inaugurated.\n" +
         # "\n" +
         # "The station is located underneath Avinguda de Vallcarca (formerly known as the Avinguda de l'Hospital Militar), between Carrer de l'Argentera and the Vallcarca bridge. It has three entrances and can be accessed from either side of Avinguda de Vallcarca, as well as from Avinguda de la República Argentina. It has twin side platforms that are long and which are accessed from the entrance lobby by stairs and escalators.\n" +
         # "\n" +
@@ -80,7 +87,7 @@ if __name__ == "__main__":
     )
 
     responses = []
-    for i in range(3):
+    for i in range(2):
         # Generate response
         response = generate_response(
             user_prompt,

@@ -72,6 +72,20 @@ for example in train_data:
     example["prompt"] = [{"role": "user", "content": example["prompt"].replace("<bos><start_of_turn>user\n", "").replace("<end_of_turn>\n<start_of_turn>model", "")}]
     example["chosen"] = [{"role": "assistant", "content": example["chosen"]}]
     example["rejected"] = [{"role": "assistant", "content": example["rejected"]}]
+for example in val_data:
+    example["prompt"] = [{"role": "user", "content": example["prompt"].replace("<bos><start_of_turn>user\n", "").replace("<end_of_turn>\n<start_of_turn>model", "")}]
+    example["chosen"] = [{"role": "assistant", "content": example["chosen"]}]
+    example["rejected"] = [{"role": "assistant", "content": example["rejected"]}]
+
+
+# print the first 3 examples of the training data
+print("First 3 training examples:")
+for i in range(3):
+    print(f"Example {i+1}:")
+    print("Prompt:", train_data[i]["prompt"])
+    print("Chosen:", train_data[i]["chosen"])
+    print("Rejected:", train_data[i]["rejected"])
+    print()
 
 
 # put the data into a dataset object
