@@ -55,11 +55,13 @@ short_train_data, short_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42
 # load data from the file "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/choose_examples_filtered.jsonl"
 choose_train_data, choose_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/choose_examples_filtered.jsonl")
 
+# load data from the file "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_format_examples_filtered.jsonl"
+format_train_data, format_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_format_examples_filtered.jsonl")
 
 
 # merge the three datasets into one
-train_data = lang_train_data + short_train_data + choose_train_data
-val_data = lang_val_data + short_val_data + choose_val_data
+train_data = lang_train_data + short_train_data + choose_train_data + format_train_data
+val_data = lang_val_data + short_val_data + choose_val_data # + format_val_data
 
 # remove the "src" field from each example
 for example in train_data:
@@ -78,14 +80,14 @@ for example in val_data:
     example["rejected"] = [{"role": "assistant", "content": example["rejected"]}]
 
 
-# print the first 3 examples of the training data
-print("First 3 training examples:")
-for i in range(3):
-    print(f"Example {i+1}:")
-    print("Prompt:", train_data[i]["prompt"])
-    print("Chosen:", train_data[i]["chosen"])
-    print("Rejected:", train_data[i]["rejected"])
-    print()
+# # print the first 3 examples of the training data
+# print("First 3 training examples:")
+# for i in range(3):
+#     print(f"Example {i+1}:")
+#     print("Prompt:", train_data[i]["prompt"])
+#     print("Chosen:", train_data[i]["chosen"])
+#     print("Rejected:", train_data[i]["rejected"])
+#     print()
 
 
 # put the data into a dataset object

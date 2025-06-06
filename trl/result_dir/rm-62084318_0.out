@@ -1,176 +1,0 @@
-cpu-bind=MASK - gn21, task  0  0 [653006]: mask 0xffff0000ffff0000ffffffffffffffffffff0000ffff0000ffffffffffffffff set
-*******STARTING********
---- Running on Node Rank: 0 ---
-Total Nodes: 2
---- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
-GPUs per Node: 4
-Master Address: gn21
-Master Port: 29500
--------------------------------------------
-accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 2     --machine_rank 0     --main_process_ip gn21     --main_process_port 29500     --num_processes 8     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62084318     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=64 --learning_rate=3e-7 --total_epochs=3 --beta=0.2
--------------------------------------------
-[2025-05-31 02:21:51,460] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-W0531 02:21:52.813000 653056 torch/distributed/run.py:792] 
-W0531 02:21:52.813000 653056 torch/distributed/run.py:792] *****************************************
-W0531 02:21:52.813000 653056 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W0531 02:21:52.813000 653056 torch/distributed/run.py:792] *****************************************
-[2025-05-31 02:22:17,849] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-05-31 02:22:17,894] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-05-31 02:22:17,903] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-05-31 02:22:17,905] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-Created datasets
-Created datasets
-Created datasets
-Created datasets
-Number of training examples:Number of training examples: Number of training examples: Number of training examples:  85648564
-8564
-8564
-
-Number of validation examples:Number of validation examples: Number of validation examples: Number of validation examples:  953953
-953
-953
-
-Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
-Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
-Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
-Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
-3e-07
-3e-07
-3e-07
-3e-07
-World size: 8
-Setting gradient accumulation steps to:[2025-05-31 02:22:21,171] [INFO] [comm.py:658:init_distributed] cdb=None
- 2
-[2025-05-31 02:22:21,213] [INFO] [comm.py:658:init_distributed] cdb=None
-[2025-05-31 02:22:21,284] [INFO] [comm.py:658:init_distributed] cdb=None
-Created datasets
-Steps per epoch: 4282
-Eval steps: 2141
-[2025-05-31 02:22:21,570] [INFO] [comm.py:658:init_distributed] cdb=None
-[2025-05-31 02:22:21,574] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
-Set up DPO configuration
-[2025-05-31 02:22:22,144] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[2025-05-31 02:22:22,173] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[2025-05-31 02:22:22,339] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-hpZeRO group size: 4
-[2025-05-31 02:22:22,388] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[2025-05-31 02:22:37,779] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 465, num_elems = 10.16B
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:08<00:24,  8.10s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.90s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.93s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.73s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:16<00:05,  5.57s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:16<00:05,  5.58s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:16<00:05,  5.58s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.76s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.18s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.19s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.18s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.22s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.24s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.23s/it]
-
-
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
-[2025-05-31 02:22:59,131] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[2025-05-31 02:22:59,149] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[rank1]: Traceback (most recent call last):
-[rank1]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
-[rank1]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
-[rank1]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 144, in main
-[rank1]:     ref_model = model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")   # Reference model for DPO
-[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
-[rank1]:     return model_class.from_pretrained(
-[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
-[rank1]:     return func(*args, **kwargs)
-[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4332, in from_pretrained
-[rank1]:     model_init_context = cls.get_init_context(is_quantized, _is_ds_init_called)
-[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3727, in get_init_context
-[rank1]:     init_contexts.extend([deepspeed.zero.Init(config_dict_or_path=deepspeed_config()), set_zero3_state()])
-[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/partition_parameters.py", line 978, in __init__
-[rank1]:     groups._create_zero_param_parallel_group(_ds_config.zero_config.zero_hpz_partition_size)
-[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/utils/groups.py", line 663, in _create_zero_param_parallel_group
-[rank1]:     assert _ZERO_PARAM_INTRA_PARALLEL_GROUP is None, \
-[rank1]: AssertionError: ZeRO parameter intra parallel group is already initialized
-[rank3]: Traceback (most recent call last):
-[rank3]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
-[rank3]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
-[rank3]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 144, in main
-[rank3]:     ref_model = model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")   # Reference model for DPO
-[rank3]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
-[rank3]:     return model_class.from_pretrained(
-[rank3]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
-[rank3]:     return func(*args, **kwargs)
-[rank3]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4332, in from_pretrained
-[rank3]:     model_init_context = cls.get_init_context(is_quantized, _is_ds_init_called)
-[rank3]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3727, in get_init_context
-[rank3]:     init_contexts.extend([deepspeed.zero.Init(config_dict_or_path=deepspeed_config()), set_zero3_state()])
-[rank3]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/partition_parameters.py", line 978, in __init__
-[rank3]:     groups._create_zero_param_parallel_group(_ds_config.zero_config.zero_hpz_partition_size)
-[rank3]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/utils/groups.py", line 663, in _create_zero_param_parallel_group
-[rank3]:     assert _ZERO_PARAM_INTRA_PARALLEL_GROUP is None, \
-[rank3]: AssertionError: ZeRO parameter intra parallel group is already initialized
-[2025-05-31 02:22:59,239] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[rank2]: Traceback (most recent call last):
-[rank2]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
-[rank2]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
-[rank2]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 144, in main
-[rank2]:     ref_model = model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")   # Reference model for DPO
-[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
-[rank2]:     return model_class.from_pretrained(
-[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
-[rank2]:     return func(*args, **kwargs)
-[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4332, in from_pretrained
-[rank2]:     model_init_context = cls.get_init_context(is_quantized, _is_ds_init_called)
-[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3727, in get_init_context
-[rank2]:     init_contexts.extend([deepspeed.zero.Init(config_dict_or_path=deepspeed_config()), set_zero3_state()])
-[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/partition_parameters.py", line 978, in __init__
-[rank2]:     groups._create_zero_param_parallel_group(_ds_config.zero_config.zero_hpz_partition_size)
-[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/utils/groups.py", line 663, in _create_zero_param_parallel_group
-[rank2]:     assert _ZERO_PARAM_INTRA_PARALLEL_GROUP is None, \
-[rank2]: AssertionError: ZeRO parameter intra parallel group is already initialized
-W0531 02:23:01.114000 653056 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 653325 closing signal SIGTERM
-W0531 02:23:01.123000 653056 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 653326 closing signal SIGTERM
-W0531 02:23:01.129000 653056 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 653328 closing signal SIGTERM
-E0531 02:23:01.496000 653056 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 2 (pid: 653327) of binary: /usr/bin/python3
-Traceback (most recent call last):
-  File "/usr/local/bin/accelerate", line 8, in <module>
-    sys.exit(main())
-  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
-    args.func(args)
-  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
-    deepspeed_launcher(args)
-  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 861, in deepspeed_launcher
-    distrib_run.run(args)
-  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
-    elastic_launch(
-  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-============================================================
-train.py FAILED
-------------------------------------------------------------
-Failures:
-  <NO_OTHER_FAILURES>
-------------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2025-05-31_02:23:01
-  host      : pm5-nod60.vega.pri
-  rank      : 2 (local_rank: 2)
-  exitcode  : 1 (pid: 653327)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-============================================================

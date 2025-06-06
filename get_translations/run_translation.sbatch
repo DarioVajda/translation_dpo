@@ -21,8 +21,9 @@ WORK_DIR=/ceph/hpc/data/s24o01-42-users
 tp_size=${SLURM_GPUS_ON_NODE}
 
 CONTAINER_DIR=$WORK_DIR/containers
-VLLM_VERSION=v0.6.3.post1
-CONTAINER=$CONTAINER_DIR/vllm-openai_${VLLM_VERSION}.sif
+CONTAINER=$CONTAINER_DIR/slobench_vllm.sif
+
+MODELS_DIR=/ceph/hpc/data/s24o01-42-users/models/hf_models
 
 data_dir=$WORK_DIR/corpuses/wikipedia
 
@@ -30,11 +31,13 @@ export TOKENIZERS_PARALLELISM=false
 
 export HF_TOKEN=$(<$HOME/hf_token.txt)
 
+export VLLM_DISABLE_COMPILE_CACHE=1
+
 srun \
     --cpu-bind=verbose \
-    --output="logs/${input_data}_${model}_translation_test.txt" \
+    --output="new_logs/${input_data}_${model}_translation_test.txt" \
     singularity exec \
-        -B $data_dir:/data \
+        -B $data_dir:/data,$MODELS_DIR:/models \
         $CONTAINER \
         python3 translate.py \
             --model_path=$model \

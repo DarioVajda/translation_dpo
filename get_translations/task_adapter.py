@@ -36,8 +36,10 @@ class EuroLLMTaskAdapter:
 
 def get_task_adapter(model_name) -> TaskAdapter:
     if "GaMS" in model_name:
+        print("Using GaMSTaskAdapter for model:", model_name)
         return GaMSTaskAdapter()
     elif "EuroLLM" in model_name:
+        print("Using EuroLLMTaskAdapter for model:", model_name)
         return EuroLLMTaskAdapter()
     
     raise ValueError("Unsupported model name", model_name)

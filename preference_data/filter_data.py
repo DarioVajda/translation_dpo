@@ -57,6 +57,7 @@ files =[
     "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_lang_examples.jsonl",
     "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/choose_examples.jsonl",
     "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/short_examples.jsonl",
+    "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_format_examples.jsonl",
 ]
 for file_path in files:
     train_data = load_train_data(file_path)

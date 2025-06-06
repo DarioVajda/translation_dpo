@@ -39,7 +39,7 @@ TRAINING_SCRIPT="train.py"
 
 # Get the parameters for the training script
 DPO_RANK=${1:-64}
-LEARNING_RATE=${2:-3e-7}
+LEARNING_RATE=${2:-4e-7}
 BETA=${3:-0.2}
 
 # SSL Certificate Configuration

@@ -1,50 +1,63 @@
+print("Starting the script...")
 from transformers import pipeline
+print("imported pipeline from transformers")
+import torch
+print("imported torch")
+from tqdm import tqdm
+print("imported tqdm")
 
 # model_id = "cjvt/GaMS-9B-Instruct"
-model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v1"
+model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v2"
 
 pline = pipeline(
     "text-generation",
     model=model_id,
-    device_map="cuda" # replace with "mps" to run on a Mac device
+    device_map="auto", # replace with "mps" to run on a Mac device
 )
+print("Initialized pipeline with model:", model_id)
 
-# Example of response generation
-message = [{
-    "role": "user",
-    "content": 
-        "Prevedi naslednje angleško besedilo v slovenščino.\n" +
-        "# Vallcarca metro station\n" +
-        "\n" +
-        "Vallcarca is a Barcelona Metro station in the Vallcarca i els Penitents neighbourhood, in the Gràcia district of Barcelona.The station is served by line L3.\n" +
-        "\n" +
-        "The station opened in 1985 when the section of line L3 between Lesseps and Montbau stations was inaugurated.\n" +
-        # "\n" +
-        # "The station is located underneath Avinguda de Vallcarca (formerly known as the Avinguda de l'Hospital Militar), between Carrer de l'Argentera and the Vallcarca bridge. It has three entrances and can be accessed from either side of Avinguda de Vallcarca, as well as from Avinguda de la República Argentina. It has twin side platforms that are long and which are accessed from the entrance lobby by stairs and escalators.\n" +
-        # "\n" +
-        # "## See also\n" +
-        # "\n" +
-        # "* List of Barcelona Metro stations\n" +
-        # "\n" +
-        # "## External links\n" +
-        # "\n" +
-        # "* \n" +
-        # "\n" +
-        # "* Trenscat.com\n" +
-        # "\n" +
-        # "* Transportebcn.es\n" +
-        # "\n" +
-        # "Barcelona Metro line 3 stations\n" +
-        # "Railway stations in Spain opened in 1985\n" +
-        # "Transport in Gràcia\n" + 
-        "Prevod: " +
-        ""
-}]
-response = pipeline(message, max_new_tokens=2048)
-print("Model's response:", response[0]["generated_text"][-1]["content"])
+# message = [{
+#     "role": "user",
+#     "content": 
+#         "Prevedi naslednje angleško besedilo v slovenščino.\n" +
+#         "Today is a really nice day. The sun is shining and the birds are singing. I went for a walk in the park and saw many people enjoying the weather."
+# }]
 
-# Example of conversation chain
-# new_message = response[0]["generated_text"]
-# new_message.append({"role": "user", "content": "Lahko bolj podrobno opišeš ta dogodek?"})
-# response = pipeline(new_message, max_new_tokens=2048)
+# print(message)
+
+# response = pline(message, max_new_tokens=2048)
+
 # print("Model's response:", response[0]["generated_text"][-1]["content"])
+# translation_list.append(response[0]["generated_text"][-1]["content"])
+
+
+# Load the dataset and prepare messages for translation
+def get_messages():
+    ensl_dataset_path = "/ceph/hpc/data/s24o01-42-users/slobench/data/test_data/translation/slobench_ensl.en.txt"
+    with open(ensl_dataset_path, "r") as file:
+        ensl_dataset = file.readlines()
+    ensl_dataset = [line.strip() for line in ensl_dataset]
+
+    messages = [ [{ "role": "user", "content": ("Prevedi naslednje angleško besedilo v slovenščino.\n"+text)}] for text in ensl_dataset ]
+    return messages
+
+messages = get_messages()
+
+translation_list = []
+
+# Iterate over the messages and generate translations
+for message in tqdm(messages[:10], desc="Translating"):
+    response = pline(message, max_new_tokens=2048)
+    # print("Model's response:", response[0]["generated_text"][-1]["content"])
+    
+    # Keep only the first line of the response
+    res = response[0]["generated_text"][-1]["content"].split("\n")[0]
+    translation_list.append(res)
+
+# Save the translations to a file
+output_file_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/slobench_ensl_translations2.txt"
+with open(output_file_path, "w") as output_file:
+    for translation in translation_list:
+        output_file.write(translation + "\n")
+
+print(f"Translations saved to {output_file_path}")

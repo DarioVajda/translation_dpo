@@ -1,216 +1,0 @@
-cpu-bind=MASK - gn27, task  0  0 [3579149]: mask 0x1000000000000000000000000000000010000000000000000000000000000 set
-*******STARTING********
---- Running on Node Rank: 0 ---
-Total Nodes: 2
---- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
-GPUs per Node: 4
-Master Address: gn27
-Master Port: 29500
--------------------------------------------
-accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 2     --machine_rank 0     --main_process_ip gn27     --main_process_port 29500     --num_processes 8     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62035522     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=64 --learning_rate=3e-7 --total_epochs=3 --beta=0.2
--------------------------------------------
-[2025-05-29 23:26:18,086] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-W0529 23:26:20.172000 3579192 torch/distributed/run.py:792] 
-W0529 23:26:20.172000 3579192 torch/distributed/run.py:792] *****************************************
-W0529 23:26:20.172000 3579192 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W0529 23:26:20.172000 3579192 torch/distributed/run.py:792] *****************************************
-[2025-05-29 23:26:52,244] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-05-29 23:26:52,247] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-05-29 23:26:52,268] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-05-29 23:26:53,650] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-Created datasetsCreated datasetsCreated datasetsCreated datasets
-
-Number of training examples:
-
-Number of training examples:  8564Number of training examples:Number of training examples:8564
-
-Number of validation examples: 8564 8564Number of validation examples:  
-Number of validation examples:
-953953
- Number of validation examples:
-Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
-953 953Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
-3e-07
-
-
-3e-07
-World size: Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
-Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
-83e-07[2025-05-29 23:27:04,666] [INFO] [comm.py:658:init_distributed] cdb=None
-3e-07
-
-Setting gradient accumulation steps to:
- 1
-[2025-05-29 23:27:05,155] [INFO] [comm.py:658:init_distributed] cdb=None
-Created datasets
-Steps per epoch:[2025-05-29 23:27:05,530] [INFO] [comm.py:658:init_distributed] cdb=None
- 8564
-Eval steps: 4282
-[2025-05-29 23:27:05,807] [INFO] [comm.py:658:init_distributed] cdb=None
-[2025-05-29 23:27:05,857] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
-Set up DPO configuration
-[2025-05-29 23:27:11,505] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[2025-05-29 23:27:11,505] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[2025-05-29 23:27:11,506] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-[2025-05-29 23:27:11,506] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
-hpZeRO group size: 4
-gn27:3579352:3579352 [0] NCCL INFO Bootstrap : Using ib0:10.210.4.11<0>
-gn27:3579352:3579352 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
-gn27:3579352:3579352 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
-gn27:3579352:3579352 [0] NCCL INFO NET/Plugin: Using internal network plugin.
-gn27:3579352:3579352 [0] NCCL INFO cudaDriverVersion 12070
-NCCL version 2.21.5+cuda12.4
-gn27:3579353:3579353 [1] NCCL INFO cudaDriverVersion 12070
-gn27:3579355:3579355 [3] NCCL INFO cudaDriverVersion 12070
-gn27:3579354:3579354 [2] NCCL INFO cudaDriverVersion 12070
-gn27:3579352:3579352 [0] NCCL INFO Comm config Blocking set to 1
-gn27:3579353:3579353 [1] NCCL INFO Bootstrap : Using ib0:10.210.4.11<0>
-gn27:3579355:3579355 [3] NCCL INFO Bootstrap : Using ib0:10.210.4.11<0>
-gn27:3579354:3579354 [2] NCCL INFO Bootstrap : Using ib0:10.210.4.11<0>
-gn27:3579353:3579353 [1] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
-gn27:3579355:3579355 [3] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
-gn27:3579354:3579354 [2] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
-gn27:3579353:3579353 [1] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
-gn27:3579355:3579355 [3] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
-gn27:3579354:3579354 [2] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
-gn27:3579354:3579354 [2] NCCL INFO NET/Plugin: Using internal network plugin.
-gn27:3579353:3579353 [1] NCCL INFO NET/Plugin: Using internal network plugin.
-gn27:3579355:3579355 [3] NCCL INFO NET/Plugin: Using internal network plugin.
-gn27:3579354:3579354 [2] NCCL INFO Comm config Blocking set to 1
-gn27:3579353:3579353 [1] NCCL INFO Comm config Blocking set to 1
-gn27:3579355:3579355 [3] NCCL INFO Comm config Blocking set to 1
-gn27:3579354:3579604 [2] NCCL INFO Failed to open libibverbs.so[.1]
-gn27:3579355:3579606 [3] NCCL INFO Failed to open libibverbs.so[.1]
-gn27:3579352:3579603 [0] NCCL INFO Failed to open libibverbs.so[.1]
-gn27:3579353:3579605 [1] NCCL INFO Failed to open libibverbs.so[.1]
-gn27:3579354:3579604 [2] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.11<0>
-gn27:3579355:3579606 [3] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.11<0>
-gn27:3579352:3579603 [0] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.11<0>
-gn27:3579353:3579605 [1] NCCL INFO NET/Socket : Using [0]ib0:10.210.4.11<0>
-gn27:3579354:3579604 [2] NCCL INFO Using non-device net plugin version 0
-gn27:3579355:3579606 [3] NCCL INFO Using non-device net plugin version 0
-gn27:3579352:3579603 [0] NCCL INFO Using non-device net plugin version 0
-gn27:3579353:3579605 [1] NCCL INFO Using non-device net plugin version 0
-gn27:3579354:3579604 [2] NCCL INFO Using network Socket
-gn27:3579355:3579606 [3] NCCL INFO Using network Socket
-gn27:3579352:3579603 [0] NCCL INFO Using network Socket
-gn27:3579353:3579605 [1] NCCL INFO Using network Socket
-gn27:3579352:3579603 [0] NCCL INFO ncclCommInitRank comm 0x5651bb78b150 rank 0 nranks 8 cudaDev 0 nvmlDev 0 busId 3000 commId 0x34cae62944fe8bd0 - Init START
-gn27:3579353:3579605 [1] NCCL INFO ncclCommInitRank comm 0x56475b58d7a0 rank 1 nranks 8 cudaDev 1 nvmlDev 1 busId 44000 commId 0x34cae62944fe8bd0 - Init START
-gn27:3579354:3579604 [2] NCCL INFO ncclCommInitRank comm 0x560c3aa07660 rank 2 nranks 8 cudaDev 2 nvmlDev 2 busId 84000 commId 0x34cae62944fe8bd0 - Init START
-gn27:3579355:3579606 [3] NCCL INFO ncclCommInitRank comm 0x55eb2c3edf70 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId c4000 commId 0x34cae62944fe8bd0 - Init START
-gn27:3579353:3579605 [1] NCCL INFO NVLS multicast support is not available on dev 1
-gn27:3579352:3579603 [0] NCCL INFO NVLS multicast support is not available on dev 0
-gn27:3579354:3579604 [2] NCCL INFO Setting affinity for GPU 2 to 010000,00000000,00000000,00000000,00010000,00000000,00000000,00000000
-gn27:3579354:3579604 [2] NCCL INFO NVLS multicast support is not available on dev 2
-gn27:3579355:3579606 [3] NCCL INFO NVLS multicast support is not available on dev 3
-gn27:3579352:3579603 [0] NCCL INFO comm 0x5651bb78b150 rank 0 nRanks 8 nNodes 2 localRanks 4 localRank 0 MNNVL 0
-gn27:3579352:3579603 [0] NCCL INFO Channel 00/02 :    0   1   2   3   4   5   6   7
-gn27:3579352:3579603 [0] NCCL INFO Channel 01/02 :    0   1   2   3   4   5   6   7
-gn27:3579352:3579603 [0] NCCL INFO Trees [0] 1/4/-1->0->-1 [1] 1/-1/-1->0->4
-gn27:3579352:3579603 [0] NCCL INFO P2P Chunksize set to 131072
-gn27:3579353:3579605 [1] NCCL INFO comm 0x56475b58d7a0 rank 1 nRanks 8 nNodes 2 localRanks 4 localRank 1 MNNVL 0
-gn27:3579353:3579605 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
-gn27:3579353:3579605 [1] NCCL INFO P2P Chunksize set to 131072
-gn27:3579354:3579604 [2] NCCL INFO comm 0x560c3aa07660 rank 2 nRanks 8 nNodes 2 localRanks 4 localRank 2 MNNVL 0
-gn27:3579354:3579604 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1
-gn27:3579354:3579604 [2] NCCL INFO P2P Chunksize set to 131072
-gn27:3579355:3579606 [3] NCCL INFO comm 0x55eb2c3edf70 rank 3 nRanks 8 nNodes 2 localRanks 4 localRank 3 MNNVL 0
-gn27:3579355:3579606 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2
-gn27:3579355:3579606 [3] NCCL INFO P2P Chunksize set to 131072
-gn27:3579353:3579605 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM/read
-gn27:3579353:3579605 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/CUMEM/read
-gn27:3579352:3579603 [0] NCCL INFO Channel 00/0 : 7[3] -> 0[0] [receive] via NET/Socket/0
-gn27:3579352:3579603 [0] NCCL INFO Channel 01/0 : 7[3] -> 0[0] [receive] via NET/Socket/0
-gn27:3579352:3579603 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM/read
-gn27:3579354:3579604 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/CUMEM/read
-gn27:3579354:3579604 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/CUMEM/read
-gn27:3579352:3579603 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM/read
-gn27:3579355:3579606 [3] NCCL INFO Channel 00/0 : 3[3] -> 4[0] [send] via NET/Socket/0
-gn27:3579355:3579606 [3] NCCL INFO Channel 01/0 : 3[3] -> 4[0] [send] via NET/Socket/0
-gn27:3579352:3579603 [0] NCCL INFO Connected all rings
-gn27:3579353:3579605 [1] NCCL INFO Connected all rings
-gn27:3579352:3579603 [0] NCCL INFO Channel 00/0 : 4[0] -> 0[0] [receive] via NET/Socket/0
-gn27:3579353:3579605 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/CUMEM/read
-gn27:3579353:3579605 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/CUMEM/read
-gn27:3579352:3579603 [0] NCCL INFO Channel 01/0 : 4[0] -> 0[0] [receive] via NET/Socket/0
-gn27:3579352:3579603 [0] NCCL INFO Channel 00/0 : 0[0] -> 4[0] [send] via NET/Socket/0
-gn27:3579352:3579603 [0] NCCL INFO Channel 01/0 : 0[0] -> 4[0] [send] via NET/Socket/0
-gn27:3579355:3579606 [3] NCCL INFO Connected all rings
-gn27:3579355:3579606 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/CUMEM/read
-gn27:3579354:3579604 [2] NCCL INFO Connected all rings
-gn27:3579355:3579606 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/CUMEM/read
-gn27:3579354:3579604 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/CUMEM/read
-gn27:3579354:3579604 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/CUMEM/read
-gn27:3579355:3579606 [3] NCCL INFO Connected all trees
-gn27:3579355:3579606 [3] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
-gn27:3579355:3579606 [3] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 1 p2p channels per peer
-gn27:3579353:3579605 [1] NCCL INFO Connected all trees
-gn27:3579353:3579605 [1] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
-gn27:3579354:3579604 [2] NCCL INFO Connected all trees
-gn27:3579354:3579604 [2] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
-gn27:3579352:3579603 [0] NCCL INFO Connected all trees
-gn27:3579352:3579603 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
-gn27:3579353:3579605 [1] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 1 p2p channels per peer
-gn27:3579354:3579604 [2] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 1 p2p channels per peer
-gn27:3579352:3579603 [0] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 1 p2p channels per peer
-gn27:3579352:3579603 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
-gn27:3579352:3579603 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
-gn27:3579354:3579604 [2] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
-gn27:3579355:3579606 [3] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
-gn27:3579355:3579606 [3] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
-gn27:3579353:3579605 [1] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
-gn27:3579352:3579603 [0] NCCL INFO ncclCommInitRank comm 0x5651bb78b150 rank 0 nranks 8 cudaDev 0 nvmlDev 0 busId 3000 commId 0x34cae62944fe8bd0 - Init COMPLETE
-gn27:3579354:3579604 [2] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
-gn27:3579354:3579604 [2] NCCL INFO ncclCommInitRank comm 0x560c3aa07660 rank 2 nranks 8 cudaDev 2 nvmlDev 2 busId 84000 commId 0x34cae62944fe8bd0 - Init COMPLETE
-gn27:3579355:3579606 [3] NCCL INFO ncclCommInitRank comm 0x55eb2c3edf70 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId c4000 commId 0x34cae62944fe8bd0 - Init COMPLETE
-gn27:3579353:3579605 [1] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
-gn27:3579353:3579605 [1] NCCL INFO ncclCommInitRank comm 0x56475b58d7a0 rank 1 nranks 8 cudaDev 1 nvmlDev 1 busId 44000 commId 0x34cae62944fe8bd0 - Init COMPLETE
-[2025-05-29 23:29:29,407] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 465, num_elems = 10.16B
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:47<02:23, 47.92s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:47<02:23, 47.90s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:47<02:23, 47.94s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:48<02:24, 48.00s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:48<01:50, 55.39s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:48<01:50, 55.40s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:48<01:50, 55.38s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:48<01:50, 55.43s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:47<00:56, 56.83s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:47<00:56, 56.84s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:47<00:56, 56.83s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:47<00:56, 56.85s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:32<00:00, 52.47s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:32<00:00, 52.48s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:32<00:00, 52.48s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:32<00:00, 53.23s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:32<00:00, 53.23s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:32<00:00, 53.24s/it]
-
-
-Loading checkpoint shards: 100%|██████████| 4/4 [03:32<00:00, 52.48s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:33<00:00, 53.25s/it]
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-  warnings.warn(
-/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
--------------------- CHECKING GRADIENTS --------------------
-Trainable parameters:
-[rank0]: Traceback (most recent call last):
-[rank0]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 168, in <module>
-[rank0]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
-[rank0]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 120, in main
-[rank0]:     if local_rank == 0: check_gradients(model)  # Check if the model has gradients enabled
-[rank0]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 40, in check_gradients
-[rank0]:     for name, param in policy_model_peft.named_parameters():
-[rank0]: NameError: name 'policy_model_peft' is not defined
-slurmstepd: error: *** STEP 62035522.0 ON gn27 CANCELLED AT 2025-05-29T23:34:44 ***

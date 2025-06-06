@@ -1,0 +1,146 @@
+cpu-bind=MASK - gn46, task  0  0 [2326047]: mask 0xffff0000ffff00000000000000000000ffff0000ffff0000 set
+INFO 06-06 11:59:18 [__init__.py:239] Automatically detected platform cuda.
+Number of examples: 200
+INFO 06-06 11:59:35 [config.py:689] This model supports multiple tasks: {'score', 'classify', 'reward', 'embed', 'generate'}. Defaulting to 'generate'.
+INFO 06-06 11:59:35 [config.py:1713] Defaulting to use mp for distributed inference
+INFO 06-06 11:59:35 [config.py:1901] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 06-06 11:59:38 [core.py:61] Initializing a V1 LLM engine (v0.8.4) with config: model='google/gemma-2-9b-it', speculative_config=None, tokenizer='google/gemma-2-9b-it', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=google/gemma-2-9b-it, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+WARNING 06-06 11:59:38 [multiproc_worker_utils.py:306] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 06-06 11:59:38 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0, 1, 2, 3], buffer_handle=(4, 10485760, 10, 'psm_ffe5bcf0'), local_subscribe_addr='ipc:///tmp/204ec92c-200d-4467-860f-b9a610b6304e', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 11:59:39 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f2da84be7a0>
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:39 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_d5548cc5'), local_subscribe_addr='ipc:///tmp/4ce2c271-f9be-466c-9224-b5d7588dc3f2', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 11:59:39 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f2da84bdb70>
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 11:59:39 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_9eb24daa'), local_subscribe_addr='ipc:///tmp/bc199212-0ebd-45fd-8841-bd1ba670ebaa', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 11:59:40 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f2da84bec50>
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 11:59:40 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_8a678c4e'), local_subscribe_addr='ipc:///tmp/9bd2f275-526c-447f-b520-cbbfe7d963b6', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 11:59:40 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f2da84bf430>
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 11:59:40 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_dce374cb'), local_subscribe_addr='ipc:///tmp/d07d9836-a78a-4cd5-b45a-9696a0857732', remote_subscribe_addr=None, remote_addr_ipv6=False)
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 11:59:41 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 11:59:41 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 11:59:41 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:41 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 11:59:41 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 11:59:41 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:41 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 11:59:41 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 11:59:45 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/vresd/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:45 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/vresd/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 11:59:45 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/vresd/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 11:59:45 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/vresd/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:45 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[1, 2, 3], buffer_handle=(3, 4194304, 6, 'psm_976c1332'), local_subscribe_addr='ipc:///tmp/0d50eb42-9b86-403d-86fb-72d244a5deb9', remote_subscribe_addr=None, remote_addr_ipv6=False)
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 11:59:45 [parallel_state.py:959] rank 1 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 1
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 11:59:45 [parallel_state.py:959] rank 3 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 3
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 11:59:45 [parallel_state.py:959] rank 2 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 2
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:45 [parallel_state.py:959] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 0
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 11:59:45 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 11:59:45 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 11:59:45 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:45 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 11:59:45 [gpu_model_runner.py:1276] Starting to load model google/gemma-2-9b-it...
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 11:59:45 [gpu_model_runner.py:1276] Starting to load model google/gemma-2-9b-it...
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 11:59:45 [gpu_model_runner.py:1276] Starting to load model google/gemma-2-9b-it...
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:45 [gpu_model_runner.py:1276] Starting to load model google/gemma-2-9b-it...
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m WARNING 06-06 11:59:48 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m WARNING 06-06 11:59:48 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m WARNING 06-06 11:59:48 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m WARNING 06-06 11:59:48 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 11:59:48 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 11:59:48 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 11:59:48 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 11:59:48 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:13<00:41, 13.87s/it]
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:28<00:28, 14.16s/it]
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:38<00:12, 12.20s/it]
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:48<00:00, 11.45s/it]
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:48<00:00, 12.10s/it]
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m 
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:00:37 [loader.py:458] Loading weights took 48.43 seconds
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:00:37 [loader.py:458] Loading weights took 47.50 seconds
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:00:37 [loader.py:458] Loading weights took 47.90 seconds
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:00:37 [loader.py:458] Loading weights took 48.23 seconds
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:00:37 [gpu_model_runner.py:1291] Model loading took 4.3499 GiB and 52.006529 seconds
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:00:37 [gpu_model_runner.py:1291] Model loading took 4.3499 GiB and 52.021725 seconds
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:00:37 [gpu_model_runner.py:1291] Model loading took 4.3499 GiB and 52.068238 seconds
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:00:37 [gpu_model_runner.py:1291] Model loading took 4.3499 GiB and 52.078670 seconds
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:01:01 [backends.py:414] vLLM's torch.compile cache is disabled.
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:01:01 [backends.py:426] Dynamo bytecode transform time: 23.45 s
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:01:01 [backends.py:414] vLLM's torch.compile cache is disabled.
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:01:01 [backends.py:426] Dynamo bytecode transform time: 23.45 s
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:01:01 [backends.py:414] vLLM's torch.compile cache is disabled.
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:01:01 [backends.py:426] Dynamo bytecode transform time: 23.45 s
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:01:01 [backends.py:414] vLLM's torch.compile cache is disabled.
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:01:01 [backends.py:426] Dynamo bytecode transform time: 23.45 s
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:01:06 [backends.py:132] Cache the graph of shape None for later use
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:01:06 [backends.py:132] Cache the graph of shape None for later use
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:01:06 [backends.py:132] Cache the graph of shape None for later use
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:01:06 [backends.py:132] Cache the graph of shape None for later use
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:01:43 [backends.py:144] Compiling a graph for general shape takes 41.45 s
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:01:43 [backends.py:144] Compiling a graph for general shape takes 41.56 s
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:01:44 [backends.py:144] Compiling a graph for general shape takes 42.40 s
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:01:44 [backends.py:144] Compiling a graph for general shape takes 42.55 s
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:02:09 [monitor.py:33] torch.compile takes 66.00 s in total
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:02:09 [monitor.py:33] torch.compile takes 65.85 s in total
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:02:09 [monitor.py:33] torch.compile takes 65.01 s in total
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:02:09 [monitor.py:33] torch.compile takes 64.90 s in total
+INFO 06-06 12:02:14 [kv_cache_utils.py:634] GPU KV cache size: 82,800 tokens
+INFO 06-06 12:02:14 [kv_cache_utils.py:637] Maximum concurrency for 8,192 tokens per request: 10.11x
+INFO 06-06 12:02:14 [kv_cache_utils.py:634] GPU KV cache size: 81,040 tokens
+INFO 06-06 12:02:14 [kv_cache_utils.py:637] Maximum concurrency for 8,192 tokens per request: 9.89x
+INFO 06-06 12:02:14 [kv_cache_utils.py:634] GPU KV cache size: 81,040 tokens
+INFO 06-06 12:02:14 [kv_cache_utils.py:637] Maximum concurrency for 8,192 tokens per request: 9.89x
+INFO 06-06 12:02:14 [kv_cache_utils.py:634] GPU KV cache size: 82,800 tokens
+INFO 06-06 12:02:14 [kv_cache_utils.py:637] Maximum concurrency for 8,192 tokens per request: 10.11x
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:02:44 [custom_all_reduce.py:195] Registering 5695 cuda graph addresses
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:02:44 [custom_all_reduce.py:195] Registering 5695 cuda graph addresses
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:02:45 [custom_all_reduce.py:195] Registering 5695 cuda graph addresses
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:02:45 [custom_all_reduce.py:195] Registering 5695 cuda graph addresses
+[1;36m(VllmWorker rank=3 pid=2326496)[0;0m INFO 06-06 12:02:46 [gpu_model_runner.py:1626] Graph capturing finished in 32 secs, took 0.62 GiB
+[1;36m(VllmWorker rank=1 pid=2326460)[0;0m INFO 06-06 12:02:46 [gpu_model_runner.py:1626] Graph capturing finished in 32 secs, took 0.62 GiB
+[1;36m(VllmWorker rank=2 pid=2326483)[0;0m INFO 06-06 12:02:46 [gpu_model_runner.py:1626] Graph capturing finished in 32 secs, took 0.62 GiB
+[1;36m(VllmWorker rank=0 pid=2326448)[0;0m INFO 06-06 12:02:46 [gpu_model_runner.py:1626] Graph capturing finished in 32 secs, took 0.62 GiB
+INFO 06-06 12:02:46 [core.py:163] init engine (profile, create kv cache, warmup model) took 128.16 seconds
+INFO 06-06 12:02:46 [core_client.py:435] Core engine process 0 ready.
+INFO 06-06 12:02:47 [chat_utils.py:396] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.25s/it, est. speed input: 88.90 toks/s, output: 95.30 toks/s]Processed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.25s/it, est. speed input: 88.90 toks/s, output: 95.30 toks/s]
+Tranlsation1: [RequestOutput(request_id=0, prompt='<bos><start_of_turn>user\nPrevedi naslednje angleško besedilo v slovenščino.\n# Petruk (surname)\n\nPetruk is a Ukrainian surname. Notable people with the surname include:\n\n* Mykola Petruk (born 1950), Ukrainian politician\n\n* Nikita Petruk (born 2003), Ukrainian footballer\n\n* Roman Petruk (born 2003), Ukrainian high jumper\n\n## See also\n\n* \n\nUkrainian-language surnames\nSurnames from given names<end_of_turn>\n<start_of_turn>model\n', prompt_token_ids=[2, 2, 106, 1645, 108, 3035, 96640, 219276, 68015, 9561, 67213, 3400, 509, 8494, 593, 154549, 40456, 1925, 235265, 108, 235345, 7040, 55520, 591, 73837, 235275, 109, 16687, 55520, 603, 476, 43064, 49034, 235265, 136279, 1461, 675, 573, 49034, 3707, 235292, 109, 235287, 2961, 48231, 7040, 55520, 591, 9813, 235248, 235274, 235315, 235308, 235276, 823, 43064, 43504, 109, 235287, 137134, 7040, 55520, 591, 9813, 235248, 235284, 235276, 235276, 235304, 823, 43064, 80612, 109, 235287, 9783, 7040, 55520, 591, 9813, 235248, 235284, 235276, 235276, 235304, 823, 43064, 1536, 54672, 109, 1620, 4859, 1170, 109, 235287, 235248, 109, 158236, 235290, 14815, 197851, 108, 8605, 3560, 774, 2764, 4752, 107, 108, 106, 2516, 108], encoder_prompt=None, encoder_prompt_token_ids=None, prompt_logprobs=None, outputs=[CompletionOutput(index=0, text='## Petruk (priimek)\n\nPetruk je ukrajinsko priimek. Znani ljudje z tem priimkom so:\n\n* Mykola Petruk (rojen 1950), ukrajinski politik\n\n* Nikita Petruk (rojen 2003), ukrajinski nogometaš\n\n* Roman Petruk (rojen 2003), ukrajinski skakalec v višino\n\n## Poglej tudi\n\n* Ukrajinska priimka\n* Priimki iz osebnih imen \n\n\n', token_ids=[1620, 7040, 55520, 591, 960, 230842, 235275, 109, 16687, 55520, 1957, 158220, 198310, 2034, 1168, 230842, 235265, 61782, 3746, 140334, 1792, 868, 1681, 1168, 571, 6361, 712, 235292, 109, 235287, 2961, 48231, 7040, 55520, 591, 514, 8368, 235248, 235274, 235315, 235308, 235276, 823, 158220, 235312, 33304, 52109, 109, 235287, 137134, 7040, 55520, 591, 514, 8368, 235248, 235284, 235276, 235276, 235304, 823, 158220, 235312, 33304, 17325, 764, 516, 235498, 109, 235287, 9783, 7040, 55520, 591, 514, 8368, 235248, 235284, 235276, 235276, 235304, 823, 158220, 235312, 33304, 1586, 123237, 546, 593, 3410, 235498, 1925, 109, 1620, 61687, 54205, 47229, 109, 235287, 57312, 235312, 99159, 1168, 571, 1161, 108, 235287, 2837, 571, 1661, 9417, 211294, 26905, 496, 631, 235248, 110, 107, 1], cumulative_logprob=None, logprobs=None, finish_reason=stop, stop_reason=None)], finished=True, metrics=None, lora_request=None, num_cached_tokens=None, multi_modal_placeholders={})]
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.01it/s, est. speed input: 111.71 toks/s, output: 121.76 toks/s]Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.01it/s, est. speed input: 111.71 toks/s, output: 121.76 toks/s]
+Tranlsation2: [RequestOutput(request_id=1, prompt='<bos><start_of_turn>user\nPrevedi naslednje angleško besedilo v slovenščino.\n# Petruk (surname)\n\nPetruk is a Ukrainian surname. Notable people with the surname include:\n\n* Mykola Petruk (born 1950), Ukrainian politician\n\n* Nikita Petruk (born 2003), Ukrainian footballer\n\n* Roman Petruk (born 2003), Ukrainian high jumper\n\n## See also\n\n* \n\nUkrainian-language surnames\nSurnames from given names<end_of_turn>\n<start_of_turn>model\n', prompt_token_ids=[2, 2, 106, 1645, 108, 3035, 96640, 219276, 68015, 9561, 67213, 3400, 509, 8494, 593, 154549, 40456, 1925, 235265, 108, 235345, 7040, 55520, 591, 73837, 235275, 109, 16687, 55520, 603, 476, 43064, 49034, 235265, 136279, 1461, 675, 573, 49034, 3707, 235292, 109, 235287, 2961, 48231, 7040, 55520, 591, 9813, 235248, 235274, 235315, 235308, 235276, 823, 43064, 43504, 109, 235287, 137134, 7040, 55520, 591, 9813, 235248, 235284, 235276, 235276, 235304, 823, 43064, 80612, 109, 235287, 9783, 7040, 55520, 591, 9813, 235248, 235284, 235276, 235276, 235304, 823, 43064, 1536, 54672, 109, 1620, 4859, 1170, 109, 235287, 235248, 109, 158236, 235290, 14815, 197851, 108, 8605, 3560, 774, 2764, 4752, 107, 108, 106, 2516, 108], encoder_prompt=None, encoder_prompt_token_ids=None, prompt_logprobs=None, outputs=[CompletionOutput(index=0, text='## Petruk (priimek)\n\nPetruk je ukrajinski priimek. Znani posamezniki s tem priimkom so:\n\n* Mykola Petruk (rojen 1950), ukrajinski politik\n\n* Nikita Petruk (rojen 2003), ukrajinski nogometaš\n\n* Roman Petruk (rojen 2003), ukrajinski skakalec v višino\n\n## Glej tudi\n\n* Ukrajinske priimke\n* Priimki iz osebnih imen \n\n\n', token_ids=[1620, 7040, 55520, 591, 960, 230842, 235275, 109, 16687, 55520, 1957, 158220, 235312, 33304, 1168, 230842, 235265, 61782, 3746, 1720, 734, 235306, 33694, 485, 1681, 1168, 571, 6361, 712, 235292, 109, 235287, 2961, 48231, 7040, 55520, 591, 514, 8368, 235248, 235274, 235315, 235308, 235276, 823, 158220, 235312, 33304, 52109, 109, 235287, 137134, 7040, 55520, 591, 514, 8368, 235248, 235284, 235276, 235276, 235304, 823, 158220, 235312, 33304, 17325, 764, 516, 235498, 109, 235287, 9783, 7040, 55520, 591, 514, 8368, 235248, 235284, 235276, 235276, 235304, 823, 158220, 235312, 33304, 1586, 123237, 546, 593, 3410, 235498, 1925, 109, 1620, 52203, 235312, 47229, 109, 235287, 57312, 235312, 192322, 1168, 571, 655, 108, 235287, 2837, 571, 1661, 9417, 211294, 26905, 496, 631, 235248, 110, 107, 1], cumulative_logprob=None, logprobs=None, finish_reason=stop, stop_reason=None)], finished=True, metrics=None, lora_request=None, num_cached_tokens=None, multi_modal_placeholders={})]
+Preparing prompts ...
+Map (num_proc=8):   0%|          | 0/200 [00:00<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:01<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:02<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:02<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:02<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:02<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:03<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:03<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:03<?, ? examples/s]Map (num_proc=8):   0%|          | 0/200 [00:04<?, ? examples/s]
+multiprocess.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/multiprocess/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/usr/local/lib/python3.10/dist-packages/datasets/utils/py_utils.py", line 680, in _write_generator_to_queue
+    for i, result in enumerate(func(**kwargs)):
+  File "/usr/local/lib/python3.10/dist-packages/datasets/arrow_dataset.py", line 3493, in _map_single
+    if update_data:
+  File "/usr/local/lib/python3.10/dist-packages/datasets/arrow_dataset.py", line 3465, in iter_outputs
+    for i, example in shard_iterable:
+  File "/usr/local/lib/python3.10/dist-packages/datasets/arrow_dataset.py", line 3390, in apply_function
+    return prepare_outputs(pa_inputs, inputs, processed_inputs)
+  File "/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/translate.py", line 67, in example_to_prompt
+    prompt = tokenizer.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
+NameError: name 'task_adapter' is not defined. Did you mean: 'get_task_adapter'?
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/translate.py", line 146, in <module>
+    correct_examples(args.model_path, args.input_path, args.output_path, args.gpu_memory_util, args.tp_size)
+  File "/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/translate.py", line 72, in correct_examples
+    prompt_data = data.map(example_to_prompt, num_proc=8)
+  File "/usr/local/lib/python3.10/dist-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/datasets/arrow_dataset.py", line 3166, in map
+    for rank, done, content in iflatmap_unordered(
+  File "/usr/local/lib/python3.10/dist-packages/datasets/utils/py_utils.py", line 720, in iflatmap_unordered
+    [async_result.get(timeout=0.05) for async_result in async_results]
+  File "/usr/local/lib/python3.10/dist-packages/datasets/utils/py_utils.py", line 720, in <listcomp>
+    [async_result.get(timeout=0.05) for async_result in async_results]
+  File "/usr/local/lib/python3.10/dist-packages/multiprocess/pool.py", line 771, in get
+    raise self._value
+NameError: name 'task_adapter' is not defined

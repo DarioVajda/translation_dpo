@@ -1,0 +1,2 @@
+cpu-bind=MASK - gn31, task  0  0 [378899]: mask 0xffff0000ffff00000000000000000000ffff0000ffff0000 set
+slurmstepd: error: *** STEP 62525991.0 ON gn31 CANCELLED AT 2025-06-04T18:23:34 ***

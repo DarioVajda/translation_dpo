@@ -1,0 +1,155 @@
+cpu-bind=MASK - gn05, task  3  0 [1151824]: mask 0xffff0000ffff0000ffffffffffffffffffff0000ffff0000ffffffffffffffff set
+*******STARTING********
+--- Running on Node Rank: 3 ---
+Total Nodes: 4
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
+GPUs per Node: 4
+Master Address: gn01
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 4     --machine_rank 3     --main_process_ip gn01     --main_process_port 29500     --num_processes 16     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62111217     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=64 --learning_rate=3e-7 --total_epochs=3 --beta=0.2
+-------------------------------------------
+[2025-05-31 11:22:15,208] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+W0531 11:22:16.668000 1151873 torch/distributed/run.py:792] 
+W0531 11:22:16.668000 1151873 torch/distributed/run.py:792] *****************************************
+W0531 11:22:16.668000 1151873 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0531 11:22:16.668000 1151873 torch/distributed/run.py:792] *****************************************
+[2025-05-31 11:22:22,925] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-31 11:22:22,950] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-31 11:22:22,971] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-31 11:22:22,983] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+World size: 16
+Setting gradient accumulation steps to: 1
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+[2025-05-31 11:22:25,047] [INFO] [comm.py:658:init_distributed] cdb=None
+Created datasets
+Steps per epoch: 8564
+Eval steps: 4282
+[2025-05-31 11:22:25,049] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-31 11:22:25,092] [INFO] [comm.py:658:init_distributed] cdb=None
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Set up DPO configuration
+[2025-05-31 11:22:25,318] [INFO] [comm.py:658:init_distributed] cdb=None
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:09<00:29,  9.93s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:09<00:29,  9.97s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:09<00:29,  9.96s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:10<00:30, 10.08s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:19<00:19,  9.70s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:19<00:19,  9.74s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:19<00:19,  9.75s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:19<00:19,  9.86s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:29<00:09,  9.70s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:29<00:09,  9.70s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:29<00:09,  9.85s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:29<00:09,  9.66s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:41<00:00, 10.72s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:41<00:00, 10.37s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:41<00:00, 10.72s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:41<00:00, 10.37s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:41<00:00, 10.81s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:41<00:00, 10.45s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:41<00:00, 10.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:41<00:00, 10.38s/it]
+/transformers/src/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/transformers/src/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Loaded model
+[rank15]: Traceback (most recent call last):
+[rank15]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
+[rank15]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank15]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 163, in main
+[rank15]:     print_trainable_parameters(model)
+[rank15]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 151, in print_trainable_parameters
+[rank15]:     for param in model.parameters():
+[rank15]: AttributeError: 'LoraConfig' object has no attribute 'parameters'
+[rank14]: Traceback (most recent call last):
+[rank14]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
+[rank14]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank14]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 163, in main
+[rank14]:     print_trainable_parameters(model)
+[rank14]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 151, in print_trainable_parameters
+[rank14]:     for param in model.parameters():
+[rank14]: AttributeError: 'LoraConfig' object has no attribute 'parameters'
+[rank13]: Traceback (most recent call last):
+[rank13]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
+[rank13]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank13]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 163, in main
+[rank13]:     print_trainable_parameters(model)
+[rank13]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 151, in print_trainable_parameters
+[rank13]:     for param in model.parameters():
+[rank13]: AttributeError: 'LoraConfig' object has no attribute 'parameters'
+[rank12]: Traceback (most recent call last):
+[rank12]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
+[rank12]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank12]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 163, in main
+[rank12]:     print_trainable_parameters(model)
+[rank12]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 151, in print_trainable_parameters
+[rank12]:     for param in model.parameters():
+[rank12]: AttributeError: 'LoraConfig' object has no attribute 'parameters'
+[rank12]:[W531 11:23:10.842091429 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0531 11:23:10.567000 1151873 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1152048 closing signal SIGTERM
+W0531 11:23:10.567000 1151873 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1152049 closing signal SIGTERM
+W0531 11:23:10.568000 1151873 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1152050 closing signal SIGTERM
+E0531 11:23:10.910000 1151873 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 3 (pid: 1152051) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 861, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-05-31_11:23:10
+  host      : pm5-nod12.vega.pri
+  rank      : 15 (local_rank: 3)
+  exitcode  : 1 (pid: 1152051)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

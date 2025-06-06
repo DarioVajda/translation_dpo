@@ -1,0 +1,1226 @@
+cpu-bind=MASK - gn35, task  0  0 [431876]: mask 0xffff0000ffff0000ffffffffffffffffffff0000ffff0000ffffffffffffffff set
+*******STARTING********
+--- Running on Node Rank: 0 ---
+Total Nodes: 1
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
+GPUs per Node: 4
+Master Address: gn35
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 1     --machine_rank 0     --main_process_ip gn35     --main_process_port 29500     --num_processes 4     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62115856     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=64 --learning_rate=3e-7 --total_epochs=3 --beta=0.2
+-------------------------------------------
+[2025-05-31 11:59:14,847] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+W0531 11:59:16.980000 431927 torch/distributed/run.py:792] 
+W0531 11:59:16.980000 431927 torch/distributed/run.py:792] *****************************************
+W0531 11:59:16.980000 431927 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0531 11:59:16.980000 431927 torch/distributed/run.py:792] *****************************************
+[2025-05-31 11:59:22,087] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-31 11:59:22,098] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-31 11:59:22,109] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-31 11:59:22,119] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+World size: 4
+Setting gradient accumulation steps to: 4
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+[2025-05-31 11:59:25,290] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-31 11:59:25,337] [INFO] [comm.py:658:init_distributed] cdb=None
+Created datasets
+Steps per epoch: 2141
+Eval steps: 1070
+[2025-05-31 11:59:25,342] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-31 11:59:25,342] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2025-05-31 11:59:25,346] [INFO] [comm.py:658:init_distributed] cdb=None
+Set up DPO configuration
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:15<00:46, 15.41s/it]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:15<00:47, 15.68s/it]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:15<00:47, 15.68s/it]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:15<00:47, 15.68s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:29<00:29, 14.67s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:29<00:29, 14.78s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:29<00:29, 14.78s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:29<00:29, 14.78s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:39<00:12, 12.32s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:39<00:12, 12.38s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:39<00:12, 12.33s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:39<00:12, 12.34s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:46<00:00, 10.26s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:46<00:00, 11.55s/it]
+
+Loading checkpoint shards: 100%|██████████| 4/4 [00:46<00:00, 10.22s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:46<00:00, 11.56s/it]
+
+Loading checkpoint shards: 100%|██████████| 4/4 [00:46<00:00, 10.23s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:46<00:00, 11.56s/it]
+
+Loading checkpoint shards: 100%|██████████| 4/4 [00:46<00:00, 10.24s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:46<00:00, 11.57s/it]
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Loaded model
+Total Parameters: 9457.78M
+Trainable Parameters (LoRA): 216.07M
+Percentage of Trainable Params: 2.2846%
+Total Parameters: 9457.78M
+Trainable Parameters (LoRA): 216.07M
+Percentage of Trainable Params: 2.2846%
+Total Parameters: 9457.78M
+Trainable Parameters (LoRA): 216.07M
+Percentage of Trainable Params: 2.2846%
+Using LoRA and set up the model
+Total Parameters: 9457.78M
+Trainable Parameters (LoRA): 216.07M
+Percentage of Trainable Params: 2.2846%
+Loaded tokenizer
+
+Extracting prompt in train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s][rank1]:[W531 12:00:18.047803192 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+
+Extracting prompt in train dataset:   7%|▋         | 570/8564 [00:00<00:01, 5595.86 examples/s][rank3]:[W531 12:00:18.162246631 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank2]:[W531 12:00:18.170374100 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+
+Extracting prompt in train dataset:  13%|█▎        | 1150/8564 [00:00<00:01, 5684.64 examples/s]
+Extracting prompt in train dataset:  20%|██        | 1720/8564 [00:00<00:01, 5690.75 examples/s]
+Extracting prompt in train dataset:  27%|██▋       | 2304/8564 [00:00<00:01, 5747.38 examples/s]
+Extracting prompt in train dataset:  36%|███▋      | 3125/8564 [00:00<00:00, 5620.00 examples/s]
+Extracting prompt in train dataset:  43%|████▎     | 3717/8564 [00:00<00:00, 5697.38 examples/s]
+Extracting prompt in train dataset:  50%|█████     | 4306/8564 [00:00<00:00, 5739.56 examples/s]
+Extracting prompt in train dataset:  57%|█████▋    | 4899/8564 [00:00<00:00, 5781.91 examples/s]
+Extracting prompt in train dataset:  64%|██████▍   | 5498/8564 [00:00<00:00, 5843.42 examples/s]
+Extracting prompt in train dataset:  71%|███████   | 6101/8564 [00:01<00:00, 5881.13 examples/s]
+Extracting prompt in train dataset:  78%|███████▊  | 6701/8564 [00:01<00:00, 5914.98 examples/s]
+Extracting prompt in train dataset:  85%|████████▌ | 7300/8564 [00:01<00:00, 5929.52 examples/s]
+Extracting prompt in train dataset:  95%|█████████▍| 8126/8564 [00:01<00:00, 5758.49 examples/s]
+Extracting prompt in train dataset: 100%|██████████| 8564/8564 [00:01<00:00, 5726.44 examples/s]
+
+Applying chat template to train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Applying chat template to train dataset:   3%|▎         | 297/8564 [00:00<00:02, 2943.23 examples/s]
+Applying chat template to train dataset:   7%|▋         | 618/8564 [00:00<00:02, 3094.01 examples/s]
+Applying chat template to train dataset:  11%|█         | 939/8564 [00:00<00:02, 3145.18 examples/s]
+Applying chat template to train dataset:  15%|█▍        | 1260/8564 [00:00<00:02, 3167.85 examples/s]
+Applying chat template to train dataset:  18%|█▊        | 1580/8564 [00:00<00:02, 3168.83 examples/s]
+Applying chat template to train dataset:  22%|██▏       | 1905/8564 [00:00<00:02, 3192.51 examples/s]
+Applying chat template to train dataset:  26%|██▌       | 2230/8564 [00:00<00:01, 3210.24 examples/s]
+Applying chat template to train dataset:  30%|██▉       | 2556/8564 [00:00<00:01, 3223.56 examples/s]
+Applying chat template to train dataset:  34%|███▎      | 2881/8564 [00:00<00:01, 3227.39 examples/s]
+Applying chat template to train dataset:  39%|███▉      | 3352/8564 [00:01<00:01, 3185.46 examples/s]
+Applying chat template to train dataset:  43%|████▎     | 3677/8564 [00:01<00:01, 3201.04 examples/s]
+Applying chat template to train dataset:  47%|████▋     | 4003/8564 [00:01<00:01, 3210.77 examples/s]
+Applying chat template to train dataset:  51%|█████     | 4328/8564 [00:01<00:01, 3218.74 examples/s]
+Applying chat template to train dataset:  54%|█████▍    | 4652/8564 [00:01<00:01, 3219.69 examples/s]
+Applying chat template to train dataset:  58%|█████▊    | 4980/8564 [00:01<00:01, 3230.05 examples/s]
+Applying chat template to train dataset:  62%|██████▏   | 5312/8564 [00:01<00:00, 3255.16 examples/s]
+Applying chat template to train dataset:  66%|██████▌   | 5643/8564 [00:01<00:00, 3269.57 examples/s]
+Applying chat template to train dataset:  70%|██████▉   | 5977/8564 [00:01<00:00, 3284.34 examples/s]
+Applying chat template to train dataset:  74%|███████▎  | 6309/8564 [00:01<00:00, 3291.59 examples/s]
+Applying chat template to train dataset:  78%|███████▊  | 6640/8564 [00:02<00:00, 3292.51 examples/s]
+Applying chat template to train dataset:  81%|████████▏ | 6973/8564 [00:02<00:00, 3299.91 examples/s]
+Applying chat template to train dataset:  85%|████████▌ | 7306/8564 [00:02<00:00, 3305.03 examples/s]
+Applying chat template to train dataset:  89%|████████▉ | 7639/8564 [00:02<00:00, 3309.44 examples/s]
+Applying chat template to train dataset:  94%|█████████▍| 8091/8564 [00:02<00:00, 3191.06 examples/s]
+Applying chat template to train dataset:  98%|█████████▊| 8423/8564 [00:02<00:00, 3225.80 examples/s]
+Applying chat template to train dataset: 100%|██████████| 8564/8564 [00:02<00:00, 3221.33 examples/s]
+
+Tokenizing train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Tokenizing train dataset:   1%|          | 43/8564 [00:00<00:21, 403.99 examples/s]
+Tokenizing train dataset:   1%|          | 92/8564 [00:00<00:25, 336.69 examples/s]
+Tokenizing train dataset:   2%|▏         | 140/8564 [00:00<00:26, 323.65 examples/s]
+Tokenizing train dataset:   2%|▏         | 186/8564 [00:00<00:26, 312.14 examples/s]
+Tokenizing train dataset:   3%|▎         | 221/8564 [00:00<00:26, 318.98 examples/s]
+Tokenizing train dataset:   3%|▎         | 273/8564 [00:00<00:25, 325.60 examples/s]
+Tokenizing train dataset:   4%|▎         | 306/8564 [00:00<00:25, 322.68 examples/s]
+Tokenizing train dataset:   4%|▍         | 339/8564 [00:01<00:25, 322.21 examples/s]
+Tokenizing train dataset:   5%|▍         | 389/8564 [00:01<00:25, 321.59 examples/s]
+Tokenizing train dataset:   5%|▌         | 437/8564 [00:01<00:25, 312.75 examples/s]
+Tokenizing train dataset:   5%|▌         | 469/8564 [00:01<00:25, 312.83 examples/s]
+Tokenizing train dataset:   6%|▌         | 512/8564 [00:01<00:26, 302.62 examples/s]
+Tokenizing train dataset:   6%|▋         | 549/8564 [00:01<00:25, 316.91 examples/s]
+Tokenizing train dataset:   7%|▋         | 596/8564 [00:01<00:25, 308.42 examples/s]
+Tokenizing train dataset:   7%|▋         | 634/8564 [00:01<00:24, 323.43 examples/s]
+Tokenizing train dataset:   8%|▊         | 681/8564 [00:02<00:25, 314.25 examples/s]
+Tokenizing train dataset:   9%|▊         | 729/8564 [00:02<00:25, 313.02 examples/s]
+Tokenizing train dataset:   9%|▉         | 763/8564 [00:02<00:24, 314.36 examples/s]
+Tokenizing train dataset:   9%|▉         | 806/8564 [00:02<00:25, 300.76 examples/s]
+Tokenizing train dataset:  10%|▉         | 850/8564 [00:02<00:26, 295.08 examples/s]
+Tokenizing train dataset:  10%|█         | 885/8564 [00:02<00:25, 303.16 examples/s]
+Tokenizing train dataset:  11%|█         | 920/8564 [00:02<00:24, 308.45 examples/s]
+Tokenizing train dataset:  11%|█         | 952/8564 [00:03<00:24, 306.23 examples/s]
+Tokenizing train dataset:  11%|█▏        | 983/8564 [00:03<00:25, 301.98 examples/s]
+Tokenizing train dataset:  12%|█▏        | 1027/8564 [00:03<00:25, 292.74 examples/s]
+Tokenizing train dataset:  12%|█▏        | 1057/8564 [00:03<00:25, 292.36 examples/s]
+Tokenizing train dataset:  13%|█▎        | 1093/8564 [00:03<00:24, 307.87 examples/s]
+Tokenizing train dataset:  13%|█▎        | 1135/8564 [00:03<00:25, 294.13 examples/s]
+Tokenizing train dataset:  14%|█▎        | 1166/8564 [00:03<00:25, 294.99 examples/s]
+Tokenizing train dataset:  14%|█▍        | 1202/8564 [00:03<00:24, 305.65 examples/s]
+Tokenizing train dataset:  14%|█▍        | 1236/8564 [00:03<00:23, 310.96 examples/s]
+Tokenizing train dataset:  15%|█▍        | 1270/8564 [00:04<00:23, 313.28 examples/s]
+Tokenizing train dataset:  15%|█▌        | 1305/8564 [00:04<00:22, 318.12 examples/s]
+Tokenizing train dataset:  16%|█▌        | 1339/8564 [00:04<00:22, 320.03 examples/s]
+Tokenizing train dataset:  16%|█▌        | 1379/8564 [00:04<00:24, 298.40 examples/s]
+Tokenizing train dataset:  16%|█▋        | 1410/8564 [00:04<00:23, 298.14 examples/s]
+Tokenizing train dataset:  17%|█▋        | 1456/8564 [00:04<00:23, 298.70 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1501/8564 [00:04<00:23, 295.01 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1534/8564 [00:04<00:23, 301.33 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1565/8564 [00:05<00:23, 299.96 examples/s]
+Tokenizing train dataset:  19%|█▉        | 1610/8564 [00:05<00:23, 298.26 examples/s]
+Tokenizing train dataset:  19%|█▉        | 1645/8564 [00:05<00:22, 308.04 examples/s]
+Tokenizing train dataset:  20%|█▉        | 1679/8564 [00:05<00:21, 314.81 examples/s]
+Tokenizing train dataset:  20%|██        | 1720/8564 [00:05<00:20, 333.19 examples/s]
+Tokenizing train dataset:  21%|██        | 1771/8564 [00:05<00:20, 330.00 examples/s]
+Tokenizing train dataset:  21%|██        | 1816/8564 [00:05<00:21, 318.52 examples/s]
+Tokenizing train dataset:  22%|██▏       | 1849/8564 [00:05<00:20, 320.92 examples/s]
+Tokenizing train dataset:  22%|██▏       | 1893/8564 [00:06<00:21, 306.84 examples/s]
+Tokenizing train dataset:  23%|██▎       | 1938/8564 [00:06<00:19, 339.70 examples/s]
+Tokenizing train dataset:  23%|██▎       | 1975/8564 [00:06<00:19, 343.46 examples/s]
+Tokenizing train dataset:  23%|██▎       | 2012/8564 [00:06<00:18, 349.35 examples/s]
+Tokenizing train dataset:  24%|██▍       | 2051/8564 [00:06<00:18, 356.51 examples/s]
+Tokenizing train dataset:  24%|██▍       | 2089/8564 [00:06<00:17, 362.41 examples/s]
+Tokenizing train dataset:  25%|██▍       | 2128/8564 [00:06<00:17, 367.77 examples/s]
+Tokenizing train dataset:  25%|██▌       | 2182/8564 [00:06<00:17, 360.45 examples/s]
+Tokenizing train dataset:  26%|██▌       | 2220/8564 [00:06<00:17, 362.34 examples/s]
+Tokenizing train dataset:  26%|██▋       | 2258/8564 [00:07<00:17, 365.36 examples/s]
+Tokenizing train dataset:  27%|██▋       | 2302/8564 [00:07<00:16, 378.83 examples/s]
+Tokenizing train dataset:  27%|██▋       | 2351/8564 [00:07<00:17, 354.36 examples/s]
+Tokenizing train dataset:  28%|██▊       | 2393/8564 [00:07<00:16, 364.33 examples/s]
+Tokenizing train dataset:  28%|██▊       | 2434/8564 [00:07<00:16, 371.20 examples/s]
+Tokenizing train dataset:  29%|██▉       | 2474/8564 [00:07<00:16, 374.09 examples/s]
+Tokenizing train dataset:  30%|██▉       | 2530/8564 [00:07<00:16, 365.47 examples/s]
+Tokenizing train dataset:  30%|███       | 2572/8564 [00:07<00:15, 377.26 examples/s]
+Tokenizing train dataset:  31%|███       | 2620/8564 [00:08<00:16, 354.46 examples/s]
+Tokenizing train dataset:  31%|███       | 2671/8564 [00:08<00:17, 344.91 examples/s]
+Tokenizing train dataset:  32%|███▏      | 2708/8564 [00:08<00:16, 349.37 examples/s]
+Tokenizing train dataset:  32%|███▏      | 2759/8564 [00:08<00:16, 343.80 examples/s]
+Tokenizing train dataset:  33%|███▎      | 2797/8564 [00:08<00:16, 351.88 examples/s]
+Tokenizing train dataset:  33%|███▎      | 2837/8564 [00:08<00:16, 356.42 examples/s]
+Tokenizing train dataset:  34%|███▍      | 2893/8564 [00:08<00:15, 355.14 examples/s]
+Tokenizing train dataset:  34%|███▍      | 2934/8564 [00:08<00:15, 367.06 examples/s]
+Tokenizing train dataset:  35%|███▍      | 2979/8564 [00:09<00:14, 387.92 examples/s]
+Tokenizing train dataset:  35%|███▌      | 3034/8564 [00:09<00:14, 376.52 examples/s]
+Tokenizing train dataset:  36%|███▌      | 3089/8564 [00:09<00:14, 367.48 examples/s]
+Tokenizing train dataset:  37%|███▋      | 3144/8564 [00:09<00:14, 363.34 examples/s]
+Tokenizing train dataset:  37%|███▋      | 3181/8564 [00:09<00:14, 361.05 examples/s]
+Tokenizing train dataset:  38%|███▊      | 3221/8564 [00:09<00:14, 367.12 examples/s]
+Tokenizing train dataset:  38%|███▊      | 3262/8564 [00:09<00:14, 376.52 examples/s]
+Tokenizing train dataset:  39%|███▊      | 3314/8564 [00:09<00:14, 361.45 examples/s]
+Tokenizing train dataset:  39%|███▉      | 3370/8564 [00:10<00:14, 356.62 examples/s]
+Tokenizing train dataset:  40%|███▉      | 3414/8564 [00:10<00:13, 372.29 examples/s]
+Tokenizing train dataset:  40%|████      | 3452/8564 [00:10<00:13, 371.22 examples/s]
+Tokenizing train dataset:  41%|████      | 3513/8564 [00:10<00:13, 379.84 examples/s]
+Tokenizing train dataset:  42%|████▏     | 3567/8564 [00:10<00:13, 367.36 examples/s]
+Tokenizing train dataset:  42%|████▏     | 3609/8564 [00:10<00:13, 376.26 examples/s]
+Tokenizing train dataset:  43%|████▎     | 3664/8564 [00:10<00:13, 365.47 examples/s]
+Tokenizing train dataset:  43%|████▎     | 3724/8564 [00:11<00:13, 369.50 examples/s]
+Tokenizing train dataset:  44%|████▍     | 3780/8564 [00:11<00:12, 368.44 examples/s]
+Tokenizing train dataset:  45%|████▍     | 3834/8564 [00:11<00:13, 363.51 examples/s]
+Tokenizing train dataset:  45%|████▌     | 3890/8564 [00:11<00:12, 362.52 examples/s]
+Tokenizing train dataset:  46%|████▌     | 3941/8564 [00:11<00:13, 352.13 examples/s]
+Tokenizing train dataset:  46%|████▋     | 3978/8564 [00:11<00:12, 353.90 examples/s]
+Tokenizing train dataset:  47%|████▋     | 4015/8564 [00:11<00:12, 356.33 examples/s]
+Tokenizing train dataset:  47%|████▋     | 4056/8564 [00:12<00:12, 364.84 examples/s]
+Tokenizing train dataset:  48%|████▊     | 4110/8564 [00:12<00:12, 359.35 examples/s]
+Tokenizing train dataset:  49%|████▊     | 4162/8564 [00:12<00:12, 352.35 examples/s]
+Tokenizing train dataset:  49%|████▉     | 4203/8564 [00:12<00:12, 362.32 examples/s]
+Tokenizing train dataset:  50%|████▉     | 4257/8564 [00:12<00:12, 357.50 examples/s]
+Tokenizing train dataset:  50%|█████     | 4313/8564 [00:12<00:11, 359.27 examples/s]
+Tokenizing train dataset:  51%|█████     | 4365/8564 [00:12<00:11, 353.36 examples/s]
+Tokenizing train dataset:  51%|█████▏    | 4405/8564 [00:12<00:11, 360.78 examples/s]
+Tokenizing train dataset:  52%|█████▏    | 4444/8564 [00:13<00:11, 364.14 examples/s]
+Tokenizing train dataset:  52%|█████▏    | 4482/8564 [00:13<00:11, 363.77 examples/s]
+Tokenizing train dataset:  53%|█████▎    | 4536/8564 [00:13<00:11, 357.98 examples/s]
+Tokenizing train dataset:  54%|█████▎    | 4590/8564 [00:13<00:11, 354.29 examples/s]
+Tokenizing train dataset:  54%|█████▍    | 4628/8564 [00:13<00:11, 356.24 examples/s]
+Tokenizing train dataset:  55%|█████▍    | 4676/8564 [00:13<00:11, 339.69 examples/s]
+Tokenizing train dataset:  55%|█████▌    | 4724/8564 [00:13<00:11, 329.70 examples/s]
+Tokenizing train dataset:  56%|█████▌    | 4758/8564 [00:14<00:11, 327.72 examples/s]
+Tokenizing train dataset:  56%|█████▌    | 4792/8564 [00:14<00:11, 325.61 examples/s]
+Tokenizing train dataset:  57%|█████▋    | 4853/8564 [00:14<00:09, 396.73 examples/s]
+Tokenizing train dataset:  57%|█████▋    | 4912/8564 [00:14<00:08, 441.27 examples/s]
+Tokenizing train dataset:  58%|█████▊    | 4975/8564 [00:14<00:07, 490.06 examples/s]
+Tokenizing train dataset:  59%|█████▉    | 5033/8564 [00:14<00:06, 512.07 examples/s]
+Tokenizing train dataset:  60%|█████▉    | 5106/8564 [00:14<00:06, 566.53 examples/s]
+Tokenizing train dataset:  60%|██████    | 5177/8564 [00:14<00:05, 602.36 examples/s]
+Tokenizing train dataset:  61%|██████▏   | 5247/8564 [00:14<00:05, 629.19 examples/s]
+Tokenizing train dataset:  62%|██████▏   | 5319/8564 [00:14<00:04, 652.03 examples/s]
+Tokenizing train dataset:  63%|██████▎   | 5401/8564 [00:15<00:05, 608.02 examples/s]
+Tokenizing train dataset:  64%|██████▍   | 5467/8564 [00:15<00:05, 618.16 examples/s]
+Tokenizing train dataset:  65%|██████▍   | 5555/8564 [00:15<00:04, 604.60 examples/s]
+Tokenizing train dataset:  66%|██████▌   | 5623/8564 [00:15<00:04, 622.64 examples/s]
+Tokenizing train dataset:  66%|██████▋   | 5690/8564 [00:15<00:04, 630.41 examples/s]
+Tokenizing train dataset:  67%|██████▋   | 5756/8564 [00:15<00:04, 636.75 examples/s]
+Tokenizing train dataset:  68%|██████▊   | 5830/8564 [00:15<00:04, 663.16 examples/s]
+Tokenizing train dataset:  69%|██████▉   | 5916/8564 [00:15<00:04, 628.64 examples/s]
+Tokenizing train dataset:  70%|██████▉   | 5980/8564 [00:16<00:04, 596.51 examples/s]
+Tokenizing train dataset:  71%|███████   | 6043/8564 [00:16<00:04, 604.51 examples/s]
+Tokenizing train dataset:  72%|███████▏  | 6133/8564 [00:16<00:04, 600.88 examples/s]
+Tokenizing train dataset:  73%|███████▎  | 6209/8564 [00:16<00:03, 639.74 examples/s]
+Tokenizing train dataset:  73%|███████▎  | 6279/8564 [00:16<00:03, 652.86 examples/s]
+Tokenizing train dataset:  74%|███████▍  | 6380/8564 [00:16<00:03, 655.42 examples/s]
+Tokenizing train dataset:  76%|███████▌  | 6471/8564 [00:16<00:03, 634.54 examples/s]
+Tokenizing train dataset:  77%|███████▋  | 6565/8564 [00:16<00:03, 623.87 examples/s]
+Tokenizing train dataset:  78%|███████▊  | 6646/8564 [00:17<00:03, 587.23 examples/s]
+Tokenizing train dataset:  78%|███████▊  | 6718/8564 [00:17<00:03, 614.78 examples/s]
+Tokenizing train dataset:  79%|███████▉  | 6784/8564 [00:17<00:02, 624.73 examples/s]
+Tokenizing train dataset:  80%|████████  | 6872/8564 [00:17<00:02, 605.98 examples/s]
+Tokenizing train dataset:  81%|████████  | 6944/8564 [00:17<00:02, 630.31 examples/s]
+Tokenizing train dataset:  82%|████████▏ | 7020/8564 [00:17<00:02, 586.18 examples/s]
+Tokenizing train dataset:  83%|████████▎ | 7091/8564 [00:17<00:02, 614.46 examples/s]
+Tokenizing train dataset:  84%|████████▍ | 7193/8564 [00:17<00:02, 633.58 examples/s]
+Tokenizing train dataset:  85%|████████▌ | 7283/8564 [00:18<00:02, 619.17 examples/s]
+Tokenizing train dataset:  86%|████████▌ | 7379/8564 [00:18<00:01, 623.67 examples/s]
+Tokenizing train dataset:  87%|████████▋ | 7443/8564 [00:18<00:01, 625.28 examples/s]
+Tokenizing train dataset:  88%|████████▊ | 7506/8564 [00:18<00:01, 621.94 examples/s]
+Tokenizing train dataset:  89%|████████▊ | 7581/8564 [00:18<00:01, 651.83 examples/s]
+Tokenizing train dataset:  90%|████████▉ | 7668/8564 [00:18<00:01, 617.70 examples/s]
+Tokenizing train dataset:  90%|█████████ | 7731/8564 [00:18<00:01, 613.57 examples/s]
+Tokenizing train dataset:  91%|█████████ | 7812/8564 [00:19<00:01, 585.69 examples/s]
+Tokenizing train dataset:  92%|█████████▏| 7880/8564 [00:19<00:01, 597.34 examples/s]
+Tokenizing train dataset:  93%|█████████▎| 7943/8564 [00:19<00:01, 600.98 examples/s]
+Tokenizing train dataset:  94%|█████████▎| 8013/8564 [00:19<00:00, 622.55 examples/s]
+Tokenizing train dataset:  95%|█████████▍| 8101/8564 [00:19<00:00, 600.54 examples/s]
+Tokenizing train dataset:  96%|█████████▌| 8198/8564 [00:19<00:00, 611.86 examples/s]
+Tokenizing train dataset:  96%|█████████▋| 8262/8564 [00:19<00:00, 616.77 examples/s]
+Tokenizing train dataset:  97%|█████████▋| 8331/8564 [00:19<00:00, 634.35 examples/s]
+Tokenizing train dataset:  98%|█████████▊| 8419/8564 [00:19<00:00, 615.70 examples/s]
+Tokenizing train dataset:  99%|█████████▉| 8510/8564 [00:20<00:00, 609.91 examples/s]
+Tokenizing train dataset: 100%|██████████| 8564/8564 [00:20<00:00, 423.24 examples/s]
+[rank0]:[W531 12:00:43.318927440 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+
+Extracting prompt in eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Extracting prompt in train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Extracting prompt in train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Extracting prompt in train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Extracting prompt in eval dataset: 100%|██████████| 953/953 [00:00<00:00, 11437.88 examples/s]
+
+Extracting prompt in train dataset:   6%|▋         | 540/8564 [00:00<00:01, 5331.05 examples/s]
+Extracting prompt in train dataset:   6%|▌         | 490/8564 [00:00<00:01, 4814.59 examples/s]
+Extracting prompt in train dataset:   6%|▌         | 480/8564 [00:00<00:01, 4698.41 examples/s]
+Extracting prompt in train dataset:  13%|█▎        | 1110/8564 [00:00<00:01, 5539.75 examples/s]
+Extracting prompt in train dataset:  12%|█▏        | 1058/8564 [00:00<00:01, 5318.46 examples/s]
+Extracting prompt in train dataset:  12%|█▏        | 1030/8564 [00:00<00:01, 5133.93 examples/s]
+Extracting prompt in train dataset:  20%|█▉        | 1680/8564 [00:00<00:01, 5609.53 examples/s]
+Extracting prompt in train dataset:  19%|█▉        | 1621/8564 [00:00<00:01, 5458.03 examples/s]
+Extracting prompt in train dataset:  19%|█▊        | 1600/8564 [00:00<00:01, 5354.58 examples/s]
+Extracting prompt in train dataset:  27%|██▋       | 2270/8564 [00:00<00:01, 5721.04 examples/s]
+Extracting prompt in train dataset:  25%|██▌       | 2180/8564 [00:00<00:01, 5486.56 examples/s]
+Extracting prompt in train dataset:  25%|██▌       | 2180/8564 [00:00<00:01, 5506.84 examples/s]
+Applying chat template to eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Applying chat template to eval dataset: 100%|██████████| 953/953 [00:00<00:00, 13938.70 examples/s]
+
+Extracting prompt in train dataset:  33%|███▎      | 2850/8564 [00:00<00:00, 5735.33 examples/s]
+Extracting prompt in train dataset:  32%|███▏      | 2740/8564 [00:00<00:01, 5493.39 examples/s]
+Extracting prompt in train dataset:  32%|███▏      | 2760/8564 [00:00<00:01, 5596.97 examples/s]
+Extracting prompt in train dataset:  39%|███▉      | 3340/8564 [00:00<00:00, 5538.35 examples/s]
+Extracting prompt in train dataset:  43%|████▎     | 3691/8564 [00:00<00:00, 5664.52 examples/s]
+Extracting prompt in train dataset:  42%|████▏     | 3571/8564 [00:00<00:00, 5483.32 examples/s]
+Extracting prompt in train dataset:  46%|████▌     | 3920/8564 [00:00<00:00, 5607.77 examples/s]
+Extracting prompt in train dataset:  50%|████▉     | 4270/8564 [00:00<00:00, 5698.66 examples/s]
+Extracting prompt in train dataset:  48%|████▊     | 4151/8564 [00:00<00:00, 5573.51 examples/s]
+Extracting prompt in train dataset:  53%|█████▎    | 4500/8564 [00:00<00:00, 5653.08 examples/s]
+Tokenizing eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Extracting prompt in train dataset:  57%|█████▋    | 4852/8564 [00:00<00:00, 5731.37 examples/s]
+Extracting prompt in train dataset:  55%|█████▌    | 4731/8564 [00:00<00:00, 5637.76 examples/s]
+Extracting prompt in train dataset:  59%|█████▉    | 5090/8564 [00:00<00:00, 5696.24 examples/s]
+Tokenizing eval dataset:   4%|▎         | 34/953 [00:00<00:02, 329.68 examples/s]
+Extracting prompt in train dataset:  64%|██████▎   | 5450/8564 [00:00<00:00, 5778.30 examples/s]
+Extracting prompt in train dataset:  62%|██████▏   | 5330/8564 [00:00<00:00, 5716.93 examples/s]
+Extracting prompt in train dataset:  66%|██████▋   | 5690/8564 [00:01<00:00, 5754.08 examples/s]
+Extracting prompt in train dataset:  71%|███████   | 6050/8564 [00:01<00:00, 5813.61 examples/s]
+Extracting prompt in train dataset:  69%|██████▉   | 5930/8564 [00:01<00:00, 5784.53 examples/s]
+Tokenizing eval dataset:   8%|▊         | 79/953 [00:00<00:02, 298.73 examples/s]
+Extracting prompt in train dataset:  73%|███████▎  | 6280/8564 [00:01<00:00, 5793.70 examples/s]
+Extracting prompt in train dataset:  78%|███████▊  | 6650/8564 [00:01<00:00, 5835.52 examples/s]
+Extracting prompt in train dataset:  76%|███████▌  | 6530/8564 [00:01<00:00, 5830.56 examples/s]
+Extracting prompt in train dataset:  80%|████████  | 6870/8564 [00:01<00:00, 5813.43 examples/s]
+Tokenizing eval dataset:  13%|█▎        | 120/953 [00:00<00:02, 280.00 examples/s]
+Extracting prompt in train dataset:  85%|████████▍ | 7250/8564 [00:01<00:00, 5865.13 examples/s]
+Extracting prompt in train dataset:  83%|████████▎ | 7130/8564 [00:01<00:00, 5859.96 examples/s]
+Extracting prompt in train dataset:  87%|████████▋ | 7460/8564 [00:01<00:00, 5831.12 examples/s]
+Extracting prompt in train dataset:  90%|█████████ | 7730/8564 [00:01<00:00, 5626.72 examples/s]
+Tokenizing eval dataset:  17%|█▋        | 160/953 [00:00<00:02, 270.45 examples/s]
+Extracting prompt in train dataset:  94%|█████████▍| 8070/8564 [00:01<00:00, 5685.71 examples/s]
+Extracting prompt in train dataset:  97%|█████████▋| 8308/8564 [00:01<00:00, 5659.53 examples/s]
+Extracting prompt in train dataset:  97%|█████████▋| 8320/8564 [00:01<00:00, 5621.40 examples/s]
+Extracting prompt in train dataset: 100%|██████████| 8564/8564 [00:01<00:00, 5685.10 examples/s]
+
+Extracting prompt in train dataset: 100%|██████████| 8564/8564 [00:01<00:00, 5580.57 examples/s]
+
+Extracting prompt in train dataset: 100%|██████████| 8564/8564 [00:01<00:00, 5579.70 examples/s]
+
+Tokenizing eval dataset:  21%|██        | 199/953 [00:00<00:02, 262.12 examples/s]
+Tokenizing eval dataset:  25%|██▍       | 238/953 [00:00<00:02, 293.21 examples/s]
+Tokenizing eval dataset:  32%|███▏      | 304/953 [00:00<00:01, 388.51 examples/s]
+Tokenizing eval dataset:  39%|███▊      | 368/953 [00:01<00:01, 454.77 examples/s]
+Applying chat template to train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Tokenizing eval dataset:  46%|████▌     | 437/953 [00:01<00:00, 518.37 examples/s]
+Applying chat template to train dataset:   3%|▎         | 286/8564 [00:00<00:02, 2830.28 examples/s]
+Applying chat template to train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Applying chat template to train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Tokenizing eval dataset:  53%|█████▎    | 504/953 [00:01<00:00, 559.81 examples/s]
+Applying chat template to train dataset:   7%|▋         | 595/8564 [00:00<00:02, 2976.66 examples/s]
+Applying chat template to train dataset:   3%|▎         | 293/8564 [00:00<00:02, 2903.17 examples/s]
+Applying chat template to train dataset:   3%|▎         | 289/8564 [00:00<00:02, 2861.88 examples/s]
+Tokenizing eval dataset:  60%|█████▉    | 569/953 [00:01<00:00, 582.89 examples/s]
+Applying chat template to train dataset:  11%|█         | 906/8564 [00:00<00:02, 3029.29 examples/s]
+Applying chat template to train dataset:   7%|▋         | 614/8564 [00:00<00:02, 3080.19 examples/s]
+Applying chat template to train dataset:   7%|▋         | 603/8564 [00:00<00:02, 3017.41 examples/s]
+Applying chat template to train dataset:  14%|█▍        | 1218/8564 [00:00<00:02, 3062.14 examples/s]
+Tokenizing eval dataset:  67%|██████▋   | 640/953 [00:01<00:00, 608.47 examples/s]
+Applying chat template to train dataset:  11%|█         | 934/8564 [00:00<00:02, 3133.07 examples/s]
+Applying chat template to train dataset:  11%|█         | 916/8564 [00:00<00:02, 3065.77 examples/s]
+Applying chat template to train dataset:  18%|█▊        | 1525/8564 [00:00<00:02, 3062.99 examples/s]
+Applying chat template to train dataset:  15%|█▍        | 1259/8564 [00:00<00:02, 3174.01 examples/s]
+Tokenizing eval dataset:  77%|███████▋  | 730/953 [00:01<00:00, 599.09 examples/s]
+Applying chat template to train dataset:  14%|█▍        | 1230/8564 [00:00<00:02, 3092.36 examples/s]
+Applying chat template to train dataset:  23%|██▎       | 1975/8564 [00:00<00:02, 3030.03 examples/s]
+Applying chat template to train dataset:  18%|█▊        | 1580/8564 [00:00<00:02, 3160.54 examples/s]
+Applying chat template to train dataset:  18%|█▊        | 1540/8564 [00:00<00:02, 3090.61 examples/s]
+Tokenizing eval dataset:  85%|████████▍ | 807/953 [00:01<00:00, 564.02 examples/s]
+Applying chat template to train dataset:  22%|██▏       | 1905/8564 [00:00<00:02, 3188.02 examples/s]
+Applying chat template to train dataset:  22%|██▏       | 1856/8564 [00:00<00:02, 3110.34 examples/s]
+Applying chat template to train dataset:  28%|██▊       | 2419/8564 [00:00<00:02, 2999.58 examples/s]
+Applying chat template to train dataset:  26%|██▌       | 2231/8564 [00:00<00:01, 3207.97 examples/s]
+Tokenizing eval dataset:  93%|█████████▎| 883/953 [00:01<00:00, 542.94 examples/s]
+Applying chat template to train dataset:  25%|██▌       | 2173/8564 [00:00<00:02, 3124.48 examples/s]
+Applying chat template to train dataset:  33%|███▎      | 2860/8564 [00:00<00:01, 2976.85 examples/s]
+Applying chat template to train dataset:  30%|██▉       | 2558/8564 [00:00<00:01, 3225.76 examples/s]
+Applying chat template to train dataset:  29%|██▉       | 2490/8564 [00:00<00:01, 3136.15 examples/s]
+Tokenizing eval dataset: 100%|██████████| 953/953 [00:02<00:00, 532.02 examples/s]
+Tokenizing eval dataset: 100%|██████████| 953/953 [00:02<00:00, 465.52 examples/s]
+
+Applying chat template to train dataset:  34%|███▎      | 2884/8564 [00:00<00:01, 3231.04 examples/s]
+Applying chat template to train dataset:  33%|███▎      | 2810/8564 [00:00<00:01, 3144.58 examples/s]
+Applying chat template to train dataset:  38%|███▊      | 3290/8564 [00:01<00:01, 2935.79 examples/s]
+Applying chat template to train dataset:  42%|████▏     | 3585/8564 [00:01<00:01, 2937.50 examples/s]
+Applying chat template to train dataset:  39%|███▉      | 3354/8564 [00:01<00:01, 3188.34 examples/s]
+Applying chat template to train dataset:  38%|███▊      | 3270/8564 [00:01<00:01, 3102.97 examples/s]
+Applying chat template to train dataset:  45%|████▌     | 3880/8564 [00:01<00:01, 2935.54 examples/s]
+Applying chat template to train dataset:  43%|████▎     | 3680/8564 [00:01<00:01, 3200.51 examples/s]
+Applying chat template to train dataset:  42%|████▏     | 3586/8564 [00:01<00:01, 3116.35 examples/s]
+Applying chat template to train dataset:  49%|████▉     | 4175/8564 [00:01<00:01, 2936.03 examples/s]
+Applying chat template to train dataset:  47%|████▋     | 4005/8564 [00:01<00:01, 3212.79 examples/s]
+Applying chat template to train dataset:  46%|████▌     | 3901/8564 [00:01<00:01, 3123.71 examples/s]
+Applying chat template to train dataset:  52%|█████▏    | 4470/8564 [00:01<00:01, 2933.20 examples/s]
+Applying chat template to train dataset:  51%|█████     | 4330/8564 [00:01<00:01, 3218.95 examples/s]
+Applying chat template to train dataset:  49%|████▉     | 4219/8564 [00:01<00:01, 3134.47 examples/s]
+Applying chat template to train dataset:  56%|█████▌    | 4764/8564 [00:01<00:01, 2933.06 examples/s]
+Applying chat template to train dataset:  54%|█████▍    | 4656/8564 [00:01<00:01, 3226.29 examples/s]
+Applying chat template to train dataset:  53%|█████▎    | 4534/8564 [00:01<00:01, 3137.38 examples/s]
+Applying chat template to train dataset:  59%|█████▉    | 5063/8564 [00:01<00:01, 2945.53 examples/s]
+Applying chat template to train dataset:  58%|█████▊    | 4984/8564 [00:01<00:01, 3238.92 examples/s]
+Applying chat template to train dataset:  57%|█████▋    | 4850/8564 [00:01<00:01, 3138.68 examples/s]
+Applying chat template to train dataset:  63%|██████▎   | 5363/8564 [00:01<00:01, 2959.13 examples/s]
+Applying chat template to train dataset:  62%|██████▏   | 5318/8564 [00:01<00:00, 3264.68 examples/s]
+Applying chat template to train dataset:  60%|██████    | 5173/8564 [00:01<00:01, 3161.70 examples/s]
+Applying chat template to train dataset:  66%|██████▌   | 5662/8564 [00:01<00:00, 2966.45 examples/s]
+Applying chat template to train dataset:  66%|██████▌   | 5650/8564 [00:01<00:00, 3276.85 examples/s]
+Applying chat template to train dataset:  64%|██████▍   | 5495/8564 [00:01<00:00, 3177.26 examples/s]
+Applying chat template to train dataset:  70%|██████▉   | 5961/8564 [00:02<00:00, 2970.40 examples/s]
+Applying chat template to train dataset:  70%|██████▉   | 5983/8564 [00:01<00:00, 3290.33 examples/s]
+Applying chat template to train dataset:  68%|██████▊   | 5818/8564 [00:01<00:00, 3189.93 examples/s]
+Applying chat template to train dataset:  73%|███████▎  | 6260/8564 [00:02<00:00, 2974.11 examples/s]
+Applying chat template to train dataset:  74%|███████▍  | 6318/8564 [00:01<00:00, 3302.35 examples/s]
+Applying chat template to train dataset:  72%|███████▏  | 6140/8564 [00:01<00:00, 3193.48 examples/s]
+Applying chat template to train dataset:  77%|███████▋  | 6560/8564 [00:02<00:00, 2974.50 examples/s]
+Applying chat template to train dataset:  78%|███████▊  | 6650/8564 [00:02<00:00, 3303.11 examples/s]
+Applying chat template to train dataset:  75%|███████▌  | 6464/8564 [00:02<00:00, 3202.99 examples/s]
+Applying chat template to train dataset:  80%|████████  | 6860/8564 [00:02<00:00, 2975.69 examples/s]
+Applying chat template to train dataset:  82%|████████▏ | 6983/8564 [00:02<00:00, 3309.68 examples/s]
+Applying chat template to train dataset:  79%|███████▉  | 6787/8564 [00:02<00:00, 3206.68 examples/s]
+Applying chat template to train dataset:  84%|████████▎ | 7160/8564 [00:02<00:00, 2976.51 examples/s]
+Applying chat template to train dataset:  85%|████████▌ | 7317/8564 [00:02<00:00, 3312.28 examples/s]
+Applying chat template to train dataset:  83%|████████▎ | 7109/8564 [00:02<00:00, 3207.97 examples/s]
+Applying chat template to train dataset:  87%|████████▋ | 7460/8564 [00:02<00:00, 2979.55 examples/s]
+Applying chat template to train dataset:  89%|████████▉ | 7650/8564 [00:02<00:00, 3313.15 examples/s]
+Applying chat template to train dataset:  87%|████████▋ | 7432/8564 [00:02<00:00, 3208.01 examples/s]
+Applying chat template to train dataset:  95%|█████████▍| 8105/8564 [00:02<00:00, 3201.83 examples/s]
+Applying chat template to train dataset:  92%|█████████▏| 7909/8564 [00:02<00:00, 2899.25 examples/s]
+Applying chat template to train dataset:  92%|█████████▏| 7910/8564 [00:02<00:00, 3091.67 examples/s]
+Applying chat template to train dataset:  99%|█████████▊| 8439/8564 [00:02<00:00, 3235.44 examples/s]
+Applying chat template to train dataset:  96%|█████████▌| 8229/8564 [00:02<00:00, 2975.03 examples/s]
+Applying chat template to train dataset:  96%|█████████▌| 8233/8564 [00:02<00:00, 3125.12 examples/s]
+Applying chat template to train dataset: 100%|██████████| 8564/8564 [00:02<00:00, 3223.72 examples/s]
+
+Applying chat template to train dataset: 100%|█████████▉| 8548/8564 [00:02<00:00, 3032.28 examples/s]
+Applying chat template to train dataset: 100%|██████████| 8564/8564 [00:02<00:00, 2969.55 examples/s]
+
+Applying chat template to train dataset: 100%|█████████▉| 8555/8564 [00:02<00:00, 3149.77 examples/s]
+Applying chat template to train dataset: 100%|██████████| 8564/8564 [00:02<00:00, 3132.08 examples/s]
+
+Tokenizing train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Tokenizing train dataset:   1%|          | 43/8564 [00:00<00:20, 407.67 examples/s]
+Tokenizing train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Tokenizing train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]
+Tokenizing train dataset:   0%|          | 41/8564 [00:00<00:22, 385.74 examples/s]
+Tokenizing train dataset:   1%|          | 92/8564 [00:00<00:25, 337.88 examples/s]
+Tokenizing train dataset:   0%|          | 41/8564 [00:00<00:22, 382.75 examples/s]
+Tokenizing train dataset:   1%|          | 87/8564 [00:00<00:25, 327.48 examples/s]
+Tokenizing train dataset:   2%|▏         | 140/8564 [00:00<00:25, 325.25 examples/s]
+Tokenizing train dataset:   1%|          | 92/8564 [00:00<00:30, 274.37 examples/s]
+Tokenizing train dataset:   2%|▏         | 129/8564 [00:00<00:28, 300.41 examples/s]
+Tokenizing train dataset:   2%|▏         | 186/8564 [00:00<00:26, 314.23 examples/s]
+Tokenizing train dataset:   2%|▏         | 161/8564 [00:00<00:27, 301.26 examples/s]
+Tokenizing train dataset:   3%|▎         | 220/8564 [00:00<00:26, 318.62 examples/s]
+Tokenizing train dataset:   2%|▏         | 138/8564 [00:00<00:29, 282.17 examples/s]
+Tokenizing train dataset:   3%|▎         | 254/8564 [00:00<00:25, 323.17 examples/s]
+Tokenizing train dataset:   2%|▏         | 204/8564 [00:00<00:28, 291.34 examples/s]
+Tokenizing train dataset:   2%|▏         | 168/8564 [00:00<00:29, 280.13 examples/s]
+Tokenizing train dataset:   3%|▎         | 291/8564 [00:00<00:24, 335.04 examples/s]
+Tokenizing train dataset:   2%|▏         | 198/8564 [00:00<00:29, 284.07 examples/s]
+Tokenizing train dataset:   3%|▎         | 240/8564 [00:00<00:27, 304.26 examples/s]
+Tokenizing train dataset:   4%|▍         | 325/8564 [00:00<00:24, 332.60 examples/s]
+Tokenizing train dataset:   3%|▎         | 276/8564 [00:00<00:26, 316.52 examples/s]
+Tokenizing train dataset:   3%|▎         | 233/8564 [00:00<00:28, 296.32 examples/s]
+Tokenizing train dataset:   3%|▎         | 267/8564 [00:00<00:27, 305.17 examples/s]
+Tokenizing train dataset:   4%|▍         | 372/8564 [00:01<00:25, 321.88 examples/s]
+Tokenizing train dataset:   4%|▍         | 323/8564 [00:01<00:26, 314.16 examples/s]
+Tokenizing train dataset:   3%|▎         | 299/8564 [00:01<00:26, 308.41 examples/s]
+Tokenizing train dataset:   5%|▍         | 422/8564 [00:01<00:25, 321.75 examples/s]
+Tokenizing train dataset:   4%|▍         | 367/8564 [00:01<00:26, 303.77 examples/s]
+Tokenizing train dataset:   4%|▍         | 331/8564 [00:01<00:26, 306.60 examples/s]
+Tokenizing train dataset:   5%|▍         | 399/8564 [00:01<00:26, 305.63 examples/s]
+Tokenizing train dataset:   5%|▌         | 469/8564 [00:01<00:25, 316.70 examples/s]
+Tokenizing train dataset:   4%|▍         | 378/8564 [00:01<00:26, 304.92 examples/s]
+Tokenizing train dataset:   5%|▌         | 431/8564 [00:01<00:26, 306.08 examples/s]
+Tokenizing train dataset:   6%|▌         | 516/8564 [00:01<00:25, 310.08 examples/s]
+Tokenizing train dataset:   5%|▍         | 426/8564 [00:01<00:26, 305.02 examples/s]
+Tokenizing train dataset:   6%|▌         | 475/8564 [00:01<00:27, 297.08 examples/s]
+Tokenizing train dataset:   6%|▋         | 550/8564 [00:01<00:25, 315.24 examples/s]
+Tokenizing train dataset:   5%|▌         | 469/8564 [00:01<00:27, 297.78 examples/s]
+Tokenizing train dataset:   6%|▌         | 518/8564 [00:01<00:27, 289.99 examples/s]
+Tokenizing train dataset:   7%|▋         | 596/8564 [00:01<00:25, 310.74 examples/s]
+Tokenizing train dataset:   6%|▋         | 551/8564 [00:01<00:27, 296.74 examples/s]
+Tokenizing train dataset:   6%|▌         | 512/8564 [00:01<00:27, 288.51 examples/s]
+Tokenizing train dataset:   7%|▋         | 634/8564 [00:01<00:24, 325.49 examples/s]
+Tokenizing train dataset:   6%|▋         | 547/8564 [00:01<00:26, 301.85 examples/s]
+Tokenizing train dataset:   7%|▋         | 595/8564 [00:01<00:27, 293.40 examples/s]
+Tokenizing train dataset:   8%|▊         | 681/8564 [00:02<00:24, 316.83 examples/s]
+Tokenizing train dataset:   7%|▋         | 630/8564 [00:02<00:26, 304.65 examples/s]
+Tokenizing train dataset:   7%|▋         | 592/8564 [00:01<00:26, 296.12 examples/s]
+Tokenizing train dataset:   9%|▊         | 729/8564 [00:02<00:24, 314.58 examples/s]
+Tokenizing train dataset:   7%|▋         | 623/8564 [00:02<00:26, 298.90 examples/s]
+Tokenizing train dataset:   8%|▊         | 674/8564 [00:02<00:26, 296.48 examples/s]
+Tokenizing train dataset:   9%|▉         | 763/8564 [00:02<00:24, 315.58 examples/s]
+Tokenizing train dataset:   8%|▊         | 657/8564 [00:02<00:26, 303.54 examples/s]
+Tokenizing train dataset:   8%|▊         | 718/8564 [00:02<00:27, 289.86 examples/s]
+Tokenizing train dataset:   9%|▉         | 808/8564 [00:02<00:25, 303.98 examples/s]
+Tokenizing train dataset:   8%|▊         | 698/8564 [00:02<00:27, 287.66 examples/s]
+Tokenizing train dataset:   9%|▉         | 756/8564 [00:02<00:25, 303.63 examples/s]
+Tokenizing train dataset:  10%|▉         | 839/8564 [00:02<00:25, 301.10 examples/s]
+Tokenizing train dataset:   9%|▊         | 734/8564 [00:02<00:25, 304.17 examples/s]
+Tokenizing train dataset:   9%|▉         | 798/8564 [00:02<00:26, 290.15 examples/s]
+Tokenizing train dataset:  10%|█         | 887/8564 [00:02<00:25, 306.58 examples/s]
+Tokenizing train dataset:   9%|▉         | 778/8564 [00:02<00:26, 295.50 examples/s]
+Tokenizing train dataset:  11%|█         | 920/8564 [00:02<00:24, 307.78 examples/s]
+Tokenizing train dataset:  10%|▉         | 840/8564 [00:02<00:27, 284.98 examples/s]
+Tokenizing train dataset:  10%|▉         | 820/8564 [00:02<00:27, 285.67 examples/s]
+Tokenizing train dataset:  11%|█         | 952/8564 [00:03<00:24, 306.47 examples/s]
+Tokenizing train dataset:  10%|█         | 869/8564 [00:02<00:27, 282.72 examples/s]
+Tokenizing train dataset:  11%|█▏        | 983/8564 [00:03<00:25, 302.79 examples/s]
+Tokenizing train dataset:  11%|█         | 907/8564 [00:03<00:25, 305.08 examples/s]
+Tokenizing train dataset:  10%|█         | 863/8564 [00:02<00:27, 284.34 examples/s]
+Tokenizing train dataset:  11%|█         | 901/8564 [00:03<00:25, 302.79 examples/s]
+Tokenizing train dataset:  12%|█▏        | 1027/8564 [00:03<00:25, 293.65 examples/s]
+Tokenizing train dataset:  11%|█         | 949/8564 [00:03<00:25, 293.85 examples/s]
+Tokenizing train dataset:  12%|█▏        | 1057/8564 [00:03<00:25, 293.24 examples/s]
+Tokenizing train dataset:  11%|█         | 942/8564 [00:03<00:26, 291.88 examples/s]
+Tokenizing train dataset:  12%|█▏        | 990/8564 [00:03<00:26, 284.02 examples/s]
+Tokenizing train dataset:  13%|█▎        | 1093/8564 [00:03<00:24, 308.70 examples/s]
+Tokenizing train dataset:  11%|█▏        | 973/8564 [00:03<00:26, 291.32 examples/s]
+Tokenizing train dataset:  12%|█▏        | 1030/8564 [00:03<00:27, 274.78 examples/s]
+Tokenizing train dataset:  13%|█▎        | 1135/8564 [00:03<00:25, 295.60 examples/s]
+Tokenizing train dataset:  12%|█▏        | 1012/8564 [00:03<00:27, 277.91 examples/s]
+Tokenizing train dataset:  12%|█▏        | 1061/8564 [00:03<00:26, 280.43 examples/s]
+Tokenizing train dataset:  14%|█▎        | 1166/8564 [00:03<00:24, 296.77 examples/s]
+Tokenizing train dataset:  13%|█▎        | 1095/8564 [00:03<00:25, 293.88 examples/s]
+Tokenizing train dataset:  12%|█▏        | 1054/8564 [00:03<00:27, 275.94 examples/s]
+Tokenizing train dataset:  14%|█▍        | 1202/8564 [00:03<00:23, 307.94 examples/s]
+Tokenizing train dataset:  13%|█▎        | 1090/8564 [00:03<00:25, 290.20 examples/s]
+Tokenizing train dataset:  14%|█▍        | 1236/8564 [00:03<00:23, 313.48 examples/s]
+Tokenizing train dataset:  13%|█▎        | 1136/8564 [00:03<00:26, 279.32 examples/s]
+Tokenizing train dataset:  13%|█▎        | 1120/8564 [00:03<00:25, 288.32 examples/s]
+Tokenizing train dataset:  15%|█▍        | 1270/8564 [00:04<00:23, 315.51 examples/s]
+Tokenizing train dataset:  14%|█▍        | 1180/8564 [00:04<00:26, 280.94 examples/s]
+Tokenizing train dataset:  15%|█▌        | 1305/8564 [00:04<00:22, 320.26 examples/s]
+Tokenizing train dataset:  14%|█▎        | 1160/8564 [00:03<00:26, 277.73 examples/s]
+Tokenizing train dataset:  14%|█▍        | 1211/8564 [00:04<00:25, 286.93 examples/s]
+Tokenizing train dataset:  16%|█▌        | 1339/8564 [00:04<00:22, 322.54 examples/s]
+Tokenizing train dataset:  14%|█▍        | 1192/8564 [00:04<00:25, 284.92 examples/s]
+Tokenizing train dataset:  15%|█▍        | 1248/8564 [00:04<00:24, 304.39 examples/s]
+Tokenizing train dataset:  14%|█▍        | 1222/8564 [00:04<00:25, 286.15 examples/s]
+Tokenizing train dataset:  16%|█▌        | 1381/8564 [00:04<00:23, 302.40 examples/s]
+Tokenizing train dataset:  15%|█▌        | 1290/8564 [00:04<00:24, 291.60 examples/s]
+Tokenizing train dataset:  15%|█▍        | 1257/8564 [00:04<00:24, 300.57 examples/s]
+Tokenizing train dataset:  16%|█▋        | 1412/8564 [00:04<00:23, 303.00 examples/s]
+Tokenizing train dataset:  15%|█▌        | 1325/8564 [00:04<00:23, 301.91 examples/s]
+Tokenizing train dataset:  15%|█▌        | 1304/8564 [00:04<00:24, 301.67 examples/s]
+Tokenizing train dataset:  17%|█▋        | 1457/8564 [00:04<00:23, 300.23 examples/s]
+Tokenizing train dataset:  16%|█▌        | 1367/8564 [00:04<00:24, 289.38 examples/s]
+Tokenizing train dataset:  16%|█▌        | 1337/8564 [00:04<00:23, 302.91 examples/s]
+Tokenizing train dataset:  17%|█▋        | 1488/8564 [00:04<00:23, 299.47 examples/s]
+Tokenizing train dataset:  16%|█▋        | 1410/8564 [00:04<00:25, 285.29 examples/s]
+Tokenizing train dataset:  16%|█▌        | 1375/8564 [00:04<00:25, 282.86 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1535/8564 [00:04<00:23, 301.68 examples/s]
+Tokenizing train dataset:  16%|█▋        | 1407/8564 [00:04<00:24, 287.47 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1567/8564 [00:05<00:23, 301.05 examples/s]
+Tokenizing train dataset:  17%|█▋        | 1454/8564 [00:04<00:24, 284.69 examples/s]
+Tokenizing train dataset:  19%|█▊        | 1598/8564 [00:05<00:23, 299.16 examples/s]
+Tokenizing train dataset:  17%|█▋        | 1483/8564 [00:05<00:25, 282.25 examples/s]
+Tokenizing train dataset:  17%|█▋        | 1451/8564 [00:04<00:24, 285.92 examples/s]
+Tokenizing train dataset:  19%|█▉        | 1631/8564 [00:05<00:22, 305.73 examples/s]
+Tokenizing train dataset:  17%|█▋        | 1480/8564 [00:05<00:25, 282.34 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1528/8564 [00:05<00:24, 283.04 examples/s]
+Tokenizing train dataset:  19%|█▉        | 1667/8564 [00:05<00:21, 316.29 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1557/8564 [00:05<00:24, 283.35 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1520/8564 [00:05<00:25, 274.16 examples/s]
+Tokenizing train dataset:  20%|█▉        | 1710/8564 [00:05<00:20, 341.84 examples/s]
+Tokenizing train dataset:  19%|█▊        | 1590/8564 [00:05<00:26, 258.96 examples/s]
+Tokenizing train dataset:  18%|█▊        | 1560/8564 [00:05<00:26, 267.29 examples/s]
+Tokenizing train dataset:  21%|██        | 1760/8564 [00:05<00:20, 333.93 examples/s]
+Tokenizing train dataset:  19%|█▉        | 1622/8564 [00:05<00:25, 272.41 examples/s]
+Tokenizing train dataset:  19%|█▊        | 1590/8564 [00:05<00:25, 269.36 examples/s]
+Tokenizing train dataset:  21%|██        | 1808/8564 [00:05<00:20, 322.82 examples/s]
+Tokenizing train dataset:  19%|█▉        | 1654/8564 [00:05<00:24, 283.81 examples/s]
+Tokenizing train dataset:  19%|█▉        | 1621/8564 [00:05<00:24, 279.22 examples/s]
+Tokenizing train dataset:  22%|██▏       | 1842/8564 [00:05<00:20, 324.28 examples/s]
+Tokenizing train dataset:  20%|█▉        | 1690/8564 [00:05<00:22, 300.13 examples/s]
+Tokenizing train dataset:  19%|█▉        | 1655/8564 [00:05<00:23, 290.57 examples/s]
+Tokenizing train dataset:  20%|██        | 1725/8564 [00:05<00:22, 308.38 examples/s]
+Tokenizing train dataset:  20%|█▉        | 1691/8564 [00:05<00:22, 307.72 examples/s]
+Tokenizing train dataset:  22%|██▏       | 1887/8564 [00:06<00:21, 312.15 examples/s]
+Tokenizing train dataset:  21%|██        | 1759/8564 [00:05<00:21, 314.15 examples/s]
+Tokenizing train dataset:  20%|██        | 1725/8564 [00:05<00:21, 312.30 examples/s]
+Tokenizing train dataset:  23%|██▎       | 1931/8564 [00:06<00:19, 340.54 examples/s]
+Tokenizing train dataset:  21%|██        | 1759/8564 [00:06<00:21, 317.33 examples/s]
+Tokenizing train dataset:  23%|██▎       | 1968/8564 [00:06<00:19, 342.62 examples/s]
+Tokenizing train dataset:  21%|██        | 1803/8564 [00:06<00:22, 302.57 examples/s]
+Tokenizing train dataset:  23%|██▎       | 2007/8564 [00:06<00:18, 351.48 examples/s]
+Tokenizing train dataset:  21%|██▏       | 1834/8564 [00:06<00:22, 303.51 examples/s]
+Tokenizing train dataset:  21%|██        | 1803/8564 [00:06<00:22, 304.64 examples/s]
+Tokenizing train dataset:  24%|██▍       | 2047/8564 [00:06<00:18, 361.86 examples/s]
+Tokenizing train dataset:  21%|██▏       | 1834/8564 [00:06<00:22, 305.10 examples/s]
+Tokenizing train dataset:  22%|██▏       | 1875/8564 [00:06<00:23, 289.94 examples/s]
+Tokenizing train dataset:  24%|██▍       | 2084/8564 [00:06<00:17, 361.39 examples/s]
+Tokenizing train dataset:  22%|██▏       | 1913/8564 [00:06<00:21, 309.61 examples/s]
+Tokenizing train dataset:  22%|██▏       | 1875/8564 [00:06<00:22, 291.54 examples/s]
+Tokenizing train dataset:  25%|██▍       | 2125/8564 [00:06<00:17, 372.91 examples/s]
+Tokenizing train dataset:  23%|██▎       | 1952/8564 [00:06<00:20, 324.45 examples/s]
+Tokenizing train dataset:  22%|██▏       | 1913/8564 [00:06<00:21, 310.93 examples/s]
+Tokenizing train dataset:  25%|██▌       | 2180/8564 [00:06<00:17, 363.11 examples/s]
+Tokenizing train dataset:  23%|██▎       | 1988/8564 [00:06<00:19, 329.49 examples/s]
+Tokenizing train dataset:  23%|██▎       | 1952/8564 [00:06<00:20, 325.68 examples/s]
+Tokenizing train dataset:  26%|██▌       | 2217/8564 [00:06<00:17, 364.33 examples/s]
+Tokenizing train dataset:  24%|██▎       | 2024/8564 [00:06<00:19, 336.82 examples/s]
+Tokenizing train dataset:  23%|██▎       | 1988/8564 [00:06<00:19, 330.68 examples/s]
+Tokenizing train dataset:  26%|██▋       | 2257/8564 [00:07<00:17, 369.03 examples/s]
+Tokenizing train dataset:  24%|██▍       | 2063/8564 [00:06<00:18, 348.52 examples/s]
+Tokenizing train dataset:  24%|██▎       | 2024/8564 [00:06<00:19, 337.52 examples/s]
+Tokenizing train dataset:  27%|██▋       | 2300/8564 [00:07<00:16, 384.45 examples/s]
+Tokenizing train dataset:  24%|██▍       | 2063/8564 [00:06<00:18, 348.72 examples/s]
+Tokenizing train dataset:  25%|██▍       | 2117/8564 [00:07<00:18, 347.91 examples/s]
+Tokenizing train dataset:  27%|██▋       | 2349/8564 [00:07<00:17, 361.65 examples/s]
+Tokenizing train dataset:  25%|██▌       | 2153/8564 [00:07<00:18, 347.02 examples/s]
+Tokenizing train dataset:  25%|██▍       | 2117/8564 [00:07<00:18, 347.38 examples/s]
+Tokenizing train dataset:  28%|██▊       | 2389/8564 [00:07<00:16, 368.54 examples/s]
+Tokenizing train dataset:  26%|██▌       | 2189/8564 [00:07<00:18, 348.86 examples/s]
+Tokenizing train dataset:  25%|██▌       | 2153/8564 [00:07<00:18, 346.30 examples/s]
+Tokenizing train dataset:  28%|██▊       | 2431/8564 [00:07<00:16, 374.89 examples/s]
+Tokenizing train dataset:  26%|██▌       | 2225/8564 [00:07<00:18, 347.30 examples/s]
+Tokenizing train dataset:  26%|██▌       | 2189/8564 [00:07<00:18, 347.85 examples/s]
+Tokenizing train dataset:  29%|██▉       | 2470/8564 [00:07<00:16, 377.12 examples/s]
+Tokenizing train dataset:  26%|██▋       | 2261/8564 [00:07<00:18, 349.79 examples/s]
+Tokenizing train dataset:  26%|██▌       | 2225/8564 [00:07<00:18, 346.55 examples/s]
+Tokenizing train dataset:  27%|██▋       | 2302/8564 [00:07<00:17, 363.43 examples/s]
+Tokenizing train dataset:  26%|██▋       | 2261/8564 [00:07<00:18, 348.91 examples/s]
+Tokenizing train dataset:  29%|██▉       | 2523/8564 [00:07<00:16, 364.60 examples/s]
+Tokenizing train dataset:  27%|██▋       | 2302/8564 [00:07<00:17, 363.15 examples/s]
+Tokenizing train dataset:  30%|██▉       | 2565/8564 [00:07<00:15, 376.94 examples/s]
+Tokenizing train dataset:  27%|██▋       | 2349/8564 [00:07<00:18, 341.03 examples/s]
+Tokenizing train dataset:  30%|███       | 2604/8564 [00:07<00:15, 377.93 examples/s]
+Tokenizing train dataset:  28%|██▊       | 2386/8564 [00:07<00:17, 346.64 examples/s]
+Tokenizing train dataset:  27%|██▋       | 2349/8564 [00:07<00:18, 340.76 examples/s]
+Tokenizing train dataset:  28%|██▊       | 2426/8564 [00:07<00:17, 356.89 examples/s]
+Tokenizing train dataset:  28%|██▊       | 2386/8564 [00:07<00:17, 345.88 examples/s]
+Tokenizing train dataset:  31%|███       | 2654/8564 [00:08<00:17, 345.98 examples/s]
+Tokenizing train dataset:  29%|██▉       | 2463/8564 [00:08<00:16, 359.08 examples/s]
+Tokenizing train dataset:  28%|██▊       | 2426/8564 [00:07<00:17, 356.62 examples/s]
+Tokenizing train dataset:  32%|███▏      | 2708/8564 [00:08<00:16, 349.31 examples/s]
+Tokenizing train dataset:  29%|██▉       | 2464/8564 [00:08<00:16, 359.21 examples/s]
+Tokenizing train dataset:  29%|██▉       | 2512/8564 [00:08<00:17, 338.64 examples/s]
+Tokenizing train dataset:  32%|███▏      | 2759/8564 [00:08<00:16, 345.16 examples/s]
+Tokenizing train dataset:  30%|██▉       | 2553/8564 [00:08<00:16, 356.66 examples/s]
+Tokenizing train dataset:  29%|██▉       | 2512/8564 [00:08<00:17, 338.89 examples/s]
+Tokenizing train dataset:  33%|███▎      | 2798/8564 [00:08<00:16, 353.11 examples/s]
+Tokenizing train dataset:  30%|███       | 2590/8564 [00:08<00:16, 359.11 examples/s]
+Tokenizing train dataset:  30%|██▉       | 2553/8564 [00:08<00:16, 356.58 examples/s]
+Tokenizing train dataset:  33%|███▎      | 2837/8564 [00:08<00:15, 359.10 examples/s]
+Tokenizing train dataset:  30%|███       | 2590/8564 [00:08<00:16, 359.29 examples/s]
+Tokenizing train dataset:  31%|███       | 2635/8564 [00:08<00:17, 332.06 examples/s]
+Tokenizing train dataset:  34%|███▍      | 2893/8564 [00:08<00:15, 358.12 examples/s]
+Tokenizing train dataset:  31%|███       | 2635/8564 [00:08<00:17, 331.57 examples/s]
+Tokenizing train dataset:  31%|███▏      | 2683/8564 [00:08<00:18, 323.59 examples/s]
+Tokenizing train dataset:  34%|███▍      | 2934/8564 [00:08<00:15, 370.38 examples/s]
+Tokenizing train dataset:  32%|███▏      | 2721/8564 [00:08<00:17, 333.37 examples/s]
+Tokenizing train dataset:  31%|███▏      | 2682/8564 [00:08<00:18, 324.50 examples/s]
+Tokenizing train dataset:  35%|███▍      | 2980/8564 [00:08<00:14, 390.91 examples/s]
+Tokenizing train dataset:  32%|███▏      | 2720/8564 [00:08<00:17, 332.86 examples/s]
+Tokenizing train dataset:  32%|███▏      | 2771/8564 [00:08<00:17, 325.52 examples/s]
+Tokenizing train dataset:  35%|███▌      | 3036/8564 [00:09<00:14, 378.16 examples/s]
+Tokenizing train dataset:  33%|███▎      | 2811/8564 [00:09<00:16, 341.08 examples/s]
+Tokenizing train dataset:  32%|███▏      | 2770/8564 [00:09<00:17, 326.32 examples/s]
+Tokenizing train dataset:  36%|███▌      | 3092/8564 [00:09<00:14, 373.78 examples/s]
+Tokenizing train dataset:  33%|███▎      | 2847/8564 [00:09<00:16, 341.59 examples/s]
+Tokenizing train dataset:  33%|███▎      | 2809/8564 [00:09<00:16, 338.87 examples/s]
+Tokenizing train dataset:  33%|███▎      | 2844/8564 [00:09<00:16, 339.33 examples/s]
+Tokenizing train dataset:  37%|███▋      | 3148/8564 [00:09<00:14, 370.13 examples/s]
+Tokenizing train dataset:  34%|███▍      | 2899/8564 [00:09<00:16, 339.63 examples/s]
+Tokenizing train dataset:  34%|███▍      | 2940/8564 [00:09<00:15, 355.10 examples/s]
+Tokenizing train dataset:  34%|███▍      | 2899/8564 [00:09<00:16, 339.86 examples/s]
+Tokenizing train dataset:  37%|███▋      | 3204/8564 [00:09<00:14, 367.79 examples/s]
+Tokenizing train dataset:  35%|███▍      | 2985/8564 [00:09<00:14, 377.66 examples/s]
+Tokenizing train dataset:  34%|███▍      | 2940/8564 [00:09<00:15, 355.40 examples/s]
+Tokenizing train dataset:  38%|███▊      | 3245/8564 [00:09<00:14, 374.79 examples/s]
+Tokenizing train dataset:  35%|███▍      | 2985/8564 [00:09<00:14, 377.46 examples/s]
+Tokenizing train dataset:  35%|███▌      | 3035/8564 [00:09<00:15, 360.12 examples/s]
+Tokenizing train dataset:  39%|███▊      | 3299/8564 [00:09<00:14, 365.80 examples/s]
+Tokenizing train dataset:  35%|███▌      | 3035/8564 [00:09<00:15, 359.91 examples/s]
+Tokenizing train dataset:  36%|███▌      | 3087/8564 [00:09<00:15, 353.10 examples/s]
+Tokenizing train dataset:  39%|███▉      | 3353/8564 [00:10<00:14, 360.12 examples/s]
+Tokenizing train dataset:  36%|███▌      | 3087/8564 [00:09<00:15, 353.21 examples/s]
+Tokenizing train dataset:  40%|███▉      | 3394/8564 [00:10<00:13, 370.42 examples/s]
+Tokenizing train dataset:  37%|███▋      | 3141/8564 [00:10<00:15, 349.82 examples/s]
+Tokenizing train dataset:  40%|████      | 3435/8564 [00:10<00:13, 378.65 examples/s]
+Tokenizing train dataset:  37%|███▋      | 3142/8564 [00:10<00:15, 348.84 examples/s]
+Tokenizing train dataset:  37%|███▋      | 3195/8564 [00:10<00:15, 346.86 examples/s]
+Tokenizing train dataset:  41%|████      | 3489/8564 [00:10<00:13, 369.05 examples/s]
+Tokenizing train dataset:  38%|███▊      | 3233/8564 [00:10<00:15, 351.14 examples/s]
+Tokenizing train dataset:  37%|███▋      | 3196/8564 [00:10<00:15, 346.35 examples/s]
+Tokenizing train dataset:  41%|████      | 3531/8564 [00:10<00:13, 378.37 examples/s]
+Tokenizing train dataset:  38%|███▊      | 3271/8564 [00:10<00:14, 355.14 examples/s]
+Tokenizing train dataset:  38%|███▊      | 3234/8564 [00:10<00:15, 352.32 examples/s]
+Tokenizing train dataset:  38%|███▊      | 3273/8564 [00:10<00:14, 357.88 examples/s]
+Tokenizing train dataset:  42%|████▏     | 3589/8564 [00:10<00:13, 376.86 examples/s]
+Tokenizing train dataset:  39%|███▉      | 3322/8564 [00:10<00:15, 342.83 examples/s]
+Tokenizing train dataset:  39%|███▉      | 3357/8564 [00:10<00:15, 343.80 examples/s]
+Tokenizing train dataset:  39%|███▊      | 3310/8564 [00:10<00:16, 316.51 examples/s]
+Tokenizing train dataset:  42%|████▏     | 3636/8564 [00:10<00:14, 351.87 examples/s]
+Tokenizing train dataset:  40%|███▉      | 3397/8564 [00:10<00:14, 352.60 examples/s]
+Tokenizing train dataset:  39%|███▉      | 3361/8564 [00:10<00:16, 321.55 examples/s]
+Tokenizing train dataset:  43%|████▎     | 3688/8564 [00:10<00:14, 346.32 examples/s]
+Tokenizing train dataset:  40%|████      | 3436/8564 [00:10<00:14, 362.15 examples/s]
+Tokenizing train dataset:  40%|███▉      | 3404/8564 [00:10<00:15, 341.56 examples/s]
+Tokenizing train dataset:  44%|████▎     | 3729/8564 [00:11<00:13, 355.54 examples/s]
+Tokenizing train dataset:  41%|████      | 3488/8564 [00:11<00:14, 349.78 examples/s]
+Tokenizing train dataset:  40%|████      | 3440/8564 [00:10<00:14, 342.57 examples/s]
+Tokenizing train dataset:  44%|████▍     | 3768/8564 [00:11<00:13, 362.19 examples/s]
+Tokenizing train dataset:  41%|████      | 3529/8564 [00:11<00:13, 364.04 examples/s]
+Tokenizing train dataset:  41%|████      | 3477/8564 [00:11<00:14, 346.45 examples/s]
+Tokenizing train dataset:  44%|████▍     | 3805/8564 [00:11<00:13, 363.86 examples/s]
+Tokenizing train dataset:  41%|████      | 3517/8564 [00:11<00:14, 359.49 examples/s]
+Tokenizing train dataset:  42%|████▏     | 3582/8564 [00:11<00:14, 353.68 examples/s]
+Tokenizing train dataset:  45%|████▌     | 3860/8564 [00:11<00:13, 356.83 examples/s]
+Tokenizing train dataset:  42%|████▏     | 3619/8564 [00:11<00:13, 356.30 examples/s]
+Tokenizing train dataset:  42%|████▏     | 3566/8564 [00:11<00:14, 344.36 examples/s]
+Tokenizing train dataset:  46%|████▌     | 3897/8564 [00:11<00:13, 357.69 examples/s]
+Tokenizing train dataset:  42%|████▏     | 3606/8564 [00:11<00:13, 357.33 examples/s]
+Tokenizing train dataset:  43%|████▎     | 3669/8564 [00:11<00:14, 346.24 examples/s]
+Tokenizing train dataset:  46%|████▌     | 3950/8564 [00:11<00:13, 350.86 examples/s]
+Tokenizing train dataset:  43%|████▎     | 3657/8564 [00:11<00:14, 345.35 examples/s]
+Tokenizing train dataset:  47%|████▋     | 3987/8564 [00:11<00:12, 353.29 examples/s]
+Tokenizing train dataset:  43%|████▎     | 3725/8564 [00:11<00:13, 352.69 examples/s]
+Tokenizing train dataset:  47%|████▋     | 4028/8564 [00:11<00:12, 366.55 examples/s]
+Tokenizing train dataset:  43%|████▎     | 3708/8564 [00:11<00:14, 339.81 examples/s]
+Tokenizing train dataset:  44%|████▍     | 3779/8564 [00:11<00:13, 353.44 examples/s]
+Tokenizing train dataset:  44%|████▍     | 3748/8564 [00:11<00:13, 349.61 examples/s]
+Tokenizing train dataset:  48%|████▊     | 4083/8564 [00:12<00:12, 361.79 examples/s]
+Tokenizing train dataset:  45%|████▍     | 3830/8564 [00:11<00:13, 345.16 examples/s]
+Tokenizing train dataset:  44%|████▍     | 3786/8564 [00:11<00:13, 352.23 examples/s]
+Tokenizing train dataset:  48%|████▊     | 4120/8564 [00:12<00:12, 361.06 examples/s]
+Tokenizing train dataset:  45%|████▌     | 3866/8564 [00:12<00:13, 345.43 examples/s]
+Tokenizing train dataset:  45%|████▍     | 3838/8564 [00:12<00:13, 347.49 examples/s]
+Tokenizing train dataset:  49%|████▊     | 4172/8564 [00:12<00:12, 353.74 examples/s]
+Tokenizing train dataset:  46%|████▌     | 3916/8564 [00:12<00:13, 336.06 examples/s]
+Tokenizing train dataset:  49%|████▉     | 4212/8564 [00:12<00:12, 361.91 examples/s]
+Tokenizing train dataset:  45%|████▌     | 3892/8564 [00:12<00:13, 345.05 examples/s]
+Tokenizing train dataset:  46%|████▌     | 3950/8564 [00:12<00:13, 335.03 examples/s]
+Tokenizing train dataset:  50%|████▉     | 4267/8564 [00:12<00:11, 360.76 examples/s]
+Tokenizing train dataset:  47%|████▋     | 3985/8564 [00:12<00:13, 336.89 examples/s]
+Tokenizing train dataset:  46%|████▌     | 3941/8564 [00:12<00:13, 334.51 examples/s]
+Tokenizing train dataset:  50%|█████     | 4306/8564 [00:12<00:11, 364.43 examples/s]
+Tokenizing train dataset:  47%|████▋     | 4026/8564 [00:12<00:13, 349.06 examples/s]
+Tokenizing train dataset:  46%|████▋     | 3978/8564 [00:12<00:13, 336.63 examples/s]
+Tokenizing train dataset:  51%|█████     | 4359/8564 [00:12<00:11, 359.21 examples/s]
+Tokenizing train dataset:  47%|████▋     | 4014/8564 [00:12<00:13, 338.41 examples/s]
+Tokenizing train dataset:  48%|████▊     | 4080/8564 [00:12<00:12, 346.52 examples/s]
+Tokenizing train dataset:  51%|█████▏    | 4398/8564 [00:12<00:11, 365.17 examples/s]
+Tokenizing train dataset:  47%|████▋     | 4053/8564 [00:12<00:12, 348.10 examples/s]
+Tokenizing train dataset:  48%|████▊     | 4130/8564 [00:12<00:13, 339.38 examples/s]
+Tokenizing train dataset:  52%|█████▏    | 4435/8564 [00:12<00:11, 364.97 examples/s]
+Tokenizing train dataset:  48%|████▊     | 4105/8564 [00:12<00:13, 340.84 examples/s]
+Tokenizing train dataset:  52%|█████▏    | 4472/8564 [00:13<00:11, 363.64 examples/s]
+Tokenizing train dataset:  49%|████▉     | 4182/8564 [00:13<00:12, 340.69 examples/s]
+Tokenizing train dataset:  49%|████▊     | 4156/8564 [00:13<00:12, 339.96 examples/s]
+Tokenizing train dataset:  49%|████▉     | 4220/8564 [00:13<00:12, 343.87 examples/s]
+Tokenizing train dataset:  53%|█████▎    | 4525/8564 [00:13<00:11, 355.20 examples/s]
+Tokenizing train dataset:  49%|████▉     | 4193/8564 [00:13<00:12, 344.10 examples/s]
+Tokenizing train dataset:  53%|█████▎    | 4566/8564 [00:13<00:10, 367.60 examples/s]
+Tokenizing train dataset:  50%|████▉     | 4272/8564 [00:13<00:12, 342.21 examples/s]
+Tokenizing train dataset:  49%|████▉     | 4229/8564 [00:13<00:12, 344.45 examples/s]
+Tokenizing train dataset:  50%|█████     | 4309/8564 [00:13<00:12, 344.58 examples/s]
+Tokenizing train dataset:  54%|█████▍    | 4620/8564 [00:13<00:11, 356.97 examples/s]
+Tokenizing train dataset:  50%|████▉     | 4281/8564 [00:13<00:12, 342.23 examples/s]
+Tokenizing train dataset:  51%|█████     | 4360/8564 [00:13<00:12, 338.52 examples/s]
+Tokenizing train dataset:  55%|█████▍    | 4670/8564 [00:13<00:11, 342.94 examples/s]
+Tokenizing train dataset:  50%|█████     | 4316/8564 [00:13<00:12, 340.86 examples/s]
+Tokenizing train dataset:  51%|█████▏    | 4398/8564 [00:13<00:12, 346.41 examples/s]
+Tokenizing train dataset:  55%|█████▌    | 4718/8564 [00:13<00:11, 332.08 examples/s]
+Tokenizing train dataset:  51%|█████     | 4366/8564 [00:13<00:12, 336.65 examples/s]
+Tokenizing train dataset:  52%|█████▏    | 4433/8564 [00:13<00:11, 344.50 examples/s]
+Tokenizing train dataset:  51%|█████▏    | 4404/8564 [00:13<00:12, 345.31 examples/s]
+Tokenizing train dataset:  52%|█████▏    | 4470/8564 [00:13<00:11, 346.56 examples/s]
+Tokenizing train dataset:  56%|█████▌    | 4767/8564 [00:13<00:11, 327.32 examples/s]
+Tokenizing train dataset:  52%|█████▏    | 4440/8564 [00:13<00:11, 345.38 examples/s]
+Tokenizing train dataset:  56%|█████▌    | 4804/8564 [00:14<00:11, 334.60 examples/s]
+Tokenizing train dataset:  53%|█████▎    | 4520/8564 [00:13<00:11, 339.95 examples/s]
+Tokenizing train dataset:  52%|█████▏    | 4477/8564 [00:13<00:11, 348.73 examples/s]
+Tokenizing train dataset:  57%|█████▋    | 4868/8564 [00:14<00:09, 408.27 examples/s]
+Tokenizing train dataset:  53%|█████▎    | 4558/8564 [00:14<00:11, 347.48 examples/s]
+Tokenizing train dataset:  58%|█████▊    | 4932/8564 [00:14<00:07, 460.65 examples/s]
+Tokenizing train dataset:  53%|█████▎    | 4526/8564 [00:14<00:11, 337.23 examples/s]
+Tokenizing train dataset:  54%|█████▍    | 4609/8564 [00:14<00:11, 338.50 examples/s]
+Tokenizing train dataset:  58%|█████▊    | 4993/8564 [00:14<00:07, 493.80 examples/s]
+Tokenizing train dataset:  53%|█████▎    | 4564/8564 [00:14<00:11, 344.06 examples/s]
+Tokenizing train dataset:  59%|█████▉    | 5060/8564 [00:14<00:06, 535.54 examples/s]
+Tokenizing train dataset:  54%|█████▍    | 4655/8564 [00:14<00:11, 326.41 examples/s]
+Tokenizing train dataset:  54%|█████▍    | 4615/8564 [00:14<00:11, 338.70 examples/s]
+Tokenizing train dataset:  60%|█████▉    | 5127/8564 [00:14<00:06, 571.60 examples/s]
+Tokenizing train dataset:  55%|█████▍    | 4701/8564 [00:14<00:12, 315.21 examples/s]
+Tokenizing train dataset:  61%|██████    | 5200/8564 [00:14<00:05, 607.20 examples/s]
+Tokenizing train dataset:  54%|█████▍    | 4661/8564 [00:14<00:12, 324.22 examples/s]
+Tokenizing train dataset:  55%|█████▌    | 4735/8564 [00:14<00:12, 318.62 examples/s]
+Tokenizing train dataset:  62%|██████▏   | 5278/8564 [00:14<00:05, 655.42 examples/s]
+Tokenizing train dataset:  55%|█████▍    | 4707/8564 [00:14<00:12, 314.33 examples/s]
+Tokenizing train dataset:  56%|█████▌    | 4778/8564 [00:14<00:12, 305.67 examples/s]
+Tokenizing train dataset:  63%|██████▎   | 5369/8564 [00:14<00:05, 633.92 examples/s]
+Tokenizing train dataset:  55%|█████▌    | 4740/8564 [00:14<00:12, 313.68 examples/s]
+Tokenizing train dataset:  56%|█████▋    | 4826/8564 [00:14<00:10, 343.86 examples/s]
+Tokenizing train dataset:  64%|██████▍   | 5462/8564 [00:15<00:04, 624.92 examples/s]
+Tokenizing train dataset:  56%|█████▌    | 4788/8564 [00:14<00:12, 307.52 examples/s]
+Tokenizing train dataset:  57%|█████▋    | 4884/8564 [00:15<00:09, 397.64 examples/s]
+Tokenizing train dataset:  57%|█████▋    | 4845/8564 [00:15<00:10, 366.58 examples/s]
+Tokenizing train dataset:  58%|█████▊    | 4949/8564 [00:15<00:07, 460.08 examples/s]
+Tokenizing train dataset:  65%|██████▍   | 5550/8564 [00:15<00:04, 608.35 examples/s]
+Tokenizing train dataset:  57%|█████▋    | 4897/8564 [00:15<00:09, 404.23 examples/s]
+Tokenizing train dataset:  59%|█████▊    | 5010/8564 [00:15<00:07, 495.16 examples/s]
+Tokenizing train dataset:  66%|██████▌   | 5617/8564 [00:15<00:04, 618.65 examples/s]
+Tokenizing train dataset:  58%|█████▊    | 4960/8564 [00:15<00:07, 457.40 examples/s]
+Tokenizing train dataset:  59%|█████▉    | 5071/8564 [00:15<00:06, 526.18 examples/s]
+Tokenizing train dataset:  66%|██████▋   | 5684/8564 [00:15<00:04, 629.55 examples/s]
+Tokenizing train dataset:  59%|█████▊    | 5020/8564 [00:15<00:07, 489.01 examples/s]
+Tokenizing train dataset:  60%|█████▉    | 5136/8564 [00:15<00:06, 556.56 examples/s]
+Tokenizing train dataset:  67%|██████▋   | 5750/8564 [00:15<00:04, 635.43 examples/s]
+Tokenizing train dataset:  59%|█████▉    | 5086/8564 [00:15<00:06, 533.05 examples/s]
+Tokenizing train dataset:  61%|██████    | 5205/8564 [00:15<00:05, 592.66 examples/s]
+Tokenizing train dataset:  68%|██████▊   | 5827/8564 [00:15<00:04, 667.38 examples/s]
+Tokenizing train dataset:  60%|██████    | 5150/8564 [00:15<00:07, 485.80 examples/s]
+Tokenizing train dataset:  62%|██████▏   | 5287/8564 [00:15<00:05, 571.72 examples/s]
+Tokenizing train dataset:  69%|██████▉   | 5895/8564 [00:15<00:04, 579.96 examples/s]
+Tokenizing train dataset:  61%|██████    | 5222/8564 [00:15<00:06, 543.63 examples/s]
+Tokenizing train dataset:  62%|██████▏   | 5346/8564 [00:15<00:05, 575.60 examples/s]
+Tokenizing train dataset:  70%|██████▉   | 5966/8564 [00:15<00:04, 611.21 examples/s]
+Tokenizing train dataset:  62%|██████▏   | 5293/8564 [00:15<00:05, 585.40 examples/s]
+Tokenizing train dataset:  63%|██████▎   | 5437/8564 [00:15<00:05, 579.18 examples/s]
+Tokenizing train dataset:  71%|███████   | 6052/8564 [00:16<00:04, 585.30 examples/s]
+Tokenizing train dataset:  63%|██████▎   | 5379/8564 [00:15<00:05, 577.45 examples/s]
+Tokenizing train dataset:  64%|██████▍   | 5523/8564 [00:16<00:05, 569.80 examples/s]
+Tokenizing train dataset:  72%|███████▏  | 6150/8564 [00:16<00:04, 598.88 examples/s]
+Tokenizing train dataset:  64%|██████▎   | 5442/8564 [00:16<00:05, 588.99 examples/s]
+Tokenizing train dataset:  65%|██████▌   | 5585/8564 [00:16<00:05, 571.68 examples/s]
+Tokenizing train dataset:  73%|███████▎  | 6225/8564 [00:16<00:03, 631.00 examples/s]
+Tokenizing train dataset:  65%|██████▍   | 5525/8564 [00:16<00:05, 573.52 examples/s]
+Tokenizing train dataset:  66%|██████▌   | 5650/8564 [00:16<00:04, 590.70 examples/s]
+Tokenizing train dataset:  73%|███████▎  | 6291/8564 [00:16<00:03, 635.76 examples/s]
+Tokenizing train dataset:  65%|██████▌   | 5585/8564 [00:16<00:05, 574.50 examples/s]
+Tokenizing train dataset:  67%|██████▋   | 5718/8564 [00:16<00:04, 612.01 examples/s]
+Tokenizing train dataset:  74%|███████▍  | 6361/8564 [00:16<00:03, 651.72 examples/s]
+Tokenizing train dataset:  66%|██████▌   | 5650/8564 [00:16<00:04, 592.69 examples/s]
+Tokenizing train dataset:  68%|██████▊   | 5786/8564 [00:16<00:04, 629.71 examples/s]
+Tokenizing train dataset:  75%|███████▌  | 6457/8564 [00:16<00:03, 641.42 examples/s]
+Tokenizing train dataset:  67%|██████▋   | 5718/8564 [00:16<00:04, 613.23 examples/s]
+Tokenizing train dataset:  68%|██████▊   | 5851/8564 [00:16<00:04, 620.38 examples/s]
+Tokenizing train dataset:  68%|██████▊   | 5786/8564 [00:16<00:04, 629.62 examples/s]
+Tokenizing train dataset:  76%|███████▋  | 6549/8564 [00:16<00:03, 626.78 examples/s]
+Tokenizing train dataset:  69%|██████▉   | 5940/8564 [00:16<00:04, 606.00 examples/s]
+Tokenizing train dataset:  69%|██████▊   | 5870/8564 [00:16<00:04, 598.81 examples/s]
+Tokenizing train dataset:  77%|███████▋  | 6628/8564 [00:17<00:03, 591.41 examples/s]
+Tokenizing train dataset:  70%|███████   | 6020/8564 [00:16<00:04, 578.86 examples/s]
+Tokenizing train dataset:  69%|██████▉   | 5935/8564 [00:16<00:04, 606.36 examples/s]
+Tokenizing train dataset:  78%|███████▊  | 6696/8564 [00:17<00:03, 608.80 examples/s]
+Tokenizing train dataset:  71%|███████   | 6079/8564 [00:17<00:04, 580.12 examples/s]
+Tokenizing train dataset:  79%|███████▉  | 6763/8564 [00:17<00:02, 622.63 examples/s]
+Tokenizing train dataset:  70%|███████   | 6019/8564 [00:17<00:04, 583.88 examples/s]
+Tokenizing train dataset:  72%|███████▏  | 6140/8564 [00:17<00:04, 583.06 examples/s]
+Tokenizing train dataset:  73%|███████▎  | 6212/8564 [00:17<00:03, 617.38 examples/s]
+Tokenizing train dataset:  80%|███████▉  | 6851/8564 [00:17<00:02, 600.70 examples/s]
+Tokenizing train dataset:  71%|███████▏  | 6102/8564 [00:17<00:04, 568.94 examples/s]
+Tokenizing train dataset:  73%|███████▎  | 6280/8564 [00:17<00:03, 624.98 examples/s]
+Tokenizing train dataset:  81%|████████  | 6919/8564 [00:17<00:02, 618.04 examples/s]
+Tokenizing train dataset:  72%|███████▏  | 6175/8564 [00:17<00:03, 604.81 examples/s]
+Tokenizing train dataset:  74%|███████▍  | 6346/8564 [00:17<00:03, 629.06 examples/s]
+Tokenizing train dataset:  82%|████████▏ | 6983/8564 [00:17<00:02, 621.44 examples/s]
+Tokenizing train dataset:  73%|███████▎  | 6243/8564 [00:17<00:03, 618.53 examples/s]
+Tokenizing train dataset:  75%|███████▍  | 6411/8564 [00:17<00:03, 632.82 examples/s]
+Tokenizing train dataset:  74%|███████▎  | 6307/8564 [00:17<00:03, 622.33 examples/s]
+Tokenizing train dataset:  83%|████████▎ | 7070/8564 [00:17<00:02, 604.56 examples/s]
+Tokenizing train dataset:  74%|███████▍  | 6379/8564 [00:17<00:03, 642.49 examples/s]
+Tokenizing train dataset:  76%|███████▌  | 6500/8564 [00:17<00:03, 612.41 examples/s]
+Tokenizing train dataset:  83%|████████▎ | 7139/8564 [00:17<00:02, 624.26 examples/s]
+Tokenizing train dataset:  84%|████████▍ | 7209/8564 [00:17<00:02, 641.23 examples/s]
+Tokenizing train dataset:  76%|███████▌  | 6470/8564 [00:17<00:03, 615.33 examples/s]
+Tokenizing train dataset:  77%|███████▋  | 6587/8564 [00:17<00:03, 588.84 examples/s]
+Tokenizing train dataset:  85%|████████▌ | 7295/8564 [00:18<00:02, 613.09 examples/s]
+Tokenizing train dataset:  77%|███████▋  | 6560/8564 [00:17<00:03, 602.73 examples/s]
+Tokenizing train dataset:  78%|███████▊  | 6670/8564 [00:18<00:03, 570.60 examples/s]
+Tokenizing train dataset:  86%|████████▌ | 7361/8564 [00:18<00:01, 623.70 examples/s]
+Tokenizing train dataset:  79%|███████▊  | 6737/8564 [00:18<00:03, 591.61 examples/s]
+Tokenizing train dataset:  77%|███████▋  | 6634/8564 [00:18<00:03, 563.16 examples/s]
+Tokenizing train dataset:  87%|████████▋ | 7463/8564 [00:18<00:01, 637.29 examples/s]
+Tokenizing train dataset:  79%|███████▉  | 6801/8564 [00:18<00:02, 601.33 examples/s]
+Tokenizing train dataset:  78%|███████▊  | 6702/8564 [00:18<00:03, 589.75 examples/s]
+Tokenizing train dataset:  79%|███████▉  | 6767/8564 [00:18<00:03, 598.76 examples/s]
+Tokenizing train dataset:  88%|████████▊ | 7560/8564 [00:18<00:01, 636.37 examples/s]
+Tokenizing train dataset:  80%|████████  | 6890/8564 [00:18<00:02, 587.38 examples/s]
+Tokenizing train dataset:  89%|████████▉ | 7633/8564 [00:18<00:01, 647.26 examples/s]
+Tokenizing train dataset:  81%|████████  | 6955/8564 [00:18<00:02, 600.59 examples/s]
+Tokenizing train dataset:  80%|███████▉  | 6849/8564 [00:18<00:02, 576.99 examples/s]
+Tokenizing train dataset:  81%|████████  | 6915/8564 [00:18<00:02, 593.63 examples/s]
+Tokenizing train dataset:  82%|████████▏ | 7033/8564 [00:18<00:02, 569.53 examples/s]
+Tokenizing train dataset:  90%|█████████ | 7721/8564 [00:18<00:01, 619.67 examples/s]
+Tokenizing train dataset:  81%|████████▏ | 6977/8564 [00:18<00:02, 596.80 examples/s]
+Tokenizing train dataset:  83%|████████▎ | 7102/8564 [00:18<00:02, 594.79 examples/s]
+Tokenizing train dataset:  91%|█████████ | 7803/8564 [00:18<00:01, 591.73 examples/s]
+Tokenizing train dataset:  84%|████████▎ | 7166/8564 [00:18<00:02, 601.11 examples/s]
+Tokenizing train dataset:  82%|████████▏ | 7060/8564 [00:18<00:02, 576.06 examples/s]
+Tokenizing train dataset:  92%|█████████▏| 7865/8564 [00:19<00:01, 597.39 examples/s]
+Tokenizing train dataset:  83%|████████▎ | 7126/8564 [00:18<00:02, 594.93 examples/s]
+Tokenizing train dataset:  93%|█████████▎| 7930/8564 [00:19<00:01, 605.37 examples/s]
+Tokenizing train dataset:  85%|████████▍ | 7258/8564 [00:18<00:02, 593.68 examples/s]
+Tokenizing train dataset:  84%|████████▍ | 7191/8564 [00:18<00:02, 608.24 examples/s]
+Tokenizing train dataset:  93%|█████████▎| 7996/8564 [00:19<00:00, 616.13 examples/s]
+Tokenizing train dataset:  85%|████████▌ | 7320/8564 [00:19<00:02, 595.53 examples/s]
+Tokenizing train dataset:  94%|█████████▍| 8062/8564 [00:19<00:00, 621.10 examples/s]
+Tokenizing train dataset:  86%|████████▌ | 7384/8564 [00:19<00:01, 600.52 examples/s]
+Tokenizing train dataset:  85%|████████▍ | 7278/8564 [00:19<00:02, 594.77 examples/s]
+Tokenizing train dataset:  87%|████████▋ | 7450/8564 [00:19<00:01, 610.20 examples/s]
+Tokenizing train dataset:  95%|█████████▌| 8144/8564 [00:19<00:00, 591.08 examples/s]
+Tokenizing train dataset:  86%|████████▌ | 7370/8564 [00:19<00:02, 596.40 examples/s]
+Tokenizing train dataset:  96%|█████████▌| 8209/8564 [00:19<00:00, 599.66 examples/s]
+Tokenizing train dataset:  88%|████████▊ | 7546/8564 [00:19<00:01, 618.06 examples/s]
+Tokenizing train dataset:  87%|████████▋ | 7466/8564 [00:19<00:01, 607.13 examples/s]
+Tokenizing train dataset:  97%|█████████▋| 8287/8564 [00:19<00:00, 644.59 examples/s]
+Tokenizing train dataset:  89%|████████▉ | 7613/8564 [00:19<00:01, 629.98 examples/s]
+Tokenizing train dataset:  88%|████████▊ | 7530/8564 [00:19<00:01, 611.78 examples/s]
+Tokenizing train dataset:  98%|█████████▊| 8374/8564 [00:19<00:00, 619.17 examples/s]
+Tokenizing train dataset:  90%|████████▉ | 7694/8564 [00:19<00:01, 596.35 examples/s]
+Tokenizing train dataset:  89%|████████▊ | 7596/8564 [00:19<00:01, 623.34 examples/s]
+Tokenizing train dataset:  99%|█████████▉| 8465/8564 [00:19<00:00, 612.84 examples/s]
+Tokenizing train dataset:  91%|█████████ | 7780/8564 [00:19<00:01, 579.26 examples/s]
+Tokenizing train dataset:  90%|████████▉ | 7680/8564 [00:19<00:01, 592.63 examples/s]
+Tokenizing train dataset: 100%|█████████▉| 8532/8564 [00:20<00:00, 621.47 examples/s]
+Tokenizing train dataset:  90%|█████████ | 7742/8564 [00:19<00:01, 587.69 examples/s]
+Tokenizing train dataset:  92%|█████████▏| 7867/8564 [00:20<00:01, 576.44 examples/s]
+Tokenizing train dataset: 100%|██████████| 8564/8564 [00:20<00:00, 425.24 examples/s]
+
+Tokenizing train dataset:  93%|█████████▎| 7929/8564 [00:20<00:01, 583.53 examples/s]
+Tokenizing train dataset:  91%|█████████▏| 7823/8564 [00:20<00:01, 560.40 examples/s]
+Tokenizing train dataset:  93%|█████████▎| 7990/8564 [00:20<00:00, 588.68 examples/s]
+Tokenizing train dataset:  92%|█████████▏| 7886/8564 [00:20<00:01, 575.00 examples/s]
+Tokenizing train dataset:  94%|█████████▍| 8050/8564 [00:20<00:00, 587.37 examples/s]
+Tokenizing train dataset:  93%|█████████▎| 7976/8564 [00:20<00:01, 581.75 examples/s]
+Tokenizing train dataset:  95%|█████████▍| 8132/8564 [00:20<00:00, 566.08 examples/s]
+Tokenizing train dataset:  94%|█████████▍| 8040/8564 [00:20<00:00, 594.27 examples/s]
+Tokenizing train dataset:  96%|█████████▌| 8199/8564 [00:20<00:00, 587.70 examples/s]
+Tokenizing train dataset:  95%|█████████▍| 8120/8564 [00:20<00:00, 569.75 examples/s]
+Tokenizing train dataset:  96%|█████████▋| 8262/8564 [00:20<00:00, 598.39 examples/s]
+Tokenizing train dataset:  97%|█████████▋| 8331/8564 [00:20<00:00, 617.17 examples/s]
+Tokenizing train dataset:  96%|█████████▌| 8201/8564 [00:20<00:00, 557.48 examples/s]
+Tokenizing train dataset:  97%|█████████▋| 8269/8564 [00:20<00:00, 581.81 examples/s]
+Tokenizing train dataset:  98%|█████████▊| 8418/8564 [00:20<00:00, 595.11 examples/s]
+Tokenizing train dataset:  97%|█████████▋| 8336/8564 [00:20<00:00, 602.24 examples/s]
+Tokenizing train dataset:  99%|█████████▉| 8480/8564 [00:21<00:00, 594.81 examples/s]
+Tokenizing train dataset:  98%|█████████▊| 8419/8564 [00:21<00:00, 583.13 examples/s]
+Tokenizing train dataset: 100%|██████████| 8564/8564 [00:21<00:00, 590.92 examples/s]
+Tokenizing train dataset: 100%|██████████| 8564/8564 [00:21<00:00, 403.88 examples/s]
+
+Tokenizing train dataset:  99%|█████████▉| 8480/8564 [00:21<00:00, 584.20 examples/s]
+Tokenizing train dataset: 100%|██████████| 8564/8564 [00:21<00:00, 583.67 examples/s]
+Tokenizing train dataset: 100%|██████████| 8564/8564 [00:21<00:00, 401.43 examples/s]
+
+Extracting prompt in eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Extracting prompt in eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Extracting prompt in eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+Set up DPO trainer
+
+Extracting prompt in eval dataset: 100%|██████████| 953/953 [00:00<00:00, 11521.95 examples/s]
+
+Extracting prompt in eval dataset: 100%|██████████| 953/953 [00:00<00:00, 11422.91 examples/s]
+
+Extracting prompt in eval dataset: 100%|██████████| 953/953 [00:00<00:00, 11260.50 examples/s]
+
+Applying chat template to eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Applying chat template to eval dataset: 100%|██████████| 953/953 [00:00<00:00, 14198.84 examples/s]
+
+Applying chat template to eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Applying chat template to eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Applying chat template to eval dataset: 100%|██████████| 953/953 [00:00<00:00, 13626.09 examples/s]
+
+Applying chat template to eval dataset: 100%|██████████| 953/953 [00:00<00:00, 13535.79 examples/s]
+
+Tokenizing eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Tokenizing eval dataset:   4%|▎         | 34/953 [00:00<00:02, 324.55 examples/s]
+Tokenizing eval dataset:   8%|▊         | 77/953 [00:00<00:02, 292.75 examples/s]
+Tokenizing eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Tokenizing eval dataset:   0%|          | 0/953 [00:00<?, ? examples/s]
+Tokenizing eval dataset:   3%|▎         | 32/953 [00:00<00:03, 300.93 examples/s]
+Tokenizing eval dataset:  12%|█▏        | 118/953 [00:00<00:02, 280.63 examples/s]
+Tokenizing eval dataset:   3%|▎         | 32/953 [00:00<00:03, 303.62 examples/s]
+Tokenizing eval dataset:   8%|▊         | 72/953 [00:00<00:03, 269.08 examples/s]
+Tokenizing eval dataset:  17%|█▋        | 158/953 [00:00<00:02, 271.27 examples/s]
+Tokenizing eval dataset:   8%|▊         | 73/953 [00:00<00:03, 268.34 examples/s]
+Tokenizing eval dataset:  10%|█         | 100/953 [00:00<00:03, 267.41 examples/s]
+Tokenizing eval dataset:  11%|█         | 103/953 [00:00<00:03, 272.02 examples/s]
+Tokenizing eval dataset:  20%|██        | 195/953 [00:00<00:02, 256.17 examples/s]
+Tokenizing eval dataset:  15%|█▍        | 140/953 [00:00<00:03, 260.58 examples/s]
+Tokenizing eval dataset:  24%|██▍       | 231/953 [00:00<00:02, 281.81 examples/s]
+Tokenizing eval dataset:  15%|█▌        | 144/953 [00:00<00:03, 262.33 examples/s]
+Tokenizing eval dataset:  31%|███▏      | 298/953 [00:00<00:01, 383.95 examples/s]
+Tokenizing eval dataset:  18%|█▊        | 176/953 [00:00<00:03, 248.00 examples/s]
+Tokenizing eval dataset:  19%|█▊        | 178/953 [00:00<00:03, 246.58 examples/s]
+Tokenizing eval dataset:  38%|███▊      | 360/953 [00:01<00:01, 446.56 examples/s]
+Tokenizing eval dataset:  22%|██▏       | 214/953 [00:00<00:02, 246.78 examples/s]
+Tokenizing eval dataset:  45%|████▍     | 427/953 [00:01<00:01, 507.03 examples/s]
+Tokenizing eval dataset:  22%|██▏       | 206/953 [00:00<00:03, 247.65 examples/s]
+Tokenizing eval dataset:  26%|██▋       | 251/953 [00:00<00:02, 300.99 examples/s]
+Tokenizing eval dataset:  29%|██▉       | 274/953 [00:00<00:02, 329.65 examples/s]
+Tokenizing eval dataset:  52%|█████▏    | 495/953 [00:01<00:00, 550.34 examples/s]
+Tokenizing eval dataset:  33%|███▎      | 317/953 [00:01<00:01, 399.17 examples/s]
+Tokenizing eval dataset:  36%|███▌      | 340/953 [00:01<00:01, 412.26 examples/s]
+Tokenizing eval dataset:  59%|█████▉    | 563/953 [00:01<00:00, 584.68 examples/s]
+Tokenizing eval dataset:  39%|███▉      | 373/953 [00:01<00:01, 443.41 examples/s]
+Tokenizing eval dataset:  42%|████▏     | 399/953 [00:01<00:01, 458.85 examples/s]
+Tokenizing eval dataset:  66%|██████▌   | 630/953 [00:01<00:00, 605.47 examples/s]
+Tokenizing eval dataset:  46%|████▋     | 442/953 [00:01<00:00, 512.43 examples/s]
+Tokenizing eval dataset:  49%|████▉     | 469/953 [00:01<00:00, 523.57 examples/s]
+Tokenizing eval dataset:  73%|███████▎  | 693/953 [00:01<00:00, 610.37 examples/s]
+Tokenizing eval dataset:  55%|█████▌    | 528/953 [00:01<00:00, 540.43 examples/s]
+Tokenizing eval dataset:  53%|█████▎    | 508/953 [00:01<00:00, 547.79 examples/s]
+Tokenizing eval dataset:  82%|████████▏ | 777/953 [00:01<00:00, 584.78 examples/s]
+Tokenizing eval dataset:  60%|█████▉    | 571/953 [00:01<00:00, 568.01 examples/s]
+Tokenizing eval dataset:  63%|██████▎   | 600/953 [00:01<00:00, 584.29 examples/s]
+Tokenizing eval dataset:  69%|██████▉   | 661/953 [00:01<00:00, 589.37 examples/s]
+Tokenizing eval dataset:  67%|██████▋   | 640/953 [00:01<00:00, 597.36 examples/s]
+Tokenizing eval dataset:  89%|████████▉ | 852/953 [00:01<00:00, 546.46 examples/s]
+Tokenizing eval dataset:  78%|███████▊  | 742/953 [00:01<00:00, 565.60 examples/s]
+Tokenizing eval dataset:  76%|███████▌  | 726/953 [00:01<00:00, 583.42 examples/s]
+Tokenizing eval dataset:  97%|█████████▋| 929/953 [00:02<00:00, 531.74 examples/s]
+Tokenizing eval dataset: 100%|██████████| 953/953 [00:02<00:00, 463.52 examples/s]
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+
+Tokenizing eval dataset:  86%|████████▌ | 816/953 [00:01<00:00, 537.71 examples/s]
+Tokenizing eval dataset:  84%|████████▍ | 801/953 [00:01<00:00, 549.79 examples/s]
+Tokenizing eval dataset:  93%|█████████▎| 890/953 [00:02<00:00, 517.89 examples/s]
+Tokenizing eval dataset:  92%|█████████▏| 877/953 [00:01<00:00, 530.00 examples/s]
+Tokenizing eval dataset: 100%|██████████| 953/953 [00:02<00:00, 508.00 examples/s]
+Tokenizing eval dataset: 100%|██████████| 953/953 [00:02<00:00, 443.11 examples/s]
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+
+Tokenizing eval dataset: 100%|█████████▉| 950/953 [00:02<00:00, 510.62 examples/s]
+Tokenizing eval dataset: 100%|██████████| 953/953 [00:02<00:00, 444.95 examples/s]
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+Installed CUDA version 12.1 does not match the version torch was compiled with 12.4 but since the APIs are compatible, accepting this combination
+Using /ceph/hpc/home/dv70648/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+Emitting ninja build file /ceph/hpc/home/dv70648/.cache/torch_extensions/py310_cu124/cpu_adam/build.ninja...
+Building extension module cpu_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module cpu_adam...
+Time to load cpu_adam op: 2.4590349197387695 seconds
+Installed CUDA version 12.1 does not match the version torch was compiled with 12.4 but since the APIs are compatible, accepting this combination
+Using /ceph/hpc/home/dv70648/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+Emitting ninja build file /ceph/hpc/home/dv70648/.cache/torch_extensions/py310_cu124/cpu_adam/build.ninja...
+Building extension module cpu_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module cpu_adam...
+Time to load cpu_adam op: 2.3486111164093018 seconds
+Installed CUDA version 12.1 does not match the version torch was compiled with 12.4 but since the APIs are compatible, accepting this combination
+Using /ceph/hpc/home/dv70648/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+Emitting ninja build file /ceph/hpc/home/dv70648/.cache/torch_extensions/py310_cu124/cpu_adam/build.ninja...
+Building extension module cpu_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module cpu_adam...
+Time to load cpu_adam op: 2.3444695472717285 seconds
+Installed CUDA version 12.1 does not match the version torch was compiled with 12.4 but since the APIs are compatible, accepting this combination
+Using /ceph/hpc/home/dv70648/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+Emitting ninja build file /ceph/hpc/home/dv70648/.cache/torch_extensions/py310_cu124/cpu_adam/build.ninja...
+Building extension module cpu_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module cpu_adam...
+Time to load cpu_adam op: 2.3372504711151123 seconds
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
+[rank2]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank2]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 186, in main
+[rank2]:     dpo_trainer.train()
+[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+[rank2]:     return inner_training_loop(
+[rank2]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2374, in _inner_training_loop
+[rank2]:     model, self.optimizer = self.accelerator.prepare(self.model, self.optimizer)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1383, in prepare
+[rank2]:     result = self._prepare_deepspeed(*args)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1924, in _prepare_deepspeed
+[rank2]:     engine, optimizer, _, lr_scheduler = ds_initialize(**kwargs)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/__init__.py", line 193, in initialize
+[rank2]:     engine = DeepSpeedEngine(args=args,
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 273, in __init__
+[rank2]:     self._configure_distributed_model(model)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 1284, in _configure_distributed_model
+[rank2]:     self._broadcast_model()
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 1202, in _broadcast_model
+[rank2]:     dist.broadcast(p.data, groups._get_broadcast_src_rank(), group=self.seq_data_parallel_group)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/comm/comm.py", line 117, in log_wrapper
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/comm/comm.py", line 224, in broadcast
+[rank2]:     return cdb.broadcast(tensor=tensor, src=src, group=group, async_op=async_op)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/comm/torch.py", line 206, in broadcast
+[rank2]:     return torch.distributed.broadcast(tensor=tensor, src=src, group=group, async_op=async_op)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2726, in broadcast
+[rank2]:     work = group.broadcast([tensor], opts)
+[rank2]: torch.distributed.DistBackendError: NCCL error in: /pytorch/torch/csrc/distributed/c10d/NCCLUtils.hpp:268, unhandled cuda error (run with NCCL_DEBUG=INFO for details), NCCL version 2.21.5
+[rank2]: ncclUnhandledCudaError: Call to CUDA function failed.
+[rank2]: Last error:
+[rank2]: Cuda failure 2 'out of memory'
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 207, in <module>
+[rank1]:     main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+[rank1]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train.py", line 186, in main
+[rank1]:     dpo_trainer.train()
+[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+[rank1]:     return inner_training_loop(
+[rank1]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2374, in _inner_training_loop
+[rank1]:     model, self.optimizer = self.accelerator.prepare(self.model, self.optimizer)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1383, in prepare
+[rank1]:     result = self._prepare_deepspeed(*args)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1924, in _prepare_deepspeed
+[rank1]:     engine, optimizer, _, lr_scheduler = ds_initialize(**kwargs)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/__init__.py", line 193, in initialize
+[rank1]:     engine = DeepSpeedEngine(args=args,
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 273, in __init__
+[rank1]:     self._configure_distributed_model(model)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 1284, in _configure_distributed_model
+[rank1]:     self._broadcast_model()
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 1202, in _broadcast_model
+[rank1]:     dist.broadcast(p.data, groups._get_broadcast_src_rank(), group=self.seq_data_parallel_group)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/comm/comm.py", line 117, in log_wrapper
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/comm/comm.py", line 224, in broadcast
+[rank1]:     return cdb.broadcast(tensor=tensor, src=src, group=group, async_op=async_op)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/comm/torch.py", line 206, in broadcast
+[rank1]:     return torch.distributed.broadcast(tensor=tensor, src=src, group=group, async_op=async_op)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2726, in broadcast
+[rank1]:     work = group.broadcast([tensor], opts)
+[rank1]: torch.distributed.DistBackendError: NCCL error in: /pytorch/torch/csrc/distributed/c10d/NCCLUtils.hpp:268, unhandled cuda error (run with NCCL_DEBUG=INFO for details), NCCL version 2.21.5
+[rank1]: ncclUnhandledCudaError: Call to CUDA function failed.
+[rank1]: Last error:
+[rank1]: Cuda failure 2 'out of memory'
+W0531 12:01:35.876000 431927 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 432137 closing signal SIGTERM
+W0531 12:01:35.877000 431927 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 432139 closing signal SIGTERM
+W0531 12:01:35.878000 431927 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 432140 closing signal SIGTERM
+E0531 12:01:36.457000 431927 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 432138) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 861, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-05-31_12:01:35
+  host      : pm6-nod12.vega.pri
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 432138)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

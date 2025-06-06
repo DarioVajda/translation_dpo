@@ -1,0 +1,564 @@
+cpu-bind=MASK - gn28, task  1  0 [3054220]: mask 0x1000000000000000000000000000000010000000000000000000000000000 set
+*******STARTING********
+--- Running on Node Rank: 1 ---
+Total Nodes: 2
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
+GPUs per Node: 4
+Master Address: gn27
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 2     --machine_rank 1     --main_process_ip gn27     --main_process_port 29500     --num_processes 8     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62038266     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=64 --learning_rate=3e-7 --total_epochs=3 --beta=0.2
+-------------------------------------------
+[2025-05-29 23:56:30,730] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+W0529 23:56:32.309000 3054263 torch/distributed/run.py:792] 
+W0529 23:56:32.309000 3054263 torch/distributed/run.py:792] *****************************************
+W0529 23:56:32.309000 3054263 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0529 23:56:32.309000 3054263 torch/distributed/run.py:792] *****************************************
+[2025-05-29 23:56:45,925] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 23:56:46,129] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 23:56:46,400] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-29 23:56:46,426] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+World size: 8
+Setting gradient accumulation steps to: 1
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+Created datasets
+Number of training examples: 8564
+Number of validation examples: 953
+Namespace(rank=64, learning_rate=3e-07, total_epochs=3, beta=0.2)
+3e-07
+[2025-05-29 23:56:54,725] [INFO] [comm.py:658:init_distributed] cdb=None
+Created datasets
+Steps per epoch: 8564
+Eval steps: 4282
+[2025-05-29 23:56:54,792] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-29 23:56:54,934] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-05-29 23:56:54,934] [INFO] [comm.py:658:init_distributed] cdb=None
+Set up DPO configuration
+[2025-05-29 23:56:55,629] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[2025-05-29 23:56:56,339] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[2025-05-29 23:56:56,388] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+[2025-05-29 23:56:56,423] [INFO] [config.py:734:__init__] Config mesh_device None world_size = 8
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:46<02:18, 46.24s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:46<02:18, 46.23s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:46<02:18, 46.25s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:46<02:18, 46.26s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:37<01:37, 48.94s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:37<01:37, 48.95s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:37<01:37, 48.95s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:37<01:37, 48.96s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:30<00:51, 51.05s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:30<00:51, 51.05s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:30<00:51, 51.05s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:30<00:51, 51.06s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:55<00:00, 40.87s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:55<00:00, 40.86s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:55<00:00, 43.97s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:55<00:00, 43.97s/it]
+
+Loading checkpoint shards: 100%|██████████| 4/4 [02:55<00:00, 40.87s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:55<00:00, 40.87s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:55<00:00, 43.97s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:55<00:00, 43.98s/it]
+
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+-------------------- CHECKING GRADIENTS --------------------
+Trainable parameters:
+- model.embed_tokens.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.0.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.1.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.2.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.3.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.4.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.5.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.6.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.7.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.8.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.9.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.10.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.11.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.12.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.13.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.14.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.15.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.16.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.17.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.18.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.19.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.20.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.21.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.22.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.23.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.24.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.25.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.26.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.27.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.28.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.29.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.30.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.31.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.32.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.33.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.34.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.35.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.36.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.37.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.38.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.39.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.40.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.self_attn.q_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.self_attn.k_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.self_attn.v_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.self_attn.o_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.mlp.gate_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.mlp.up_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.mlp.down_proj.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.input_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.post_attention_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.pre_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.layers.41.post_feedforward_layernorm.weight (shape: torch.Size([0]), numel: 0)
+- model.norm.weight (shape: torch.Size([0]), numel: 0)
+Total trainable parameters: 0
+CRITICAL ERROR: NO TRAINABLE PARAMETERS FOUND!
+------------------------------------------------------------
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Using LoRA and set up the model model
+Loaded tokenizer
+Extracting prompt in train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]Extracting prompt in train dataset:   0%|          | 1/8564 [00:01<4:10:15,  1.75s/ examples]Extracting prompt in train dataset:   0%|          | 10/8564 [00:02<33:21,  4.27 examples/s] Extracting prompt in train dataset:   3%|▎         | 266/8564 [00:02<00:53, 154.87 examples/s]Extracting prompt in train dataset:   6%|▌         | 482/8564 [00:03<00:26, 310.56 examples/s]Extracting prompt in train dataset:   7%|▋         | 637/8564 [00:03<00:18, 434.06 examples/s]Extracting prompt in train dataset:  10%|▉         | 821/8564 [00:03<00:12, 608.88 examples/s]Extracting prompt in train dataset:  12%|█▏        | 1000/8564 [00:03<00:09, 781.39 examples/s]Extracting prompt in train dataset:  14%|█▍        | 1210/8564 [00:03<00:07, 1008.48 examples/s]Extracting prompt in train dataset:  16%|█▋        | 1400/8564 [00:03<00:06, 1177.36 examples/s]Extracting prompt in train dataset:  19%|█▉        | 1620/8564 [00:03<00:05, 1349.52 examples/s]Extracting prompt in train dataset:  21%|██        | 1811/8564 [00:03<00:04, 1478.14 examples/s]Extracting prompt in train dataset:  24%|██▍       | 2042/8564 [00:03<00:03, 1683.12 examples/s]Extracting prompt in train dataset:  26%|██▋       | 2260/8564 [00:03<00:03, 1710.32 examples/s]Extracting prompt in train dataset:  30%|██▉       | 2560/8564 [00:04<00:03, 1754.86 examples/s]Extracting prompt in train dataset:  32%|███▏      | 2773/8564 [00:04<00:03, 1788.81 examples/s]Extracting prompt in train dataset:  35%|███▌      | 3040/8564 [00:04<00:02, 1922.90 examples/s]Extracting prompt in train dataset:  39%|███▊      | 3307/8564 [00:04<00:03, 1411.45 examples/s]Extracting prompt in train dataset:  41%|████      | 3498/8564 [00:04<00:03, 1491.23 examples/s]Extracting prompt in train dataset:  43%|████▎     | 3688/8564 [00:04<00:03, 1579.70 examples/s]Extracting prompt in train dataset:  46%|████▌     | 3900/8564 [00:04<00:02, 1704.50 examples/s]Extracting prompt in train dataset:  48%|████▊     | 4120/8564 [00:05<00:02, 1566.70 examples/s]Extracting prompt in train dataset:  52%|█████▏    | 4430/8564 [00:05<00:02, 1862.43 examples/s]Extracting prompt in train dataset:  55%|█████▍    | 4700/8564 [00:05<00:01, 2039.68 examples/s]Extracting prompt in train dataset:  59%|█████▉    | 5082/8564 [00:05<00:01, 2054.26 examples/s]Extracting prompt in train dataset:  63%|██████▎   | 5383/8564 [00:05<00:01, 1961.02 examples/s]Extracting prompt in train dataset:  65%|██████▌   | 5590/8564 [00:05<00:01, 1944.98 examples/s]Extracting prompt in train dataset:  68%|██████▊   | 5801/8564 [00:05<00:01, 1983.94 examples/s]Extracting prompt in train dataset:  70%|███████   | 6011/8564 [00:06<00:01, 2012.57 examples/s]Extracting prompt in train dataset:  74%|███████▎  | 6300/8564 [00:06<00:01, 1933.68 examples/s]Extracting prompt in train dataset:  76%|███████▌  | 6510/8564 [00:06<00:01, 1878.42 examples/s]Extracting prompt in train dataset:  78%|███████▊  | 6710/8564 [00:06<00:00, 1860.05 examples/s]Extracting prompt in train dataset:  81%|████████  | 6901/8564 [00:06<00:00, 1824.21 examples/s]Extracting prompt in train dataset:  83%|████████▎ | 7101/8564 [00:06<00:00, 1816.45 examples/s]Extracting prompt in train dataset:  86%|████████▌ | 7369/8564 [00:06<00:00, 2047.80 examples/s]Extracting prompt in train dataset:  89%|████████▊ | 7590/8564 [00:06<00:00, 2056.29 examples/s]Extracting prompt in train dataset:  92%|█████████▏| 7900/8564 [00:07<00:00, 1304.34 examples/s]Extracting prompt in train dataset:  97%|█████████▋| 8268/8564 [00:07<00:00, 1688.58 examples/s]Extracting prompt in train dataset: 100%|██████████| 8564/8564 [00:07<00:00, 1151.32 examples/s]
+Applying chat template to train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]Applying chat template to train dataset:   1%|          | 81/8564 [00:00<00:10, 788.65 examples/s]Applying chat template to train dataset:   2%|▏         | 190/8564 [00:00<00:08, 959.35 examples/s]Applying chat template to train dataset:   4%|▎         | 307/8564 [00:00<00:07, 1053.64 examples/s]Applying chat template to train dataset:   5%|▍         | 420/8564 [00:00<00:07, 1079.85 examples/s]Applying chat template to train dataset:   6%|▌         | 535/8564 [00:00<00:07, 1071.16 examples/s]Applying chat template to train dataset:   8%|▊         | 680/8564 [00:00<00:08, 985.38 examples/s] Applying chat template to train dataset:  10%|▉         | 853/8564 [00:00<00:06, 1193.63 examples/s]Applying chat template to train dataset:  12%|█▏        | 1004/8564 [00:00<00:05, 1282.12 examples/s]Applying chat template to train dataset:  14%|█▎        | 1175/8564 [00:00<00:05, 1404.59 examples/s]Applying chat template to train dataset:  16%|█▌        | 1386/8564 [00:01<00:04, 1608.67 examples/s]Applying chat template to train dataset:  19%|█▉        | 1615/8564 [00:01<00:03, 1808.30 examples/s]Applying chat template to train dataset:  22%|██▏       | 1858/8564 [00:01<00:03, 1683.24 examples/s]Applying chat template to train dataset:  24%|██▍       | 2080/8564 [00:01<00:04, 1376.93 examples/s]Applying chat template to train dataset:  27%|██▋       | 2291/8564 [00:01<00:04, 1537.30 examples/s]Applying chat template to train dataset:  29%|██▊       | 2462/8564 [00:01<00:03, 1575.93 examples/s]Applying chat template to train dataset:  31%|███       | 2645/8564 [00:01<00:03, 1634.99 examples/s]Applying chat template to train dataset:  34%|███▎      | 2890/8564 [00:02<00:03, 1631.91 examples/s]Applying chat template to train dataset:  37%|███▋      | 3138/8564 [00:02<00:04, 1309.17 examples/s]Applying chat template to train dataset:  39%|███▊      | 3310/8564 [00:02<00:04, 1245.87 examples/s]Applying chat template to train dataset:  41%|████      | 3523/8564 [00:02<00:03, 1268.78 examples/s]Applying chat template to train dataset:  43%|████▎     | 3672/8564 [00:02<00:03, 1277.30 examples/s]Applying chat template to train dataset:  45%|████▌     | 3862/8564 [00:02<00:03, 1239.56 examples/s]Applying chat template to train dataset:  47%|████▋     | 4025/8564 [00:03<00:03, 1161.75 examples/s]Applying chat template to train dataset:  49%|████▉     | 4224/8564 [00:03<00:03, 1338.35 examples/s]Applying chat template to train dataset:  51%|█████▏    | 4400/8564 [00:03<00:02, 1410.60 examples/s]Applying chat template to train dataset:  53%|█████▎    | 4567/8564 [00:03<00:02, 1472.66 examples/s]Applying chat template to train dataset:  56%|█████▌    | 4780/8564 [00:03<00:02, 1285.41 examples/s]Applying chat template to train dataset:  58%|█████▊    | 4954/8564 [00:03<00:02, 1246.74 examples/s]Applying chat template to train dataset:  60%|█████▉    | 5135/8564 [00:03<00:02, 1164.99 examples/s]Applying chat template to train dataset:  62%|██████▏   | 5304/8564 [00:04<00:02, 1100.66 examples/s]Applying chat template to train dataset:  63%|██████▎   | 5419/8564 [00:04<00:02, 1074.59 examples/s]Applying chat template to train dataset:  65%|██████▌   | 5575/8564 [00:04<00:02, 1041.11 examples/s]Applying chat template to train dataset:  66%|██████▋   | 5691/8564 [00:04<00:02, 1061.02 examples/s]Applying chat template to train dataset:  68%|██████▊   | 5822/8564 [00:04<00:02, 1118.99 examples/s]Applying chat template to train dataset:  70%|██████▉   | 5953/8564 [00:04<00:02, 967.45 examples/s] Applying chat template to train dataset:  71%|███████▏  | 6107/8564 [00:04<00:02, 956.04 examples/s]Applying chat template to train dataset:  73%|███████▎  | 6275/8564 [00:05<00:02, 1086.08 examples/s]Applying chat template to train dataset:  75%|███████▍  | 6393/8564 [00:05<00:02, 1035.09 examples/s]Applying chat template to train dataset:  76%|███████▌  | 6512/8564 [00:05<00:01, 1066.36 examples/s]Applying chat template to train dataset:  78%|███████▊  | 6646/8564 [00:05<00:01, 1130.35 examples/s]Applying chat template to train dataset:  79%|███████▉  | 6763/8564 [00:05<00:01, 1140.43 examples/s]Applying chat template to train dataset:  81%|████████  | 6947/8564 [00:05<00:01, 1149.16 examples/s]Applying chat template to train dataset:  83%|████████▎ | 7068/8564 [00:05<00:01, 1130.35 examples/s]Applying chat template to train dataset:  85%|████████▍ | 7241/8564 [00:05<00:01, 1087.25 examples/s]Applying chat template to train dataset:  86%|████████▋ | 7390/8564 [00:05<00:01, 1170.40 examples/s]Applying chat template to train dataset:  89%|████████▊ | 7595/8564 [00:06<00:00, 1372.92 examples/s]Applying chat template to train dataset:  90%|█████████ | 7750/8564 [00:06<00:00, 994.86 examples/s] Applying chat template to train dataset:  93%|█████████▎| 7958/8564 [00:06<00:00, 1220.13 examples/s]Applying chat template to train dataset:  95%|█████████▍| 8134/8564 [00:06<00:00, 1052.53 examples/s]Applying chat template to train dataset:  96%|█████████▋| 8263/8564 [00:06<00:00, 1099.05 examples/s]Applying chat template to train dataset:  99%|█████████▊| 8438/8564 [00:06<00:00, 1092.15 examples/s]Applying chat template to train dataset: 100%|██████████| 8564/8564 [00:07<00:00, 1214.04 examples/s]
+Tokenizing train dataset:   0%|          | 0/8564 [00:00<?, ? examples/s]Tokenizing train dataset:   0%|          | 1/8564 [00:00<58:14,  2.45 examples/s]Tokenizing train dataset:   0%|          | 24/8564 [00:00<02:25, 58.62 examples/s]Tokenizing train dataset:   0%|          | 40/8564 [00:00<01:42, 83.45 examples/s]Tokenizing train dataset:   1%|          | 55/8564 [00:00<01:39, 85.09 examples/s]Tokenizing train dataset:   1%|          | 69/8564 [00:00<01:31, 92.92 examples/s]Tokenizing train dataset:   1%|          | 82/8564 [00:01<01:26, 97.66 examples/s]Tokenizing train dataset:   1%|          | 99/8564 [00:01<01:16, 110.92 examples/s]Tokenizing train dataset:   1%|▏         | 113/8564 [00:01<01:25, 99.12 examples/s]Tokenizing train dataset:   2%|▏         | 130/8564 [00:01<01:29, 93.93 examples/s]Tokenizing train dataset:   2%|▏         | 144/8564 [00:01<01:21, 102.90 examples/s]Tokenizing train dataset:   2%|▏         | 160/8564 [00:01<01:23, 100.99 examples/s]Tokenizing train dataset:   2%|▏         | 173/8564 [00:01<01:30, 92.34 examples/s] Tokenizing train dataset:   2%|▏         | 189/8564 [00:02<01:19, 105.13 examples/s]Tokenizing train dataset:   2%|▏         | 201/8564 [00:02<01:17, 107.47 examples/s]Tokenizing train dataset:   3%|▎         | 215/8564 [00:02<01:12, 115.04 examples/s]Tokenizing train dataset:   3%|▎         | 230/8564 [00:02<01:22, 101.12 examples/s]Tokenizing train dataset:   3%|▎         | 244/8564 [00:02<01:27, 95.57 examples/s] Tokenizing train dataset:   3%|▎         | 261/8564 [00:02<01:24, 98.45 examples/s]Tokenizing train dataset:   3%|▎         | 277/8564 [00:02<01:16, 108.88 examples/s]Tokenizing train dataset:   3%|▎         | 295/8564 [00:03<01:15, 110.24 examples/s]Tokenizing train dataset:   4%|▎         | 309/8564 [00:03<01:14, 110.17 examples/s]Tokenizing train dataset:   4%|▍         | 322/8564 [00:03<01:15, 109.83 examples/s]Tokenizing train dataset:   4%|▍         | 334/8564 [00:03<01:16, 107.05 examples/s]Tokenizing train dataset:   4%|▍         | 345/8564 [00:03<01:19, 103.39 examples/s]Tokenizing train dataset:   4%|▍         | 361/8564 [00:03<01:11, 114.84 examples/s]Tokenizing train dataset:   4%|▍         | 377/8564 [00:03<01:15, 107.75 examples/s]Tokenizing train dataset:   5%|▍         | 389/8564 [00:03<01:14, 110.40 examples/s]Tokenizing train dataset:   5%|▍         | 403/8564 [00:04<01:11, 113.56 examples/s]Tokenizing train dataset:   5%|▍         | 416/8564 [00:04<01:09, 117.35 examples/s]Tokenizing train dataset:   5%|▌         | 430/8564 [00:04<01:07, 119.83 examples/s]Tokenizing train dataset:   5%|▌         | 444/8564 [00:04<01:29, 90.57 examples/s] Tokenizing train dataset:   5%|▌         | 457/8564 [00:04<01:22, 97.89 examples/s]Tokenizing train dataset:   5%|▌         | 470/8564 [00:04<01:17, 104.93 examples/s]Tokenizing train dataset:   6%|▌         | 483/8564 [00:04<01:13, 110.23 examples/s]Tokenizing train dataset:   6%|▌         | 497/8564 [00:04<01:08, 117.38 examples/s]Tokenizing train dataset:   6%|▌         | 512/8564 [00:05<01:08, 117.77 examples/s]Tokenizing train dataset:   6%|▌         | 527/8564 [00:05<01:05, 123.23 examples/s]Tokenizing train dataset:   6%|▋         | 541/8564 [00:05<01:06, 121.44 examples/s]Tokenizing train dataset:   7%|▋         | 558/8564 [00:05<01:11, 112.31 examples/s]Tokenizing train dataset:   7%|▋         | 570/8564 [00:05<01:13, 108.88 examples/s]Tokenizing train dataset:   7%|▋         | 586/8564 [00:05<01:22, 96.25 examples/s] Tokenizing train dataset:   7%|▋         | 597/8564 [00:05<01:33, 85.43 examples/s]Tokenizing train dataset:   7%|▋         | 611/8564 [00:06<01:25, 93.11 examples/s]Tokenizing train dataset:   7%|▋         | 625/8564 [00:06<01:17, 102.57 examples/s]Tokenizing train dataset:   7%|▋         | 641/8564 [00:06<01:10, 111.61 examples/s]Tokenizing train dataset:   8%|▊         | 655/8564 [00:06<01:15, 105.12 examples/s]Tokenizing train dataset:   8%|▊         | 669/8564 [00:06<01:21, 96.43 examples/s] Tokenizing train dataset:   8%|▊         | 687/8564 [00:06<01:09, 112.85 examples/s]Tokenizing train dataset:   8%|▊         | 701/8564 [00:06<01:17, 101.94 examples/s]Tokenizing train dataset:   8%|▊         | 715/8564 [00:07<01:11, 109.58 examples/s]Tokenizing train dataset:   9%|▊         | 728/8564 [00:07<01:09, 112.80 examples/s]Tokenizing train dataset:   9%|▊         | 742/8564 [00:07<01:06, 118.11 examples/s]Tokenizing train dataset:   9%|▉         | 759/8564 [00:07<01:07, 115.17 examples/s]Tokenizing train dataset:   9%|▉         | 771/8564 [00:07<01:10, 110.79 examples/s]Tokenizing train dataset:   9%|▉         | 786/8564 [00:07<01:13, 106.20 examples/s]Tokenizing train dataset:   9%|▉         | 800/8564 [00:07<01:21, 95.37 examples/s] Tokenizing train dataset:   9%|▉         | 812/8564 [00:07<01:19, 98.03 examples/s]Tokenizing train dataset:  10%|▉         | 826/8564 [00:08<01:24, 91.76 examples/s]Tokenizing train dataset:  10%|▉         | 839/8564 [00:08<01:18, 98.50 examples/s]Tokenizing train dataset:  10%|▉         | 854/8564 [00:08<01:24, 91.51 examples/s]Tokenizing train dataset:  10%|█         | 865/8564 [00:08<01:23, 92.14 examples/s]Tokenizing train dataset:  10%|█         | 877/8564 [00:08<01:22, 93.52 examples/s]Tokenizing train dataset:  10%|█         | 890/8564 [00:08<01:18, 97.21 examples/s]Tokenizing train dataset:  11%|█         | 905/8564 [00:08<01:10, 108.05 examples/s]Tokenizing train dataset:  11%|█         | 919/8564 [00:09<01:17, 98.97 examples/s] Tokenizing train dataset:  11%|█         | 931/8564 [00:09<01:16, 99.88 examples/s]Tokenizing train dataset:  11%|█         | 945/8564 [00:09<01:13, 103.75 examples/s]Tokenizing train dataset:  11%|█         | 961/8564 [00:09<01:14, 101.37 examples/s]Tokenizing train dataset:  11%|█▏        | 980/8564 [00:09<01:10, 108.04 examples/s]Tokenizing train dataset:  12%|█▏        | 997/8564 [00:09<01:03, 119.11 examples/s]Tokenizing train dataset:  12%|█▏        | 1013/8564 [00:09<00:59, 127.61 examples/s]Tokenizing train dataset:  12%|█▏        | 1028/8564 [00:09<00:57, 131.76 examples/s]Tokenizing train dataset:  12%|█▏        | 1047/8564 [00:10<00:52, 144.50 examples/s]Tokenizing train dataset:  12%|█▏        | 1067/8564 [00:10<00:55, 135.31 examples/s]Tokenizing train dataset:  13%|█▎        | 1081/8564 [00:10<00:57, 130.98 examples/s]Tokenizing train dataset:  13%|█▎        | 1099/8564 [00:10<01:02, 119.02 examples/s]Tokenizing train dataset:  13%|█▎        | 1117/8564 [00:10<01:06, 111.46 examples/s]Tokenizing train dataset:  13%|█▎        | 1132/8564 [00:10<01:16, 96.88 examples/s] Tokenizing train dataset:  13%|█▎        | 1144/8564 [00:11<01:15, 98.48 examples/s]Tokenizing train dataset:  13%|█▎        | 1156/8564 [00:11<01:15, 98.58 examples/s]Tokenizing train dataset:  14%|█▎        | 1168/8564 [00:11<01:14, 98.65 examples/s]Tokenizing train dataset:  14%|█▍        | 1179/8564 [00:11<01:17, 95.24 examples/s]Tokenizing train dataset:  14%|█▍        | 1192/8564 [00:11<01:11, 102.44 examples/s]Tokenizing train dataset:  14%|█▍        | 1203/8564 [00:11<01:13, 100.28 examples/s]Tokenizing train dataset:  14%|█▍        | 1215/8564 [00:11<01:25, 85.75 examples/s] Tokenizing train dataset:  14%|█▍        | 1229/8564 [00:11<01:17, 94.66 examples/s]Tokenizing train dataset:  15%|█▍        | 1242/8564 [00:12<01:14, 98.18 examples/s]Tokenizing train dataset:  15%|█▍        | 1258/8564 [00:12<01:16, 95.54 examples/s]Tokenizing train dataset:  15%|█▍        | 1270/8564 [00:12<01:12, 100.30 examples/s]Tokenizing train dataset:  15%|█▌        | 1286/8564 [00:12<01:17, 94.27 examples/s] Tokenizing train dataset:  15%|█▌        | 1305/8564 [00:12<01:05, 111.48 examples/s]Tokenizing train dataset:  15%|█▌        | 1324/8564 [00:12<01:04, 111.90 examples/s]Tokenizing train dataset:  16%|█▌        | 1336/8564 [00:12<01:05, 110.04 examples/s]Tokenizing train dataset:  16%|█▌        | 1351/8564 [00:13<01:09, 104.17 examples/s]Tokenizing train dataset:  16%|█▌        | 1365/8564 [00:13<01:14, 96.41 examples/s] Tokenizing train dataset:  16%|█▌        | 1378/8564 [00:13<01:15, 95.57 examples/s]Tokenizing train dataset:  16%|█▌        | 1390/8564 [00:13<01:16, 94.01 examples/s]Tokenizing train dataset:  16%|█▋        | 1408/8564 [00:13<01:04, 110.18 examples/s]Tokenizing train dataset:  17%|█▋        | 1421/8564 [00:13<01:10, 101.29 examples/s]Tokenizing train dataset:  17%|█▋        | 1432/8564 [00:13<01:09, 102.62 examples/s]Tokenizing train dataset:  17%|█▋        | 1448/8564 [00:14<01:10, 101.14 examples/s]Tokenizing train dataset:  17%|█▋        | 1462/8564 [00:14<01:15, 94.64 examples/s] Tokenizing train dataset:  17%|█▋        | 1475/8564 [00:14<01:10, 100.08 examples/s]Tokenizing train dataset:  17%|█▋        | 1486/8564 [00:14<01:13, 96.26 examples/s] Tokenizing train dataset:  18%|█▊        | 1500/8564 [00:14<01:12, 97.23 examples/s]Tokenizing train dataset:  18%|█▊        | 1510/8564 [00:14<01:15, 92.97 examples/s]Tokenizing train dataset:  18%|█▊        | 1521/8564 [00:14<01:14, 95.04 examples/s]Tokenizing train dataset:  18%|█▊        | 1537/8564 [00:14<01:10, 100.15 examples/s]Tokenizing train dataset:  18%|█▊        | 1549/8564 [00:15<01:09, 100.98 examples/s]Tokenizing train dataset:  18%|█▊        | 1560/8564 [00:15<01:08, 102.72 examples/s]Tokenizing train dataset:  18%|█▊        | 1577/8564 [00:15<01:07, 103.12 examples/s]Tokenizing train dataset:  19%|█▊        | 1592/8564 [00:15<01:08, 101.32 examples/s]Tokenizing train dataset:  19%|█▉        | 1609/8564 [00:15<01:02, 110.97 examples/s]Tokenizing train dataset:  19%|█▉        | 1627/8564 [00:15<01:07, 102.47 examples/s]Tokenizing train dataset:  19%|█▉        | 1641/8564 [00:15<01:03, 108.82 examples/s]Tokenizing train dataset:  19%|█▉        | 1654/8564 [00:16<01:03, 109.34 examples/s]Tokenizing train dataset:  19%|█▉        | 1667/8564 [00:16<01:00, 113.10 examples/s]Tokenizing train dataset:  20%|█▉        | 1690/8564 [00:16<00:58, 117.98 examples/s]Tokenizing train dataset:  20%|██        | 1714/8564 [00:16<00:52, 131.63 examples/s]Tokenizing train dataset:  20%|██        | 1728/8564 [00:16<01:01, 111.26 examples/s]Tokenizing train dataset:  20%|██        | 1741/8564 [00:16<01:01, 111.53 examples/s]Tokenizing train dataset:  21%|██        | 1761/8564 [00:16<01:00, 112.89 examples/s]Tokenizing train dataset:  21%|██        | 1773/8564 [00:17<01:01, 109.68 examples/s]Tokenizing train dataset:  21%|██        | 1790/8564 [00:17<01:03, 105.95 examples/s]Tokenizing train dataset:  21%|██        | 1806/8564 [00:17<01:05, 102.86 examples/s]Tokenizing train dataset:  21%|██        | 1818/8564 [00:17<01:06, 101.42 examples/s]Tokenizing train dataset:  21%|██▏       | 1829/8564 [00:17<01:06, 100.90 examples/s]Tokenizing train dataset:  22%|██▏       | 1843/8564 [00:17<01:05, 102.13 examples/s]Tokenizing train dataset:  22%|██▏       | 1860/8564 [00:17<01:05, 101.65 examples/s]Tokenizing train dataset:  22%|██▏       | 1873/8564 [00:18<01:03, 105.62 examples/s]Tokenizing train dataset:  22%|██▏       | 1886/8564 [00:18<01:00, 110.30 examples/s]Tokenizing train dataset:  22%|██▏       | 1906/8564 [00:18<00:58, 114.23 examples/s]Tokenizing train dataset:  22%|██▏       | 1922/8564 [00:18<00:55, 120.27 examples/s]Tokenizing train dataset:  23%|██▎       | 1937/8564 [00:18<00:52, 125.55 examples/s]Tokenizing train dataset:  23%|██▎       | 1950/8564 [00:18<00:54, 121.57 examples/s]Tokenizing train dataset:  23%|██▎       | 1963/8564 [00:18<00:54, 121.58 examples/s]Tokenizing train dataset:  23%|██▎       | 1977/8564 [00:18<00:55, 118.96 examples/s]Tokenizing train dataset:  23%|██▎       | 1989/8564 [00:19<00:55, 118.54 examples/s]Tokenizing train dataset:  23%|██▎       | 2005/8564 [00:19<00:52, 124.42 examples/s]Tokenizing train dataset:  24%|██▎       | 2019/8564 [00:19<00:51, 127.75 examples/s]Tokenizing train dataset:  24%|██▍       | 2034/8564 [00:19<00:50, 128.58 examples/s]Tokenizing train dataset:  24%|██▍       | 2050/8564 [00:19<00:48, 134.36 examples/s]Tokenizing train dataset:  24%|██▍       | 2067/8564 [00:19<00:53, 121.05 examples/s]Tokenizing train dataset:  24%|██▍       | 2086/8564 [00:19<00:54, 118.78 examples/s]Tokenizing train dataset:  25%|██▍       | 2100/8564 [00:19<01:02, 103.75 examples/s]Tokenizing train dataset:  25%|██▍       | 2119/8564 [00:20<00:59, 107.57 examples/s]Tokenizing train dataset:  25%|██▍       | 2133/8564 [00:20<00:56, 113.85 examples/s]Tokenizing train dataset:  25%|██▌       | 2148/8564 [00:20<00:54, 116.99 examples/s]Tokenizing train dataset:  25%|██▌       | 2168/8564 [00:20<00:54, 116.37 examples/s]Tokenizing train dataset:  25%|██▌       | 2182/8564 [00:20<00:54, 116.69 examples/s]Tokenizing train dataset:  26%|██▌       | 2195/8564 [00:20<00:54, 116.96 examples/s]Tokenizing train dataset:  26%|██▌       | 2209/8564 [00:20<00:54, 115.96 examples/s]Tokenizing train dataset:  26%|██▌       | 2222/8564 [00:21<00:57, 111.19 examples/s]Tokenizing train dataset:  26%|██▌       | 2236/8564 [00:21<00:54, 116.08 examples/s]Tokenizing train dataset:  26%|██▋       | 2256/8564 [00:21<00:46, 136.28 examples/s]Tokenizing train dataset:  27%|██▋       | 2270/8564 [00:21<00:54, 114.93 examples/s]

@@ -38,7 +38,8 @@ def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_si
     # data = data.select(range(100))
 
     # Select random 20000 examples
-    data = data.select(fixed_selection(len(data), 20000))
+    #data = data.select(fixed_selection(len(data), 20000))
+    data = data.select(range(200))
 
     data_size = len(data)
     print("Number of examples:", data_size)
@@ -74,6 +75,7 @@ def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_si
 
     def get_translation(example, idx):
         translation = responses[idx].outputs[0].text
+        print(translation)
         example["sl_translation"] = translation
 
         return example
