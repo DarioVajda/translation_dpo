@@ -1,0 +1,124 @@
+cpu-bind=MASK - gn10, task  0  0 [509012]: mask 0xffff0000ffff00000000000000000000ffff0000ffff0000 set
+INFO 06-06 16:37:40 [__init__.py:239] Automatically detected platform cuda.
+Using GaMSTaskAdapter for model: cjvt/GaMS-9B-Instruct
+Number of examples: 23138
+INFO 06-06 16:38:03 [config.py:689] This model supports multiple tasks: {'embed', 'classify', 'generate', 'score', 'reward'}. Defaulting to 'generate'.
+INFO 06-06 16:38:03 [config.py:1713] Defaulting to use mp for distributed inference
+INFO 06-06 16:38:03 [config.py:1901] Chunked prefill is enabled with max_num_batched_tokens=8192.
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+INFO 06-06 16:38:06 [core.py:61] Initializing a V1 LLM engine (v0.8.4) with config: model='cjvt/GaMS-9B-Instruct', speculative_config=None, tokenizer='cjvt/GaMS-9B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=cjvt/GaMS-9B-Instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+WARNING 06-06 16:38:06 [multiproc_worker_utils.py:306] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 06-06 16:38:06 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0, 1, 2, 3], buffer_handle=(4, 10485760, 10, 'psm_ac24b2c2'), local_subscribe_addr='ipc:///tmp/08d6184d-3b48-408f-b623-55337990da83', remote_subscribe_addr=None, remote_addr_ipv6=False)
+INFO 06-06 16:38:06 [__init__.py:239] Automatically detected platform cuda.
+WARNING 06-06 16:38:07 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f574da4f670>
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:07 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_400d2fe0'), local_subscribe_addr='ipc:///tmp/64d4c99e-7f4d-467f-8c30-ab8cac8d6d1e', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 16:38:08 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f574da4ee90>
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m INFO 06-06 16:38:08 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_6eca2ab5'), local_subscribe_addr='ipc:///tmp/8bb55f84-2f96-45b5-bd50-b7cd071d2aa8', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 16:38:08 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f574da4df30>
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m INFO 06-06 16:38:08 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_11b47e07'), local_subscribe_addr='ipc:///tmp/d4575ebd-e69f-4ff3-bb37-c7a87160ef2b', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 16:38:09 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f574da4fc10>
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m INFO 06-06 16:38:09 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_6dbe09a9'), local_subscribe_addr='ipc:///tmp/b82410f8-281f-4f14-9f30-1ee0ec39d638', remote_subscribe_addr=None, remote_addr_ipv6=False)
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m INFO 06-06 16:38:10 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:10 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:10 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m INFO 06-06 16:38:10 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m INFO 06-06 16:38:10 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m INFO 06-06 16:38:10 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m INFO 06-06 16:38:10 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m INFO 06-06 16:38:10 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m INFO 06-06 16:38:12 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m INFO 06-06 16:38:12 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m INFO 06-06 16:38:12 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:12 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:12 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[1, 2, 3], buffer_handle=(3, 4194304, 6, 'psm_4eb62265'), local_subscribe_addr='ipc:///tmp/167bc122-9494-478c-83dd-93eaa533023a', remote_subscribe_addr=None, remote_addr_ipv6=False)
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m INFO 06-06 16:38:12 [parallel_state.py:959] rank 3 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 3
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m INFO 06-06 16:38:12 [parallel_state.py:959] rank 2 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 2
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:12 [parallel_state.py:959] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 0
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m INFO 06-06 16:38:12 [parallel_state.py:959] rank 1 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 1
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m INFO 06-06 16:38:12 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:12 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m INFO 06-06 16:38:12 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m INFO 06-06 16:38:12 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m INFO 06-06 16:38:12 [gpu_model_runner.py:1276] Starting to load model cjvt/GaMS-9B-Instruct...
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:12 [gpu_model_runner.py:1276] Starting to load model cjvt/GaMS-9B-Instruct...
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m INFO 06-06 16:38:12 [gpu_model_runner.py:1276] Starting to load model cjvt/GaMS-9B-Instruct...
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m INFO 06-06 16:38:12 [gpu_model_runner.py:1276] Starting to load model cjvt/GaMS-9B-Instruct...
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m WARNING 06-06 16:38:15 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m WARNING 06-06 16:38:15 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m WARNING 06-06 16:38:15 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m WARNING 06-06 16:38:15 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m INFO 06-06 16:38:16 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=1 pid=1259969)[0;0m INFO 06-06 16:38:16 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=3 pid=1260006)[0;0m INFO 06-06 16:38:16 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=2 pid=1259993)[0;0m INFO 06-06 16:38:16 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Using GaMSTaskAdapter for model: cjvt/GaMS-9B-Instruct
+Number of examples: 23138
+INFO 06-06 16:38:28 [config.py:689] This model supports multiple tasks: {'classify', 'score', 'generate', 'reward', 'embed'}. Defaulting to 'generate'.
+INFO 06-06 16:38:28 [config.py:1713] Defaulting to use mp for distributed inference
+INFO 06-06 16:38:28 [config.py:1901] Chunked prefill is enabled with max_num_batched_tokens=8192.
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:13<00:39, 13.09s/it]
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+INFO 06-06 16:38:31 [core.py:61] Initializing a V1 LLM engine (v0.8.4) with config: model='cjvt/GaMS-9B-Instruct', speculative_config=None, tokenizer='cjvt/GaMS-9B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=cjvt/GaMS-9B-Instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+WARNING 06-06 16:38:31 [multiproc_worker_utils.py:306] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 06-06 16:38:31 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0, 1, 2, 3], buffer_handle=(4, 10485760, 10, 'psm_e3616480'), local_subscribe_addr='ipc:///tmp/4ab968d4-b429-4568-a2ee-09696d9d57f0', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 16:38:32 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f5c264af700>
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:32 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_67ef5c1b'), local_subscribe_addr='ipc:///tmp/8d69c39c-b440-4a98-b760-bc194e592fb4', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 16:38:33 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f5c264ad270>
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m INFO 06-06 16:38:33 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_a31566d1'), local_subscribe_addr='ipc:///tmp/1857d62b-6a94-4681-b3a5-25745edec095', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 16:38:33 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f5c264ad720>
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m INFO 06-06 16:38:33 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_04d28705'), local_subscribe_addr='ipc:///tmp/6b32f78c-ad61-418b-82bf-32175c635500', remote_subscribe_addr=None, remote_addr_ipv6=False)
+WARNING 06-06 16:38:34 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f5c264ad780>
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m INFO 06-06 16:38:34 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[0], buffer_handle=(1, 10485760, 10, 'psm_fbd842c0'), local_subscribe_addr='ipc:///tmp/3507694f-28fb-4b71-a7e5-0da32cdc7632', remote_subscribe_addr=None, remote_addr_ipv6=False)
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:35 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m INFO 06-06 16:38:35 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:35 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m INFO 06-06 16:38:35 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m INFO 06-06 16:38:35 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m INFO 06-06 16:38:35 [utils.py:993] Found nccl from library libnccl.so.2
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m INFO 06-06 16:38:35 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m INFO 06-06 16:38:35 [pynccl.py:69] vLLM is using nccl==2.21.5
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m INFO 06-06 16:38:39 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m INFO 06-06 16:38:39 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m INFO 06-06 16:38:39 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:39 [custom_all_reduce_utils.py:244] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:39 [shm_broadcast.py:264] vLLM message queue communication handle: Handle(local_reader_ranks=[1, 2, 3], buffer_handle=(3, 4194304, 6, 'psm_da91c651'), local_subscribe_addr='ipc:///tmp/91c92d21-3922-4662-aa5c-807a2684b009', remote_subscribe_addr=None, remote_addr_ipv6=False)
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m INFO 06-06 16:38:39 [parallel_state.py:959] rank 3 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 3
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:39 [parallel_state.py:959] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 0
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m INFO 06-06 16:38:39 [parallel_state.py:959] rank 2 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 2
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m INFO 06-06 16:38:39 [parallel_state.py:959] rank 1 in world size 4 is assigned as DP rank 0, PP rank 0, TP rank 1
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m INFO 06-06 16:38:39 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m INFO 06-06 16:38:39 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:39 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m INFO 06-06 16:38:39 [cuda.py:221] Using Flash Attention backend on V1 engine.
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m INFO 06-06 16:38:39 [gpu_model_runner.py:1276] Starting to load model cjvt/GaMS-9B-Instruct...
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:39 [gpu_model_runner.py:1276] Starting to load model cjvt/GaMS-9B-Instruct...
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m INFO 06-06 16:38:39 [gpu_model_runner.py:1276] Starting to load model cjvt/GaMS-9B-Instruct...
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m INFO 06-06 16:38:39 [gpu_model_runner.py:1276] Starting to load model cjvt/GaMS-9B-Instruct...
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:26<00:26, 13.02s/it]
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m WARNING 06-06 16:38:43 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m WARNING 06-06 16:38:43 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m WARNING 06-06 16:38:43 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m WARNING 06-06 16:38:43 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m INFO 06-06 16:38:43 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=3 pid=509485)[0;0m INFO 06-06 16:38:43 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=1 pid=509450)[0;0m INFO 06-06 16:38:43 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=2 pid=509471)[0;0m INFO 06-06 16:38:43 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[1;36m(VllmWorker rank=0 pid=509435)[0;0m Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:08<00:25,  8.46s/it]
+[1;36m(VllmWorker rank=0 pid=1259954)[0;0m Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:35<00:11, 11.53s/it]
+slurmstepd: error: *** STEP 62642684.0 ON gn56 CANCELLED AT 2025-06-06T16:38:57 ***

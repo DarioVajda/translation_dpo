@@ -16,7 +16,7 @@ def load_data(input_path):
 
     return data
 
-def fixed_selection(n, m, seed=42):
+def fixed_selection(n, m, id, seed=42):
     # # Create a list [1, 2, ..., n]
     # numbers = list(range(1, n + 1))
     # # Set the seed so that the shuffle is reproducible
@@ -26,10 +26,10 @@ def fixed_selection(n, m, seed=42):
     # # Return the first m elements
     # return numbers[:m]
 
-    return [ i for i in range(n) if i % 300 == 0 ]
+    return [ i for i in range(n) if i % 300 == id ]
 
 
-def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_size):
+def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_size, id):
     # data = load_from_disk(os.path.join(input_path, "train"))
     data = load_from_disk('/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_en/train')
     task_adapter = get_task_adapter(model_path)
@@ -38,8 +38,8 @@ def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_si
     # data = data.select(range(100))
 
     # Select random 20000 examples
-    #data = data.select(fixed_selection(len(data), 20000))
-    data = data.select(range(200))
+    data = data.select(fixed_selection(len(data), 20000, id))
+    # data = data.select(range(200))
 
     data_size = len(data)
     print("Number of examples:", data_size)
@@ -48,6 +48,7 @@ def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_si
     model = LLM(
         model=model_path,
         gpu_memory_utilization=gpu_memory_util,
+        trust_remote_code=True,
         tensor_parallel_size=tp_size,
         seed=42
     )
@@ -75,7 +76,7 @@ def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_si
 
     def get_translation(example, idx):
         translation = responses[idx].outputs[0].text
-        print(translation)
+        # print(translation)
         example["sl_translation"] = translation
 
         return example
@@ -84,7 +85,8 @@ def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_si
     translation_data = prompt_data.map(get_translation, with_indices=True)
 
     # Save the data
-    print("Saving translations ...")
+    output_path = output_path[:-6] + f"_{id}.jsonl"
+    print("Saving translations to", output_path)
     f_out =  open(output_path, "w")
     for example in tqdm(translation_data):
         write_example = example.copy()
@@ -125,9 +127,15 @@ def parse_args():
         required=True,
         help="Tensor parallel size of the model."
     )
+    parser.add_argument(
+        "--id",
+        type=int,
+        default=0,
+        help="ID of the translation taks."
+    )
     return parser.parse_args()
 
 
 if __name__=="__main__":
     args=parse_args()
-    correct_examples(args.model_path, args.input_path, args.output_path, args.gpu_memory_util, args.tp_size)
+    correct_examples(args.model_path, args.input_path, args.output_path, args.gpu_memory_util, args.tp_size, args.id)

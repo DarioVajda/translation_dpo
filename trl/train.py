@@ -166,7 +166,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
     # if local_rank == 0: check_gradients(model)  # Check if the model has gradients enabled
 
     # Load the tokenizer
-    tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=False, add_eos_token=True)    # Tokenizer for the model
+    tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=False) # add_eos_token=True)    # Tokenizer for the model
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     if local_rank == 0: print("Loaded tokenizer")
