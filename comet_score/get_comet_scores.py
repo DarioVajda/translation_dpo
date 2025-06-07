@@ -13,7 +13,7 @@ def load_data(input_path):
 
     return data
 
-            
+
 def save_data(output_path, processed_data):
     with open(output_path, "w", encoding="utf-8") as outfile:
         for item in processed_data:

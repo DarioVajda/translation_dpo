@@ -2,7 +2,7 @@
 #SBATCH --job-name=comet_scoring
 #SBATCH --account=s24o01-42-users
 #SBATCH --partition=gpu
-#SBATCH --time=8:00:00
+#SBATCH --time=0:30:00
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=8

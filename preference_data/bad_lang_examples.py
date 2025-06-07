@@ -12,9 +12,9 @@ def addapt_to_nemo(data):
     data = data.rename(columns={"chosen": "chosen_response", "rejected": "rejected_response"})
     return data
 
-def main():
+def main(id=0):
     # Load the data
-    data = pd.read_json("../language_identification/paired_data.jsonl", orient="records", lines=True)
+    data = pd.read_json(f"../language_identification/paired_data_with_scores{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True)
     # Check the shape of the data
     print("Shape of the data:", data.shape)
 
@@ -26,14 +26,14 @@ def main():
     SIZE_THRESHOLD = 0.7
 
     # Preference dataset (gams)
-    gams_sl = gams_sl.drop(columns=["id", "language_eurollm", "language_gams", "text", "title", "url", "Prompt_eurollm"])
+    gams_sl = gams_sl.drop(columns=["id", "language_eurollm", "language_gams", "text", "title", "url", "Prompt_eurollm", "comet_score_gams", "comet_score_eurollm"])
     gams_sl = gams_sl.rename(columns={"Prompt_gams": "prompt", "sl_translation_gams": "chosen", "sl_translation_eurollm": "rejected"})
     gams_sl = gams_sl[gams_sl["relative_length_gams"] > SIZE_THRESHOLD]
     gams_sl = gams_sl.drop(columns=["relative_length_gams", "relative_length_eurollm"])
     gams_sl['src'] = "gams"
 
     # Preference dataset (eurollm)
-    eurollm_sl = eurollm_sl.drop(columns=["id", "language_eurollm", "language_gams", "text", "title", "url", "Prompt_eurollm"])
+    eurollm_sl = eurollm_sl.drop(columns=["id", "language_eurollm", "language_gams", "text", "title", "url", "Prompt_eurollm", "comet_score_gams", "comet_score_eurollm"])
     eurollm_sl = eurollm_sl.rename(columns={"Prompt_gams": "prompt", "sl_translation_eurollm": "chosen", "sl_translation_gams": "rejected"})
     eurollm_sl = eurollm_sl[eurollm_sl["relative_length_eurollm"] > SIZE_THRESHOLD]
     eurollm_sl = eurollm_sl.drop(columns=["relative_length_gams", "relative_length_eurollm"])
@@ -58,7 +58,12 @@ def main():
             print(f" - {column}")
 
     # Save the data
-    bad_lang_examples.to_json("bad_lang_examples.jsonl", orient="records", lines=True, force_ascii=False)
+    bad_lang_examples.to_json(f"raw_data/bad_lang_examples{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True, force_ascii=False)
 
 if __name__=="__main__":
-    main()
+    # main()
+    for id in [1, 2]:
+        print('*'*60)
+        print(f"Processing data with id {id}")
+        print('*'*60)
+        main(id)

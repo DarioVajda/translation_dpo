@@ -13,7 +13,7 @@ def addapt_to_nemo(data):
     data = data.rename(columns={"chosen": "chosen_response", "rejected": "rejected_response"})
     return data
 
-def main():
+def main(id=0):
     # USIN THIS AS MINIMUM SCORE DIFFERENCE TO CONSIDER A PREFERENCE
     GOOD_SCORE = 0.86
 
@@ -22,7 +22,7 @@ def main():
         random_bad_start = random.choice(BAD_STARTS)
         return f"{random_bad_start}\n{text}"
 
-    data = pd.read_json("../language_identification/paired_data_with_scores.jsonl", orient="records", lines=True)
+    data = pd.read_json(f"../language_identification/paired_data_with_scores{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True)
     print("Shape of the data:", data.shape)
 
     # Filtering out the rows where both translations are in Slovene
@@ -82,7 +82,12 @@ def main():
             print(f" - {column}")
 
     # Save the data
-    bad_format_data.to_json("bad_format_examples.jsonl", orient="records", lines=True, force_ascii=False)
+    bad_format_data.to_json(f"raw_data/bad_format_examples{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True, force_ascii=False)
 
 if __name__=="__main__":
-    main()
+    # main()
+    for id in [1, 2]:
+        print('*'*60)
+        print(f"Processing data with id {id}")
+        print('*'*60)
+        main(id)

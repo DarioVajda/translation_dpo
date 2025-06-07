@@ -53,14 +53,28 @@ def back_to_preference_format(example):
         "src": example["src"],
     }
 
+path_prefix = "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data"
+
 files =[
-    "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_lang_examples.jsonl",
-    "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/choose_examples.jsonl",
-    "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/short_examples.jsonl",
-    "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_format_examples.jsonl",
+    # "bad_lang_examples.jsonl",
+    # "choose_examples.jsonl",
+    # "short_examples.jsonl",
+    # "bad_format_examples.jsonl",
+
+    "choose_examples_0.jsonl",
+
+    # "bad_lang_examples_1.jsonl",
+    # "choose_examples_1.jsonl",
+    # "short_examples_1.jsonl",
+    # "bad_format_examples_1.jsonl",
+
+    # "bad_lang_examples_2.jsonl",
+    # "choose_examples_2.jsonl",
+    # "short_examples_2.jsonl",
+    # "bad_format_examples_2.jsonl",
 ]
 for file_path in files:
-    train_data = load_train_data(file_path)
+    train_data = load_train_data(f"{path_prefix}/raw_data/{file_path}")
 
     # 4) run it on your Dataset
     print(f"Processing {file_path} with {len(train_data)} examples")
@@ -73,4 +87,5 @@ for file_path in files:
     train_data = pd.DataFrame(train_data)
 
     # save the data to a file named f"{file_path without .jsonl}_filtered.jsonl"
-    train_data.to_json(f"{file_path[:-6]}_filtered.jsonl", orient="records", lines=True, force_ascii=False)
+    train_data.to_json(f"{path_prefix}/filtered_data/{file_path[:-6]}.jsonl", orient="records", lines=True, force_ascii=False)
+    print("-" * 40)

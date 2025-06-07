@@ -46,31 +46,26 @@ def load_dataset(input_data_dir):
     return dataset
 
 
-def main(args=None, data_to_check=None):
+def main(client=None, args=None, data_to_check=None, id=0):
     if not data_to_check:
         print("data_to_check is None")
         return
 
     print("-"*60)
-    print("Performing language identification on the data:", data_to_check)
+    print("Performing language identification on the data:", data_to_check, "with id:", id)
     print("-"*60)
     
     # Params
     # multilingual_data_path = f'/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_{data_to_check}_translation.jsonl'
-    multilingual_data_path = f'/ceph/hpc/data/s24o01-42-users/translation_optimization/comet_score/scored_{data_to_check}_translation.jsonl'
-    language_separated_output_path = f'./{data_to_check}_language_id_with_scores' # args.output_path
+    multilingual_data_path = f'/ceph/hpc/data/s24o01-42-users/translation_optimization/comet_score/scored_{data_to_check}_translation{f'_{id}' if id>0 else ''}.jsonl'
+    language_separated_output_path = f'./{data_to_check}_language_id_with_scores{f'_{id}' if id>0 else ''}' # args.output_path
+    # print("multilingual_data_path = ", multilingual_data_path)
 
     # Download a fastText language identification model
     # and see a list of supported languages here:
     # https://fasttext.cc/docs/en/language-identification.html
     model_path = '/ceph/hpc/data/s24o01-42-users/translation_optimization/language_identification/model/lid.176.bin' # args.model_path
     language_field = "language"
-
-    # Prepare samples for the classifier
-    with open('/ceph/hpc/data/s24o01-42-users/translation_optimization/language_identification/dask_config/client.json', "r") as config_file:
-        client_args = json.load(config_file)
-    client = get_client(**client_args)
-    print("client = get_client(**client_args)")
 
 
     # Filter data
@@ -82,13 +77,13 @@ def main(args=None, data_to_check=None):
         score_type="object"
     )
     filtered_dataset = language_id_pipeline(multilingual_dataset)
-    print("filtered_dataset = language_id_pipeline(multilingual_dataset)")
+    # print("filtered_dataset = language_id_pipeline(multilingual_dataset)")
 
     # Remove the language score
     filtered_dataset.df[language_field] = filtered_dataset.df[language_field].apply(
         lambda score: score[1], meta=(None, str)
     )
-    print("filtered_dataset.df[language_field] = filtered_dataset.df[language_field].apply(lambda score: score[1], meta=(None, str))")
+    # print("filtered_dataset.df[language_field] = filtered_dataset.df[language_field].apply(lambda score: score[1], meta=(None, str))")
 
     # Split the dataset by language
     language_stats = separate_by_metadata(
@@ -96,7 +91,7 @@ def main(args=None, data_to_check=None):
         language_separated_output_path,
         metadata_field=language_field,
     ).compute()
-    print("language_stats = separate_by_metadata(filtered_dataset.df, language_separated_output_path, metadata_field=language_field).compute()")
+    # print("language_stats = separate_by_metadata(filtered_dataset.df, language_separated_output_path, metadata_field=language_field).compute()")
 
 
 def parse_args():
@@ -137,6 +132,16 @@ def parse_args():
 if __name__ == "__main__":
     # main(parse_args())
     print("running main...")
+
+
+    # Prepare samples for the classifier
+    with open('/ceph/hpc/data/s24o01-42-users/translation_optimization/language_identification/dask_config/client.json', "r") as config_file:
+        client_args = json.load(config_file)
+    client = get_client(**client_args)
+    print("Prepared client")
     
     for data_to_check in ['eurollm9b', 'gams9b']:
-        main(data_to_check=data_to_check)
+        for id in [0, 1, 2]:
+        # for id in [1, 2]:
+            # print(f"Processing {data_to_check} with id {id}")
+            main(client=client, data_to_check=data_to_check, id=id)
