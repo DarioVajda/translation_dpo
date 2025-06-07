@@ -4,3 +4,4 @@ trl/training_run/
 dpo/
 *.jsonl
 trl/trained_models/
+language_identification/model/lid.176.bin
