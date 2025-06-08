@@ -2,40 +2,8 @@ import json
 import os
 
 from datasets import Dataset
-from transformers import AutoTokenizer
+# from transformers import AutoTokenizer
 
-#region Dummy dataset
-# train_data = [
-#     {
-#         "prompt": [{"role": "user", "content": "What color is the sky?"}], 
-#         "chosen": [{"role": "assistant", "content": "It is blue."}], 
-#         "rejected": [{"role": "assistant", "content": "It is green."}]
-#     },
-#     {
-#         "prompt": [{"role": "user", "content": "What is the capital of France?"}], 
-#         "chosen": [{"role": "assistant", "content": "The capital of France is Paris."}], 
-#         "rejected": [{"role": "assistant", "content": "The capital of France is London."}]
-#     },
-#     {
-#         "prompt": [{"role": "user", "content": "What is the largest mammal?"}], 
-#         "chosen": [{"role": "assistant", "content": "The blue whale is the largest mammal on Earth."}], 
-#         "rejected": [{"role": "assistant", "content": "The elephant is the largest mammal."}]
-#     }
-# ]
-
-# val_data = [
-#     {
-#         "prompt": [{"role": "user", "content": "What is the capital of Germany?"}], 
-#         "chosen": [{"role": "assistant", "content": "The capital of Germany is Berlin."}], 
-#         "rejected": [{"role": "assistant", "content": "The capital of Germany is Munich."}]
-#     },
-#     {
-#         "prompt": [{"role": "user", "content": "What is the largest planet in our solar system?"}], 
-#         "chosen": [{"role": "assistant", "content": "The largest planet in our solar system is Jupiter."}], 
-#         "rejected": [{"role": "assistant", "content": "The largest planet in our solar system is Saturn."}]
-#     }
-# ]
-#endregion
 
 # load the data form file at given path and split into train and validation data
 def load_train_val_data(file_path, split_ratio=0.9):
@@ -46,18 +14,40 @@ def load_train_val_data(file_path, split_ratio=0.9):
     val_data = data[int(len(data) * split_ratio):]
     return train_data, val_data
 
-# load data from the file "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_lang_examples_filtered.jsonl"
-lang_train_data, lang_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_lang_examples_filtered.jsonl")
+# Loading the evaluation data from the old version of the dataset (for fair comparison)
+_, lang_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_lang_examples.jsonl")
+_, short_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/short_examples.jsonl")
+_, choose_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/choose_examples.jsonl")
+_, format_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_format_examples.jsonl")
 
-# load data from the file "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/short_examples_filtered.jsonl"
-short_train_data, short_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/short_examples_filtered.jsonl")
 
-# load data from the file "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/choose_examples_filtered.jsonl"
-choose_train_data, choose_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/choose_examples_filtered.jsonl")
+# Loading the training data from the new version of the dataset
+lang_train_data0, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_lang_examples.jsonl")
+lang_train_data1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_lang_examples_1.jsonl", split_ratio=1)
+lang_train_data2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_lang_examples_2.jsonl", split_ratio=1)
 
-# load data from the file "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_format_examples_filtered.jsonl"
-format_train_data, format_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/bad_format_examples_filtered.jsonl")
+short_train_data0, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/short_examples.jsonl")
+short_train_data1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/short_examples_1.jsonl", split_ratio=1)
+short_train_data2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/short_examples_2.jsonl", split_ratio=1)
 
+choose_train_data0, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/choose_examples_0.jsonl") # Using _0 file because it has bigger requirement for the comet score difference then the old version
+choose_train_data1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/choose_examples_1.jsonl", split_ratio=1)
+choose_train_data2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/choose_examples_2.jsonl", split_ratio=1)
+
+format_train_data0, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_format_examples.jsonl")
+format_train_data1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_format_examples_1.jsonl", split_ratio=1)
+format_train_data2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_format_examples_2.jsonl", split_ratio=1)
+
+lang_train_data = lang_train_data0 + lang_train_data1 + lang_train_data2
+short_train_data = short_train_data0 + short_train_data1 + short_train_data2
+choose_train_data = choose_train_data0 + choose_train_data1 + choose_train_data2
+format_train_data = format_train_data0 + format_train_data1 + format_train_data2
+
+
+print("Training data of type 'bad_lang_examples':   ", len(lang_train_data))
+print("Training data of type 'short_examples':      ", len(short_train_data))
+print("Training data of type 'choose_examples':     ", len(choose_train_data))
+print("Training data of type 'bad_format_examples': ", len(format_train_data))
 
 # merge the three datasets into one
 train_data = lang_train_data + short_train_data + choose_train_data + format_train_data

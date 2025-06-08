@@ -8,6 +8,7 @@ import os
 import torch
 from peft import get_peft_model, LoraConfig, TaskType
 
+import os
 
 # set the wandb project where this run will be logged
 os.environ["WANDB_PROJECT"]="GaMS-9B-Translation-DPO"
@@ -71,19 +72,23 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
     # Creating the train and validation datasets
     train_dataset = Dataset.from_list(train_data)
     val_dataset = Dataset.from_list(val_data)
-    if local_rank == 0: print("Created datasets")
+    if local_rank == 0: 
+        print("Created datasets")
+        print("Train dataset size:", len(train_dataset))
+        print("Validation dataset size:", len(val_dataset))
+    
 
     STEPS_PER_EPOCH = len(train_dataset) // batch_size
-    EVAL_STEPS = int(0.5 * STEPS_PER_EPOCH)
+    EVAL_STEPS = int(1/3 * STEPS_PER_EPOCH) # Evaluate 3 times per epoch
     if local_rank == 0: print("Steps per epoch:", STEPS_PER_EPOCH)
-    if local_rank == 0: print("Eval steps:", EVAL_STEPS)
+    if local_rank == 0: print("Evaluate each", EVAL_STEPS, "steps")
     # DPO Configuration (this is before loading the model because it is requered by deepspeed)
     dpo_config = DPOConfig(
         num_train_epochs=EPOCHS,                                    # Total number of training epochs to perform - vec epoh
         per_device_train_batch_size=micro_batch_size,               # Batch size per GPU/TPU core/CPU for training
         per_device_eval_batch_size=micro_batch_size,                # Batch size per GPU/TPU core/CPU for evaluation
         gradient_accumulation_steps=gradient_accumulation_steps,    # Number of updates steps to accumulate before performing a backward/update pass
-        output_dir=f"training_run/r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}",     # Directory where the model predictions and checkpoints will be written
+        output_dir=f"training_run/r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}_{os.getenv('SLURM_JOB_ID')}",     # Directory where the model predictions and checkpoints will be written
         logging_steps=10,                                           # Log every X updates steps
         save_strategy="steps",                                      # Save checkpoint every X epochs
         save_steps=EVAL_STEPS,                                      # Save checkpoint every X updates steps
@@ -112,7 +117,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
 
         # WandB configuration:
         report_to="wandb",                                          # Enable WandB logging
-        run_name=f"DPO_r-{RANK}_lr-{LEARNING_RATE}_e-{EPOCHS}_b-{BETA}",     # Name of the WandB run
+        run_name=f"DPO_r-{RANK}_lr-{LEARNING_RATE}_e-{EPOCHS}_b-{BETA}_{os.getenv('SLURM_JOB_ID')}",     # Name of the WandB run
 
         # Learning rate scheduler:
         learning_rate=LEARNING_RATE,                                # The initial learning rate for Adam
@@ -188,7 +193,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
 
     if local_rank == 0: 
         print("Saving model")
-        model.save_pretrained(f"trained_models/Translation_DPO_GaMS-9B_r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}") # Save the model
+        model.save_pretrained(f"trained_models/Translation_DPO_GaMS-9B_r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}_{os.getenv('SLURM_JOB_ID')}") # Save the model
 
 
 

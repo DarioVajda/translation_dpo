@@ -5,8 +5,9 @@ from peft import PeftModel
 # Define paths
 base_model_name = "cjvt/GaMS-9B-Instruct"
 # adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-3e-07_b-0.2/checkpoint-1605"
-adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-4e-07_b-0.2/checkpoint-1565" # Chose this one because of a good eval metrics
-save_path = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v2"  # New directory for merged model
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-4e-07_b-0.2/checkpoint-1565" # Chose this one because of a good eval metrics
+adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-4e-07_b-0.2_62717633/checkpoint-4536"
+save_path = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3"  # New directory for merged model
 
 # Load base model
 model = AutoModelForCausalLM.from_pretrained(base_model_name, torch_dtype="auto")

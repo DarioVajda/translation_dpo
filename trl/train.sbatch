@@ -2,9 +2,9 @@
 #SBATCH --job-name=dpo_fine_tuning
 #SBATCH --output=dpo_test_run_output.txt
 #SBATCH --error=dpo_test_run_error.txt
-#SBATCH --time=8:00:00
+#SBATCH --time=16:00:00
 #SBATCH --partition=gpu
-#SBATCH --nodes=2
+#SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:4
 #SBATCH --mem=0
