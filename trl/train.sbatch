@@ -4,11 +4,12 @@
 #SBATCH --error=dpo_test_run_error.txt
 #SBATCH --time=16:00:00
 #SBATCH --partition=gpu
-#SBATCH --nodes=4
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:4
-#SBATCH --mem=0
+#SBATCH --mem=256G
 #SBATCH --exclusive
+#SBATCH --reservation=s24o01-42-users
 
 # Get the list of hostnames from SLURM
 mapfile -t HOSTS < <(scontrol show hostnames "$SLURM_JOB_NODELIST")
@@ -38,9 +39,20 @@ CONTAINER=/ceph/hpc/data/s24o01-42-users/containers/transformers_deepspeed_lates
 TRAINING_SCRIPT="train.py"
 
 # Get the parameters for the training script
-DPO_RANK=${1:-64}
+DPO_RANK=${1:-128}
 LEARNING_RATE=${2:-4e-7}
-BETA=${3:-0.2}
+BETA=${3:-0.1}
+
+# Tests performed (lr, beta):
+# 1e-6, 0.1
+# 1e-6, 0.2
+# 4e-7, 0.1
+# 4e-7, 0.2
+# 1e-7, 0.1
+# 1e-7, 0.2
+
+# About to run tests:
+# 4e-6, 0.1
 
 # SSL Certificate Configuration
 CACERT_FILE_PATH="/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/cacert.pem"

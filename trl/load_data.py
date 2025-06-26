@@ -4,6 +4,8 @@ import os
 from datasets import Dataset
 # from transformers import AutoTokenizer
 
+local_rank = int(os.environ.get("LOCAL_RANK", os.environ.get("ACCELERATE_LOCAL_RANK", 0)))
+should_print = not local_rank or local_rank == 0
 
 # load the data form file at given path and split into train and validation data
 def load_train_val_data(file_path, split_ratio=0.9):
@@ -44,10 +46,10 @@ choose_train_data = choose_train_data0 + choose_train_data1 + choose_train_data2
 format_train_data = format_train_data0 + format_train_data1 + format_train_data2
 
 
-print("Training data of type 'bad_lang_examples':   ", len(lang_train_data))
-print("Training data of type 'short_examples':      ", len(short_train_data))
-print("Training data of type 'choose_examples':     ", len(choose_train_data))
-print("Training data of type 'bad_format_examples': ", len(format_train_data))
+if should_print: print("[load_data.py]: Training data of type 'bad_lang_examples':   ", len(lang_train_data))
+if should_print: print("[load_data.py]: Training data of type 'short_examples':      ", len(short_train_data))
+if should_print: print("[load_data.py]: Training data of type 'choose_examples':     ", len(choose_train_data))
+if should_print: print("[load_data.py]: Training data of type 'bad_format_examples': ", len(format_train_data))
 
 # merge the three datasets into one
 train_data = lang_train_data + short_train_data + choose_train_data + format_train_data
@@ -70,19 +72,26 @@ for example in val_data:
     example["rejected"] = [{"role": "assistant", "content": example["rejected"]}]
 
 
-# # print the first 3 examples of the training data
-# print("First 3 training examples:")
+# print the first 3 examples of the training data
+# if should_print: print("First 3 training examples:")
 # for i in range(3):
-#     print(f"Example {i+1}:")
-#     print("Prompt:", train_data[i]["prompt"])
-#     print("Chosen:", train_data[i]["chosen"])
-#     print("Rejected:", train_data[i]["rejected"])
-#     print()
+#     if should_print: print(f"Example {i+1}:")
+#     if should_print: print("Prompt:", train_data[i]["prompt"])
+#     if should_print: print("Chosen:", train_data[i]["chosen"])
+#     if should_print: print("Rejected:", train_data[i]["rejected"])
+#     if should_print: print()
 
 
 # put the data into a dataset object
 train_dataset = Dataset.from_list(train_data)
 val_dataset = Dataset.from_list(val_data)
-print("Created datasets")
-print("Number of training examples:", len(train_dataset))
-print("Number of validation examples:", len(val_dataset))
+# if should_print: print("Created datasets")
+if should_print: print("[load_data.py]: Number of training examples:", len(train_dataset))
+if should_print: print("[load_data.py]: Number of validation examples:", len(val_dataset))
+
+
+# # print the percentage of each type of training data
+# print("Percentage of bad_lang_examples in training data: ", len(lang_train_data) / len(train_dataset) * 100)
+# print("Percentage of short_examples in training data: ", len(short_train_data) / len(train_dataset) * 100)
+# print("Percentage of choose_examples in training data: ", len(choose_train_data) / len(train_dataset) * 100)
+# print("Percentage of bad_format_examples in training data: ", len(format_train_data) / len(train_dataset) * 100)

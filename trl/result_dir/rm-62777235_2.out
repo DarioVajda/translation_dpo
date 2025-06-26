@@ -1,0 +1,112 @@
+cpu-bind=MASK - gn37, task  2  0 [525637]: mask 0xffff0000ffff0000ffffffffffffffffffff0000ffff0000ffffffffffffffff set
+*******STARTING********
+--- Running on Node Rank: 2 ---
+Total Nodes: 4
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
+GPUs per Node: 4
+Master Address: gn31
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 4     --machine_rank 2     --main_process_ip gn31     --main_process_port 29500     --num_processes 16     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_62777235     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train_curriculum.py"     --rank=64 --learning_rate=4e-7 --total_epochs=3 --beta=0.2 --curriculum_stage=0
+-------------------------------------------
+[2025-06-08 19:14:43,781] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+W0608 19:14:47.240000 525688 torch/distributed/run.py:792] 
+W0608 19:14:47.240000 525688 torch/distributed/run.py:792] *****************************************
+W0608 19:14:47.240000 525688 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0608 19:14:47.240000 525688 torch/distributed/run.py:792] *****************************************
+[2025-06-08 19:15:55,258] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-08 19:15:55,259] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-08 19:15:55,280] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-08 19:15:55,291] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Training data of type 'bad_lang_examples':    3489
+Training data of type 'short_examples':       699
+Training data of type 'choose_examples':      13379
+Training data of type 'bad_format_examples':  3148
+**************************************************
+Training data of type 'bad_lang_examples':    3489
+Training data of type 'short_examples':       699
+Training data of type 'choose_examples':      13379
+Training data of type 'bad_format_examples':  3148
+**************************************************
+Training data of type 'bad_lang_examples':    3489
+Training data of type 'short_examples':       699
+Training data of type 'choose_examples':      13379
+Training data of type 'bad_format_examples':  3148
+**************************************************
+Training data of type 'bad_lang_examples':    3489
+Training data of type 'short_examples':       699
+Training data of type 'choose_examples':      13379
+Training data of type 'bad_format_examples':  3148
+**************************************************
+Evaluation data size: 953
+Evaluation data size: 953
+Evaluation data size: 953
+Evaluation data size: 953
+Curriculum stage 0 training data size: 7336
+Curriculum stage 0 training data size: 7336
+Curriculum stage 0 training data size: 7336
+Curriculum stage 0 training data size: 7336
+Curriculum stage 1 training data size: 6689
+Curriculum stage 1 training data size: 6689
+Curriculum stage 1 training data size: 6689
+Curriculum stage 1 training data size: 6689
+Curriculum stage 2 training data size: 6690
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.2, curriculum_stage=0)
+4e-07
+Curriculum stage 2 training data size: 6690
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.2, curriculum_stage=0)
+4e-07
+Curriculum stage 2 training data size: 6690
+Curriculum stage 2 training data size: 6690
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.2, curriculum_stage=0)
+4e-07
+World size: 16
+Setting gradient accumulation steps to: 1
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.2, curriculum_stage=0)
+4e-07
+Created datasets
+Train dataset size: 7336
+Validation dataset size: 953
+Steps per epoch: 458
+Evaluate each 229 steps
+[2025-06-08 19:16:03,182] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-06-08 19:16:03,188] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-06-08 19:16:03,198] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-06-08 19:16:03,202] [INFO] [comm.py:658:init_distributed] cdb=None
+Set up DPO configuration
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:24<01:13, 24.51s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:24<01:14, 24.91s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:24<01:14, 24.83s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:24<01:14, 24.89s/it]W0608 19:17:25.901000 525688 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 525879 closing signal SIGTERM
+W0608 19:17:25.962000 525688 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 525881 closing signal SIGTERM
+W0608 19:17:25.963000 525688 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 525882 closing signal SIGTERM
+E0608 19:17:26.793000 525688 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: -9) local_rank: 1 (pid: 525880) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 861, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+=======================================================
+train_curriculum.py FAILED
+-------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+-------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-08_19:17:25
+  host      : pm6-nod18.vega.pri
+  rank      : 9 (local_rank: 1)
+  exitcode  : -9 (pid: 525880)
+  error_file: <N/A>
+  traceback : Signal 9 (SIGKILL) received by PID 525880
+=======================================================
+slurmstepd: error: Detected 1 oom_kill event in StepId=62777235.0. Some of the step tasks have been OOM Killed.

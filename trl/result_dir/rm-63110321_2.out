@@ -1,0 +1,182 @@
+cpu-bind=MASK - gn04, task  2  0 [2107964]: mask 0xffff0000ffff0000ffffffffffffffffffff0000ffff0000ffffffffffffffff set
+*******STARTING********
+--- Running on Node Rank: 2 ---
+Total Nodes: 3
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
+GPUs per Node: 4
+Master Address: gn01
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 3     --machine_rank 2     --main_process_ip gn01     --main_process_port 29500     --num_processes 12     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_63110321     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train_curriculum.py"     --rank=64 --learning_rate=4e-7 --total_epochs=3 --beta=0.1 --curriculum_stage=1
+-------------------------------------------
+[2025-06-12 18:14:49,914] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+W0612 18:14:51.306000 2108014 torch/distributed/run.py:792] 
+W0612 18:14:51.306000 2108014 torch/distributed/run.py:792] *****************************************
+W0612 18:14:51.306000 2108014 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0612 18:14:51.306000 2108014 torch/distributed/run.py:792] *****************************************
+[2025-06-12 18:14:56,119] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-12 18:14:56,166] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-12 18:14:56,178] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-12 18:14:56,188] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[load_data_curriculum.py]: Training data of type 'bad_lang_examples':    3489
+[load_data_curriculum.py]: Training data of type 'short_examples':       699
+[load_data_curriculum.py]: Training data of type 'choose_examples':      13379
+[load_data_curriculum.py]: Training data of type 'bad_format_examples':  3148
+[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *
+[load_data_curriculum.py]: Evaluation data size: 953
+[load_data_curriculum.py]: Curriculum stage 0 training data size: 4890
+[load_data_curriculum.py]: Curriculum stage 1 training data size: 6689
+[load_data_curriculum.py]: Curriculum stage 2 training data size: 6690
+[load_data.py]: Training data of type 'bad_lang_examples':    5343
+[load_data.py]: Training data of type 'short_examples':       699
+[load_data.py]: Training data of type 'choose_examples':      13379
+[load_data.py]: Training data of type 'bad_format_examples':  4806
+[load_data.py]: Number of training examples: 24227
+[load_data.py]: Number of validation examples: 953
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.1, curriculum_stage=1)
+4e-07
+World size: 12
+Setting gradient accumulation steps to: 1
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.1, curriculum_stage=1)
+4e-07
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.1, curriculum_stage=1)
+4e-07
+Created datasets
+Train dataset size: 6689
+Validation dataset size: 953
+Steps per epoch: 418
+Evaluate each 209 steps
+[2025-06-12 18:15:00,664] [INFO] [comm.py:658:init_distributed] cdb=None
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.1, curriculum_stage=1)
+4e-07
+[2025-06-12 18:15:00,698] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-06-12 18:15:00,715] [INFO] [comm.py:658:init_distributed] cdb=None
+Set up DPO configuration
+Loading model from: /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1
+[2025-06-12 18:15:00,821] [INFO] [comm.py:658:init_distributed] cdb=None
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:05<00:17,  5.72s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:05<00:17,  5.77s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:05<00:17,  5.76s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:05<00:17,  5.80s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.72s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.75s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.77s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.80s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.53s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.56s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.58s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.60s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  5.91s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  6.10s/it]
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  5.92s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  6.13s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  5.94s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  6.14s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  5.96s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  6.16s/it]
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`. This was detected when initializing the generation config instance, which means the corresponding file may hold incorrect parameterization and should be fixed.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Loaded model
+Total Parameters: 9457.78M
+Trainable Parameters (LoRA): 216.07M
+Percentage of Trainable Params: 2.2846%
+Total Parameters: 9457.78M
+Trainable Parameters (LoRA): 216.07M
+Percentage of Trainable Params: 2.2846%
+Using LoRA and set up the model
+Total Parameters: 9457.78M
+Trainable Parameters (LoRA): 216.07M
+Percentage of Trainable Params: 2.2846%
+Total Parameters: 9457.78M
+Trainable Parameters (LoRA): 216.07M
+Percentage of Trainable Params: 2.2846%
+[rank8]: Traceback (most recent call last):
+[rank8]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 235, in <module>
+[rank8]:     main(get_train_data(CURRICULUM_STAGE), val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, CURRICULUM_STAGE)
+[rank8]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 194, in main
+[rank8]:     tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=False) # add_eos_token=True)    # Tokenizer for the model
+[rank8]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 1028, in from_pretrained
+[rank8]:     return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+[rank8]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2046, in from_pretrained
+[rank8]:     raise EnvironmentError(
+[rank8]: OSError: Can't load tokenizer for '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1' is the correct path to a directory containing all relevant files for a GPT2TokenizerFast tokenizer.
+[rank9]: Traceback (most recent call last):
+[rank9]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 235, in <module>
+[rank9]:     main(get_train_data(CURRICULUM_STAGE), val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, CURRICULUM_STAGE)
+[rank9]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 194, in main
+[rank9]:     tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=False) # add_eos_token=True)    # Tokenizer for the model
+[rank9]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 1028, in from_pretrained
+[rank9]:     return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+[rank9]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2046, in from_pretrained
+[rank9]:     raise EnvironmentError(
+[rank9]: OSError: Can't load tokenizer for '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1' is the correct path to a directory containing all relevant files for a GPT2TokenizerFast tokenizer.
+[rank11]: Traceback (most recent call last):
+[rank11]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 235, in <module>
+[rank11]:     main(get_train_data(CURRICULUM_STAGE), val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, CURRICULUM_STAGE)
+[rank11]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 194, in main
+[rank11]:     tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=False) # add_eos_token=True)    # Tokenizer for the model
+[rank11]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 1028, in from_pretrained
+[rank11]:     return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+[rank11]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2046, in from_pretrained
+[rank11]:     raise EnvironmentError(
+[rank11]: OSError: Can't load tokenizer for '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1' is the correct path to a directory containing all relevant files for a GPT2TokenizerFast tokenizer.
+[rank10]: Traceback (most recent call last):
+[rank10]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 235, in <module>
+[rank10]:     main(get_train_data(CURRICULUM_STAGE), val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, CURRICULUM_STAGE)
+[rank10]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 194, in main
+[rank10]:     tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=False) # add_eos_token=True)    # Tokenizer for the model
+[rank10]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 1028, in from_pretrained
+[rank10]:     return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+[rank10]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2046, in from_pretrained
+[rank10]:     raise EnvironmentError(
+[rank10]: OSError: Can't load tokenizer for '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Translation_Curriculum-0-DPO_GaMS-9B_r-64_lr-1e-07_b-0.1' is the correct path to a directory containing all relevant files for a GPT2TokenizerFast tokenizer.
+[rank8]:[W612 18:15:36.248049563 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0612 18:15:41.179000 2108014 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2108190 closing signal SIGTERM
+W0612 18:15:41.180000 2108014 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2108191 closing signal SIGTERM
+W0612 18:15:41.180000 2108014 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2108192 closing signal SIGTERM
+E0612 18:15:41.470000 2108014 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 2108189) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 861, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train_curriculum.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-12_18:15:41
+  host      : pm5-nod09.vega.pri
+  rank      : 8 (local_rank: 0)
+  exitcode  : 1 (pid: 2108189)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

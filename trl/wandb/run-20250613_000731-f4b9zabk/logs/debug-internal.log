@@ -1,0 +1,16 @@
+{"time":"2025-06-13T00:07:31.673687104+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250613_000731-f4b9zabk/logs/debug-core.log"}
+{"time":"2025-06-13T00:07:32.711938567+02:00","level":"INFO","msg":"created new stream","id":"f4b9zabk"}
+{"time":"2025-06-13T00:07:32.712002457+02:00","level":"INFO","msg":"stream: started","id":"f4b9zabk"}
+{"time":"2025-06-13T00:07:32.712018577+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"f4b9zabk"}
+{"time":"2025-06-13T00:07:32.712226309+02:00","level":"INFO","msg":"handler: started","stream_id":"f4b9zabk"}
+{"time":"2025-06-13T00:07:32.712270399+02:00","level":"INFO","msg":"sender: started","stream_id":"f4b9zabk"}
+{"time":"2025-06-13T00:07:33.00832351+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-13T02:10:35.162562826+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-06-13T09:37:10.144172138+02:00","level":"INFO","msg":"stream: closing","id":"f4b9zabk"}
+{"time":"2025-06-13T09:37:10.144297209+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-13T09:37:10.14580783+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-13T09:37:11.161406762+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-13T09:37:11.348300972+02:00","level":"INFO","msg":"handler: closed","stream_id":"f4b9zabk"}
+{"time":"2025-06-13T09:37:11.348367612+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"f4b9zabk"}
+{"time":"2025-06-13T09:37:11.348383243+02:00","level":"INFO","msg":"sender: closed","stream_id":"f4b9zabk"}
+{"time":"2025-06-13T09:37:11.348434513+02:00","level":"INFO","msg":"stream: closed","id":"f4b9zabk"}

@@ -5,9 +5,17 @@ from peft import PeftModel
 # Define paths
 base_model_name = "cjvt/GaMS-9B-Instruct"
 # adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-3e-07_b-0.2/checkpoint-1605"
-# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-4e-07_b-0.2/checkpoint-1565" # Chose this one because of a good eval metrics
-adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-4e-07_b-0.2_62717633/checkpoint-4536"
-save_path = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3"  # New directory for merged model
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-4e-07_b-0.2/checkpoint-1565"
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-4e-07_b-0.2_62717633/checkpoint-4536"
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curri-0_r-64_lr-4e-07_b-0.2/checkpoint-916"
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/prev_curri-1_r-64_lr-4e-07_b-0.2/checkpoint-418"
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curri-2_r-64_lr-4e-07_b-0.2/checkpoint-418"
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-1e-06_b-0.1_63057002/checkpoint-4032"
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curriculum-0_r-64_lr-1e-07_b-0.1/checkpoint-1224"
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curriculum-1_r-64_lr-4e-07_b-0.1/checkpoint-836"
+adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curriculum-2_r-64_lr-1e-06_b-0.1/checkpoint-418"
+save_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-2"  # New directory for merged model
+# save_path = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v4"
 
 # Load base model
 model = AutoModelForCausalLM.from_pretrained(base_model_name, torch_dtype="auto")

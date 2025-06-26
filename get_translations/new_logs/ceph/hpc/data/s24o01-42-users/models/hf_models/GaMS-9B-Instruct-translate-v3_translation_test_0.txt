@@ -1,0 +1,29 @@
+cpu-bind=MASK - gn23, task  0  0 [1528035]: mask 0xffff0000ffff00000000000000000000ffff0000ffff0000 set
+Using GaMSTaskAdapter for model: /ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3
+Number of examples: 1157
+WARNING 06-12 18:47:48 config.py:185] gemma2 has interleaved attention, which is currently not supported by vLLM. Disabling sliding window and capping the max length to the sliding window size (4096).
+INFO 06-12 18:47:53 config.py:905] Defaulting to use mp for distributed inference
+INFO 06-12 18:47:53 llm_engine.py:237] Initializing an LLM engine (v0.6.3.post1) with config: model='/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3', speculative_config=None, tokenizer='/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=4, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3, num_scheduler_steps=1, chunked_prefill_enabled=False multi_step_stream_outputs=True, enable_prefix_caching=False, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+WARNING 06-12 18:47:54 multiproc_gpu_executor.py:53] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 06-12 18:47:54 custom_cache_manager.py:17] Setting Triton cache manager to: vllm.triton_utils.custom_cache_manager:CustomCacheManager
+[1;36m(VllmWorkerProcess pid=1528398)[0;0m INFO 06-12 18:47:55 multiproc_worker_utils.py:215] Worker ready; awaiting tasks
+[1;36m(VllmWorkerProcess pid=1528396)[0;0m INFO 06-12 18:47:55 multiproc_worker_utils.py:215] Worker ready; awaiting tasks
+[1;36m(VllmWorkerProcess pid=1528397)[0;0m INFO 06-12 18:47:55 multiproc_worker_utils.py:215] Worker ready; awaiting tasks
+[1;36m(VllmWorkerProcess pid=1528396)[0;0m INFO 06-12 18:47:57 utils.py:1008] Found nccl from library libnccl.so.2
+[1;36m(VllmWorkerProcess pid=1528397)[0;0m INFO 06-12 18:47:57 utils.py:1008] Found nccl from library libnccl.so.2
+INFO 06-12 18:47:57 utils.py:1008] Found nccl from library libnccl.so.2
+[1;36m(VllmWorkerProcess pid=1528396)[0;0m INFO 06-12 18:47:57 pynccl.py:63] vLLM is using nccl==2.20.5
+[1;36m(VllmWorkerProcess pid=1528397)[0;0m INFO 06-12 18:47:57 pynccl.py:63] vLLM is using nccl==2.20.5
+INFO 06-12 18:47:57 pynccl.py:63] vLLM is using nccl==2.20.5
+[1;36m(VllmWorkerProcess pid=1528398)[0;0m INFO 06-12 18:47:57 utils.py:1008] Found nccl from library libnccl.so.2
+[1;36m(VllmWorkerProcess pid=1528398)[0;0m INFO 06-12 18:47:57 pynccl.py:63] vLLM is using nccl==2.20.5
+INFO 06-12 18:47:59 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorkerProcess pid=1528398)[0;0m INFO 06-12 18:47:59 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorkerProcess pid=1528397)[0;0m INFO 06-12 18:47:59 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[1;36m(VllmWorkerProcess pid=1528396)[0;0m INFO 06-12 18:47:59 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /ceph/hpc/home/dv70648/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+INFO 06-12 18:47:59 shm_broadcast.py:241] vLLM message queue communication handle: Handle(connect_ip='127.0.0.1', local_reader_ranks=[1, 2, 3], buffer=<vllm.distributed.device_communicators.shm_broadcast.ShmRingBuffer object at 0x7f55331f7710>, local_subscribe_port=60321, remote_subscribe_port=None)
+INFO 06-12 18:47:59 model_runner.py:1056] Starting to load model /ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3...
+[1;36m(VllmWorkerProcess pid=1528398)[0;0m INFO 06-12 18:47:59 model_runner.py:1056] Starting to load model /ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3...
+[1;36m(VllmWorkerProcess pid=1528396)[0;0m INFO 06-12 18:47:59 model_runner.py:1056] Starting to load model /ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3...
+[1;36m(VllmWorkerProcess pid=1528397)[0;0m INFO 06-12 18:47:59 model_runner.py:1056] Starting to load model /ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]

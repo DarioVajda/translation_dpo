@@ -1,0 +1,21 @@
+{"time":"2025-06-12T00:59:45.127802163+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250612_005945-t5qe9bxf/logs/debug-core.log"}
+{"time":"2025-06-12T00:59:45.740986643+02:00","level":"INFO","msg":"created new stream","id":"t5qe9bxf"}
+{"time":"2025-06-12T00:59:45.741033693+02:00","level":"INFO","msg":"stream: started","id":"t5qe9bxf"}
+{"time":"2025-06-12T00:59:45.741087004+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"t5qe9bxf"}
+{"time":"2025-06-12T00:59:45.741125324+02:00","level":"INFO","msg":"handler: started","stream_id":"t5qe9bxf"}
+{"time":"2025-06-12T00:59:45.741183454+02:00","level":"INFO","msg":"sender: started","stream_id":"t5qe9bxf"}
+{"time":"2025-06-12T00:59:46.01065628+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-12T02:33:16.671242118+02:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/slolama/GaMS-9B-Translation-DPO/t5qe9bxf/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-06-12T02:48:47.057166995+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-06-12T03:28:32.106474095+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-06-12T03:44:34.593083657+02:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/slolama/GaMS-9B-Translation-DPO/t5qe9bxf/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-06-12T04:25:07.206802933+02:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/slolama/GaMS-9B-Translation-DPO/t5qe9bxf/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-06-12T05:21:47.238228348+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-06-12T05:56:00.789465684+02:00","level":"INFO","msg":"stream: closing","id":"t5qe9bxf"}
+{"time":"2025-06-12T05:56:00.789585734+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-12T05:56:00.791256537+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-12T05:56:01.613530847+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-12T05:56:02.025286098+02:00","level":"INFO","msg":"handler: closed","stream_id":"t5qe9bxf"}
+{"time":"2025-06-12T05:56:02.025315228+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"t5qe9bxf"}
+{"time":"2025-06-12T05:56:02.025328248+02:00","level":"INFO","msg":"sender: closed","stream_id":"t5qe9bxf"}
+{"time":"2025-06-12T05:56:02.025399978+02:00","level":"INFO","msg":"stream: closed","id":"t5qe9bxf"}

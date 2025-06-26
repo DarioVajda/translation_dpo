@@ -1,0 +1,17 @@
+{"time":"2025-06-11T19:15:12.141387571+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250611_191512-ymb72o0u/logs/debug-core.log"}
+{"time":"2025-06-11T19:15:12.560659092+02:00","level":"INFO","msg":"created new stream","id":"ymb72o0u"}
+{"time":"2025-06-11T19:15:12.560720553+02:00","level":"INFO","msg":"stream: started","id":"ymb72o0u"}
+{"time":"2025-06-11T19:15:12.560779219+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"ymb72o0u"}
+{"time":"2025-06-11T19:15:12.560825175+02:00","level":"INFO","msg":"sender: started","stream_id":"ymb72o0u"}
+{"time":"2025-06-11T19:15:12.560896552+02:00","level":"INFO","msg":"handler: started","stream_id":"ymb72o0u"}
+{"time":"2025-06-11T19:15:12.835843568+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-12T00:13:44.255320551+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-06-12T01:19:16.950148826+02:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/slolama/GaMS-9B-Translation-DPO/ymb72o0u/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-06-12T01:44:40.493285209+02:00","level":"INFO","msg":"stream: closing","id":"ymb72o0u"}
+{"time":"2025-06-12T01:44:40.493425241+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-12T01:44:40.495431778+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-12T01:44:41.632309945+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-12T01:44:41.839169339+02:00","level":"INFO","msg":"handler: closed","stream_id":"ymb72o0u"}
+{"time":"2025-06-12T01:44:41.839218088+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ymb72o0u"}
+{"time":"2025-06-12T01:44:41.839262507+02:00","level":"INFO","msg":"sender: closed","stream_id":"ymb72o0u"}
+{"time":"2025-06-12T01:44:41.84486796+02:00","level":"INFO","msg":"stream: closed","id":"ymb72o0u"}

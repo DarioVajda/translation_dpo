@@ -1,0 +1,616 @@
+Število označenih slik v nalogah strojnega učenja je pozitivno povezano z uspešnostjo nalog; vendar so označeni podatki redki in dragi.
+Težava je še večja pri nalogah analize medicinskih slik, kjer so pogosto potrebne ekspertne oznake in zunanje izvajanje ni običajno.
+V mnogih primerih je potrebno označevanje izvesti tudi na samem mestu zaradi predpisov o razširjanju zasebnih podatkov pacientov.
+Pri vsaki nalogi analize medicinskih slik je najzahtevnejši in časovno najobsežnejši korak označevanje podatkov, zato je bilo predlaganih več pristopov za omilitev te ozke grla pri označevanju podatkov.
+Metodi brez nadzora in samonadzora, ki lahko uporabljajo neoznačene podatke, in polnadzorne metode, ki uporabljajo delno označene podatke, so se izkazale za izboljšanje učinkovitosti nalog (Campanella et al., 2019a, Komura in Ishikawa, 2018, Peikari et al., 2018).
+Večina do nedavnega uporabljenih samonadzorovanih tehnik je temeljila na lastnostih slik naravnih prizorov, ki niso uporabne za histopatološke slike.
+Vendar pa je mogoče pristope za učenje na osnovi kontrastov uporabiti tudi na slikah iz digitalne patologije (glej razdelek 2).
+V tem delu uporabljamo rezidualne mreže, ki so bile predhodno usposobljene z uporabo samonadzorovanega učenja, da bi se naučile splošnih značilk.
+Uporabljamo SimCLR (Chen, Kornblith, Norouzi et al., 2020), tehniko samonadzorovanega učenja s kontrasti, ki ima podobno uspešnost kot nadzorovani omrežni model ResNet 50 pri natančnosti razvrščanja na prvo mesto za podatkovni niz ILSVRC2012.
+Preizkusili smo preostale mreže z metodo in jih uporabili v nadaljnjih nalogah za več nalog na več digitalnih histopatoloških podatkovnih nizih za več organov.
+Raziskali smo različne strategije vzorčenja podatkov, da bi razumeli količino in vrsto podatkov, ki vodijo do predstavitve, ki izboljša uspešnost nalog v primerjavi s pred-učenjem na ImageNet ali učenjem od začetka.
+Natančneje, preučujemo vpliv števila slik, uporabljenih za predučenje, ločljivosti, barvanja in vrste tkiva na naučene predstavitve in uspešnost nalog navzdol.
+Poleg tega primerjamo več strategij avtomatiziranega izboljševanja slik, da bi ugotovili najboljše prakse pri predučenju za digitalno patologijo tkiv.
+Naši rezultati kažejo, da lahko pretreniranje z neoznačenimi histopatološkimi slikami izboljša uspešnost nalog v primerjavi s pretreniranjem na podlagi slike Imagenet in zmanjša potrebo po označenih podatkih za različne klasifikacijske, regresijske in segmentacijske naloge.
+Predna učna množica podatkov vključuje slike iz virov, kot so kri, dojka, bezgavka, debelo črevo, kost, prostata, jetra, trebušna slinavka, mehur, maternični vrat, požiralnik, glava, vrat, ledvica, pljuča, ščitnica, maternica, kostni mozeg, koža, možgani, želodec in jajčnik.
+Od skupno 57 podatkovnih nizov je 22 sestavljenih iz slikovnih izsekov, 35 pa je WSI podatkovnih nizov.
+Večina podatkovnih nizov je obarvanih s hematoksilinom in eozinom (H&E) in imajo najvišjo ločljivost m/piksla (pogosto imenovano 40x).
+Čeprav večina podatkovnih nizov WSI izhaja iz programov The Cancer Genome Atlas (TCGA) in Clinical Proteomic Tumor Analysis Consortium (CPTAC), uporabljamo tudi več javnih podatkovnih nizov iz nalog za limfne in dojke raka.
+Slike iz rezov so zbrane iz različnih javno dostopnih virov in imajo podobno raznolikost organov kot WSI podatki.
+Podrobnejši seznam predna učnih podatkovnih množic je naveden v prilogi F.1.
+Preverili smo predhodno usposobljene mreže, ki so bile usposobljene pod različnimi pogoji (npr. usposabljanje samo z enim podatkovnim nizom ali tipom tkiva, različno število učnih slik itd.) na petih klasifikacijskih, dveh segmentacijskih in enem regresijskem podatkovnem nizu.
+Klasifikacijski podatki vključujejo BACH (štirirazredna klasifikacija raka dojke), Lymph (trirazredna klasifikacija malignega limfnega raka), BreakHisv1 (dvorazredna klasifikacija raka dojke), NCT-CRC-HE-100K (devetrazredna klasifikacija tkiva kolorektalnega raka) in Gleason2019 (petrazredna klasifikacija raka prostate).
+Segmentacijski podatki so BACH (štirirazredna segmentacija raka dojke na WSI) in DigestPath2019 (segmentacija zgodnjih kolonov tumorjev na WSI na zdravo in rakavo tkivo).
+Naš enostavni regresijski nabor podatkov je BreastPathQ, ki vključuje dodeljevanje odstotka ocene celične gostote rakave celice za določeno slikovno območje.
+Podrobna razlaga vsakega validacijskega nabora je podana v prilogi C.1.
+V nadaljevanju kratice NCT, Bpq in Dp19 označujejo NCT-CRC-HE100K, BreastPathQ in DigestPath2019.
+Primerjamo prednastavljene mreže z naključno inicializiranimi in z ImageNet prednastavljenimi Resnet 18, 34, 50 in 101.
+Za segmentacijske naloge uporabljamo arhitekturo UNet (Ronneberger, Fischer in Brox, 2015), ki vsebuje prednastavljen kodirnik in naključno inicializiran dekodirnik.
+Primerjamo dve nastavitvi nadzorovanega usposabljanja: fino uglaševanje in usposabljanje zadnje plasti.
+Da bi neposredno ocenili naučene predstavitve, smo zamrznili vsako rezidualno mrežo na plasti pred aktivacijo in samo trenirali linearni klasifikator ali regresijo na naučenih predstavitvah (trening zadnje plasti).
+Zadnja plast nastavitev nadzorovanega učenja je izpuščena za nalogo segmentacije, saj UNet-podobni dekodirnik (Yakubovskiy, 2020), ki ga uporabljamo, vsebuje primerljivo število učljivih parametrov kot prednastavljeni kodirnik Resnet in lahko zmanjša koristi uporabe prednastavljenega kodirnika ali inicializacije ImageNet.
+Prav tako smo vsako mrežo usposobili brez zamrzovanja plasti (fino uglaševanje).
+Medtem ko se fino uglaševanje pogosto uporablja, se lahko za preprečevanje prekomernega prilagajanja uporabi tudi zamrzovanje različnih plasti omrežja, kadar je učna množica podatkov majhna.
+Poleg tega se lahko prednastavljene značilnosti uporabljajo tudi pri gručenju (glej razdelek 5.3), izbiri značilk in v bolj tradicionalnih metodah strojnega učenja, kot so odločitvena drevesa in podporni vektorji.
+Za vsak eksperiment se urimo 100 epoh, uporabimo optimizator Adam, velikost paketa 128 in razpad uteži 0,00001 za modele Resnet18 ter 0,0001 za vse ostale modele.
+Ugotovili smo, da je za vse omrežje (npr. Resnet101), ki smo jih obravnavali v tem delu, 100 epoh dovolj za konvergenco za vsako validacijsko množico.
+50 % izvirnega nabora podatkov uporabimo za učenje, 25 % za validacijo in 25 % za testni nabor.
+Za naloge klasifikacije in segmentacije uporabljamo makroskopsko oceno kot našo validacijsko metriko.
+Makro F1 enako obravnava vsako kategorijo, ne glede na število vzorcev v kategoriji, kar upošteva neravnovesje kategorij, ki ga najdemo v večini digitalnih histopatoloških podatkovnih nizov.
+Za nalogo regresije izračunamo povprečno absolutno napako med napovedmi in dejanskimi regresijskimi oznakami (ki se gibljejo med 0 in 100 %).
+Poročajo se testne metrike, ki ustrezajo največjim validacijskim metrikam.
+Definicije metrik za ocenjevanje najdete v prilogi A.
+Vse eksperimente predučenja izvedemo z modelom Resnet18, razen če je navedeno drugače, eksperimente validacije pa izvedemo brez zamrzovanja katere koli plasti v omrežju.
+Izraz »predučenje« uporabljamo za opis breznadzornega učenja.
+Predhodno usposobljene mreže se nato uporabljajo za »nadzorovano« usposabljanje na validacijskih podatkovnih množicah.
+Zbirka podatkov s pol milijona slik velikosti 224 × 224 slikovnih pik se lahko za 1000 epoh preduči z uporabo PyTorch na 4 T P100 grafičnih procesnih enotah v približno 24 urah za model Resnet 18.
+Podrobna razlaga avtomatizacije in izbire hiperparametrov za fazo pretreniranja je na voljo v prilogi C.
+V nadaljevanju poročamo o povprežnih makrof1-ocenah klasifikacije in segmentacije ter o l1-napaki za regresijo v ustreznem podpoglavju.
+Razširjeni rezultati z individualnimi podatki za vsak eksperiment so navedeni v prilogi D.
+V tabeli 1 primerjamo omrežja, ki so bila predhodno usposobljena s samonadzorovanjem, z omrežji, ki so bila inicializirana z ImageNet, in naključno inicializirana omrežja za Resnet 18, 34, 50 in 101.
+Za primerjavo z drugimi samonadzorovanimi in nenadzorovanimi metodami glejte dodatek E.
+Ugotovili smo, da je pretreniranje boljše od ImageNeta pri klasifikacijskih in regresijskih nalogah za vse nastavitve.
+Samonadzor je primerljiv z ImageNet za segmentacijo v Resnet 18 in 34.
+Splošno sprejeto je, da predhodno usposobljene mreže izboljšajo zmogljivosti pri analizi medicinskih slik (Tajbakhsh et al., 2016) in digitalnih nalogah histopatologije (Mehra et al., 2018).
+Izvedemo eksperimente validacije na nalogah klasifikacije in regresije za vse nabore podatkov z uporabo {5, 10, 20, 50, 100}% vsakega nabora za učenje, pri čemer za vsako vrednost odstotka eksperimente ponovimo petkrat, da dobimo boljšo oceno uspešnosti.
+Z omejitvijo količine podatkov za učenje primerjamo vpliv velikosti nabora za učenje na različne nastavitve predučenja.
+Natančneje, primerjamo naključno inicializacijo, pred-učenje na ImageNet in samonadzorovano pred-učenje za mreže Resnet 18, 34, 50 in 101.
+Ugotovili smo, da lahko v odsotnosti velikega nabora učnih podatkov usposabljanje klasifikatorja ali regresijske mreže s prednastavljeno inicializacijo izboljša zmogljivost.
+Na primer, samonadzor za 40 % presega učenje od začetka (naključna nastavitev) za podatkovni niz NCT, ko se za učenje uporabi le 5 % označenih slik.
+Ko se uporabi več podatkov, je samonadzor še vedno boljši od obeh, ImageNet in naključnih inicializacij.
+Učinkovitost pridobljenih predstavitev s samonadzorovanjem primerjamo s prednastavljenimi značilnostmi ImageNet in naključno inicializiranimi utežmi rezidualnega omrežja tako, da za validacijske podatkovne zbirke usposobimo linearne klasifikatorje na predaktivacijskem sloju modelov Resnet.
+Za Resnet 18 in Resnet 34 to pomeni 512 značilk, za Resnet 50 in Resnet 101 pa 2048 značilk.
+Za vsak eksperiment uporabimo 100 % razpoložljivih podatkov.
+Izvedli smo enako primerjavo za regresijsko nalogo, kjer smo omrežje zamrznili na plasti pred aktivacijsko funkcijo in usposobili samo eno regresijsko plast.
+Analognih eksperimentov zamrznjenih kodirnikov za nalogo segmentacije ne vključujemo, saj lahko vsebuje dekodirnik milijone parametrov, ki se jih lahko nauči tako, da dosežejo zadovoljivo zmogljivost, ne glede na uteži kodirnika.
+Povprečne rezultate prikazujemo v tabeli 2, podrobne rezultate po podatkovnih množicah pa na sliki 4.
+Motor z notranjim zgorevanjem (ICE ali IC motor) je toplotni stroj, pri katerem zgorevanje goriva poteka z oksidantom (običajno zrakom) v zgorevalni komori, ki je sestavni del krožnega toka delovnega medija.
+V motorju z notranjim zgorevanjem visokotemperaturni in visokotlačni plini, ki nastanejo pri zgorevanju, neposredno delujejo na sestavni del motorja.
+Sila se običajno uporablja na batnice, lopatice turbin, rotor ali šobe.
+Ta sila premakne sestavni del za določeno razdaljo, pri čemer se kemična energija pretvori v koristno kinetično energijo in se uporabi za poganjanje, premikanje ali napajanje tistega, na kar je motor pritrjen.
+To je nadomestilo motor z zunanjim zgorevanjem za aplikacije, kjer je pomembna teža ali velikost motorja.
+Prvi komercialno uspešen motor z notranjim zgorevanjem je leta 1860 izumil Étienne Lenoir[4], prvi moderni motor z notranjim zgorevanjem pa je leta 1876 izumil Nicolaus Otto (glej Otto motor).
+Izraz motor z notranjim zgorevanjem se običajno nanaša na motor, pri katerem je zgorevanje prekinjeno, kot so bolj znani štiritaktni in dvotaktni batni motorji, skupaj z različicami, kot so šesttaktni batni motor in rotacijski motor Wankel.
+Druga vrsta motorjev z notranjim zgorevanjem uporablja neprekinjeno zgorevanje: plinske turbine, reaktivni motorji in večina raketnih motorjev, ki so vsi motorji z notranjim zgorevanjem na istem principu kot prej opisani.
+Ognjeno orožje je tudi oblika motorja z notranjim zgorevanjem, čeprav gre za tako specializirano vrsto, da se ga običajno obravnava kot samostojno kategorijo.
+Pri zunanjem zgorevanju, kot so parni ali Stirlingovi motorji, se energija dovaja delovnemu mediju, ki ni sestavljen iz, mešan z ali kontaminiran s produkti zgorevanja.
+Delovna tekočina za zunanje izgorevalne motorje vključuje zrak, vročo vodo, pod tlakom stisnjeno vodo ali celo tekoči natrij, ki se segreje v kotlu.
+IC-motorji se običajno napajajo z energijsko gostimi gorivi, kot sta bencin ali dizelsko gorivo, tekočinami, pridobljenimi iz fosilnih goriv.
+Čeprav obstaja veliko stacionarnih aplikacij, se večina ICE uporablja v mobilnih aplikacijah in je prevladujoči vir napajanja za vozila, kot so avtomobili, letala in čolni.
+ICEs običajno poganjajo fosilna goriva, kot sta zemeljski plin ali naftni derivati, kot so bencin, dizelsko gorivo ali kurilno olje.
+Obnovljiva goriva, kot je biodizel, se uporabljajo v motorjih z notranjim zgorevanjem (CI) in bioetanol ali ETBE (etil tert-butil eter), proizveden iz bioetanola, v motorjih z vžigom s svečko (SI).
+Vodik, ki se redko uporablja, lahko pridobivamo iz fosilnih goriv ali obnovljivih virov energije.
+Poganjalni batni motorji so daleč najpogostejši vir pogonske energije za kopenska in vodna vozila, vključno z avtomobili, motorji, ladjami in v manjši meri tudi lokomotivami (nekatere so električne, večina pa uporablja dizelske motorje).
+Rotacijski motorji po Wanklovem načrtu se uporabljajo v nekaterih avtomobilih, letalih in motornih kolesih.
+Ta vozila se skupaj imenujejo vozila z notranjim zgorevanjem (ICEV).
+Kjer so potrebni visoki razmerji med močjo in težo, se notranje zgorevalni motorji pojavljajo v obliki zgorevalnih turbin ali Wankelovih motorjev.
+Pogonska letala običajno uporabljajo motor z notranjim zgorevanjem, ki je lahko batni motor.
+Letala lahko uporabljajo reaktivne motorje, helikopterji pa lahko uporabljajo turbogredne motorje; oba sta vrsti turbin.
+Poleg poganjanja lahko letala uporabljajo tudi ločeno ICE kot pomožni pogonski agregat.
+Nahajajo se v obliki plinskih turbin z običajno električno močjo v obsegu približno 100 MW.
+Kombinirane plinsko-parne elektrarne uporabljajo visoko temperaturni izpuh za uparjanje in predgretje vodne pare, ki poganja parno turbino.
+Zato je učinkovitost višja, saj se iz goriva pridobi več energije, kot bi jo lahko pridobili samo s pomočjo motorja z notranjim zgorevanjem.
+Kombinirane plinsko-parne elektrarne dosegajo učinkovitost v območju od 50 % do 60 %.
+V manjšem obsegu se za rezervno napajanje ali za zagotavljanje električne energije na območjih, ki niso priključena na električno omrežje, uporabljajo tudi stacionarni motorji, kot so plinski motorji ali dizelski generatorji.
+Majhni motorji (običajno dvotaktni bencinski motorji) so pogosto pogonsko sredstvo za kosilnice, pletilnike, motorne žage, pihalnike, visokotlačne čistilnike, snežne sani, vodne skuterje, izvenkrmne motorje, mopede in motorna kolesa.
+Os batnega notranjega zgorevalnega motorja je motorni blok, ki je običajno izdelan iz sive litine (zaradi dobre odpornosti proti obrabi in nizke cene) ali aluminija.
+V drugem primeru so cilindrične obloge iz litega železa ali jekla ali iz prevleke, kot sta nikasil ali alusil.
+Pri motorjih z več kot enim valjem so ti običajno razporejeni v 1 vrsti (redek motor) ali 2 vrstah (bokserski motor ali V motor); 3 vrste se občasno uporabljajo (W motor) v sodobnih motorjih, možne pa so tudi druge konfiguracije motorjev in so bile že uporabljene.
+Enocilindrični motorji so pogosti pri motornih kolesih in v majhnih strojih.
+Na zunanji strani valja so kanali, ki vsebujejo hladilno tekočino, vlite v motorni blok, medtem ko so v nekaterih težkih motorjih kanali v obliki odstranljivih cilindričnih oblog, ki jih je mogoče zamenjati.
+Vodohladni motorji vsebujejo kanale v motornem bloku, po katerih kroži hladilna tekočina (vodna pločevina).
+Nekateri majhni motorji so zračno hlajeni in namesto vodnega plašča imajo valjni blok s šobami, ki štrlijo od njega in s tem neposredno prenašajo toploto na zrak.
+Stene valja se običajno dokončajo z brušenjem, da se dobi križni vzorec, ki bolje zadrži olje.
+Preveč groba površina bi hitro poškodovala motor zaradi prekomerne obrabe bata.
+Bati so kratki valjasti deli, ki na enem koncu valja tesnijo visok tlak stisnjenega zraka in izpušnih plinov ter se med delovanjem motorja neprestano pomikajo v valju.
+V manjših motorjih so batni obročki iz aluminija, v večjih pa iz sive litine.
+Zgornja stena bata se imenuje krona in je običajno ravna ali konkavna.
+Nekateri dvotaktni motorji uporabljajo bat z odbojnim pokrovom.
+Bati so odprti na dnu in votli, razen integralne ojačitvene strukture (batična rebra).
+Ko motor deluje, plinski tlak v zgorevalni komori deluje na batno glavo s silo, ki se preko batnega obročka prenese na ojnični ležaj.
+Vsak bat ima obročke, ki so nameščeni okoli njegovega oboda in preprečujejo, da bi plini uhajali v ojničev ohišnik ali olje v zgorevalno komoro.
+Ventilacijski sistem odvaja majhno količino plina, ki uide mimo batnic med normalnim delovanjem (izpušni plini), iz karterja, da se ne nabira in ne onesnažuje olja ter ne povzroča korozije.
+V dvotaktnih bencinskih motorjih je karter del zračno-gorivne poti in zaradi stalnega pretoka zraka ne potrebujejo ločenega sistema za prezračevanje karterja.
+Glava valja je pritrjena na motorno ohišje z mnogimi vijaki ali maticami.
+Glava valja zapira valje na strani, nasprotni od batov; vsebuje kratke kanale (odprtine) za sesanje in izpušne pline ter sesalne ventile, ki se odprejo, da se valj napolni s svežim zrakom, in izpušne ventile, ki se odprejo, da se izpušni plini lahko izločijo.
+Dvotaktni motorji s sesanjem v ojničnem prostoru imajo plinske kanale neposredno povezane s steno valja brez loput; odpiranje in zapiranje kanalov nadzoruje bat.
+Glava valja hrani tudi svečko pri motorjih z iskro in injektor pri motorjih z neposrednim vbrizgom.
+Vsi motorji z notranjim zgorevanjem uporabljajo vbrizg goriva, običajno neposredni vbrizg, nekateri motorji pa uporabljajo posredni vbrizg.
+Motorji SI lahko uporabljajo uplinjač ali neposredno vbrizgavanje goriva ali vbrizgavanje goriva v sesalne kanale.
+Večina motorjev SI ima po en svečnik na valj, nekateri pa imajo dva.
+Tesnilo glave motorja preprečuje uhajanje plinov med glavo valja in motorno gredjo.
+Odpiranje in zapiranje ventilov nadzoruje ena ali več odmičnih gredi in vzmeti – ali v nekaterih motorjih – desmodromičen mehanizem, ki ne uporablja vzmeti.
+Gred za odpiranje ventilov lahko neposredno pritiska na ventilov steblo ali pa deluje na vzvod, spet neposredno ali preko potisne gredi.
+Valji, šoba za mazanje z oljem in polovica glavnih ležajev so jasno vidni.
+Ohišje ročične gredi je na dnu zaprto s karterjem, ki med normalnim delovanjem zbira padajoče olje, da se ga lahko ponovno uporabi.
+V votlini, ki nastane med cilindričnim blokom in karterjem, se nahaja ročična gred, ki pretvarja nihajoče gibanje batov v vrtilno gibanje.
+Gred se glede na motorno ohišje nahaja na ležajih, ki ji omogočajo vrtenje.
+Predelne stene v karterju tvorijo polovico vsakega glavnega ležaja; druga polovica je snemljiva pokrovna plošča.
+V nekaterih primerih se uporablja ena sama glavna ležajna plošča namesto več manjših pokrovov.
+Povezovalna roka je na enem koncu povezana z izvenosnimi deli ročične gredi (ročičnimi mozniki), na drugem koncu pa preko ojničnega zatiča s batom in tako prenaša silo ter pretvarja nihajoče gibanje bata v krožno gibanje ročične gredi.
+Konec ojnice, ki je pritrjena na voziček, se imenuje majhen konec, drugi konec, kjer je pritrjena na ročično gred, pa se imenuje velik konec.
+Veliki konec ima snemljivo polovico, ki omogoča sestavo okoli gredi.
+Drži ga skupaj z ojnico s pomočjo odstranljivih vijakov.
+Na glavi valja sta pritrjena sesalni in izpušni kolektor, ki sta povezana s pripadajočimi kanali.
+Sesalni kolektor je neposredno povezan z zračnim filtrom ali pa s karburatorjem, ko je ta prisoten, karburator pa je nato povezan z zračnim filtrom.
+Zrak, ki prihaja iz teh naprav, razporedi v posamezne valje.
+Izpušni kolektor je prvi element izpušnega sistema.
+Zbira izpušne pline iz valjev in jih vodi do naslednje komponente v poti.
+Izpušni sistem motorja z notranjim zgorevanjem lahko vključuje tudi katalizator in dušilec.
+Zadnji del poti izpušnih plinov je izpušna cev.
+Toplotna črpalka je naprava, ki se uporablja za ogrevanje notranjosti stavbe ali segrevanje tople sanitarne vode s prenosom toplotne energije iz hladnejšega prostora v toplejši prostor s pomočjo hladilnega cikla, kar je nasprotno od smeri, v kateri bi prehajala toplota brez uporabe zunanjega vira energije.
+Med pogostejše vrste naprav spadajo toplotne črpalke z zračnim virom, toplotne črpalke s talnim virom, toplotne črpalke z vodnim virom in toplotne črpalke z izrabljenim zrakom.
+Toplotne črpalke se pogosto uporabljajo tudi v sistemih daljinskega ogrevanja.
+Učinkovitost toplotne črpalke je izražena s koeficientom učinkovitosti (COP) ali sezonskim koeficientom učinkovitosti (SCOP).
+Višja kot je številka, učinkovitejša je toplotna črpalka in manj energije porabi.
+Ko se ti aparati uporabljajo za ogrevanje prostorov, so običajno veliko bolj energetsko učinkoviti kot preprosti električni upori.
+Toplotne črpalke imajo manjši ogljični odtis kot sistemi za ogrevanje, ki uporabljajo fosilna goriva, kot je zemeljski plin, vendar so tudi tiste, ki jih poganja vodik, nizkoogljične in lahko postanejo konkurenčne.
+Toplota bo spontano prehajala iz območja z višjo temperaturo v območje z nižjo temperaturo.
+Toplota ne teče spontano od nižje k višji temperaturi, lahko pa jo prisilimo, da teče v tej smeri, če opravimo delo.
+Delo, potrebno za prenos določene količine toplote, je običajno veliko manjše od količine toplote; to je razlog, da se toplotne črpalke uporabljajo v aplikacijah, kot so ogrevanje vode in notranjosti stavb.
+Toplotne črpalke z zunanjim virom toplote se uporabljajo za prenos toplote med dvema toplotnima izmenjevalnikoma, eden zunaj stavbe, ki je opremljen z rebri, skozi katera se z ventilatorjem prisilno potiska zrak, drugi pa bodisi neposredno ogreva zrak v stavbi ali pa ogreva vodo, ki se nato po stavbi kroži skozi toplotne oddajnike, ki sproščajo toploto v stavbo.
+Te naprave lahko delujejo tudi v hladilnem načinu, kjer toploto iz notranjega toplotnega izmenjevalnika izsesajo in jo preko zunanjega toplotnega izmenjevalnika izvržejo v okoliški zrak.
+Uporabljajo se tudi za ogrevanje vode za pranje, ki je shranjena v bojlerju za toplo vodo.
+Toplotne črpalke z zunanjim virom toplote so relativno enostavne in poceni za namestitev in so zato zgodovinsko gledano najbolj razširjena vrsta toplotnih črpalk.
+V zmernem vremenu je lahko COP približno 4,0, medtem ko lahko toplotna črpalka zrak/voda pri temperaturah pod približno 0 °C doseže COP 2,5.
+Povprečni COP skozi sezonske spremembe je običajno 2,5–2,8, izjemni modeli pa lahko to vrednost presežejo v zmernih podnebjih.
+Geotermalna toplotna črpalka (v severnoameriški angleščini) ali toplotna črpalka z zemeljskim virom (v britanski angleščini) črpa toploto iz zemlje ali podzemne vode, ki ostaja pri relativno konstantni temperaturi vse leto pod globino približno 30 čevljev (9,1 m).
+Dobro vzdrževana toplotna črpalka na geotermalno energijo ima običajno na začetku ogrevalne sezone COP 4,0 in sezonski COP okoli 3,0, ko se toplota črpa iz zemlje.[11]
+Geotermalne toplotne črpalke so dražje za namestitev zaradi potrebe po vrtanju vrtin za vertikalno namestitev toplotnih izmenjevalnikov ali izkopa jarkov za horizontalno namestitev cevi, ki prevajajo tekočino za toplotno izmenjavo (voda z malo proti zmrzovalnega sredstva).
+Geotermalna toplotna črpalka se lahko uporablja tudi za hlajenje prostorov v vročih dneh, pri čemer se toplota iz objekta preko zemeljske zanke prenaša nazaj v zemljo.
+Sončni toplotni zbiralniki ali cevi, ki so položeni v asfalt parkirišča, se lahko uporabljajo tudi za obnovo toplote pod zemljo.
+Toplotne črpalke za izrabo odpadne toplote iz zraka izkoriščajo toploto iz odpadnega zraka v stavbi in zahtevajo mehansko prezračevanje.
+- Toplotne črpalke zrak-zrak prenašajo toploto na dovodni zrak.
+- Toplotne črpalke za ogrevanje zraka z vodo prenašajo toploto v ogrevalni krog, ki vključuje tudi bojler s toplo vodo.
+Sončno-ogrevalna toplotna črpalka je naprava, ki predstavlja integracijo toplotne črpalke in solarnih toplotnih panelov v en sam integriran sistem.
+Navadno se ti dve tehnologiji uporabljata ločeno (oziroma delujeta vzporedno) za proizvodnjo tople vode.
+V tem sistemu solarni toplotni panel opravlja funkcijo nizkotemperaturnega vira toplote in proizvedena toplota se uporablja za napajanje uparjalnika toplotne črpalke.
+Cilj tega sistema je doseči visok COP in s tem proizvajati energijo na bolj učinkovit in cenejši način.
+Toplotna črpalka z vodnega vira deluje na podoben način kot toplotna črpalka z zemeljskega vira, le da toploto črpa iz vodnega telesa namesto iz zemlje.
+Vodno telo mora biti dovolj veliko, da lahko prenese hladilni učinek naprave, ne da bi pri tem zmrznilo ali imelo negativen vpliv na divje živali.
+Toplotne črpalke hibridnega (ali dvojnega vira) črpajo toploto iz različnih virov glede na zunanjo temperaturo zraka.
+Ko je zunanji zrak med 4 in 8 stopinjami Celzija (40–50 stopinjami Fahrenheita, odvisno od temperature talne vode), uporabljajo zrak; pri nižjih temperaturah pa izkoriščajo vir iz zemlje.
+Ta dva vira toplote lahko poleti shranjujeta toploto tako, da skozi toplotni izmenjevalnik tečeta voda iz tal ali voda iz stavbe, tudi ko toplotna črpalka ne deluje.
+To ima dve prednosti: deluje kot poceni sistem za hlajenje notranjega zraka in (če je podzemna voda relativno mirujoča) povečuje temperaturo vira iz tal, kar izboljša energetsko učinkovitost sistema toplotne črpalke za približno 4 % za vsako stopinjo povišanja temperature vira iz tal.
+Mednarodna agencija za energijo je ocenila, da je bilo leta 2011 na Zemlji nameščenih 800 milijonov toplotnih črpalk.
+Uporabljajo se v podnebjih z zmernimi potrebami po ogrevanju, prezračevanju in klimatizaciji (HVAC) in lahko zagotavljajo tudi toplo sanitarno vodo ter sušenje perila.
+Nakupne stroške v različnih državah podpirajo potrošniške subvencije.
+V aplikacijah za ogrevanje, prezračevanje in klimatizacijo je toplotna črpalka običajno naprava za hlajenje z uparjalnim tlakom, ki vključuje obvodni ventil in optimizirane toplotne izmenjevalnike, tako da je mogoče smer pretoka toplote (gibanje toplotne energije) obrniti.
+Reversbilna ventilska enota spremeni smer toka hladilnega sredstva skozi cikel, zato lahko toplotna črpalka stavbi zagotavlja ogrevanje ali hlajenje.
+V hladnejših podnebjih je privzeta nastavitev obratnega ventila ogrevanje.
+Ker morata dva toplotna izmenjevalnika, kondenzator in uparjalnik, zamenjati funkciji, sta optimizirana tako, da dobro delujeta v obeh načinih.
+Zato je SEER (Seasonal Energy Efficiency Ratio) vrednost reverzibilne toplotne črpalke običajno nekoliko manjša od vrednosti dveh ločenih, optimiziranih naprav.
+Oprema mora imeti najmanj 14,5 SEER, da prejme oznako Energy Star.
+V aplikacijah ogrevanja vode se lahko toplotna črpalka uporablja za ogrevanje ali predgretje vode za bazene ali za ogrevanje pitne vode za uporabo v gospodinjstvih in industriji.
+Toplota se običajno iz zunanjega zraka odvzame in prenese v notranji vodni rezervoar, druga vrsta pa toploto iz notranjega zraka odvzame za pomoč pri hlajenju prostora.
+Toplotne črpalke se lahko uporabljajo tudi kot dobavitelji toplote za daljinsko ogrevanje.
+Možni viri toplote za takšne aplikacije so odpadna voda, okoliška voda (npr. morska, jezerska in rečna voda), industrijska odpadna toplota, geotermalna energija, dimni plini, odpadna toplota iz sistemov za distribucijo hladu in toplota iz solarnih toplotnih hranilnikov.
+V Evropi je bilo od 1980-ih let nameščenih več kot 1500 MW, od tega je bilo v letu 2017 v uporabi približno 1000 MW na Švedskem.
+Toplotne črpalke velike zmogljivosti za daljinsko ogrevanje v kombinaciji s shranjevanjem toplotne energije ponujajo veliko fleksibilnost za integracijo spremenljive obnovljive energije.
+Zato se jih obravnava kot ključno tehnologijo za pametne energetske sisteme z visokim deležem obnovljivih virov energije do 100 % in napredne sisteme daljinskega ogrevanja 4. generacije.
+So tudi ključni element sistemov daljinskega ogrevanja na hladno.
+Z uporabo industrijskih toplotnih črpalk je mogoče znatno zmanjšati porabo energije in s tem povezane emisije toplogrednih plinov v industriji.
+Mednarodni projekt sodelovanja, ki je bil zaključen leta 2015, je zbral skupaj 39 primerov projektov R&R in 115 študij primerov po vsem svetu.
+Študija kaže, da so kratke dobe vračanja, krajše od 2 let, možne, hkrati pa se doseže visoko zmanjšanje emisij CO2 (v nekaterih primerih več kot 50 %).
+Inovacije toplotnih črpalk za visoke temperature se pojavljajo, da bi še povečale termično območje uporabe industrijskih toplotnih črpalk in predvsem izkoriščanje odpadne toplote v energijo.
+Ko primerjamo učinkovitost toplotnih črpalk, se izraz »učinkovitost« raje uporablja kot »učinkovitost«, koeficient učinkovitosti (COP) pa se uporablja za opis razmerja med koristnim gibanjem toplote in vhodno močjo.
+Električni grelnik z uporovnim grelnikom ima COP 1,0, kar je precej manj od dobro zasnovane toplotne črpalke, ki bo običajno imela COP med 3 in 5 pri zunanji temperaturi 10 °C in notranji temperaturi 20 °C.
+Toplotna črpalka z zemeljskim virom ima običajno višjo učinkovitost kot toplotna črpalka z zračnim virom.
+„Letni koeficient učinkovitosti“ (SCOP) je mera za skupno energetsko učinkovitost v obdobju enega leta, ki je zelo odvisna od podnebja v regiji.
+Okvir za izračun je določen v Uredbi Komisije (EU) št. 813/2013.
+Toplotna črpalka ima v hladilnem načinu delovanja v ZDA bodisi razmerje med energijsko učinkovitostjo (EER) bodisi sezonsko razmerje med energijsko učinkovitostjo (SEER), ki imata obe enote BTU/(h·W) (upoštevajte, da je 1 BTU/(h·W) = 0,293 W/W) in večje vrednosti pomenijo boljše delovanje.
+Dejanska učinkovitost se razlikuje in je odvisna od mnogih dejavnikov, kot so podrobnosti inštalacije, temperaturne razlike, nadmorska višina in vzdrževanje.
+Vakuumsko-kompresijska tehnologija uporablja krožeče tekoče hladilno sredstvo kot medij, ki absorbira toploto iz enega prostora, jo stisne, s čimer se poveča temperatura, preden jo sprosti v drugem prostoru.
+Sistem običajno sestavlja 8 glavnih komponent: kompresor, rezervoar, obtočni ventil, ki izbira med ogrevalnim in hladilnim načinom, dve termični razširitveni ventili (eden se uporablja v ogrevalnem načinu in drugi v hladilnem načinu) ter dva toplotna izmenjevalnika, eden je povezan z zunanjim virom/ponorom toplote, drugi pa z notranjostjo.
+V ogrevalnem načinu je zunanji toplotni izmenjevalnik uparjalnik, notranji pa kondenzator; v hladilnem načinu se vlogi zamenjata.
+Krožeče hladilno sredstvo vstopa v kompresor v termodinamičnem stanju, imenovanem nasičena para, in se stisne na višji tlak, kar povzroči tudi višjo temperaturo.
+Topel, stisnjen par je nato v termodinamičnem stanju, imenovanem pregreti par, in je pri temperaturi in tlaku, pri katerem ga lahko kondenziramo z vodo za hlajenje ali hladnim zrakom, ki teče po tuljavah ali ceveh.
+V ogrevalnem načinu se ta toplota uporablja za ogrevanje stavbe s pomočjo notranjega toplotnega izmenjevalnika, v hladilnem načinu pa se ta toplota zavrže preko zunanjega toplotnega izmenjevalnika.
+Zgoščeno tekoče hladilno sredstvo, ki je v termodinamičnem stanju, imenovanem nasičena tekočina, se nato prenese skozi ekspanzijski ventil, kjer se tlak nenadoma zmanjša.
+Zaradi tega padca tlaka pride do adiabatnega uparjanja dela tekočega hladilnega sredstva.
+Zaradi avtorefrakteracijskega učinka adiabatnega uparjanja se temperatura tekočega in plinastega mešanice hladilnega sredstva zniža na raven, ki je nižja od temperature zaprtega prostora, ki ga želimo ohladiti.
+Hladna zmes se nato spelje skozi tuljavo ali cevi v uparjalniku.
+Ventilator v zaprtem prostoru kroži topel zrak mimo hladilne tuljave ali cevi, po katerih teče mešanica hladne tekočine in hlapljivega hladilnega sredstva.
+Topel zrak izpari tekoči del hladilne mešanice.
+Hkrati se krožeči zrak ohladi in s tem zniža temperaturo zaprtega prostora na želeno temperaturo.
+Izparilnik je mesto, kjer krožeče hladilno sredstvo absorbira in odvaja toploto, ki se nato v kondenzatorju zavrže in prenese drugam z vodo ali zrakom, ki se uporablja v kondenzatorju.
+Da bi zaključili hladilni cikel, se hladilni plin iz uparjalnika vrne v kompresor kot nasičen plin.
+Sčasoma se v uparjalniku lahko nabere led ali voda iz zračne vlage.
+Notranji toplotni izmenjevalnik se uporablja bodisi za neposredno ogrevanje/hlajenje notranjega zraka ali za ogrevanje vode, ki se nato kroži skozi radiatorje ali sistem talnega ogrevanja za ogrevanje ali hlajenje prostorov.
+Pri ročnem menjalniku mora voznik upravljati prestavno ročico in sklopko, da lahko prestavi v višjo ali nižjo prestavo (za razliko od avtomatskega menjalnika ali pol-avtomatskega menjalnika, kjer je ena (običajno sklopka) ali obe od teh funkcij avtomatizirani).
+Večina ročnih menjalnikov za avtomobile omogoča vozniku, da kadarkoli izbere katerokoli prestavno razmerje, na primer pretikanje iz 2. v 4. prestavo ali iz 5. v 3. prestavo.
+Vendar pa zaporedni ročni menjalniki, ki se pogosto uporabljajo v motornih kolesih in dirkalnih avtomobilih, vozniku omogočajo izbiro samo naslednje višje ali nižje prestave.
+V vozilu z ročnim menjalnikom je vztrajnik pritrjen na motorno gred, zato se vrti s hitrostjo motorja.
+Sklopka se nahaja med vztrajnikom in vstopnim grebenom menjalnika in nadzoruje, ali je menjalnik povezan z motorjem (sklopka je vklopljena – pedal sklopke ni pritisnjen) ali ne (sklopka je izklopljena – pedal sklopke je pritisnjen).
+Ko motor deluje in je sklopka vklopljena (tj. pedal sklopke je dvignjen), leti valj vrti ploščo sklopke in s tem tudi menjalnik.
+Zasnova večine ročnih menjalnikov za avtomobile je takšna, da se prestavna razmerja izberejo tako, da se izbrani pari zobnikov zaklenejo z izhodno gredjo znotraj menjalnika.
+To je temeljna razlika v primerjavi s tipičnim hidravličnim samodejnim menjalnikom, ki uporablja epiciklično (planetarno) zasnovo in hidravlični pretvornik navora.
+Samodejni menjalnik, ki vozniku omogoča nadzor nad izbiro prestave (kot so prestavne ročice ali položaji »+ / -« na izbirniku prestav), se imenuje manumatic menjalnik in se ne šteje za ročni menjalnik.
+Nekatere avtomatske menjalnike sestavljajo in oblikujejo po zgledu ročnih menjalnikov, vendar imajo dodane sestavne dele (kot so računalniško krmiljeni aktuatorji in senzorji), ki samodejno nadzorujejo čas in hitrost prestavljanja ter sklopke; ta zasnova se običajno imenuje avtomatiziran ročni menjalnik (ali včasih menjalnik brez sklopke).
+Sodobni ročni menjalniki za avtomobile običajno uporabljajo pet ali šest prestavnih razmerij in eno vzvratno prestavo, vendar so bili izdelani menjalniki z od dve do sedem prestavami.
+Prenosna razmerja za tovornjake in drugo težko opremo imajo pogosto med osmimi in petindvajsetimi prestavami, da se ohrani hitrost motorja v optimalnem območju moči za vse običajne hitrosti vožnje.
+Delovanje takšnih prenosov pogosto uporablja enak vzorec premikanja prestavne ročice z enim ali več stikali za vklop naslednjega zaporedja prestav.
+Ročni menjalnik ima več gredi z različnimi zobniki in drugimi sestavnimi deli, ki so pritrjeni nanje.
+Večina sodobnih osebnih avtomobilov uporablja prenose s stalnim prenosom, ki so sestavljeni iz treh gredi: vhodne gredi, protigredi (tudi imenovane prenosne gredi) in izhodne gredi.
+Gred za dovod moči je povezana z motorjem in se vrti s hitrostjo motorja, kadar je sklopka vklopljena.
+Gred z zobniki ima zobnike različnih velikosti, ki so stalno vpeti v ustrezne zobnike na vhodni gredi.
+Poganjala na izhodni gredi sta stalno vpeti v ustrezno zobniško kolo na prenosni gredi, vendar se lahko zobniški kolesi na izhodni gredi vrtita neodvisno od same izhodne gredi (s pomočjo ležajev, ki so nameščeni med zobniškima kolesoma in gredjo).
+S pomočjo zobnikov (ki jih upravljamo s pomičnimi palicami) se hitrost izhodne gredi začasno zaklene s hitrostjo izbranega prestavnega razmerja.
+Nekatere izvedbe menjalnikov, na primer v avtomobilih Volvo 850 in S70, imata dve gredi za prenos moči, ki poganjata izhodno zobniško kolo, ki se ujema z obročnim zobnikom prednjega pogona.
+To omogoča ožji prenos, saj je dolžina vsakega zobniškega vretena prepolovljena v primerjavi z vretenom s štirimi zobniki in dvema prestavnima ročicama.
+Stalna in prosta zobnika lahko namestite na vhodno ali izhodno gred ali na obe.
+Na primer, petstopenjski menjalnik ima lahko prvo in drugo prestavo na zobniku, tretjo in četrto prestavo ter peto prestavo pa na glavnem gredi.
+To pomeni, da ko je vozilo ustavljeno in v prostem teku v nevtralni prestavi z vklopljeno sklopko in vrtečo se vhodno gredjo, tretji, četrti in peti par prestav ne vrtita.
+Ko izberete nevtralno prestavo, nobena od prestav na izhodni gredi ni zaklenjena na gred, kar omogoča, da se vhodna in izhodna gred vrtita neodvisno.
+Za vzvratno prestavo se uporablja prosti zobnik, ki spremeni smer vrtenja izhodne gredi.
+V mnogih menjalnikih se lahko vhodna in izhodna gred neposredno zakleneta skupaj (obide se polžno gred), da se ustvari razmerje 1:1, ki se imenuje neposredni pogon.
+V menjalniku za vozila z vzdolžno nameščenim motorjem (npr. večina avtomobilov s pogonom na zadnji kolesi) sta pogonska in izhodna gred običajno nameščeni na isti osi, saj to zmanjšuje torzijske sile, katerim mora vzdržati ohišje menjalnika.
+Sklop, ki ga sestavljata vhodna in izhodna gred, se imenuje glavna gred (čeprav se ta izraz včasih nanaša samo na vhodno ali izhodno gred).
+Neodvisno vrtenje vhodne in izhodne gredi omogoča ena gred, ki je nameščena v votlem jedru druge gredi, pri čemer je ležaj nameščen med obema gredama.
+V pogonskem sistemu vozil s prečnim motorjem (npr. avtomobili s pogonom na prednji kolesi) sta običajno samo dva gredi: vhodna in izhodna gred (včasih imenovana tudi vhodna in končna gred).
+Gred za dovod moči poteka skozi celotno dolžino menjalnika, zato ni posebnega zobnika za dovod moči.
+Te prenosne naprave imajo tudi vgrajeno diferencialno enoto, ki je preko zobnika na koncu nasprotnega/izhodnega gredi povezana z njo.
+Tudi v sodobnih menjalnikih, kjer so vse prestave za vožnjo naprej v stalnem položaju, pogosto obratna prestava uporablja starejšo izvedbo drsnega zobnika ("boks za trčenje").
+To pomeni, da premik ročice menjalnika v vzvratno prestavo povzroči, da se zobniki med seboj zaskočijo.
+Druga edinstvena lastnost vzvratne prestave je, da jo sestavljata dve zobniki – prosti zobnik na protikopitu in drugi zobnik na izhodnem gredi – in oba sta neposredno pritrjena na gred (torej se vedno vrtita z enako hitrostjo kot gred).
+Ti zobniki so običajno zobniki s stožčastimi zobmi, ki imajo ravne zobe, kar— za razliko od stožčastih zobnikov z vijačastimi zobmi, ki se uporabljajo za prestavljanje naprej— povzroča piskajoč zvok, ko se vozilo premika vzvratno.
+Ko izberete vzvratno prestavo, se prosti zobnik fizično premakne tako, da se zaskoči z ustreznimi zobniki na vstopnem in izstopnem gredi.
+Da bi preprečili trenje, ko se zobniki začnejo prekrivati, morajo biti v mirovanju.
+Ker se vhodna gred pogosto še vedno vrti zaradi vrtilnega momenta (tudi ko se avto ustavi), je potreben mehanizem, ki bo ustavil vhodno gred, na primer s pomočjo sinhronizacijskih obročev za 5. prestavo.
+Nekatera vozila imajo za vzvratno prestavo vgrajen sinhronizacijski sistem, kar preprečuje morebitno pokanje, če je vzvratna prestava izbrana, ko se vhodna gred še vrti.
+Večina menjalnikov ima zaklepni mehanizem, ki preprečuje, da bi se med vožnjo naprej po nesreči vklopil vzvratni tek.
+To lahko pomeni ovratnik pod prestavno ročico, ki ga je treba dvigniti, ali pa je potrebna dodatna sila, da prestavno ročico potisnete v ravnino vzvratne prestave.
+Vozila z ročnim menjalnikom uporabljajo sklopko za upravljanje povezave med motorjem in menjalnikom ter za ločevanje menjalnika od motorja med prestavljanjem in ko je vozilo pri miru.
+Brez sklopke bi motor ugasnil vsakič, ko bi se vozilo ustavilo, prestavljanje pa bi bilo težavno (za prestavljanje v prosti tek bi moral voznik prilagoditi plin, da ne bi prišlo do obremenitve menjalnika, za prestavljanje v katero koli drugo prestavo pa bi moral biti vrtljaji motorja natančno usklajeni s hitrostjo vozila).
+Večina motornih vozil ima pedal za upravljanje sklopke; izjema so motorna kolesa, ki običajno imajo ročico sklopke na levem krmilu.
+V večini vozil z ročnim menjalnikom voznik izbere prestave z upravljanjem ročice, imenovane tudi prestavna ročica (ali prestavna ročica, prestavna ročica ali prestavna ročica).
+V večini avtomobilov je prestavna ročica nameščena na tleh med voznikom in sovoznikom, vendar imajo nekateri avtomobili prestavno ročico nameščeno na volanu ali sredinski konzoli.
+Gibanje ročice menjalnika se prenese (preko trdnih povezav ali kablov) na izbirne vilice v menjalniku.
+Motorna kolesa običajno uporabljajo zaporedne ročne menjalnike, čeprav je vzorec prestavljanja nekoliko spremenjen iz varnostnih razlogov.
+Izbira prestave je običajno preko leve nožne (ali, na starejših motornih kolesih; desne nožne) prestavne ročice z razporeditvijo 1 - N - 2 - 3 - 4 - 5 - 6.
+Vozila z ročnim menjalnikom in izkušenim voznikom lahko pospešujejo bolj učinkovito kot avtomatska vozila.
+To je zato, ker ročni menjalniki vozniku omogočajo, da izbere specifične vrtljaje/moč na gume med pritiskanjem sklopke in med sproščanjem sklopke prilagaja moč glede na prenos teže, obrabo gum, temperaturo in pogoje na cesti.
+Avtomatski menjalniki ne omogočajo izbire vrtljajev med prestavljanjem ali uravnavanja sproščanja moči na pnevmatike po prestavljanju prestav.
+Te sposobnosti omogočajo izkušenemu vozniku, da v celoti izkoristi razpoložljivo oprijemljivost, maksimizira pospešek in zmanjša (ali poveča) vrtenje koles.
+V zadnjem času imajo mnogi avtomatski menjalniki več prestavnih razmerij kot ročni.
+Vožnja vozila z ročnim menjalnikom je težja kot vožnja vozila z avtomatskim menjalnikom iz več razlogov.
+Najprej je pedal sklopke dodatni kontrolni mehanizem za upravljanje in v nekaterih primerih »težka sklopka« zahteva veliko sile za upravljanje (to lahko prepreči tudi nekaterim osebam z poškodbami ali prizadetostmi, da bi vozile vozila z ročnim menjalnikom).
+Delovanje prestavne ročice – še ena funkcija, ki ni potrebna pri avtomatskih menjalnikih – pomeni, da mora voznik med prestavljanjem eno roko sneti s volana.
+Drugi izziv je, da za gladko vožnjo potrebujete usklajeno uporabo sklopke, plina in prestavne ročice.
+Nazadnje, avtomobil z avtomatskim menjalnikom vozniku očitno ne nalaga nobene odločitve o tem, katero prestavo naj uporabi v določenem trenutku.
+Po drugi strani pa možnost, da voznik sam izbere določen prestavni razmerji in število vrtljajev motorja, pomeni, da ima popoln nadzor nad navorom, ki ga prenašajo gume, kar je ključnega pomena za dirkanje in zelo koristno tudi za dinamično vožnjo.
+V nekaterih državah vozniško dovoljenje za vozila z avtomatskim menjalnikom ni veljavno za vožnjo vozil z ročnim menjalnikom, medtem ko vozniško dovoljenje za ročni menjalnik velja za oba tipa menjalnikov.
+Nova Zelandija je obrestne mere drugi mesec zapored zvišala na 0,75 %
+Novozelandska centralna banka (RBNZ) je na včerajšnjem zadnjem letošnjem zasedanju obrestne mere zvišala za 25 bazičnih točk na 0,75 %, potem ko je bila stopnja inflacije potrošniških cen v tretjem četrtletju zabeležena pri 4,9 %, kar je največ od decembra 2007.
+Povečanje uradne obrestne mere za nacionalno valuto (OCR) so pričakovali tako ekonomisti kot trgi: 21 od 23 ekonomistov, ki so jih anketirali v Reutersovi anketi med 15. in 19. novembrom, je napovedalo povišanje za 25 bazičnih točk, druga dva pa sta napovedala povišanje za 50 bazičnih točk, na 1 %.
+Ravnanje Nove Zelandije s COVID-19 je vključevalo injiciranje »ogromnih količin fiskalnega in monetarnega spodbuda« v gospodarstvo, navaja The Guardian, v skladu z drugimi velikimi gospodarstvi, kar je stopnjo brezposelnosti potisnilo na najnižjo in inflacijo na najvišjo v več kot desetletju.
+Zaradi spodbudne porabe in nizkih obrestnih mer ter pomanjkanja stanovanj so se cene stanovanj v zadnjih sedmih letih podvojile, kar je najmanj ugodno med državami OECD, po poročanju Reutersa.
+Izjava centralne banke je navedla, da "kratkoročno povišanje inflacije, ki ga poudarjajo višje cene nafte, naraščajoči transportni stroški in vpliv pomanjkanja ponudbe", tvega "povzročanje bolj splošnega povišanja cen", kot je poročala ABC News.
+RBNZ napoveduje, da bi se obrestne mere do leta 2023 zvišale na 2,5 %, do leta 2024 pa še višje, po podatkih Reutersa; vendar pa so mediane iz petkovega članka napovedovale, da bo OCR do konca leta 2023 dosegel le 2 %, kar je manj od ravni iz leta 2014.
+Najnovejše napovedi vključujejo 2 % do sredine leta 2022 po mnenju ekonomista pri Capital Economics Ben Udy, do 3 % v tretjem četrtletju 2023 po mnenju vršilca dolžnosti glavnega ekonomista pri Westpac Michael Gordon, vključno s 0,5-odstotnim dvigom obrestne mere na naslednjem sestanku RBNZ v februarju, kot je poročal The Guardian.
+O včerajšnji napovedi je bilo govora po pričakovanem zvišanju obrestne mere z 0,25 % na 0,5 % 6. oktobra, prvem po sedmih letih, v okviru cikla zaostrovanja denarne politike centralne banke, ki naj bi se začel avgusta, a so ga zaradi delte virusa COVID-19 in zaklepa v prestolnici Auckland preložili.
+Jason Wong, senior tržni strateg pri Bank of New Zealand, je za Reuters takrat povedal: »Na poti smo k več zvišanjem obrestnih mer in trg je na to dobro pripravljen.«
+Orr je včeraj novinarjem povedal, da »vidimo postopno zviševanje za 25 bazičnih točk nazaj na raven, pri kateri je obrestna mera OCR le malo nad nevtralno, kot najbolj uravnotežen pristop, ki ga lahko izberemo«, čeprav Reuters poroča, da je banka razmišljala o različnih možnostih, vključno z zvišanjem za 50 bazičnih točk.
+Orr je glede stanovanj dodal: »Lastniki, ki so na trg vstopili z izjemno visokimi stopnjami zadolženosti, morajo biti izjemno previdni in razumeti, da morajo preživeti višje obrestne mere,« potem ko so prejšnji davki na nepremičninske investitorje spodleteli pri ohlajanju rasti cen stanovanj, ki jih Reuters poroča, da jih RBNZ ocenjuje kot višje od vzdržne ravni in s povečanim tveganjem za korekcijo.
+Prav tako je zagovarjal stimulacijski paket, vendar je opozoril na naraščanje dolga gospodinjstev.
+Medtem ko države po svetu ukinjajo stimulacijske ukrepe, povezane s pandemijo, kot poroča Reuters, se nekatere države upirajo zviševanju obrestnih mer: v Združenih državah Amerike je inflacijska stopnja nedavno narasla na 6,2 %, najvišje v 31 letih, kar je nekatere ekonomiste spodbudilo, da so pritisnili na predsednika ameriške centralne banke Jeromea Powella, naj pospeši proces zmanjševanja mesečnih nakupov obveznic, kot poroča Associated Press.
+Tudi Bank of England in Evropska centralna banka (ECB) sta se morali braniti pred napovedmi o povečanju inflacijskih pritiskov, poročata The Guardian in Reuters.
+Predsednica Evropske centralne banke Christine Lagarde je 15. novembra povedala Evropskemu parlamentu, da »nepotrebno zaostrovanje finančnih pogojev ni zaželeno in bi predstavljalo nepotrebno oviro za okrevanje«, ter dodala, da »bi uvedba kakršnih koli zaostritev zdaj lahko povzročila veliko več škode, kot bi prinesla koristi«, kot je poročala agencija Reuters.
+Avstralska centralna banka (RBA) vztraja, da se obrestne mere verjetno ne bodo zvišale do leta 2024.
+Guverner RBA Philip Lowe je na srečanju Avstralskih poslovnežev in ekonomistov prejšnji teden povedal, da »najnovejši podatki in napovedi ne opravičujejo zvišanja obrestne mere v letu 2022« in da bi za razmislek o zvišanju obrestne mere s strani sveta »moralo priti do zelo drugačnega razvoja dogodkov od našega osrednjega scenarija«, poroča ABC News.
+Vendar pa je več centralnih bank obrestne mere zvišalo pred Novo Zelandijo: Reuters navaja Norveško, Češko republiko in Južno Korejo, ki naj bi obrestne mere znova zvišala na današnjem sestanku.
+Reuters poroča, da je novozelandski dolar padel za 0,6 % zaradi nekaterih vlagateljev, ki napovedujejo višjo obrestno mero, in da so se tako 2- kot 10-letne državne obveznice znižale za 10 bazičnih točk.
+Nekdanja japonska princesa Mako Komuro se je preselila v New York s svojim možem, ki ni pripadnik cesarske družine.
+Mako Komuro in njen mož Kei Komuro sta včeraj odpotovala v New York, da bi začela novo življenje izven japonske kraljeve družine.
+Njun odnos so močno kritizirali člani javnosti na Japonskem zaradi njegove nenavadne narave in kršenja družbenih norm za to državo.
+Par je na mednarodno letališče Haneda v Tokiu prispel ob veliki pozornosti medijev in pod strogim varovanjem.
+Mako Komuro, nekdanja princesa in nečakinja japonskega cesarja, je odstopila od svojega naslova, da bi se lahko poročila s svojim študentskim izbrancem Keijem Komurom.
+Čeprav je Japonska v mnogih pogledih zelo moderna, so položaj žensk in družinske vrednote še vedno globoko zakoreninjeni v fevdalnih običajih; japonski kraljevi družini je prepovedano, da bi se poročila s »preprostimi smrtniki«.
+New York je bil izbran, ker ima Kei službo v odvetniški pisarni v New Yorku, čeprav še ni opravil pravniškega izpita v New Yorku.
+Po poročanju tiskovne agencije Associated Press so japonski mediji to dejstvo uporabili za diskreditacijo in napad na njega, čeprav je običajno, da kandidat ne opravi pravniškega izpita že ob prvem poskusu.
+V časopisu The Straits Times so potegnili vzporednice med nadzorom, ki so ga doživeli, in nadzorom nad princem Harryjem in Meghan, vojvodinjo susseško, iz britanske kraljeve družine.
+Kandidat, ki se je vpisal, vodi na županskih volitvah v mestu Buffalo, New York
+Na županskih volitvah, ki so v torek potekale v mestu Buffalo v zvezni državi New York v Združenih državah Amerike, so glasovi, oddani kot »pisni glasovi«, vodili v tekmi s 59 odstotki proti 41 odstotkom izzivalke demokratske stranke India Walton, ko so bili prešteti vsi glasovi volilnih okrajev.
+Župan mesta Buffalo, Byron Brown, ki je bil izvoljen že štirikrat, ni dobil nominacije na prejšnjih demokratskih primarnih volitvah, da bi se uvrstil na glasovalni listič splošnih volitev, vendar je vodil obsežno kampanjo za pisne glasove proti svojemu demokratskemu kolegu.
+Na glasovnicah za županske volitve je bilo natisnjenih samo Waltonovo ime.
+V sredo je demokratični socialist Walton priznal poraz proti Brownovim.
+V izjavi, objavljeni na Twitterju, je Walton zapisal: »Čeprav pričakujemo, da se bodo razlike zmanjšale, se zdi malo verjetno, da bomo imeli dovolj glasov za to, da bi januarja začeli z administracijo Waltona,« in dodal: »To je bila posebna kampanja.«
+Zbrali smo več kot milijon dolarjev od tisočev in tisočev majhnih donatorjev.«
+Brownova kampanja je razdelila na tisoče znamk, da bi njegovi podporniki na glasovnice prilepili njegovo ime.
+Po volitvah je Brown kritiziral Waltonovo izjavo po volitvah.
+Dejal je v četrtek za CNN: »Mislim, da je to jasen opomin proti ukinitvi policije, opomin proti socializmu in mislim, da so bili tisti izven mesta Buffalo premalo spoštljivi do skupnosti Buffalo.«
+»Poskušali so vstopiti in nam povedati, koga naj izberemo, a so se ljudje uprli in zmagali.«
+Štetje glasovnic bo potekalo počasi, medtem ko lokalna volilna komisija okrožja Erie prešteva glasove z ročno napisanih glasovnic.
+Po državni zakonodaji imajo uradniki 25 dni časa, da preštejejo glasove in objavijo uradne rezultate volitev.
+Pisarna okrožnega tožilca okrožja Erie je sporočila, da preiskuje domnevno goljufanje s strani volilnih nadzornikov, ki so morda pripravili predtiskani glasovnici.
+V izjavi je bilo navedeno: »Naše urade je odbor za volitve obvestil o obtožbi, da so delavci na volišču včeraj morda zlorabili žig na eni od volišč.
+Ne moremo dodatno komentirati, dokler zadeva ostaja predmet preiskave.«
+Po besedah volilnih komisarjev okrožja Erie Ralph Mohra in Jeremyja Zellnerja so osumljene inšpektorje odstranili in jih na volišču nadomestili.
+Guverner Severnih Marianskih otokov zaprl šole za deset dni po odkritju treh primerov COVID-19
+Guverner ameriškega Commonwealtha Severnih Marianskih otokov Ralph Torres je danes odredil zaprtje vseh šol in kolidžev na otokih za naslednjih deset dni, da bi »preprečili širjenje okužbe v skupnosti«, potem ko so včeraj zabeležili tri primere COVID-19; vsaj dva primera sta bila povezana s srednjimi šolami v glavnem mestu Saipan.
+V izjavi je Torres obljubil, da »imamo na voljo orodja za obvladovanje tega«, in dodal: »Osebno želim zagotoviti izobraževalni skupnosti, osebju, staršem, družinam in učencem, da bomo kot vlada storili vse, da zaščitimo skupnost Severnih Marianskih otokov, kot smo to uspešno storili skozi celotno pandemijo.«
+Javni šolski sistem Severnih Marianskih otokov je sporočil, da sta bila oba primera povezana z osnovnima šolama Chacha Oceanview in Francisco M. Sablan na Saipanu.
+O izvoru tretjega primera še ni bilo objavljenih informacij.
+Severnomarijanski otoki so bili več kot 200 dni brez skupnostnega prenosa COVID-19.
+Vključno s tremi novimi primeri je bilo v Severnih Marianih od marca 2020 zabeleženih 294 okužb s COVID-19.
+V Seulu so se na srečanju sestali posebni odposlanci ZDA in Južne Koreje, da bi razpravljali o možnosti ponovnega začetka pogovorov s Severno Korejo.
+V nedeljo sta se v Seulu na Južnem Korejskem srečala ameriški in južnokorejski odposlanec, da bi razpravljala o načinih za ponovno odprtje diplomatskih pogovorov s Severno Korejo in pošiljanje humanitarne pomoči tja.
+Združeni narodi so prej opozorili, da državo zaradi pandemije COVID-19 čaka lakota.
+Odposlanci so razpravljali tudi o južnokorejskem predlogu za formalni konec korejske vojne, ki ni bila uradno končana od zadnjih pogajanj o premirju julija 1953.
+Pred srečanjem je ameriški posebni odposlanec za Severno Korejo Sung Kim novinarjem povedal, da se veseli »produktivnih nadaljnjih razprav« po srečanju v Washingtonu prejšnji torek.
+Na njihovem nedeljskem dnevnem redu so bili denuklearizacija Severne Koreje, razglasitev formalnega konca korejske vojne in pošiljanje humanitarne pomoči Severni Koreji kot način za ponovno odprtje diplomatskih pogovorov.
+Po srečanju je Kim dejal, da ZDA pozivajo »DPRK, naj preneha z destabilizirajočimi dejavnostmi in se namesto tega vključi v dialog«.
+Ponavdil je, da so ZDA "še vedno pripravljene na srečanje z DLRK brez predpogojev" in da so "jasno povedale, da ZDA nimajo sovražnih namenov do DLRK."
+Na petkovi tiskovni konferenci je posebni poročevalec Združenih narodov za Severno Korejo Tomas Ojea Quintana dejal, da bi država morda potrebovala humanitarno pomoč, in pozval k omilitvi sankcij proti sektorjema tekstila in ribogojstva v Severni Koreji.
+Opozoril je, da bi lahko nadaljnje zaprtje meja in omejena trgovina privedla do lakote in da se regija »približuje oboroževalni tekmi«.
+Isti dan je tiskovni predstavnik ameriškega zunanjega ministrstva Ned Price na tiskovni konferenci povedal, da »resolucije Varnostnega sveta ZN glede DLRK ostajajo v veljavi« in da »sodelujemo v prizadevanjih za olajšanje zagotavljanja humanitarne pomoči najbolj potrebnim« v Severni Koreji.
+Prejšnji torek je Severna Koreja preizkusila novo vrsto balistične rakete, izstreljene iz podmornice (SLBM).
+Posebni odposlanec Kim je v odgovor pozval Severno Korejo, naj se »vzdrži nadaljnjih provokacij in se vključi v trajne in vsebinske pogovore«.
+Sever je odgovoril, da ZDA »pretiravajo«.
+Južna Koreja je 15. septembra izstrelila novo SLBM, medtem ko je Severna Koreja 28. septembra izstrelila hipersonično raketo, ki je še v zgodnjih fazah razvoja.
+Zamrznitev plač javnih uslužbencev v Združenem kraljestvu se bo končala prihodnje leto
+V ponedeljek je britanski finančni minister Rishi Sunak na novinarski konferenci razkril, da bo v svojem proračunu, ki bo predstavljen v sredo ob 12. uri, potrdil konec delne zamrznitve plač za 2,6 milijona zaposlenih v javnem sektorju, ki je bila uvedena novembra lani, hkrati pa bo predlagal 6,6-odstotno povišanje nacionalne minimalne plače.
+Gospod Sunak je za upravičevanje svojega »zamrznitve« plač javnih uslužbencev, ki je izvzemala 2,9 milijona delavcev Nacionalne zdravstvene službe in tiste, ki zaslužijo manj kot 24 tisoč funtov na leto, a je veljala za 2,6 milijona učiteljev, policistov, javnih uslužbencev in pripadnikov oboroženih sil Združenega kraljestva, uporabil padec plač med pandemijo COVID-19.
+Čeprav je povišanje plač predvideno od prihodnje pomladi, so natančne podrobnosti odvisne od posvetovanja neodvisnih svetovalcev in teles za pregled plač, po poročanju časnika i.
+The Guardian piše, da bi lahko plače dvignili približno 5,7 milijona zaposlenih v javnem sektorju.
+Poleg tega bi lahko od povečanja nacionalne minimalne in nacionalne življenjske plače imeli koristi tudi približno dva milijona delavcev, ki prejemajo minimalno plačo, vključno z nekaterimi od zgoraj navedenih 5,7 milijona.
+Po poročanju časnikov i in The Guardian se bo nacionalna minimalna plača za osebe, starejše od 23 let, zvišala za 59 penijev na 9,50 funta na uro od prihodnjega aprila, kar za zaposlenega s polnim delovnim časom pomeni približno 1000 funtov več, v skladu s priporočili neodvisnega svetovalnega odbora, Komisije za nizke plače.
+Nacionalna minimalna plača za osebe, stare od 21 do 22 let, se bo zvišala za 82 penijev na 9,18 GBP na uro, stopnja za vajence pa se bo zvišala za 51 penijev na 4,81 GBP na uro.
+Po besedah višjega raziskovalnega ekonomista na Inštitutu za fiskalne študije Toma Watersa: »Čeprav se s tem dohodki polno zaposlenih delavcev z minimalno plačo povečajo za več kot 1.000 funtov na leto, bodo tisti, ki prejemajo splošno nadomestilo, imeli za 250 funtov več razpoložljivega dohodka, saj se jim davki povečajo in prejemki nadomestil zmanjšajo, ko se njihovi dohodki povečajo.«
+Sencev glavni sekretar za finance in poslanec laburistov Bridget Phillipson je ponudbo označil za »podpovprečno« in dodal, da »bo veliko tega požrlo povišanje davkov vlade, zmanjšanje univerzalnih kreditov in neuspeh pri obvladovanju računov za energijo«.
+Inflacija v Združenem kraljestvu se je v letu do septembra zvišala za 2,9 %, kažejo podatki Urada za nacionalno statistiko.
+Phillipson je ukrepe Sunakove vlade primerjal z ukrepi, ki bi jih sprejela laburistična vlada, kot je poročal časnik The Independent: »Z novim dogovorom za delavce, prepovedjo izkoriščevalskih praks, kot so pogodbe za določen čas, prepovedjo odpuščanja in ponovnega zaposlovanja, minimalno plačo vsaj 10 funtov na uro in pravili o poštenem plačilu bo laburistična vlada preoblikovala delo in dvignila standarde.«
+Dnevnik Mirror pa poroča, da Sunak razmišlja o zvišanju na 10,50 funta na uro in znižanju starostne meje za nacionalno minimalno plačo s 25 na 21 let do naslednjih volitev leta 2024.
+To bi ustrezalo ali preseglo obljubo laburistov o »primernem dohodku, s katerim lahko vzdržuješ družino«: povečanje »minimalne plače na najmanj 10 funtov na uro«.
+Gospod Sunak je med tiskovno konferenco dejal, da bo predsednik spodnjega doma parlamenta sir Lindsay Hoyle kasneje to označil za »grobo kršitev« parlamentarcev, da je bil to »ekonomski vpliv in negotovost virusa«, ki je pripeljala do »težke odločitve o začasni prekinitvi zasebnih plačil«, ki so »skupaj z našim načrtom za delovna mesta pomagale zaščititi delovna mesta na vrhuncu pandemije«.
+In zdaj, ko je gospodarstvo trdno na pravi poti, je prav, da se plače medicinskih sester, učiteljev in vseh drugih delavcev v javnem sektorju, ki so prispevali svoj delež med pandemijo, zvišajo.«
+Premier Boris Johnson je na konferenci konservativne stranke napovedal, da bo po brexitu ustvaril »gospodarstvo z visokimi plačami in visoko usposobljenimi delavci«, vendar bo po mnenju časnika i morda minilo več let, preden bo rast plač dohitela naraščajoče finančne pritiske.
+Po poročanju časnika The Guardian analize organizacije Resolution Foundation kažejo, da so zaposleni, ki jih je prizadela zamrznitev plač, zaslužili skoraj 8 % manj kot njihovi kolegi v zasebnem sektorju.
+Razlika se je za vse javne uslužbence, vključno z izvzetimi, povečala na 0,6 %.
+Urad za nacionalno statistiko piše, da je rast plač v zasebnem sektorju od junija do avgusta 2021 znašala 8,3 %, medtem ko je rast plač v javnem sektorju znašala le 2,5 %.
+Igralec Alec Baldwin je bil v četrtek vpleten v nesrečo na filmskem setu filma Rust, v kateri je umrla filmska snemalka Halyna Hutchins, režiser Joel Souza pa je bil poškodovan.
+Nesreča se je zgodila popoldne med snemanjem prizora, v katerem je Baldwin uporabil pištolo za sceno.
+Po poročanju portala Insider je sporočilo sindikata mednarodnega združenja zaposlenih v gledališki in filmski industriji članom trdi, da je rekvizit vseboval živo kroglo.
+Gospod Baldwin sodeluje z preiskovalci in je izrazil sožalje družini gospe Hutchins.
+Šerifov urad okrožja Santa Fe v Novi Mehiki preiskuje, »kakšna vrsta izstrelka je bila izstreljena« in kako je do dogodka prišlo.
+V priseženi izjavi preiskovalcev, ki delajo na primeru, je navedeno, da je bil Baldwinu predan rekvizit in mu je pomočnik režiserja povedal, da je varen.
+Ne Baldwin ne pomočnik režiserja nista vedela, da je pištola napolnjena.
+Podjetje za nepremičninske storitve Evergrande ni izvedlo plačila zapadlih obveznic iz septembra, s čimer se je izognilo stečaju.
+Kitajski nepremičninski velikan Evergrande Group je v četrtek nakazal 83,5 milijona dolarjev obresti, ki so bile dolžne za obveznico iz septembra 23., s čimer je začasno preprečil bankrot, poročata Reuters in kitajski časopis Securities Times.
+Pošiljka denarja na fiduciarni račun pri Citibanku je prišla po 30-dnevnem odlogu, potem ko so to zagotovili različni člani kitajske vlade, je poročal Reuters.
+Tveganja je opisal kot obvladljiva, predsednik Komisije za nadzor nad vrednostnimi papirji Kitajske Yi Huiman pa je dejal, da je treba čeprav je treba prekomerno zadolženost na splošno omejiti z »izboljšanjem učinkovitosti mehanizma za omejevanje zadolževanja«, to vprašanje ustrezno rešiti.
+Nekoč največji kitajski nepremičninski razvijalec Evergrande je po poročanju Reutersa po »zmanjšanju virov« za 80 % nabral za približno 305 milijard USD dolgov, kar je dva odstotka kitajskega bruto nacionalnega proizvoda.
+Podatki za september so razkrili, da so se prodaje stanovanj na Kitajskem po vrednosti zmanjšale za skoraj 17 % v primerjavi z lanskim letom, poroča The Guardian, strah pred njenim bankrotom pa je povzročil upočasnitev rasti kitajskega BDP v tretjem četrtletju na najnižjo raven v letu, 4,9 %.
+Dve pogajalski fazi prodaje z rivalskimi razvijalci Hopson Development in Yuexiu, vredni 2,6 milijarde USD in 1,7 milijarde USD, sta bili prekinjeni, domnevno zaradi pomanjkanja soglasja vlade province Guangdong, ki trenutno nadzoruje prestrukturiranje podjetja Evergrande.
+Novice o nakazilu Evergrandeja so povzročile, da so se njegove delnice danes zjutraj zvišale za 7,8 odstotka, potem ko so trgovanje za 50,1-odstotni delež v podjetju Evergrande Property Services Group začasno ustavili zaradi pričakovane prodaje, kar je po poročanju Reutersa ponudilo nekaj olajšanja za imetnike obveznic.
+Upravljavec portfelja pri GaoTeng Global Asset Management James Wong, ki ga je intervjuval časnik The Guardian, je novice označil za »pozitivno presenečenje« in dodal: »To je pozitivno presenečenje. Če
+Evergrande bo plačal tokrat, ne vidim razloga, zakaj ne bi plačal tudi naslednjič.
+Jun Rong Yeap iz podjetja IG Asia pte., ki ga je intervjuvala družba Bloomberg, je dejal, da poročilo »podira« zgodbo, »da bo Evergrande imel težave pri pridobivanju denarnih sredstev«.
+Naslednji izpuščeni plačili sta predvideni za 29. oktober in 11. november po podobnih 30-dnevnih odlogih plačila; vključno z včerajšnjim zneskom 83,5 milijona USD, upniki dolgujejo skoraj 280 milijonov USD.
+Delnice večjih kitajskih razvijalcev so padle: Reuters je v sredo poročal, da so se letošnje cene delnic znižale za 87,8 % pri Sinic Holdings, ki je trenutno v Fitch Ratingsu označena kot »omejeni neplačnik«, potem ko ni izpolnila obveznosti iz obveznice v vrednosti 246 milijonov USD, ki je zapadla 18. oktobra, poroča The Guardian; za 80,2 % pri Evergrande; za 78,3 % pri E-House, za 58,5 % pri Fantasia Holdings in za 54,6 % pri Kaisa Group, ki je leta 2015 že zašla v neplačilo in je imela obveznice na rekordno nizki ravni.
+Ocene velikosti kitajskega nepremičninskega trga se gibljejo od 16 do 25 % kitajskega bruto domačega proizvoda, navaja The Guardian.
+Cilj kitajskega predsednika Xi Jinpinga, da preoblikuje gospodarstvo države iz dolžniško gnanega »napihnjenega« razvoja v takšnega z izboljšano »kakovostjo in donosi«, je vključeval uvedbo predpisov za razvijalce, ki so omejili njihovo zmožnost zadolževanja.
+Komentar ekonomista Georgea Magnusa, objavljen v časopisu Guardian 15. oktobra, se je nanašal na kitajska »mesta duhov« in »razbohoteno ustvarjanje kreditov«, ki sta privedla do visokih stopenj praznosti in »finančne industrializacije stanovanj«.
+Guverner Teksasa prepovedal obvezno cepljenje proti COVID-19 za »katero koli entiteto«
+V izvršnem ukazu v ponedeljek je guverner Teksasa Greg Abbott prepovedal, da bi "katera koli entiteta v Teksasu" zahtevala cepljenje proti virusu COVID-19, pri čemer je trdil, da "nešteti Teksačani" nasprotujejo prejemu cepiva proti COVID-19 iz razlogov, povezanih z "osebno vestjo, na podlagi verskega prepričanja ali iz medicinskih razlogov, vključno s prebolelo boleznijo COVID-19".
+V izvršnem ukazu GA-40 Abbott navaja: »Cepljenje proti COVID-19 se za tiste, ki so upravičeni do njega, močno priporoča, vendar mora biti za Teksačane vedno prostovoljno.«
+Guvernerjev ukaz sledi napovedi ameriškega predsednika Joeja Bidena iz prejšnjega meseca, da bo Uprava za varnost in zdravje pri delu (OSHA) v okviru ameriškega ministrstva za delo razvila nujni predpis, ki bo delodajalcem z 100 ali več zaposlenimi naložil obvezno cepljenje ali tedensko testiranje.
+Abbott v svojem ukazu navaja, da »je v še enem primeru zveznega pretiravanja Bidenova administracija zdaj začela izsiljevati številne zasebne subjekte, da uvedejo obvezno cepljenje proti COVID-19, kar povzroča motnje delovne sile in ogroža nadaljnje okrevanje Teksasa po katastrofi COVID-19«.
+Abbott je pozval zakonodajno telo Teksasa, naj sprejme zakon proti obveznemu cepljenju proti COVID-19, in je dejal, da bo odlok preklical, če bo to storil zakonodajalec.
+Abbott je zveznim in lokalnim agencijam preprečil zahtevo po cepljenju zaposlenih, vendar je zasebnim podjetjem dovolil, da sama zahtevajo obvezna cepljenja.
+Texas Tribune je opozoril, da je Abbott prepovedal obvezno cepljenje proti COVID-19, vendar država dovoljuje osnovnim in srednjim šolam ter visokošolskim ustanovam, da zahtevajo cepljenje proti različnim boleznim za svoje študente.
+Facebook Inc. in Alphabet Inc., matična družba Googla, oba zaposlujeta veliko število ljudi v Teksasu, obe podjetji pa od svojih zaposlenih zahtevata potrdilo o cepljenju.
+Največji ameriški letalski prevoznik American Airlines s sedežem v Fort Worthu v Teksasu je prejšnji teden pozval svoje 100.000 zaposlenih, naj se cepijo ali pa bodo izgubili zaposlitev.
+V Združenih državah Amerike sta FBI in NCIS (Naval Criminal Investigative Service) v soboto aretirala par v Zahodni Virginiji.
+Sodiščni dokumenti, ki so bili objavljeni v nedeljo, trdijo, da sta poskušala zaupne podatke prodati tuji državi.
+Par iz Marylanda, nekdanji jedrski inženir ameriške mornarice Jonathan Toebbe in njegova žena Diana Toebbe, sta bila aretirana in obtožena kršitve Zakona o jedrski energiji.
+Gospod Toebbe je delal na jedrskih reaktorjih za vojaške ladje in na zmanjševanju hrupa.
+Gospa Toebbe je učiteljica na zasebni šoli Key v njuni soseski Annapolis, zdaj je na nedoločenem suspenzu, kot je sporočila šola.
+Ameriški pravosodni minister Merrick Garland je v zvezi s primerom dejal: »Obtožba se nanaša na načrt za prenos informacij o načrtovanju naših jedrskih podmornic tuji državi.«
+Ministrstvo za pravosodje ZDA (DOJ) trdi, da sta zakonca poskušala te informacije prodati tujemu agentu, ki je bil v resnici tajni agent FBI.
+V dokumentih, ki so bili vloženi na zveznem sodišču, je navedeno, da je gospod Toebbe več mesecev preko šifriranih sporočil urejal prodajo omejenih informacij državi, ki je identificirana le kot »DRŽAVA1«, in da je urejal »oddaje« teh podatkov na SD karticah na različnih lokacijah v zameno za plačila v kriptovalutah.
+Na začetku izmenjav v Zahodni Virginiji je DOJ trdil, da je gospod Toebbe SD-kartico skril v sendvič s arašidovim maslom, medtem ko je gospa Toebbe delovala kot opazovalka.
+Na drugem od teh krajev v vzhodni Virginiji obtožnica navaja, da je bila SD-kartica nameščena v embalažo žvečilnega gumija.
+Zvezni uradniki so par aretirali na tretjem mestu predaje, v Zahodni Virginiji, v soboto.
+Gospod Toebbe in gospa Toebbe bosta jutri nastopila pred zveznim sodiščem v Martinsburgu v zvezni državi Zahodna Virginija.
+Kalifornija bo od leta 2024 zahtevala, da imajo veliki trgovci nevtralne oddelke z igračami glede na spol
+V soboto je guverner Kalifornije Gavin Newsom podpisal zakon o skupščinskem zakonu 1084 (AB-1084), ki zahteva, da trgovci z 500 ali več zaposlenimi po vsej državi vzdržujejo spolno nevtralno območje za otroške izdelke in igrače.
+V zakonu piše, da »mora veleblagovnica, ki prodaja izdelke za nego otrok ali igrače, vzdrževati nevtralni oddelek ali območje, ki ga po lastni presoji označi prodajalec, na katerem je na voljo raznolik izbor izdelkov in igrač za otroke, ki jih prodaja, ne glede na to, ali so bili tradicionalno namenjeni deklicam ali dečkom«.
+Oddelki za dečke in deklice niso prepovedani, vendar je ob njih potreben skupni oddelek.
+V originalni verziji je bil vključen tudi tekstil, vendar je bil ta del med postopkom v kalifornijskem senatu iz besedila izpuščen.
+Neizpolnjevanje zahtev pomeni civilno kazen v višini 250 USD za prvi primer in 500 USD za nadaljnje kršitve.
+Sodišče bi lahko od kršitelja zahtevalo plačilo sodnih stroškov in odvetniških stroškov.
+Člana skupščine Evan Low in Cristina Garcia, oba člana Demokratske stranke, sta predlog zakona vložila v skupščino Kalifornije, spodnji dom zakonodajne oblasti države.
+Zakon AB-1084 sta sprejela oba domova, nato pa ga je skupščina 2. septembra sprejela z 49 glasovi za in 16 proti, preden je bil poslan na mizo guvernerja za odobritev.
+Glede zakona je Low povedal: »Del tega je zagotoviti, da lahko mlada dekleta najdejo policijski avto, gasilski avto, periodni sistem ali dinozavra.«
+In podobno, če ste fant, če ste bolj umetniški in želite igrati z bleščicami, zakaj ne?
+Zakaj bi morali čutiti stigmo, ko rečete: „Oh, to bi moralo biti osramočeno“, in greste na drugo lokacijo?“
+25. julija je Garcia v objavi na Facebooku zapisal: »Kot učitelj matematike sem videl, kako igra ustvarja temelje za pridobivanje prostorske zavednosti, ki je pomembna za učenje geometrije. Žal so te igrače pogosto označene kot igrače za dečke.«
+»Odstranitev spola z igračami bo morda pripomogla k temu, da se bo več dečkov in deklic odločilo za delo v STEM sektorju.«
+Zakonu so nasprotovali člani Republikanske stranke: republikanska državna senatorka Melissa Melendez je dejala: »Ne mislim, da starši potrebujejo vlado, ki bi jim govorila, kako naj nakupujejo za svoje otroke.«
+Proti zakonu je Capitol Resource Institute trdil, da »ni naloga vlade, da trgovskim podjetjem narekuje, kako naj razstavljajo in tržijo svoje izdelke.«
+6. aprila je na javni obravnavi pred odborom za poslovne in poklicne dejavnosti skupščine Greg Burt iz kalifornijskega družinskega sveta označil predlog zakona AB-1084 kot »nemogočega za izvajanje«, saj ne določa, kaj pomeni »primerna količina«, in »tak zakon odpira vrata neomejenemu številu pritožb aktivistov, ki jim ni všeč, kako trgovine tržijo svoje izdelke enemu ali drugemu spolu«.
+Zakonski predlog skupščine št. 2826, ki ga je leta 2020 v skupščino vložil Low, ki je imel podoben cilj, je umrl v zakonodajnem telesu.
+Trgovska družba Target, ki ima v ZDA 1915 trgovin, je leta 2015 opustila tradicionalno označevanje oddelkov z igračami.
+»Danes bi bilo težje najti velikega trgovca, ki bi igrače ločeval po spolu«, je opozoril Zakonodajni svet jugozahodne Kalifornije, nasprotnik zakona.
+V petek je v Aucklandu na Novi Zelandiji prišlo do napada z nožem, v katerem je bilo poškodovanih vsaj šest ljudi, med njimi trije v kritičnem stanju. Jacinda Ardern, premierka države, je napad označila za »teroristični napad na nedolžne Novozelandce«, ki ga je izvedel »nasilen ekstremist«.
+Zabadanje se je zgodilo v aucklandski četrti New Lynn v supermarketu Countdown, ki se nahaja v nakupovalnem središču LynnMall.
+Policija je moškega, ki je izvedel napad, ustrelila in ubila v 60 sekundah po začetku napada.
+Od šestih, ki so bili poškodovani, so trije v kritičnem stanju, eden je v resnem stanju, dva pa v zmernem stanju.
+Napadalec, državljan Šrilanke, živi na Novi Zelandiji od oktobra 2011 in je bil od leta 2016 oseba zanimanja za nacionalne varnostne agencije.
+Premierka Ardernova je trdila, da je bil moški navdihnjen s strani Islamske države, vendar je dodala, da bi bilo »napačno, če bi svojo frustracijo usmerjali na kogarkoli razen na tega posameznika«.
+To je krivec, to je odgovorna oseba – nihče drug“.
+Ardernova je tudi povedala, da je bila o moškem obveščena že pred petkovimi dogodki, vendar je razlog, zakaj je znan oblastem, zaupen in ga pokrivajo sodni nalogi.
+Potrdila je, da je oseba pod stalnim policijskim nadzorom in dejala: »Uporabili smo vse pravne in nadzorne možnosti, ki so nam na voljo, da bi poskušali ljudi obvarovati pred to osebo.«
+Zaradi dogodkov so trgovine Countdown na Novi Zelandiji včeraj odprle svoja vrata ob 10. uri, kar je kasneje kot običajno, generalni direktor varnosti podjetja pa je zapisal: »Uničeni smo zaradi tega nasilnega napada v naši trgovini Lynnmall v petek.«
+Naša srca so težka, ko vemo, česa so bili priče in česar so bili deležni naši sodelavci in stranke.
+Naše misli so z vsemi poškodovanimi in njihovimi družinami ter bomo podpirali vse člane naše ekipe v Lynnmallu«.
+Ena oseba je umrla, pet pa je bilo ranjenih v streljanju v Dorchesterju zgodaj zjutraj.
+V ponedeljek zgodaj zjutraj je bila v streljanju na ulici Irma v Dorchesterju, Boston, Massachusetts, ZDA, ena ženska ubita, pet ljudi pa je bilo ranjenih.
+Ob prihodu na kraj dogodka so policisti odkrili žensko in jo razglasili za mrtvo.
+Homicidni detektivi so na pločnik postavili označevalce, da bi označili dokaze v preiskavi, policija pa je z rumenim trakom za označevanje kraja zločina zaprla ulico Irma in več drugih lokacij, da bi preprečila morebitno poseganje v preiskavo.
+Pet poškodovanih oseb se trenutno zdravi v lokalnih bolnišnicah.
+Trije od petih poškodovanih so se sami odpeljali v bolnišnico, druga dva pa so v bolnišnico pospremili reševalci iz Bostona.
+V torek so umrlo žensko identificirali kot 38-letno Aishio Shepard, ki je živela v Roxburyju.
+Tudi policijska uprava Boston se ukvarja s tem primerom, ko se ta razvija.
+Boston Neighborhood Trauma Team ponuja tudi 24-urno pomoč in podporo vsem, ki potrebujejo čustveno podporo v tem težkem času.
+V nedeljo so talibani vkorakali v Kabul, afganistansko prestolnico.
+Ta poteza prihaja, ko je afganistanski predsednik Ašraf Gani pobegnil iz Kabula, morda v Tadžikistan ali Uzbekistan, poroča The Independent.
+Po poročanju BBC-ja je tiskovni predstavnik talibanov Zabihullah Mujahid dejal, da so talibani dobili ukaz, naj vstopijo v dele Kabula zaradi varnostnih razlogov, saj so varnostne sile nedavno odšle.
+Dejal je, da njihove sile vstopajo v Kabul z vso previdnostjo, in da so bili talibani opozorjeni, naj ne škodujejo javnosti ali vstopajo v njihove domove.
+ZDA so odgovorile z napotitvijo 5000 vojakov, ki bodo pomagali pri evakuaciji osebja svojega veleposlaništva in Afganistancev, ki so jim pomagali, medtem ko je Velika Britanija napotila okoli 600 vojakov za podobne namene, je poročal BBC.
+Druge države izvajajo postopke za odstranitev svojih državljanov iz države.
+ZDA so se nedavno umaknile iz Afganistana po skoraj 20 letih okupacije.
+Ameriški predsednik Joe Biden je dejal, da »neskončna ameriška prisotnost sredi državljanskega konflikta druge države« ni upravičena.
+V Kabul se je zateklo tudi veliko afganistanskih civilistov, ki želijo pobegniti pred vse večjim nadzorom talibanov, ki nadzorujejo večino ozemlja države.
+Množica prebivalcev je zbežala na mestno letališče, da bi zapustila državo, med njimi nekateri, ki so svoje avtomobile pustili v prometnih zastojih in raje pešačili.
+V četrtek je 130 držav in jurisdikcij od 139 članic Organizacije za gospodarsko sodelovanje in razvoj (OECD) podprlo prenovo mednarodnega davčnega sistema, ki bi uvedla globalno minimalno davčno stopnjo za podjetja, s čimer se je večina svetovnih gospodarstev zavezala k dvodelni »rešitvi«.
+Države, ki so se strinjale s ključnimi sestavinami načrta, so vključevale regionalne dele, kot so Gibraltar, Hongkong in Montserrat, davčne oaze po Associated Press (AP) Bermuda in Kajmanski otoki ter vse države skupine G20 (G20), po seznamu OECD, vendar ne Barbados, Estonija, Madžarska, Irska, Kenija, Nigerija, Šrilanka in Sveti Vincent in Grenadine.
+Peru se je prav tako vzdržal, vendar zaradi pomanjkanja vlade, je poročal The Guardian.
+Podpisniki predstavljajo več kot 90 % svetovnega bruto domačega proizvoda (BDP).
+Sporočilo za javnost OECD je okvir označilo kot rezultat »pogajanj, ki jih je OECD usklajeval večji del preteklega desetletja«, in kritiziralo »stoletja star mednarodni davčni sistem«, ki »ni več primeren«.
+Načrt je podprl ameriški predsednik Joe Biden po navedbah več virov in prihaja po podobnem dogovoru skupine sedmih industrijsko najrazvitejših držav na svetu (G7) 5. junija.
+Načrt, uradno imenovan »OECD/G20 vključujoči okvir za preprečevanje erozije davčne osnove in preusmerjanja dobičkov«, je sprejel pristop v več stebrih.
+Če bo predlog sprejet, bo prvi ukrep prisilil multinacionalna podjetja (MNP) z globalnim prometom, ki presega 20 milijard evrov in dobičkonosnostjo nad 10 %, da bodo preusmerila davke na več kot 100 milijard dolarjev dobička iz svojih domačih trgov v vsako tržno jurisdikcijo, od koder so pridobila vsaj milijon evrov ali 250 tisoč evrov, odvisno od BDP-ja.
+Izjava OECD je potrdila, da se lahko prag za prizadete MNE po stebru 1 spremeni na tiste, ki presegajo 10 milijard evrov prihodkov, odvisno od rezultatov pregleda, ki bo opravljen v sedmih letih.
+Drugi steber sestavljata dve »pravili za globalno preprečevanje erozije davčne osnove«, ki določata doplačilo davka v višini najmanj 15 %, in eno pogodbeno »pravilo o obdavčitvi«, ki bo začelo veljati leta 2023.
+Učinki obeh stebrov, čeprav odvisni od končnega okvira načrta, naj bi po ocenah OECD povečali svetovne rezerve davka od dohodka pravnih oseb (CIT) med 1,9 in 3,2 %, oziroma med 50 in 80 milijardami USD.
+Če vključimo obstoječi ameriški davek na globalni neotipljivi dohodek z nizko obdavčitvijo, bi rast rezerv CIT znašala med 2,3 in 4 % oziroma med 56 in 102 milijardami USD.
+To bi preprečilo tudi izogibanje davkom, prakso, ki po ocenah OECD državam na leto odnese med 100 in 240 milijard USD prihodkov, poroča AP.
+OECD prav tako napoveduje »razmeroma majhen« negativen vpliv na investicije in dejavnosti, ki bo v srednjeročnem in dolgoročnem obdobju znašal 0,1 % BDP.
+Med drugimi izraženimi pomisleki so tudi možnosti, da bi države izgubile možnost uporabe davčnih spodbud za doseganje političnih ciljev, ter stroški zagotavljanja skladnosti.
+Države, ki so nasprotovale, vključujejo Madžarsko in Irsko, ki sta po navedbah Politica iskali nižje stopnje za privabljanje tujih neposrednih investicij in imata poleg Estonije po navedbah BBC vsaj nekatere stopnje za podjetja nižje od predlaganega dna v višini 15 %.
+Irska in madžarska stopnja davka na dobiček podjetij znaša 12,5 oziroma 9 %, navaja The Guardian, Irska pa naj bi v naslednjih štirih letih izgubila več kot dve milijardi evrov, navaja Raidió Teilifís Éireann (RTÉ).
+V davčnem povzetku družbe PricewaterhouseCoopers je omenjena davčna oprostitev za neoddeljene dohodke pravnih oseb v Estoniji, poleg primerov, ko se uporablja 14-odstotna stopnja.
+Generalni sekretar OECD Mathias Cormann je v sporočilu za javnost dejal, da bo ta zgodovinski paket »zagotovil, da bodo velika multinacionalna podjetja plačevala pravičen delež davkov povsod«, in dodal, da čeprav »ne odpravlja davčne konkurence«, »postavlja multilateralno dogovorjene omejitve«.
+Biden je dejal, da dogovor pomeni, da je svet »blizu globalnega dogovora o prenehanju tekme navzdol«, kar je ameriška ministrica za finance Janet Yellen opisala kot tekmo, ki je »nobena država« ni dobila, poroča The Guardian.
+Francoski minister za finance Bruno Le Maire je to označil za »najpomembnejši mednarodni davčni sporazum v stoletju«, poroča BBC.
+Po poročanju RTÉ je irski finančni minister Paschal Donohoe dejal, da je sicer izrazil "rezervacije Irske", a ostaja "zavezan k procesu" in zagotavlja svetovni skupnosti, da bo "Irska še naprej igrala svojo vlogo pri doseganju celovitega in zgodovinskega dogovora".
+Po poročanju Reutersa je madžarski premier Viktor Orbán 9. junija predlog označil za »absurden« in vztrajal, da nizke davčne stopnje »niso namenjene privabljanju določenih podjetij, da bi tukaj prijavljala svoje davke«, niti ne delajo Madžarske za davčno oazo.
+Benetke v Italiji bodo 9. julija gostile finančne ministre in guvernerje centralnih bank skupine G20 na »Simpoziju na visoki ravni o davkih G20«, je sporočilo italijansko ministrstvo za gospodarstvo in finance.
+Varnostni svet ga je sprejel na svojem 7089. zasedanju, 18. decembra 2013
+Z zaskrbljenostjo ugotavljajo, da je položaj na Bližnjem vzhodu napet in bo verjetno ostal tak, dokler ne bo dosežen celovit sporazum, ki bo zajel vse vidike bližnjevzhodnega problema,
+Po preučitvi poročila generalnega sekretarja z dne 3. decembra 2013 o mirovnih silah OZN za nadzorovanje premirja (S/2013/716) ter ponovno potrjujejo svojo resolucijo 1308 (2000) z dne 17. julija 2000,
+Poudarjajoč, da morata obe strani spoštovati določila sporazuma o ločitvi sil med Izraelom in Sirijo iz leta 1974 ter dosledno spoštovati prekinitev ognja,
+Strinjajoč se z ugotovitvami generalnega sekretarja, da lahko nadaljnje vojaške aktivnosti, ki jih izvaja katerikoli akter na območju ločitvene črte, še naprej povečajo napetosti med Izraelom in Sirsko arabsko republiko, ogrozijo prekinitev ognja med obema državama in predstavljajo tveganje za lokalno civilno prebivalstvo in osebje Združenih narodov na terenu,
+Izražanje globokega zaskrbljenja zaradi vseh kršitev sporazuma o razmejitvi sil,
+Poudarjajoč, da na območju ločitvene črte ne sme biti drugih vojaških sil razen sil misije UNDOF,
+Močno obsojajoč nedavne intenzivne spopade na območju ločitvene črte in pozivajo vse strani v sirski notranji konflikt, naj prenehajo z vojaškimi akcijami na območju delovanja misije UNDOF, zlasti ob upoštevanju pomembnih spopadov 12. in 16. septembra ter 1. do 4. oktobra ter povečane uporabe improviziranih eksplozivnih naprav s strani elementov sirske opozicije in drugih skupin na območju delovanja misije UNDOF,
+Poudarjanje potrebe, da ima UNDOF na voljo vsa potrebna sredstva in vire, da lahko svoje pooblastilo izvaja varno in varno, ter spominjanje, da je kraja orožja in streliva Združenih narodov, vozil in drugih sredstev ter ropanje in uničevanje objektov Združenih narodov nesprejemljiva,
+Izražanje globoke hvale vojaškemu in civilnemu osebju mirovnih sil OZN na Golanski planoti, vključno z opazovalno skupino Golanska planota, za njihovo delo in nadaljnji prispevek v vse bolj zahtevnem delovnem okolju, poudarjanje pomembnega prispevka, ki ga nadaljnja prisotnost mirovnih sil OZN na Golanski planoti prinaša miru in varnosti na Bližnjem vzhodu, pozdravljanje ukrepov za izboljšanje varnosti in zaščite osebja mirovnih sil OZN na Golanski planoti, vključno z opazovalno skupino Golanska planota, in poudarjanje potrebe po nadaljnji previdnosti za zagotovitev varnosti in zaščite osebja mirovnih sil OZN na Golanski planoti in opazovalne skupine Golanska planota,
+1. poziva vse vpletene strani, naj takoj izvedejo svojo resolucijo 338 (1973) z dne 22. oktobra 1973;
+2. Poudarja obveznost obeh strani, da dosledno in v celoti spoštujeta določila sporazuma o ločitvi sil iz leta 1974, poziva strani, naj izvajata največjo možno mero zadržanosti in preprečujeta kakršne koli kršitve premirja in območja ločitve ter poudarja, da v območju ločitve ne sme biti nobene vojaške dejavnosti, vključno z vojaškimi operacijami sirskih oboroženih sil;
+3. Poudarja, da na območju ločitve ne sme biti vojačnih aktivnosti oboroženih opozicijskih skupin, in poziva države članice, naj močno sporočijo sirski oboroženi opoziciji na območju delovanja misije UNDOF, naj ustavi vse aktivnosti, ki ogrožajo mirovnike Združenih narodov na terenu, in naj zagotovijo osebju Združenih narodov na terenu svobodo za varno in varno izvajanje njihovega mandata;
+4. poziva vse strani, naj v celoti sodelujejo z operacijami sil UNDOF, spoštujejo njihove privilegije in imunitete ter zagotovijo njihovo svobodo gibanja, prav tako pa varnost osebja Združenih narodov, ki izvaja svoj mandat, vključno z začasno uporabo alternativnega vhoda in izhoda, kot je potrebno, da se zagotovijo varne in varne dejavnosti rotacije sil, v skladu z obstoječimi sporazumi, ter pozdravlja hitro poročanje generalnega sekretarja Varnostnemu svetu in državam, ki prispevajo sile, o vseh dejanjih, ki ovirajo sposobnost sil UNDOF za izpolnjevanje njihovega mandata;
+5. pozdravlja prizadevanja mirovnih sil Organizacije združenih narodov za razmejevanje, da bi izvajali politiko ničelne tolerance generalnega sekretarja glede spolnega izkoriščanja in zlorab ter zagotovili popolno skladnost osebja s kodeksom ravnanja Organizacije združenih narodov, poziva generalnega sekretarja, naj še naprej sprejema vse potrebne ukrepe v zvezi s tem in naj o tem nadalje obvešča Varnostni svet, ter poziva države, ki prispevajo vojake, naj sprejmejo preventivne in disciplinske ukrepe, da zagotovijo, da se takšni incidenti ustrezno raziščejo in kaznujejo v primerih, ki vključujejo njihovo osebje;
+6. Sklene, da bo mandat mirovnih sil Združenih narodov za ločevanje sil podaljšala za šest mesecev, to je do 30. junija 2014, in poziva generalnega sekretarja, naj zagotovi, da bo imela sila UNDOF potrebne zmogljivosti in sredstva za izpolnjevanje mandata ter da bo izboljšala sposobnost sile za izpolnjevanje mandata na varen in zanesljiv način;
+7. Generalnega sekretarja prosi, naj vsakih 90 dni poroča o razvoju dogodkov in o ukrepih, ki so bili sprejeti za izvajanje resolucije 338 (1973).
+Varnostni svet ga je sprejel na svojem 7044. zasedanju, 18. oktobra 2013
+Ponovno potrjuje svojo zavezanost k nadaljnji in popolni izvedbi resolucij 1325 (2000), 1820 (2008), 1888 (2009), 1889 (2009), 1960 (2010) in 2106 (2013) ter vseh ustreznih izjav svojega predsednika na vzajemno dopolnjujoč način,
+Spominjajoč se zavez iz Pekinške deklaracije in Akcijskega načrta za ženske ter ponovno potrjujoč obveznosti pogodbenic Konvencije o odpravi vseh oblik diskriminacije žensk, Dodatnega protokola h Konvenciji in pozivajoč države, ki tega še niso storile, naj razmislijo o ratifikaciji ali pristopu k njima,
+Ob upoštevanju ciljev in načel Ustanovne listine Združenih narodov in primarne odgovornosti Varnostnega sveta po Ustanovni listini za ohranjanje mednarodnega miru in varnosti ter ob upoštevanju dejstva, da je osrednji namen te resolucije izvajanje ženske, mir in varnostne agende,
+Ponovno potrjujemo, da sta opolnomočenje žensk in deklic ter enakost spolov ključna za prizadevanja za ohranjanje mednarodnega miru in varnosti ter poudarjamo, da se obstoječe ovire za popolno izvajanje resolucije 1325 (2000) lahko odstranijo le z zavezanostjo k opolnomočenju žensk, njihovi udeležbi in človekovim pravicam ter z usklajenim vodstvom, doslednimi informacijami in ukrepi ter podporo za krepitev vloge žensk na vseh ravneh odločanja.
+Izražanje zaskrbljenosti zaradi povečane ranljivosti žensk v oboroženih spopadih in pokonfliktnih razmerah, zlasti v zvezi z prisilno razselitvijo, kot posledico neenakih državljanskih pravic, spolno pristranske uporabe azilnih zakonov in ovir pri registraciji in dostopu do dokumentov o identiteti, ki se pojavljajo v mnogih situacijah,
+Izražajoč globoko zaskrbljenost zaradi vseh groženj in kršitev človekovih pravic, ki jih doživljajo ženske v oboroženih spopadih in pokonfliktnih razmerah, priznavajoč, da so lahko tiste ženske in dekleta, ki so še posebej ranljive ali prikrajšane, posebej ciljane ali bolj izpostavljene tveganju nasilja, in priznavajoč, da je treba storiti več za zagotovitev, da ukrepi za tranzicijsko pravičnost obravnavajo celoten spekter kršitev in zlorab človekovih pravic žensk ter različne vplive teh kršitev in zlorab na ženske in dekleta, vključno s prisilno razselitvijo, prisilnimi izginotji in uničenjem civilne infrastrukture,
+Priznavajoč pomembnost prizadevanj držav članic in organov Združenih narodov za zagotovitev, da humanitarna pomoč in financiranje vključujeta zagotovitev celotnega obsega zdravstvenih, pravnih, psihosocialnih in storitev za preživljanje žensk, prizadetih v oboroženih spopadih in pokonfliktnih situacijah, in ob upoštevanju potrebe po dostopu do celotnega obsega storitev spolnega in reproduktivnega zdravja, vključno s tistimi, ki se nanašajo na nosečnosti, ki so posledica posilstva, brez diskriminacije,
+Ponavlja svojo močno obsodbo vseh kršitev mednarodnega prava, storjenih proti civilistom in/ali neposredno vplivajočih nanje, vključno z ženskami in dekleti v oboroženih spopadih in pokonfliktnih razmerah, vključno s posilstvom in drugimi oblikami spolnega in na spolu temelječega nasilja, ubijanjem in pohabljanjem, oviranjem humanitarne pomoči ter množičnim prisilnim razseljevanjem,
+Priznavajoč, da imajo države primarno odgovornost za spoštovanje in zagotavljanje človekovih pravic vseh oseb na svojem ozemlju in pod svojo jurisdikcijo, kot je določeno z mednarodnim pravom, in ponovno potrjujejoč, da so stranke oboroženih spopadov primarno odgovorne za zagotavljanje zaščite civilistov,
+Ponovno potrjujemo, da trajnostni mir zahteva celovit pristop, ki temelji na skladnosti med političnimi, varnostnimi, razvojnimi, človekovimi pravicami, vključno z enakostjo spolov, in pravosodnimi ter pravnimi dejavnostmi, in v tem kontekstu poudarjamo pomen prava kot enega od ključnih elementov preprečevanja konfliktov, ohranjanja miru, reševanja konfliktov in obnove miru,
+Zavedajoč se potrebe po bolj sistematičnem pristopu k izvajanju zavez žensk, miru in varnosti v svojem delu, zlasti za zagotovitev izboljšanja sodelovanja žensk pri preprečevanju konfliktov, njihovem reševanju in graditvi miru ter upoštevajoč potrebo po pravočasnem in sistematičnem poročanju o ženskah, miru in varnosti,
+Ob upoštevanju kritičnega prispevka civilne družbe, vključno z ženskimi organizacijami, k preprečevanju konfliktov, njihovemu reševanju in graditvi miru ter v tem kontekstu pomena stalnega posvetovanja in dialoga med ženskami in nacionalnimi ter mednarodnimi odločevalci,
+Zavedajoč se potrebe po odpravi vrzeli in krepitvi povezav med mirovnimi in varnostnimi dejavnostmi Organizacije združenih narodov, varstvom človekovih pravic in razvojnim delom kot sredstvom za odpravo vzrokov oboroženih spopadov in groženj varnosti žensk in deklic pri uresničevanju mednarodnega miru in varnosti,
+Upoštevajoč, da gospodarsko opolnomočenje žensk močno prispeva k stabilizaciji družb, ki izhajajo iz oboroženih konfliktov, in pozdravljajoč deklaracijo Komisije za mirno reševanje sporov o gospodarskem opolnomočenju žensk za mirno reševanje sporov z dne 26. septembra 2013 (PBC/7/OC/L.1),
+Priznava sprejetje Pogodbe o trgovini z orožjem in ugotavlja določbe člena 7(4) pogodbe, po katerih izvoznice pogodbenice upoštevajo tveganje, da bi se predmetna konvencionalna orožja ali predmeti uporabljali za storitev ali olajšanje hudih dejanj nasilja na podlagi spola ali hudih dejanj nasilja nad ženskami in otroki,
+Veselimo se pomembnega prispevka, ki ga lahko k zmanjšanju nasilja nad ženskami in dekleti v oboroženih spopadih in pokonfliktnih razmerah prispeva izvajanje Pogodbe o trgovini z orožjem,
+Pozdravljajo prizadevanja držav članic in priznavajo prizadevanja regionalnih in podregionalnih organizacij pri izvajanju resolucije 1325 (2000) in poznejših resolucij o ženskah, miru in varnosti na regionalni, nacionalni in lokalni ravni, vključno z razvojem akcijskih načrtov in okvirov za izvajanje, ter spodbujajo države članice, naj nadaljujejo s takšnim izvajanjem, vključno s krepitvijo spremljanja, ocenjevanja in usklajevanja.
+1. Priznava potrebo po dosledni izvedbi resolucije 1325 (2000) v svojem delu in namerava več pozornosti nameniti vlogi žensk pri vodenju in sodelovanju v reševanju konfliktov in graditvi miru, vključno z spremljanjem napredka pri izvajanju ter obravnavanjem izzivov, povezanih z pomanjkanjem in kakovostjo informacij ter analiz o vplivu oboroženih konfliktov na ženske in dekleta, vlogi žensk pri graditvi miru ter spolnih razsežnostih mirovnih procesov in reševanja konfliktov;
+2. Priznava potrebo po pravočasnih informacijah in analizi vpliva oboroženih spopadov na ženske in dekleta, vlogi žensk pri graditvi miru ter spolnih razsežnostih mirovnih procesov in reševanja konfliktov v situacijah, ki so na dnevnem redu Sveta, zato:
+Izvršna direktorica UN-Ženske in generalna podsekretarka/posebna predstavnica generalnega sekretarja za spolno nasilje v konfliktih glede vprašanj, ki so pomembna za ženske, mir in varnost;
+(b) Poziv DPKO, DPA in pristojnim visokim uradnikom, naj kot del svojih rednih poročil Varnostnemu svetu posredujejo informacije o vprašanjih, povezanih z ženskami, mirom in varnostjo, vključno z izvajanjem;
+(c) poziva generalnega sekretarja in njegove posebne odposlance ter posebne predstavnike misij Združenih narodov, da v okviru svojih rednih poročil Svetu posodobijo informacije o napredku pri vabljenju žensk k sodelovanju, vključno s posvetovanji s civilno družbo, vključno z ženskimi organizacijami, v razpravah, ki so pomembne za preprečevanje in reševanje konfliktov, ohranjanje miru in varnosti ter pokonfliktno obnovo miru;
+(d) Od DPKO in DPA zahteva, da sistematično vključujeta informacije in priporočila, povezana z vprašanji, ki so pomembna za ženske, mir in varnost, v svoja poročila Varnostnemu svetu;
+(e) Vabi vse od Sveta Združenih narodov ustanovljene preiskovalne komisije, ki preiskujejo razmere na dnevnem redu Sveta, naj v svoja poročila vključijo informacije o različnih vplivih oboroženih spopadov na ženske in dekleta, zlasti poudarjajoč priporočila za napredek odgovornosti, pravice in zaščite žrtev med oboroženimi spopadi ter v pokonfliktnih in prehodnih kontekstih;
+3. Izraža namen, da bo v vseh ustreznih tematskih področjih svojega dela, vključno zlasti s zaščito civilistov v oboroženih spopadih, pokonfliktno obnovo miru, spodbujanjem in krepitev vladavine prava pri ohranjanju mednarodnega miru in varnosti, miru in varnosti v Afriki, grožnjami mednarodnemu miru in varnosti, ki jih povzročajo teroristična dejanja, in ohranjanjem mednarodnega miru in varnosti, povečala pozornost vprašanjem žensk, miru in varnosti;
+4. Ponavlja svojo namero, da pri vzpostavljanju in obnavljanju mandatov misij Združenih narodov vključi določbe o spodbujanju enakosti spolov in krepitvi vloge žensk v konfliktnih in pokonfliktnih situacijah, vključno z imenovanjem svetovalcev za enakost spolov, kadar je to primerno, in nadalje izraža svojo namero, da vključi določbe, ki bodo olajšale polno sodelovanje žensk in njihovo zaščito pri: pripravah na volitve in političnih procesih, programih razoroževanja, demobilizacije in reintegracije, reformah varnostnega sektorja in pravosodja ter širših procesih obnove po konfliktu, kjer so to mandatne naloge misije;
+5. Poudarja, da je treba vodstvo mirovnih operacij Združenih narodov pozvati k oceni kršitev in zlorab človekovih pravic žensk v oboroženih spopadih in po njih ter da je treba mirovne operacije, v skladu z njihovimi mandati, pozvati k obravnavi groženj varnosti in izzivov zaščite, s katerimi se ženske in dekleta soočajo v oboroženih spopadih in po njih;
+6. Priznava pomen interakcij civilne družbe, vključno z ženskimi organizacijami, z člani Sveta na sedežu in med misijami Sveta na terenu ter se zavezuje, da bodo njegovi periodični obiski na terenu v konfliktnih območjih vključevali interaktivna srečanja z lokalnimi ženskami in ženskimi organizacijami na terenu;
+7. priznava, da je treba še naprej povečevati sodelovanje žensk in upoštevati vprašanja, povezana z njimi, v vseh razpravah, ki se nanašajo na preprečevanje in reševanje oboroženih spopadov, ohranjanje miru in varnosti ter pokonfliktno obnovo, in v tem pogledu Svet:
+(a) poziva posebne odposlance in posebne predstavnike generalnega sekretarja za misije Združenih narodov, da se že na začetku svojega mandata redno posvetujejo z ženskimi organizacijami in ženskimi voditeljicami, vključno s skupinami žensk, ki so socialno in/ali ekonomsko izključene;
+(b) poziva prizadete države članice, naj razvijejo posebne mehanizme financiranja za podporo delu in krepitev zmogljivosti organizacij, ki podpirajo razvoj ženskega vodstva in polno sodelovanje žensk na vseh ravneh odločanja, zlasti pri izvajanju resolucije 1325 (2000), med drugim z večjim prispevanjem k lokalni civilni družbi;
+(c) Generalni sekretar se poziva, naj okrepi znanje pogajalskih delegacij za mirovna pogajanja in članov podpornih ekip za mediacijo o spolnih razsežnostih graditve miru tako, da zagotovi strokovno znanje o spolu in strokovnjake za spol vsem ekipam Združenih narodov za mediacijo; nadalje se ga poziva, naj podpre imenovanje žensk na visokih položajih za mediatorke Združenih narodov in v sestavi ekip Združenih narodov za mediacijo; poziva se vse strani takih mirovnih pogajanj, naj omogočijo enako in polno sodelovanje žensk na odločitvenih ravneh;
+8. Poudarja pomen nadaljevanja prizadevanj držav članic, ki izvajajo pokonfliktne volilne procese in ustavne reforme, pri čemer imajo podporo organov Združenih narodov, da zagotovijo popolno in enako udeležbo žensk v vseh fazah volilnih procesov, pri čemer je treba posebno pozornost nameniti varnosti žensk pred volitvami in med njimi;
+9. Spodbuja države, ki prispevajo vojaške in policijske sile, naj povečajo delež žensk med vojaškimi in policijskimi silami v mirovnih operacijah Združenih narodov ter nadalje spodbuja države, ki prispevajo vojaške in policijske sile, naj zagotovijo ustrezno usposabljanje vseh vojaških in policijskih sil za izpolnjevanje njihovih nalog ter ustrezne enote Združenih narodov, da zagotovijo ustrezna navodila ali module za usposabljanje, vključno zlasti s predhodnim usposabljanjem Združenih narodov na podlagi scenarijev za preprečevanje spolnega in na spolu temelječega nasilja;
+10. Poudarja potrebo po nadaljnjih prizadevanjih za odpravo ovir pri dostopu žensk do pravice v konfliktnih in pokonfliktnih razmerah, vključno s prilagoditvijo zakonodaje, pravosodja in varnostnega sektorja ter z drugimi mehanizmi;
+11. Vse zainteresirane strani, vključno z državami članicami, entitetami Združenih narodov in finančnimi ustanovami, poziva, naj podprejo razvoj in krepitev zmogljivosti nacionalnih institucij, zlasti pravosodnih in zdravstvenih sistemov, ter lokalnih mrež civilne družbe, da bi zagotovili trajno pomoč ženskam in deklicam, ki jih prizadene oborožen konflikt in pokonfliktne razmere;
+12. poziva države članice, naj izpolnjujejo svoje relevantne obveznosti za končanje nekaznovanosti ter temeljito preiščejo in preganjajo osebe, odgovorne za vojne zločine, genocid, zločine proti človeštvu ali druge hude kršitve mednarodnega humanitarnega prava; in nadalje ugotavlja, da se je boj proti nekaznovanosti za najhujše mednarodne zločine proti ženskam in deklicam okrepil s pomočjo Mednarodnega kazenskega sodišča, ad hoc in mešanih sodišč ter specializiranih oddelkov v nacionalnih sodiščih;
+13. V zvezi s tem se sklicuje na uporabo določb mednarodnega prava o pravici do odškodnine za kršitve individualnih pravic;
+14. poziva države članice in entitete Združenih narodov, naj zagotovijo polno in učinkovito sodelovanje žensk v prizadevanjih za boj proti in odpravo nedovoljenega prenosa in zlorabe lahkega orožja in strelnega orožja;
+16. Sekretarja splošnega vabi, da v pripravah na visoki pregled naroči globalno študijo o izvajanju resolucije 1325 (2000), v kateri bodo izpostavljeni primeri dobre prakse, vrzeli pri izvajanju in izzivi ter novi trendi in prednostne naloge za ukrepanje, ter ga nadalje vabi, da v svojem letnem poročilu Varnostnemu svetu leta 2015 predloži rezultate te študije in jih da na voljo vsem državam članicam Združenih narodov;
+17. Izraža namen, da bo izvajanje mandata Sveta za ženske, mir in varnost ena od osrednjih točk enega od svojih periodičnih terenskih obiskov pred visokim pregledom leta 2015;
+18. poziva generalnega sekretarja, naj še naprej Svetu predlaga letna poročila o napredku pri izvajanju resolucije 1325 (2000) in naj svoje naslednje poročilo predloži do oktobra 2014 ter naj v njem vključi posodobitev napredka na vseh področjih žensk, miru in varnosti, pri čemer naj izpostavi vrzeli in izzive;
+Varnostni svet je resolucijo sprejel na svojem 6907. zasedanju, 24. januarja 2013
+Spominjajoč se svojih prejšnjih resolucij in izjav o Srednjeafriški republiki, zlasti resolucije 2031 in svojih tiskovnih izjav z dne 19. decembra 2012, 27. decembra 2012, 4. januarja 2013 in 11. januarja 2013,
+Ponovno potrjuje svojo močno zavezanost suverenosti, neodvisnosti, ozemeljski celovitosti in enotnosti Srednjeafriške republike ter poudarja pomen načel dobrososedskih odnosov in regionalnega sodelovanja,
+Upoštevajoč podpis Sporazuma o celovitem miru iz Librevilla iz leta 2008 s strani CPJP 25. avgusta 2012,
+Obsojajoč vojaške napade oboroženih skupin in poskuse destabilizacije procesa graditve miru v Srednjeafriški republiki,
+Izražanje zaskrbljenosti zaradi pomanjkanja državne oblasti zunaj glavnega mesta, kar je povzročilo resno varnostno praznino v mnogih delih Srednjeafriške republike in omogočilo nastanek in razvoj nacionalnih in tujih oboroženih skupin, vključno z LRA (Lord's Resistance Army), ki delujejo v Srednjeafriški republiki,
+Pohvalil je hitro ukrepanje Gospodarske skupnosti srednjeafriških držav (ECCAS), Afriške unije in držav v regiji za rešitev politične in varnostne krize ter pozdravil pogajanja, ki so potekala v Librevillu 8. do 11. januarja 2013 pod pokroviteljstvom ECCAS,
+Pozdravljajo podpis deklaracije o načelih, sporazuma o prekinitvi ognja in političnega sporazuma o rešitvi krize v Librevillu 11. januarja 2013,
+Priznavajoč vlogo, ki jo je v Centralnoafriški republiki odigrala Integrirana misija Organizacije združenih narodov za ohranjanje miru (BINUCA) pod vodstvom posebne predstavnice generalnega sekretarja Organizacije združenih narodov Margaret Aderinsola Vogt, ter vlogo ekipe Organizacije združenih narodov v državi, in pozdravljajoč njuna prizadevna prizadevanja, zlasti glede pomoči, ki so jo na prošnjo ECCAS nudili med pogajanji v Librevillu,
+Ob upoštevanju nastanka soglasja o spremenjenem volilnem kodeksu ter pričakovanju njegove formalizacije in popolne izvedbe,
+Komaj čakamo na začetek dejavnosti razoroževanja, demobilizacije in reintegracije na severovzhodu države,
+Spominjajoč se svojih resolucij 1325 (2000), 1820 (2008), 1888 (2009), 1889 (2009) in 1960 (2010) o ženskah, miru in varnosti ter svojih resolucij 1612 (2005), 1882 (2009), 1998 (2011) in 2068 (2012) o otrocih in oboroženih spopadih, spominjajoč se zaključkov delovne skupine Varnostnega sveta o otrocih in oboroženih spopadih, vključno z med drugim sprejetjem akcijskih načrtov za končanje rekrutiranja in uporabe otrok s strani oboroženih skupin, vključno s samoobrambnimi milicami, pozivajoč strani v Srednjeafriški republiki, naj sodelujejo s posebnim predstavnikom za otroke in oborožene spopade, in spominjajoč se resolucij 1265 (1999), 1296 (2000), 1674 (2006), 1738 (2006) in 1894 (2009) o zaščiti civilistov v oboroženih spopadih,
+Poudarjajo, da so za trajni mir v Srednjeafriški republiki potrebni vključujoč politični dialog, spoštovanje načela pravne države, demokratično upravljanje, sodelovanje žensk pri graditvi miru, spoštovanje človekovih pravic, pravičnost, odgovornost in gospodarski razvoj,
+Spodbujanje deležnikov, vključno s Komisijo za mir, da pomagajo pri reševanju izzivov na področju graditve miru v državi, in pričakovanje hitre imenovanja novega predsednika Konfiguracije Komisije za mir za Srednjeafriško republiko,
+Priznavajoč koristni prispevek Sklada za mir k ohranjanju miru v Srednjeafriški republiki,
+Pozdravljajo prvi obisk posebnega predstavnika generalnega sekretarja za spolno nasilje v konfliktih v Srednjeafriški republiki, ki podpira nacionalna prizadevanja za reševanje tega vprašanja,
+Po preučitvi poročila generalnega sekretarja (S/2012/956) o razmerah v Srednjeafriški republiki in o dejavnostih BINUCA,
+1. Sklene podaljšati mandat BINUCA do 31. januarja 2014;
+2. Generalnega sekretarja prosi, da najkasneje do 31. marca 2013 predloži poročilo o razmerah na terenu in oceno glede tega, kako lahko BINUCA še naprej izvaja svoje prednostne naloge v luči nedavnih dogodkov; izraža namen, da bo to oceno preučil v naslednjih tednih;
+3. Poleg tega poziva generalnega sekretarja, naj do 30. junija 2013 predloži posodobitveno poročilo o razmerah na terenu in nato vsake pol leta;
+4. poziva Vlado, koalicijo »Seleka«, oborožene skupine in demokratično opozicijo, naj v dobri veri spoštujejo svoje zaveze iz Deklaracije načel, podpisane v Librevillu 11. januarja 2013;
+5. Poziv k hitri in popolni izvedbi premirja, ki sta ga podpisali vlada in koalicija »Seleka«, ter političnega sporazuma o rešitvi krize, ki so ga podpisale predsedniška večina, demokratična opozicija, oborožene skupine, koalicija »Seleka«, predsednik odbora za spremljanje in EKAS; v tem kontekstu pozdravlja imenovanje predstavnika opozicije za predsednika vlade narodne enotnosti;
+6. poziva BINUCA, naj še naprej podpira procese graditve miru v Srednjeafriški republiki, kot je določeno v njenem trenutnem mandatu, vključno s procesi DDR in SSR, podpira prizadevanja ECCAS v tej zvezi in uporablja svoje dobre usluge za sodelovanje z vsemi stranmi pri pospeševanju popolne izvedbe sporazumov, podpisanih v Librevillu 11. januarja 2013; poziva mednarodno skupnost, naj zagotovi nadaljnjo podporo procesu graditve miru v Srednjeafriški republiki;
+7. Poudarja pomembno vlogo organov, ki so odgovorni za spremljanje izvajanja teh sporazumov;
+8. Izraža veliko zaskrbljenost zaradi varnostnih razmer v Srednjeafriški republiki, ki ostajajo izjemno negotove, pozdravlja nadaljnja prizadevanja misije MICOPAX za podporo trajnemu miru in varnosti v Srednjeafriški republiki ter poziva države v srednjeafriški podregiji ter regionalne in podregionalne organizacije, naj na prošnjo Srednjeafriške republike razmislijo o ustreznih ukrepih za izboljšanje varnostnih razmer v Srednjeafriški republiki in podregiji;
+9. poziva vse strani, zlasti »Seleka«, naj omogočijo varen in neoviran humanitarni dostop do prizadetih oseb, kolikor je mogoče hitro, in zagotovijo zaščito civilistov pred kakršnim koli nasiljem;
+10. Poudarja primarno odgovornost vlade Srednjeafriške republike za vzdrževanje reda in miru, spodbujanje varnosti in zaščito civilnega prebivalstva, vključno s tujimi državljani, ob popolnem spoštovanju načel pravne države, človekovih pravic in mednarodnega humanitarnega prava, poudarja pomen dela dvostranskih partnerjev za krepitev zmogljivosti oboroženih sil Srednjeafriške republike in poudarja, da bi morala biti takšna pomoč v podporo procesu SSR;
+11. poziva Vlado Srednjeafriške republike, naj zagotovi popolno spoštovanje svobode izražanja in zbiranja, vključno za opozicijske stranke, ter pravne države; poziva vse strani, naj se vzdržijo spodbujanja sovraštva in nasilja; in poziva opozicijske stranke, druge skupine in Vlado, naj se vključijo v konstruktiven dialog, ki bo omogočil vzpostavitev okolja, ki bo vsem omogočalo enake možnosti v pripravah na naslednji volilni cikel;
+12. Poudarja, da je dolgotrajno odlašanje pri izvajanju verodostojnih procesov za razoroževanje, demobilizacijo in reintegracijo deloma odgovorno za trenutno krizo, poziva Vlado Srednjeafriške republike, naj sprejme in izvaja verodostojno in izvedljivo strategijo za razoroževanje, demobilizacijo in reintegracijo ter zahteva, da vse oborožene skupine sodelujejo z vlado v procesu razoroževanja, demobilizacije in reintegracije;
+13. Odločno obsoja nadaljnje kršitve mednarodnega humanitarnega in človekovih pravic, vključno z novačenjem in uporabo otrok, ubijanjem in pohabljanjem civilistov, vključno z otroki, posilstvi in spolskim suženjstvom ter drugimi oblikami spolnega in na spolu temelječega nasilja in ugrabitvami ter ciljanjem na etnične manjšine, ki jih izvajajo oborožene skupine, zlasti LRA, ki ogrožajo prebivalstvo ter mir in stabilnost Srednjeafriške republike in podregije, in zahteva, da BINUCA poroča o teh kršitvah človekovih pravic in drugih kršitvah, ki jih izvajajo oborožene skupine, zlasti proti otrokom in ženskam;
+14. Zahteva, da vse oborožene skupine, vključno s koalicijo Seleka (UFDR, CPJP, CPSK, UFR), preprečijo novačenje in uporabo otrok, poziva pristojne oborožene skupine, zlasti CPJP in APRD, naj takoj izvajajo določbe akcijskih načrtov, ki so jih podpisali z generalnim sekretarjem ZN za otroke in oborožene spopade novembra 2011, in nadalje zahteva, da vse strani zaščitijo in obravnavajo kot žrtve otroke, ki so bili izpuščeni ali kako drugače ločeni od oboroženih sil in oboroženih skupin; in poudarja potrebo po posebni pozornosti zaščiti, izpustitvi in ponovni vključitvi vseh otrok, ki so povezani z oboroženimi skupinami;
+15. Poziv k identifikaciji in takojšnji izpustitvi prisilno rekrutiranih oseb, zlasti otrok, iz svojih vrst ter k izdaji jasnih ukazov glede spolnega nasilja, v skladu z resolucijo 1960 (2010), poziv k olajšanju takojšnjega dostopa žrtev spolnega nasilja do razpoložljivih storitev ter spodbuda donatorjev k podpori povečanja storitev za zadovoljevanje potreb žrtev ter pozdrav zavez, sprejetih za preprečevanje in obravnavo spolnega nasilja, vključno z skupnimi sporočili za javnost z dne 12. decembra 2012 med Združenimi narodi in vlado Srednjeafriške republike ter drugimi stranmi v konfliktu;
+16. poziva vlado Srednjeafriške republike, naj razišče poročila o kršitvah človekovih pravic v državi, vključno v Banguiju, zagotovi, da bodo odgovorni za te kršitve privedeni pred sodišče, in sprejme potrebne ukrepe za preprečevanje nadaljnjih kršitev;
+17. pozdravlja prizadevanja BINUCA, ki v sodelovanju z vlado Srednjeafriške republike in drugimi akterji Združenih narodov v regiji spodbujajo prebeg borcev in ugrabljencev LRA ter podpirajo njihovo vračanje in reintegracijo, ko zapustijo LRA, in poudarja vitalni pomen celovitega pristopa za trajno rešitev grožnje LRA;
+Spominjajoč se svojih prejšnjih resolucij, zlasti resolucije 1804 (2008) in 1807 (2008), ter izjav svojega predsednika v zvezi z Demokratično republiko Kongo,
+Ponovno potrjuje svojo zavezanost suverenosti, ozemeljski celovitosti in politični neodvisnosti Demokratične republike Kongo ter vseh držav v regiji,
+Ponavlja svojo resno zaskrbljenost zaradi prisotnosti oboroženih skupin in milic na vzhodnem delu Demokratične republike Kongo, zlasti v provincah Severni in Južni Kivu ter v okrožju Ituri, ki ohranjajo stanje negotovosti v celotni regiji, in zahteva, da vse strani v procesih iz Gombe in Nairobi spoštujejo prekinitev ognja in učinkovito ter v dobri veri izpolnjujejo svoje obveznosti,
+Poudarjanje primarne odgovornosti vlade Demokratične republike Kongo za zagotavljanje varnosti na svojem ozemlju in zaščito svojih civilistov s spoštovanjem prava, človekovih pravic in mednarodnega humanitarnega prava,
+Vlada je v svojem poročilu (S/2008/772 in S/2008/773) navedla vmesno in končno poročilo skupine strokovnjakov za Demokratično republiko Kongo (»skupina strokovnjakov«), ki je bila ustanovljena na podlagi resolucije 1771 (2007) in podaljšana na podlagi resolucije 1807 (2008), ter njene priporočila.
+Obsojajoč nadaljnje nezakonito pošiljanje orožja v Demokratično republiko Kongo in iz nje ter izražajoč odločenost, da bodo še naprej natančno spremljali izvajanje embarga na orožje in drugih ukrepov, določenih z resolucijami, ki se nanašajo na Demokratično republiko Kongo,
+Poudarjanje obveznosti vseh držav, da se držijo zahtev za obveščanje, določenih v odstavku 5 resolucije 1807 (2008),
+Ponavljanje pomena, da vlade Demokratične republike Kongo in regije sprejmejo učinkovite ukrepe, da zagotovijo, da na njihovem ozemlju in iz njihovih ozemelj ne bo podpore oboroženim skupinam v vzhodnem delu Demokratične republike Kongo,
+Podpora odločitvi Demokratične republike Kongo, da bo delovala v smeri izboljšanja transparentnosti prihodkov v svojem izkoriščevalskem sektorju,
+Priznavajoč povezavo med nezakonitim izkoriščanjem naravnih virov, nedovoljeno trgovino s temi viri in širjenjem ter tihotapljenjem orožja kot enim od glavnih dejavnikov, ki poganja in stopnjuje konflikte v regiji Velikih jezer v Afriki,
+Spominjajoč se svojih resolucij 1325 (2000) in 1820 (2008) o ženskah, miru in varnosti, resolucije 1502 (2003) o zaščiti osebja Združenih narodov, povezanega osebja in humanitarnega osebja v konfliktnih območjih, resolucije 1612 (2005) o otrocih v oboroženih spopadih in resolucije 1674 (2006) o zaščiti civilistov v oboroženih spopadih,
+Ugotavljajoč, da razmere v Demokratični republiki Kongo še naprej predstavljajo grožnjo mednarodnemu miru in varnosti v regiji,
+Dejavnost v skladu s VII. poglavjem Ustanovne listine Združenih narodov,
+1. Odloči, da bo ukrepe glede orožja, ki jih je uvedla točka 1 resolucije 1807 (2008), podaljšala do 30. novembra 2009, in potrjuje določbe točk 2, 3 in 5 te resolucije;
+2. Odloči se, da bo za obdobje, navedeno v odstavku 1 zgoraj, podaljšal ukrepe na področju prometa, ki jih določata odstavka 6 in 8 resolucije 1807, in potrjuje določbe odstavka 7 te resolucije;
+3. Odloči se, da za obdobje, navedeno v odstavku 1 zgoraj, obnovi finančne in potovalne ukrepe, ki jih določata odstavka 9 in 11 resolucije 1807 (2008), in potrdi določbe odstavkov 10 in 12 te resolucije;
+4. Sklepamo, da se ukrepi iz odstavka 3 zgoraj uporabljajo za naslednje osebe in, po potrebi, subjekte, ki jih določi Odbor:
+(a) osebe ali subjekti, ki delujejo v nasprotju z ukrepi, ki so jih države članice sprejele na podlagi odstavka 1 zgoraj;
+(b) Politični in vojaški voditelji tujih oboroženih skupin, ki delujejo v Demokratični republiki Kongo in ovirajo razoroževanje ter prostovoljno vračanje ali naselitev borcev, ki pripadajo tem skupinam;
+(c) Politični in vojaški voditelji kongovskih milic, ki prejemajo podporo izven Demokratične republike Kongo in ovirajo sodelovanje svojih borcev v procesih razoroževanja, demobilizacije in reintegracije;
+(d) Politični in vojaški voditelji, ki delujejo v Demokratični republiki Kongo in novačijo ali uporabljajo otroke v oboroženih spopadih v nasprotju s pravnimi mednarodnimi predpisi;
+(e) Posamezniki, ki delujejo v Demokratični republiki Kongo in storijo hude kršitve mednarodnega prava, ki vključujejo ciljanje otrok ali žensk v situacijah oboroženega konflikta, vključno z ubijanjem in pohabljanjem, spolnim nasiljem, ugrabitvami in prisilno razselitvijo;
+(f) Posamezniki, ki ovirajo dostop do humanitarne pomoči ali njeno distribucijo na vzhodnem delu Demokratične republike Kongo;
+(g) Posamezniki ali entitete, ki podpirajo nezakonite oborožene skupine v vzhodnem delu Demokratične republike Kongo s trgovino naravnih virov;
+5. Sklene, da se ukrepi iz odstavka 3 zgoraj še naprej uporabljajo za osebe in subjekte, ki so bili že imenovani na podlagi odstavkov 9 in 11 resolucije 1807 (2008), odstavkov 13 in 15 resolucije 1596 (2005), odstavka 2 resolucije 1649 (2005) in odstavka 13 resolucije 1698 (2006), razen če Odbor odloči drugače;
+6. Odloči se še za razširitev mandata Odbora, kot je določeno v odstavku 8 resolucije 1533 (2004) in razširjeno v odstavku 18 resolucije 1596 (2005), odstavku 4 resolucije 1649 (2005) in odstavku 14 resolucije 1698 (2006) ter potrjeno v odstavku 15 resolucije 1807 (2008), in sicer z naslednjimi nalogami:
+(a) redno pregledovanje seznama posameznikov in subjektov, ki jih je Odbor imenoval na podlagi odstavkov 4 in 5 zgoraj, z namenom, da se seznam ohrani čim bolj ažuren in natančen ter da se potrdi, da je uvrstitev še vedno ustrezna, in spodbujanje držav članic, da zagotovijo dodatne informacije, kadar koli so te na voljo;
+(b) sprejetje smernic za lažje izvajanje ukrepov, določenih s to resolucijo, in njihovo stalno pregledovanje, kolikor bo to potrebno;
+7. Poziv vse države, zlasti tiste v regiji, naj podprejo izvajanje ukrepov, določenih v tej resoluciji, naj v celoti sodelujejo s Odborom pri izvajanju njegovega mandata in naj Odboru v roku 45 dni od datuma sprejetja te resolucije poročajo o ukrepih, ki so jih sprejele za izvajanje ukrepov iz odstavkov 1, 2, 3, 4 in 5 zgoraj, ter spodbuja vse države, naj na zahtevo Odbora pošljejo svoje predstavnike na sestanek z Odborom za poglobljeno razpravo o zadevah, ki so pomembne za izvajanje te resolucije;
+8. Generalnega sekretarja prosi, da podaljša mandat Skupine strokovnjakov, ustanovljene na podlagi resolucije 1771 (2007), za obdobje, ki se izteče 30. novembra 2009, in prosi Skupino strokovnjakov, da izpolni svoj mandat, kot je naveden v odstavku 18 resolucije 1807 (2008), ter da pisno poroča Svetu preko Odbora do 15. maja 2009 in nato še do 15. oktobra 2009;
+9. Sklepamo, da bo mandat skupine strokovnjakov iz odstavka 8 zgoraj vključeval tudi naloge, navedene spodaj:
+(a) da v svoja poročila Odboru vključi vse informacije, ki so pomembne za določitev posameznikov in subjektov, opisanih v odstavkih 4 in 5 zgoraj;

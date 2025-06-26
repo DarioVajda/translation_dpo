@@ -9,6 +9,11 @@ print("imported tqdm")
 # model_id = "cjvt/GaMS-9B-Instruct"
 # model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v2"
 model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3"
+# model_id = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curri-0"
+# model_id = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curri-2"
+# model_id = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-2"
+# model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v4"
+
 
 pline = pipeline(
     "text-generation",
@@ -48,6 +53,7 @@ translation_list = []
 
 # Iterate over the messages and generate translations
 for message in tqdm(messages, desc="Translating"):
+# for message in tqdm(messages[:10], desc="Translating"):  # Limiting to first 100 for testing
     response = pline(message, max_new_tokens=2048)
     # print("Model's response:", response[0]["generated_text"][-1]["content"])
     
@@ -56,7 +62,8 @@ for message in tqdm(messages, desc="Translating"):
     translation_list.append(res)
 
 # Save the translations to a file
-output_file_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/slobench_ensl_translations3.txt"
+# output_file_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/slobench_submissions/slobench_ensl_translations_curriculum_dpo2_second_half.txt"
+output_file_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/slobench_submissions/slobench_ensl_translations_dpo_v3.txt"
 with open(output_file_path, "w") as output_file:
     for translation in translation_list:
         output_file.write(translation + "\n")

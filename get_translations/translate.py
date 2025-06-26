@@ -26,7 +26,7 @@ def fixed_selection(n, m, id, seed=42):
     # # Return the first m elements
     # return numbers[:m]
 
-    return [ i for i in range(n) if i % 300 == id ]
+    return [ i for i in range(n) if i % (300*20) == id ]
 
 
 def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_size, id):

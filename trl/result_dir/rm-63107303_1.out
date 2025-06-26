@@ -1,0 +1,216 @@
+cpu-bind=MASK - gn02, task  1  0 [2357855]: mask 0xffff0000ffff0000ffffffffffffffffffff0000ffff0000ffffffffffffffff set
+*******STARTING********
+--- Running on Node Rank: 1 ---
+Total Nodes: 3
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3 ---
+GPUs per Node: 4
+Master Address: gn01
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 3     --machine_rank 1     --main_process_ip gn01     --main_process_port 29500     --num_processes 12     --deepspeed_hostfile /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_63107303     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train_curriculum.py"     --rank=64 --learning_rate=4e-7 --total_epochs=3 --beta=0.1 --curriculum_stage=1
+-------------------------------------------
+[2025-06-12 18:08:58,376] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+W0612 18:08:59.764000 2357907 torch/distributed/run.py:792] 
+W0612 18:08:59.764000 2357907 torch/distributed/run.py:792] *****************************************
+W0612 18:08:59.764000 2357907 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0612 18:08:59.764000 2357907 torch/distributed/run.py:792] *****************************************
+[2025-06-12 18:09:56,895] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-12 18:09:56,919] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-12 18:09:56,944] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-12 18:09:56,954] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[load_data_curriculum.py]: Training data of type 'bad_lang_examples':    3489
+[load_data_curriculum.py]: Training data of type 'short_examples':       699
+[load_data_curriculum.py]: Training data of type 'choose_examples':      13379
+[load_data_curriculum.py]: Training data of type 'bad_format_examples':  3148
+[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *[load_data_curriculum.py]: *
+[load_data_curriculum.py]: Evaluation data size: 953
+[load_data_curriculum.py]: Curriculum stage 0 training data size: 4890
+[load_data_curriculum.py]: Curriculum stage 1 training data size: 6689
+[load_data_curriculum.py]: Curriculum stage 2 training data size: 6690
+[load_data.py]: Training data of type 'bad_lang_examples':    5343
+[load_data.py]: Training data of type 'short_examples':       699
+[load_data.py]: Training data of type 'choose_examples':      13379
+[load_data.py]: Training data of type 'bad_format_examples':  4806
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.1, curriculum_stage=1)
+4e-07
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.1, curriculum_stage=1)
+4e-07
+[load_data.py]: Number of training examples: 24227
+[load_data.py]: Number of validation examples: 953
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.1, curriculum_stage=1)
+4e-07
+World size: 12
+Setting gradient accumulation steps to: 1
+Namespace(rank=64, learning_rate=4e-07, total_epochs=3, beta=0.1, curriculum_stage=1)
+4e-07
+[2025-06-12 18:10:01,684] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-06-12 18:10:01,691] [INFO] [comm.py:658:init_distributed] cdb=None
+Created datasets
+Train dataset size: 6689
+Validation dataset size: 953
+Steps per epoch: 418
+Evaluate each 209 steps
+[2025-06-12 18:10:01,693] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-06-12 18:10:01,705] [INFO] [comm.py:658:init_distributed] cdb=None
+Set up DPO configuration
+Loading model from: /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 424, in cached_files
+[rank4]:     hf_hub_download(
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank4]:     validate_repo_id(arg_value)
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank4]:     raise HFValidationError(
+[rank4]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0'. Use `repo_type` argument if needed.
+
+[rank4]: During handling of the above exception, another exception occurred:
+
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 234, in <module>
+[rank4]:     main(get_train_data(CURRICULUM_STAGE), val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, CURRICULUM_STAGE)
+[rank4]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 152, in main
+[rank4]:     model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 492, in from_pretrained
+[rank4]:     resolved_config_file = cached_file(
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 266, in cached_file
+[rank4]:     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+[rank4]:     resolved_files = [
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 471, in <listcomp>
+[rank4]:     _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 134, in _get_cache_file_to_return
+[rank4]:     resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank4]:     validate_repo_id(arg_value)
+[rank4]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank4]:     raise HFValidationError(
+[rank4]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0'. Use `repo_type` argument if needed.
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 424, in cached_files
+[rank5]:     hf_hub_download(
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank5]:     validate_repo_id(arg_value)
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank5]:     raise HFValidationError(
+[rank5]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0'. Use `repo_type` argument if needed.
+
+[rank5]: During handling of the above exception, another exception occurred:
+
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 234, in <module>
+[rank5]:     main(get_train_data(CURRICULUM_STAGE), val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, CURRICULUM_STAGE)
+[rank5]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 152, in main
+[rank5]:     model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 492, in from_pretrained
+[rank5]:     resolved_config_file = cached_file(
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 266, in cached_file
+[rank5]:     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+[rank5]:     resolved_files = [
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 471, in <listcomp>
+[rank5]:     _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 134, in _get_cache_file_to_return
+[rank5]:     resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank5]:     validate_repo_id(arg_value)
+[rank5]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank5]:     raise HFValidationError(
+[rank5]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0'. Use `repo_type` argument if needed.
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 424, in cached_files
+[rank6]:     hf_hub_download(
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank6]:     validate_repo_id(arg_value)
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank6]:     raise HFValidationError(
+[rank6]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0'. Use `repo_type` argument if needed.
+
+[rank6]: During handling of the above exception, another exception occurred:
+
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 234, in <module>
+[rank6]:     main(get_train_data(CURRICULUM_STAGE), val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, CURRICULUM_STAGE)
+[rank6]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 152, in main
+[rank6]:     model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 492, in from_pretrained
+[rank6]:     resolved_config_file = cached_file(
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 266, in cached_file
+[rank6]:     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+[rank6]:     resolved_files = [
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 471, in <listcomp>
+[rank6]:     _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 134, in _get_cache_file_to_return
+[rank6]:     resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank6]:     validate_repo_id(arg_value)
+[rank6]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank6]:     raise HFValidationError(
+[rank6]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0'. Use `repo_type` argument if needed.
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 424, in cached_files
+[rank7]:     hf_hub_download(
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank7]:     validate_repo_id(arg_value)
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank7]:     raise HFValidationError(
+[rank7]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0'. Use `repo_type` argument if needed.
+
+[rank7]: During handling of the above exception, another exception occurred:
+
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 234, in <module>
+[rank7]:     main(get_train_data(CURRICULUM_STAGE), val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, CURRICULUM_STAGE)
+[rank7]:   File "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/train_curriculum.py", line 152, in main
+[rank7]:     model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 492, in from_pretrained
+[rank7]:     resolved_config_file = cached_file(
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 266, in cached_file
+[rank7]:     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+[rank7]:     resolved_files = [
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 471, in <listcomp>
+[rank7]:     _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/transformers/utils/hub.py", line 134, in _get_cache_file_to_return
+[rank7]:     resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank7]:     validate_repo_id(arg_value)
+[rank7]:   File "/ceph/hpc/home/dv70648/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank7]:     raise HFValidationError(
+[rank7]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-0'. Use `repo_type` argument if needed.
+[rank4]:[W612 18:10:03.265457861 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0612 18:10:04.671000 2357907 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2358089 closing signal SIGTERM
+W0612 18:10:04.671000 2357907 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2358091 closing signal SIGTERM
+W0612 18:10:04.672000 2357907 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2358092 closing signal SIGTERM
+E0612 18:10:04.836000 2357907 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 2358090) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 861, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train_curriculum.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-12_18:10:04
+  host      : pm5-nod03.vega.pri
+  rank      : 5 (local_rank: 1)
+  exitcode  : 1 (pid: 2358090)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
