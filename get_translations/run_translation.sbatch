@@ -16,6 +16,16 @@ input_data=$2
 output_path=$3
 gpu_mem_util=$4
 id=$5
+dataset_name=$6
+
+if [ "$dataset_name" = "wiki" ]; then
+  TRANSLATE_FILE="translate_wiki.py"
+elif [ "$dataset_name" = "ccnews" ]; then
+  TRANSLATE_FILE="translate_ccnews.py"
+else
+  echo "Error: unknown dataset_name '$dataset_name'" >&2
+  exit 1
+fi
 
 WORK_DIR=/ceph/hpc/data/s24o01-42-users
 
@@ -38,11 +48,11 @@ export VLLM_DISABLE_COMPILE_CACHE=1
 
 srun \
     --cpu-bind=verbose \
-    --output="new_logs/${model}_translation_test_${id}.txt" \
+    --output="new_logs/${model}_translation_${dataset_name}_${id}.txt" \
     singularity exec \
         -B $data_dir:/data,$MODELS_DIR:/models \
         $CONTAINER \
-        python3 translate.py \
+        python3 ${python_file} \
             --model_path=$model \
             --input_path=/data/$input_data \
             --output_path=/data/$output_path \

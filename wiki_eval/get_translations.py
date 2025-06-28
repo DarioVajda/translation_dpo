@@ -32,18 +32,28 @@ print("Initialized pipeline with model:", model_id)
 def fixed_selection(n, m, id, seed=42):
     return [ i for i in range(n) if i % 300 == id ]
 
-gams_path = "/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_gams9b_translation_299.jsonl"
-eurollm_path = "/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_eurillm9b_translation_299.jsonl"
+gams_paths = [
+    "/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_gams9b_translation_299.jsonl"
+]
+eurollm_paths = [
+    "/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_eurollm9b_translation_299.jsonl"
+]
 
 # Load the dataset from a JSONL file
 gams_list = []
-with open(gams_path, "r") as file:
-    for line in file:
-        gams_list.append(json.loads(line.strip()))
+for gams_path in gams_paths:
+    with open(gams_path, "r") as file:
+        for line in file:
+            obj = json.loads(line.strip())
+            if not obj["id"]: obj["id"] = obj["url"]
+            gams_list.append(obj)
 eurollm_list = []
-with open(gams_path, "r") as file:
-    for line in file:
-        eurollm_list.append(json.loads(line.strip()))
+for eurollm_path in eurollm_paths:
+    with open(gams_path, "r") as file:
+        for line in file:
+            obj = json.loads(line.strip())
+            if not obj["id"]: obj["id"] = obj["url"]
+            gams_list.append(obj)
 
 # {"id", "url", "title", "text", "Prompt", "Problematic", "sl_translation"}
 
@@ -54,7 +64,7 @@ for gams_example in gams_list:
     eurollm_example = [ e for e in eurollm_list if e["id"] == gams_example["id"] ][0]
     if len(gams_example["text"]) > 3000: continue
     count += 1
-    if count < device_id * 100: continue
+    # if count < device_id * 100: continue
     paired_list.append({
         "id": gams_example["id"],
         "url": gams_example["url"],
@@ -67,10 +77,10 @@ for gams_example in gams_list:
         "gams_translation": gams_example["sl_translation"],
         "eurollm_translation": eurollm_example["sl_translation"],
     })
-    if len(paired_list) == 100:
-        break
+    # if len(paired_list) == 100:
+    #     break
 
-print("There are {} entries in the dataset.".format(len(paired_list)))
+print("There are {} entries in the evaluation dataset.".format(len(paired_list)))
 
 # Load a bunch of wikipedia articles for translation
 def get_messages():
@@ -89,12 +99,8 @@ translation_list = []
 
 # # Iterate over the messages and generate translations
 for message in tqdm(messages, desc="Translating"):
-# for message in tqdm(messages[:2], desc="Translating"):  # Limiting to first 100 for testing
-    # print("Translating message:", message[0])
     response = pline([message[0]], max_new_tokens=2048)
-    # print("Model's response:", response[0]["generated_text"][-1]["content"])
     
-    # Keep only the first line of the response
     prompt = message[0]["content"]
     res = response[0]["generated_text"][-1]["content"]
     translation_object = message[1]
