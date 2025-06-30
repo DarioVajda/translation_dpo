@@ -6,10 +6,10 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=2:30:00
 #SBATCH --cpus-per-task=64
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:A100_80GB:2
 #SBATCH --mem=0
 #SBATCH --exclusive
-#SBATCH --partition=gpu
+#SBATCH --partition=dev
 
 model=$1
 input_data=$2
@@ -27,15 +27,18 @@ else
   exit 1
 fi
 
-WORK_DIR=/ceph/hpc/data/s24o01-42-users
+# WORK_DIR=/ceph/hpc/data/s24o01-42-users
+WORK_DIR=/shared/workspace/povejmo
 
 tp_size=${SLURM_GPUS_ON_NODE}
 
 CONTAINER_DIR=$WORK_DIR/containers
 # CONTAINER=$CONTAINER_DIR/slobench_vllm.sif
-CONTAINER=$CONTAINER_DIR/vllm-openai_v0.6.3.post1.sif
+# CONTAINER=$CONTAINER_DIR/vllm-openai_v0.6.3.post1.sif
+CONTAINER=$CONTAINER_DIR/slobench_vllm_latest.sqsh
 
-MODELS_DIR=/ceph/hpc/data/s24o01-42-users/models/hf_models
+# MODELS_DIR=/ceph/hpc/data/s24o01-42-users/models/hf_models
+MODELS_DIR=/shared/workspace/povejmo/models/hf_models
 
 data_dir=$WORK_DIR/corpuses/wikipedia
 
@@ -46,13 +49,27 @@ export HF_HOME=
 
 export VLLM_DISABLE_COMPILE_CACHE=1
 
+# srun \
+#     --cpu-bind=verbose \
+#     --output="new_logs/${model}_translation_${dataset_name}_${id}.txt" \
+#     singularity exec \
+#         -B $data_dir:/data,$MODELS_DIR:/models \
+#         $CONTAINER \
+#         python3 ${python_file} \
+#             --model_path=$model \
+#             --input_path=/data/$input_data \
+#             --output_path=/data/$output_path \
+#             --gpu_memory_util=$gpu_mem_util \
+#             --tp_size=$tp_size \
+#             --id=$id 
+
 srun \
     --cpu-bind=verbose \
     --output="new_logs/${model}_translation_${dataset_name}_${id}.txt" \
-    singularity exec \
-        -B $data_dir:/data,$MODELS_DIR:/models \
-        $CONTAINER \
-        python3 ${python_file} \
+    --container-image $CONTAINER \
+    --container-mounts $data_dir:/data,$MODELS_DIR:/models \
+    --container-workdir /data \
+        python3 ${TRANSLATE_FILE} \
             --model_path=$model \
             --input_path=/data/$input_data \
             --output_path=/data/$output_path \
