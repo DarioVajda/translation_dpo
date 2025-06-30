@@ -1,0 +1,5 @@
+slurmstepd: error: IPMI failure detected, energy reading for this step will not be accurate.
+cpu-bind=MASK - gn20, task  0  0 [2876494]: mask 0xffffffff000000000000000000000000ffffffff set
+unknown option --model_path=utter-project/EuroLLM-9B-Instruct
+usage: /usr/bin/python3 [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Try `python -h' for more information.
