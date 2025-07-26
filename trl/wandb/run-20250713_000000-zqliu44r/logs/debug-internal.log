@@ -1,0 +1,15 @@
+{"time":"2025-07-13T00:00:00.646756847Z","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250713_000000-zqliu44r/logs/debug-core.log"}
+{"time":"2025-07-13T00:00:01.139777049Z","level":"INFO","msg":"created new stream","id":"zqliu44r"}
+{"time":"2025-07-13T00:00:01.139805435Z","level":"INFO","msg":"stream: started","id":"zqliu44r"}
+{"time":"2025-07-13T00:00:01.139989494Z","level":"INFO","msg":"writer: Do: started","stream_id":"zqliu44r"}
+{"time":"2025-07-13T00:00:01.140098752Z","level":"INFO","msg":"sender: started","stream_id":"zqliu44r"}
+{"time":"2025-07-13T00:00:01.140136718Z","level":"INFO","msg":"handler: started","stream_id":"zqliu44r"}
+{"time":"2025-07-13T00:00:01.394328197Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-13T00:00:06.817724863Z","level":"INFO","msg":"stream: closing","id":"zqliu44r"}
+{"time":"2025-07-13T00:00:06.81775744Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-13T00:00:06.817830424Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-13T00:00:07.462240151Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-13T00:00:07.702113028Z","level":"INFO","msg":"handler: closed","stream_id":"zqliu44r"}
+{"time":"2025-07-13T00:00:07.702153609Z","level":"INFO","msg":"sender: closed","stream_id":"zqliu44r"}
+{"time":"2025-07-13T00:00:07.702148164Z","level":"INFO","msg":"writer: Close: closed","stream_id":"zqliu44r"}
+{"time":"2025-07-13T00:00:07.70222848Z","level":"INFO","msg":"stream: closed","id":"zqliu44r"}

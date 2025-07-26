@@ -1,0 +1,11 @@
+Starting translation job on aga1 at Fri Jul  4 15:07:59 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+There are 727 entries in the evaluation dataset.
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]slurmstepd: error: *** STEP 41484.0 ON aga1 CANCELLED AT 2025-07-04T15:08:48 ***
+slurmstepd: error: *** JOB 41484 ON aga1 CANCELLED AT 2025-07-04T15:08:48 ***

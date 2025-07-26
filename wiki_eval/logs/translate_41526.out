@@ -1,0 +1,15 @@
+Starting translation job on aga1 at Fri Jul  4 19:50:57 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+Traceback (most recent call last):
+  File "/workspace/wiki_eval/get_translations.py", line 58, in <module>
+    eurollm_example = [ e for e in eurollm_list if e["id"] == gams_example["id"] ][0]
+  File "/workspace/wiki_eval/get_translations.py", line 58, in <listcomp>
+    eurollm_example = [ e for e in eurollm_list if e["id"] == gams_example["id"] ][0]
+TypeError: 'NoneType' object is not subscriptable
+srun: error: aga1: task 0: Exited with exit code 1
+Done at Fri Jul  4 19:51:34 UTC 2025

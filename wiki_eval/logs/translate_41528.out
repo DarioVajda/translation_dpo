@@ -1,0 +1,80 @@
+Starting translation job on aga1 at Fri Jul  4 19:53:27 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+There are 689 entries in the evaluation dataset.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:40<02:00, 40.26s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:40<00:10, 10.59s/it]Fetching 4 files: 100%|██████████| 4/4 [00:40<00:00, 10.16s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.26s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.30s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.35s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.18s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.23s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Device set to use cuda:0
+Initialized pipeline with model: DarioVajda/GaMS-DPO-Translator
+Translating:   0%|          | 0/44 [00:00<?, ?it/s]Translating:   0%|          | 0/44 [00:49<?, ?it/s]
+0 / 43
+Traceback (most recent call last):
+  File "/workspace/wiki_eval/get_translations.py", line 132, in <module>
+    outputs = pler(prompts, max_new_tokens=max_new_tokens)
+  File "/transformers/src/transformers/pipelines/text_generation.py", line 301, in __call__
+    return super().__call__(list(chats), **kwargs)
+  File "/transformers/src/transformers/pipelines/base.py", line 1412, in __call__
+    outputs = list(final_iterator)
+  File "/transformers/src/transformers/pipelines/pt_utils.py", line 124, in __next__
+    item = next(self.iterator)
+  File "/transformers/src/transformers/pipelines/pt_utils.py", line 125, in __next__
+    processed = self.infer(item, **self.params)
+  File "/transformers/src/transformers/pipelines/base.py", line 1338, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/transformers/src/transformers/pipelines/text_generation.py", line 400, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/transformers/src/transformers/generation/utils.py", line 2612, in generate
+    result = self._sample(
+  File "/transformers/src/transformers/generation/utils.py", line 3588, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 574, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/transformers/src/transformers/utils/generic.py", line 927, in wrapper
+    @wraps(func)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/aot_autograd.py", line 1184, in forward
+    return compiled_fn(full_args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 323, in runtime_wrapper
+    all_outs = call_func_at_runtime_with_args(
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/utils.py", line 126, in call_func_at_runtime_with_args
+    out = normalize_as_list(f(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 672, in inner_fn
+    outs = compiled_fn(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 490, in wrapper
+    return compiled_fn(runtime_args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/output_code.py", line 466, in __call__
+    return self.current_callable(inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/compile_fx.py", line 1208, in run
+    return compiled_fn(new_inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/cudagraph_trees.py", line 398, in deferred_cudagraphify
+    fn, out = cudagraphify(model, inputs, new_static_input_idxs, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/cudagraph_trees.py", line 428, in cudagraphify
+    return manager.add_function(
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/cudagraph_trees.py", line 2253, in add_function
+    return fn, fn(inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/cudagraph_trees.py", line 1947, in run
+    out = self._run(new_inputs, function_id)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/cudagraph_trees.py", line 2055, in _run
+    out = self.run_eager(new_inputs, function_id)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/cudagraph_trees.py", line 2219, in run_eager
+    return node.run(new_inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/cudagraph_trees.py", line 643, in run
+    out = self.wrapped_function.model(new_inputs)
+  File "/tmp/torchinductor_dario.vajda/zo/czop44rtwd3hfh2vwqb77vbxlj4cd5ilxmsop45igtr4vniu67dh.py", line 2356, in call
+    buf13 = empty_strided_cuda((16, 16, 2675, 256), (10956800, 684800, 256, 1), torch.bfloat16)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 336.00 MiB. GPU 0 has a total capacity of 39.49 GiB of which 153.25 MiB is free. Including non-PyTorch memory, this process has 39.33 GiB memory in use. Of the allocated memory 38.70 GiB is allocated by PyTorch, with 614.50 MiB allocated in private pools (e.g., CUDA Graphs), and 123.70 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+srun: error: aga1: task 0: Exited with exit code 1
+Done at Fri Jul  4 19:55:51 UTC 2025

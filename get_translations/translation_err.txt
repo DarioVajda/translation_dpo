@@ -1,1 +1,4 @@
-srun: error: gn20: task 0: Exited with exit code 2
+Dataset name: ccnews
+Translate file: translate_ccnews.py
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 41894 ON aga1 CANCELLED AT 2025-07-09T12:01:37 ***

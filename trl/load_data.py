@@ -27,23 +27,31 @@ _, format_val_data = load_train_val_data("/ceph/hpc/data/s24o01-42-users/transla
 lang_train_data0, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_lang_examples.jsonl")
 lang_train_data1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_lang_examples_1.jsonl", split_ratio=1)
 lang_train_data2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_lang_examples_2.jsonl", split_ratio=1)
+lang_train_data_ccnews1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data_ccnews/bad_lang_examples_1.jsonl", split_ratio=1)
+lang_train_data_ccnews2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data_ccnews/bad_lang_examples_2.jsonl", split_ratio=1)
 
 short_train_data0, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/short_examples.jsonl")
 short_train_data1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/short_examples_1.jsonl", split_ratio=1)
 short_train_data2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/short_examples_2.jsonl", split_ratio=1)
+short_train_data_ccnews1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data_ccnews/short_examples_1.jsonl", split_ratio=1)
+short_train_data_ccnews2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data_ccnews/short_examples_2.jsonl", split_ratio=1)
 
 choose_train_data0, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/choose_examples_0.jsonl") # Using _0 file because it has bigger requirement for the comet score difference then the old version
 choose_train_data1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/choose_examples_1.jsonl", split_ratio=1)
 choose_train_data2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/choose_examples_2.jsonl", split_ratio=1)
+choose_train_data_ccnews1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data_ccnews/choose_examples_1.jsonl", split_ratio=1)
+choose_train_data_ccnews2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data_ccnews/choose_examples_2.jsonl", split_ratio=1)
 
 format_train_data0, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_format_examples.jsonl")
 format_train_data1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_format_examples_1.jsonl", split_ratio=1)
 format_train_data2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data/bad_format_examples_2.jsonl", split_ratio=1)
+format_train_data_ccnews1, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data_ccnews/bad_format_examples_1.jsonl", split_ratio=1)
+format_train_data_ccnews2, _ = load_train_val_data("/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data/filtered_data_ccnews/bad_format_examples_2.jsonl", split_ratio=1)
 
-lang_train_data = lang_train_data0 + lang_train_data1 + lang_train_data2
-short_train_data = short_train_data0 + short_train_data1 + short_train_data2
-choose_train_data = choose_train_data0 + choose_train_data1 + choose_train_data2
-format_train_data = format_train_data0 + format_train_data1 + format_train_data2
+lang_train_data = lang_train_data0 + lang_train_data1 + lang_train_data2 + lang_train_data_ccnews1 + lang_train_data_ccnews2
+short_train_data = short_train_data0 + short_train_data1 + short_train_data2 + short_train_data_ccnews1 + short_train_data_ccnews2
+choose_train_data = choose_train_data0 + choose_train_data1 + choose_train_data2 + choose_train_data_ccnews1 + choose_train_data_ccnews2
+format_train_data = format_train_data0 + format_train_data1 + format_train_data2 + format_train_data_ccnews1 + format_train_data_ccnews2
 
 
 if should_print: print("[load_data.py]: Training data of type 'bad_lang_examples':   ", len(lang_train_data))

@@ -1,4 +1,3 @@
-from datasets import load_dataset
 import json
 import pandas as pd
 import random
@@ -13,7 +12,7 @@ def addapt_to_nemo(data):
     data = data.rename(columns={"chosen": "chosen_response", "rejected": "rejected_response"})
     return data
 
-def main(id=0):
+def main(id=0, path=None):
     # USIN THIS AS MINIMUM SCORE DIFFERENCE TO CONSIDER A PREFERENCE
     GOOD_SCORE = 0.86
 
@@ -22,7 +21,9 @@ def main(id=0):
         random_bad_start = random.choice(BAD_STARTS)
         return f"{random_bad_start}\n{text}"
 
-    data = pd.read_json(f"../language_identification/paired_data_with_scores{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True)
+    # path = f"../comet_score/scored_data/ccnews_eurollm{f'_{id}' if id>0 else ''}.jsonl"
+    # data = pd.read_json(f"../language_identification/paired_data_with_scores{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True)
+    data = pd.read_json(path, orient="records", lines=True)
     print("Shape of the data:", data.shape)
 
     # Filtering out the rows where both translations are in Slovene
@@ -82,12 +83,23 @@ def main(id=0):
             print(f" - {column}")
 
     # Save the data
-    bad_format_data.to_json(f"raw_data/bad_format_examples{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True, force_ascii=False)
+    bad_format_data.to_json(f"raw_data/bad_format_examples_{id}.jsonl", orient="records", lines=True, force_ascii=False)
 
 if __name__=="__main__":
     # main()
-    for id in [1, 2]:
+    # for id in [1, 2]:
+    #     print('*'*60)
+    #     print(f"Processing data with id {id}")
+    #     print('*'*60)
+    #     main(id)
+
+    paths = [
+        ("../language_identification/ccnews_paired/1.jsonl", 1),
+        ("../language_identification/ccnews_paired/2.jsonl", 2),
+    ]
+
+    for (path, id) in paths:
         print('*'*60)
-        print(f"Processing data with id {id}")
+        print(f"Processing data from path {path}")
         print('*'*60)
-        main(id)
+        main(id=id, path=path)

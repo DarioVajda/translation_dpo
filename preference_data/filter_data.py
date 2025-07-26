@@ -2,7 +2,7 @@ import json
 from transformers import AutoTokenizer
 import pandas as pd
 
-CURRICULUM_DATA = True
+CURRICULUM_DATA = False
 
 print("About to load tokenizer")
 
@@ -43,8 +43,8 @@ def add_token_counts(example):
         "prompt_length":      len(enc_prompt["input_ids"]),
         "chosen_full_length": len(enc_chosen["input_ids"]),
         "rejected_full_length": len(enc_reject["input_ids"]),
-        "chosen_score": example['chosen_score'],
-        "rejected_score": example['rejected_score'],
+        "chosen_score": example["chosen_score"] if "chosen_score" in example else 0.5,
+        "rejected_score": example["rejected_score"] if "rejected_score" in example else 0,
     }
 
 def back_to_preference_format(example):
@@ -66,7 +66,7 @@ def back_to_preference_format(example):
         }
 
 
-path_prefix = "/ceph/hpc/data/s24o01-42-users/translation_optimization/preference_data"
+path_prefix = "/workspace/preference_data"
 
 files =[
     # "bad_lang_examples.jsonl",
@@ -74,17 +74,17 @@ files =[
     # "short_examples.jsonl",
     # "bad_format_examples.jsonl",
 
-    "choose_examples_0.jsonl",
+    # "choose_examples_0.jsonl",
 
-    # "bad_lang_examples_1.jsonl",
+    "bad_lang_examples_1.jsonl",
     "choose_examples_1.jsonl",
-    # "short_examples_1.jsonl",
-    # "bad_format_examples_1.jsonl",
+    "short_examples_1.jsonl",
+    "bad_format_examples_1.jsonl",
 
-    # "bad_lang_examples_2.jsonl",
+    "bad_lang_examples_2.jsonl",
     "choose_examples_2.jsonl",
-    # "short_examples_2.jsonl",
-    # "bad_format_examples_2.jsonl",
+    "short_examples_2.jsonl",
+    "bad_format_examples_2.jsonl",
 ]
 for file_path in files:
     train_data = load_train_data(f"{path_prefix}/raw_data/{file_path}")
@@ -99,5 +99,8 @@ for file_path in files:
     train_data = pd.DataFrame(train_data)
 
     # save the data to a file named f"{file_path without .jsonl}_filtered.jsonl"
-    train_data.to_json(f"{path_prefix}/{"filtered_data" if not CURRICULUM_DATA else "curriculum_data"}/{file_path[:-6]}.jsonl", orient="records", lines=True, force_ascii=False)
+    train_data.to_json(
+        f'{path_prefix}/{"filtered_data" if not CURRICULUM_DATA else "curriculum_data"}/{file_path[:-6]}.jsonl', 
+        orient="records", lines=True, force_ascii=False
+    )
     print("-" * 40)

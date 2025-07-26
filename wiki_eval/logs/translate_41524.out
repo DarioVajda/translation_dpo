@@ -1,0 +1,14 @@
+Starting translation job on aga1 at Fri Jul  4 19:46:57 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+Loaded object: dict_keys(['requested_url', 'plain_text', 'published_date', 'title', 'tags', 'categories', 'author', 'sitename', 'image_url', 'language', 'language_score', 'responded_url', 'publisher', 'warc_path', 'crawl_date', 'Prompt', 'Problematic', 'sl_translation'])
+Traceback (most recent call last):
+  File "/workspace/wiki_eval/get_translations.py", line 34, in <module>
+    if not ('id' in obj): obj["id"] = obj["url"]
+KeyError: 'url'
+srun: error: aga1: task 0: Exited with exit code 1
+Done at Fri Jul  4 19:47:33 UTC 2025

@@ -1,0 +1,13 @@
+Starting translation job on aga1 at Fri Jul  4 19:51:57 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+Traceback (most recent call last):
+  File "/workspace/wiki_eval/get_translations.py", line 65, in <module>
+    "url": gams_example["url"],
+KeyError: 'url'
+srun: error: aga1: task 0: Exited with exit code 1
+Done at Fri Jul  4 19:52:34 UTC 2025

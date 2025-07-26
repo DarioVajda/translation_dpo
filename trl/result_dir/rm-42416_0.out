@@ -1,0 +1,115 @@
+cpu-bind=MASK - ixh, task  0  0 [1934600]: mask 0xff000000000000ff000000000000ff000000000000ff set
+*******STARTING********
+--- Running on Node Rank: 0 ---
+Total Nodes: 1
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1,2,3,4,5,6,7 ---
+GPUs per Node: 8
+Master Address: 
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 1     --machine_rank 0     --main_process_ip      --main_process_port 29500     --num_processes 8     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=128 --learning_rate=1e-6 --total_epochs=3 --beta=0.1
+-------------------------------------------
+[2025-07-12 23:08:34,059] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+df: /root/.triton/autotune: No such file or directory
+W0712 23:08:35.372000 1935031 torch/distributed/run.py:792] 
+W0712 23:08:35.372000 1935031 torch/distributed/run.py:792] *****************************************
+W0712 23:08:35.372000 1935031 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0712 23:08:35.372000 1935031 torch/distributed/run.py:792] *****************************************
+[load_data.py]: Training data of type 'bad_lang_examples':    5343
+[load_data.py]: Training data of type 'short_examples':       699
+[load_data.py]: Training data of type 'choose_examples':      13379
+[load_data.py]: Training data of type 'bad_format_examples':  4806
+Namespace(rank=128, learning_rate=1e-06, total_epochs=3, beta=0.1)
+1e-06
+Namespace(rank=128, learning_rate=1e-06, total_epochs=3, beta=0.1)
+1e-06
+Namespace(rank=128, learning_rate=1e-06, total_epochs=3, beta=0.1)
+1e-06
+Namespace(rank=128, learning_rate=1e-06, total_epochs=3, beta=0.1)
+1e-06
+[load_data.py]: Number of training examples: 24227
+[load_data.py]: Number of validation examples: 953
+Namespace(rank=128, learning_rate=1e-06, total_epochs=3, beta=0.1)
+1e-06
+World size: 8
+Setting gradient accumulation steps to: 2
+Namespace(rank=128, learning_rate=1e-06, total_epochs=3, beta=0.1)
+1e-06
+Namespace(rank=128, learning_rate=1e-06, total_epochs=3, beta=0.1)
+1e-06
+Namespace(rank=128, learning_rate=1e-06, total_epochs=3, beta=0.1)
+1e-06
+Created datasets
+Train dataset size: 24227
+Validation dataset size: 953
+Steps per epoch: 1514
+Evaluate each 504 steps
+[2025-07-12 23:08:44,376] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-12 23:08:44,464] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-12 23:08:45,267] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-12 23:08:45,398] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-07-12 23:08:45,699] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-12 23:08:45,714] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-07-12 23:08:45,815] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-12 23:08:46,142] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-12 23:08:46,198] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-12 23:08:46,442] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-07-12 23:08:46,593] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-12 23:08:47,048] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-07-12 23:08:47,049] [INFO] [comm.py:700:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2025-07-12 23:08:47,188] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-07-12 23:08:47,291] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-07-12 23:08:47,450] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-07-12 23:08:47,860] [INFO] [comm.py:669:init_distributed] cdb=None
+Set up DPO configuration
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:21<01:03, 21.06s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:20<01:00, 20.03s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:20<01:01, 20.45s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:20<01:02, 20.73s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:19<00:58, 19.36s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:21<01:03, 21.27s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:20<01:00, 20.07s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:19<00:59, 19.83s/it]Fetching 4 files:  50%|█████     | 2/4 [01:28<01:36, 48.31s/it]Fetching 4 files: 100%|██████████| 4/4 [01:28<00:00, 22.13s/it]
+Fetching 4 files:  50%|█████     | 2/4 [01:27<01:35, 47.99s/it]Fetching 4 files: 100%|██████████| 4/4 [01:27<00:00, 21.93s/it]
+Fetching 4 files:  50%|█████     | 2/4 [01:27<01:35, 47.72s/it]Fetching 4 files: 100%|██████████| 4/4 [01:27<00:00, 21.77s/it]
+Fetching 4 files:  50%|█████     | 2/4 [01:27<01:35, 47.83s/it]Fetching 4 files: 100%|██████████| 4/4 [01:27<00:00, 21.83s/it]
+Fetching 4 files:  50%|█████     | 2/4 [01:28<01:36, 48.11s/it]Fetching 4 files:  50%|█████     | 2/4 [01:26<01:35, 47.55s/it]Fetching 4 files: 100%|██████████| 4/4 [01:28<00:00, 22.00s/it]
+Fetching 4 files: 100%|██████████| 4/4 [01:26<00:00, 21.66s/it]Fetching 4 files:  50%|█████     | 2/4 [01:28<01:36, 48.26s/it]Fetching 4 files: 100%|██████████| 4/4 [01:28<00:00, 22.09s/it]
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  50%|█████     | 2/4 [01:27<01:35, 47.84s/it]Fetching 4 files: 100%|██████████| 4/4 [01:27<00:00, 21.83s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:10,  3.45s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:14,  4.81s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:14,  4.83s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:14,  4.80s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:14,  4.76s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:14,  4.81s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:14,  4.79s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:14,  4.80s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.46s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.95s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.94s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.93s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.95s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.94s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.94s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.95s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:10<00:03,  3.63s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  6.18s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.21s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.97s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.98s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.98s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.99s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.98s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.98s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.98s/it]W0712 23:11:01.997000 1935031 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1935380 closing signal SIGTERM
+W0712 23:11:02.000000 1935031 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1935381 closing signal SIGTERM
+W0712 23:11:02.009000 1935031 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1935382 closing signal SIGTERM
+W0712 23:11:02.031000 1935031 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1935383 closing signal SIGTERM
+W0712 23:11:02.033000 1935031 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1935384 closing signal SIGTERM
+W0712 23:11:02.067000 1935031 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1935385 closing signal SIGTERM
+W0712 23:11:02.072000 1935031 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1935386 closing signal SIGTERM
+E0712 23:11:04.473000 1935031 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: -9) local_rank: 7 (pid: 1935387) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1183, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 868, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+========================================================
+train.py FAILED
+--------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+--------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-07-12_23:11:01
+  host      : ixh
+  rank      : 7 (local_rank: 7)
+  exitcode  : -9 (pid: 1935387)
+  error_file: <N/A>
+  traceback : Signal 9 (SIGKILL) received by PID 1935387
+========================================================
+slurmstepd: error: Detected 1 oom_kill event in StepId=42416.0. Some of the step tasks have been OOM Killed.

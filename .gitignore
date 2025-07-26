@@ -5,3 +5,8 @@ dpo/
 *.jsonl
 trl/trained_models/
 language_identification/model/lid.176.bin
+ccnews/
+models/
+/language_identification/fasttext_model
+/get_translations/__pycache__
+/get_translations/hub

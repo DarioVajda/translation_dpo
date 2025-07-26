@@ -3,7 +3,7 @@ import json
 # "id", "url", "title", "text", "Prompt_gams", "Prompt_eurollm", "Problematic_gams", "Problematic_eurollm", "gams_translation", "eurollm_translation", "gams_dpo_translation"
 
 all_translations = []
-with open("./all_translations_fixed.jsonl", "r") as file:
+with open("./sft_model_all_translations.jsonl", "r") as file:
     for line in file:
         all_translations.append(json.loads(line.strip()))
 
@@ -43,12 +43,12 @@ print("Number of Eurollm translations:", len(eurollm))
 print("Number of GAMS DPO translations:", len(gams_dpo))
 
 # Save the divided datasets to JSONL files
-with open("./gams_translations.jsonl", "w") as file:
+with open("./all_translations/sft/gams_translations.jsonl", "w") as file:
     for example in gams:
         file.write(json.dumps(example) + "\n")
-with open("./eurollm_translations.jsonl", "w") as file:
+with open("./all_translations/sft/eurollm_translations.jsonl", "w") as file:
     for example in eurollm:
         file.write(json.dumps(example) + "\n")
-with open("./gams_dpo_translations.jsonl", "w") as file:
+with open("./all_translations/sft/gams_sft_translations.jsonl", "w") as file:
     for example in gams_dpo:
         file.write(json.dumps(example) + "\n")

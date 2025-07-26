@@ -1,0 +1,4 @@
+cpu-bind=MASK - apl, task  0  0 [847892]: mask 0x30000000000000300000000 set
+slurmstepd: error: pyxis: couldn't chdir to /ceph/hpc/data/s24o01-42-users/translation_optimization/comet_score: No such file or directory
+slurmstepd: error: spank: required plugin spank_pyxis.so: task_init() failed with rc=-1
+slurmstepd: error: Failed to invoke spank plugin stack

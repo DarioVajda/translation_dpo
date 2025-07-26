@@ -1,4 +1,3 @@
-from datasets import load_dataset
 import json
 import pandas as pd
 
@@ -14,9 +13,10 @@ def addapt_to_nemo(data):
 
 # HERE I WILL MAKE EXAMPLES OF THE DATASET WHERE
 # CHOSEN IS OK AND REJECTED IS TOO SHORT
-def main(id=0):
+def main(id=0, path=None):
     # Load the data
-    data = pd.read_json(f"../language_identification/paired_data_with_scores{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True)
+    # data = pd.read_json(f"../language_identification/paired_data_with_scores{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True)
+    data = pd.read_json(path, orient="records", lines=True)
     print("Shape of all data:", data.shape)
 
     # Using only the examples where both translations are in Slovene
@@ -65,12 +65,23 @@ def main(id=0):
             print(f" - {column}")
 
     # Save the data
-    short_examples.to_json(f"raw_data/short_examples{f'_{id}' if id>0 else ''}.jsonl", orient="records", lines=True, force_ascii=False)
+    short_examples.to_json(f"raw_data/short_examples_{id}.jsonl", orient="records", lines=True, force_ascii=False)
 
 if __name__=="__main__":
     # main()
-    for id in [1, 2]:
+    # for id in [1, 2]:
+    #     print('*'*60)
+    #     print(f"Processing data with id {id}")
+    #     print('*'*60)
+    #     main(id)
+
+    paths = [
+        ("../language_identification/ccnews_paired/1.jsonl", 1),
+        ("../language_identification/ccnews_paired/2.jsonl", 2),
+    ]
+
+    for (path, id) in paths:
         print('*'*60)
-        print(f"Processing data with id {id}")
+        print(f"Processing data from path {path}")
         print('*'*60)
-        main(id)
+        main(id=id, path=path)

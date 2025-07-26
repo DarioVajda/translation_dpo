@@ -1,0 +1,2 @@
+cpu-bind=MASK - ana, task  0  0 [2760026]: mask 0x30000000000000300000000 set
+slurmstepd: error: *** STEP 44068.0 ON ana CANCELLED AT 2025-07-25T12:08:09 ***

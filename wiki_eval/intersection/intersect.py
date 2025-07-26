@@ -1,21 +1,21 @@
 import json
 import os
 
-# load the /ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/gams_translations.jsonl file
+# load the ./gams_translations.jsonl file
 gams = []
-with open("/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/language_id/gams_translations.jsonl", "r") as file:
+with open("./language_id/sft/gams_translations.jsonl", "r") as file:
     for line in file:
         gams.append(json.loads(line.strip()))
 
-# load the /ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/language_id/eurollm_translations.jsonl file
+# load the ./language_id/eurollm_translations.jsonl file
 eurollm = []
-with open("/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/language_id/eurollm_translations.jsonl", "r") as file:
+with open("./language_id/sft/eurollm_translations.jsonl", "r") as file:
     for line in file:
         eurollm.append(json.loads(line.strip()))
 
-# load the /ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/language_id/gams_dpo_translations.jsonl file
+# load the ./language_id/gams_dpo_translations.jsonl file
 gams_dpo = []
-with open("/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/language_id/gams_dpo_translations.jsonl", "r") as file:
+with open("./language_id/sft/gams_sft_translations.jsonl", "r") as file:
     for line in file:
         gams_dpo.append(json.loads(line.strip()))
 
@@ -54,12 +54,12 @@ for gams_e in gams:
     eurollm_filtered.append(eurollm[eurollm_i])
 
 # save the filtered datasets to JSONL files
-with open("/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/intersection/gams_translations_filtered.jsonl", "w") as file:
+with open("./intersection/sft/gams_translations_filtered.jsonl", "w") as file:
     for example in gams_filtered:
         file.write(json.dumps(example, ensure_ascii=False) + "\n")
-with open("/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/intersection/gams_dpo_translations_filtered.jsonl", "w") as file:
+with open("./intersection/sft/gams_dpo_translations_filtered.jsonl", "w") as file:
     for example in gams_dpo_filtered:
         file.write(json.dumps(example, ensure_ascii=False) + "\n")
-with open("/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/intersection/eurollm_translations_filtered.jsonl", "w") as file:
+with open("./intersection/sft/eurollm_translations_filtered.jsonl", "w") as file:
     for example in eurollm_filtered:
         file.write(json.dumps(example, ensure_ascii=False) + "\n")

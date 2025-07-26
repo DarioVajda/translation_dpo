@@ -1,5 +1,2 @@
-slurmstepd: error: IPMI failure detected, energy reading for this step will not be accurate.
-cpu-bind=MASK - gn20, task  0  0 [2876328]: mask 0xffffffff000000000000000000000000ffffffff set
-unknown option --model_path=cjvt/GaMS-9B-Instruct
-usage: /usr/bin/python3 [option] ... [-c cmd | -m mod | file | -] [arg] ...
-Try `python -h' for more information.
+cpu-bind=MASK - ixh, task  0  0 [4172468]: mask 0x3ffff3f000ff00000000000000003ffff3f000ff00000000000000 set
+/usr/bin/python3: can't open file '/data/translate_ccnews.py': [Errno 2] No such file or directory

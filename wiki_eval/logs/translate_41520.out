@@ -1,0 +1,13 @@
+Starting translation job on aga1 at Fri Jul  4 19:39:57 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+Traceback (most recent call last):
+  File "/workspace/wiki_eval/get_translations.py", line 33, in <module>
+    if not obj["id"]: obj["id"] = obj["url"]
+KeyError: 'id'
+srun: error: aga1: task 0: Exited with exit code 1
+Done at Fri Jul  4 19:40:37 UTC 2025

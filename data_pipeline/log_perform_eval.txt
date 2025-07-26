@@ -1,0 +1,6 @@
+Model: cjvt/GaMS-9B-Instruct
+Load eval dataset script: load_all_eval_datasets.py
+Output path: test_eval
+Starting COMET scoring
+COMET scoring done
+Finished performing evaluation for model cjvt/GaMS-9B-Instruct

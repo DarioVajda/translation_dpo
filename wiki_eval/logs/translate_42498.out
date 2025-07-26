@@ -1,0 +1,47 @@
+Starting translation job on ixh at Sun Jul 13 14:26:53 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+There are 500 entries in the evaluation dataset.
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]Loading checkpoint shards:  12%|█▎        | 1/8 [00:01<00:11,  1.70s/it]Loading checkpoint shards:  25%|██▌       | 2/8 [00:03<00:10,  1.70s/it]Loading checkpoint shards:  38%|███▊      | 3/8 [00:05<00:08,  1.72s/it]Loading checkpoint shards:  50%|█████     | 4/8 [00:06<00:06,  1.72s/it]Loading checkpoint shards:  62%|██████▎   | 5/8 [00:08<00:05,  1.73s/it]Loading checkpoint shards:  75%|███████▌  | 6/8 [00:10<00:03,  1.81s/it]Loading checkpoint shards:  88%|████████▊ | 7/8 [00:12<00:01,  1.80s/it]Loading checkpoint shards: 100%|██████████| 8/8 [00:13<00:00,  1.49s/it]Loading checkpoint shards: 100%|██████████| 8/8 [00:13<00:00,  1.65s/it]
+Device set to use cuda:0
+Initialized pipeline with model: /povejmo/models/hf_models/GaMS-9B-SFT_Translator-grouped
+Translating:   0%|          | 0/32 [00:00<?, ?it/s]Translating:   3%|▎         | 1/32 [02:21<1:12:57, 141.22s/it]Translating:   6%|▋         | 2/32 [02:46<36:22, 72.76s/it]   Translating:   9%|▉         | 3/32 [05:29<55:12, 114.24s/it]Translating:  12%|█▎        | 4/32 [06:09<39:35, 84.85s/it] Translating:  16%|█▌        | 5/32 [08:10<44:01, 97.83s/it]Translating:  19%|█▉        | 6/32 [09:11<36:56, 85.24s/it]Translating:  22%|██▏       | 7/32 [11:11<40:21, 96.88s/it]Translating:  25%|██▌       | 8/32 [12:03<32:55, 82.30s/it]Translating:  28%|██▊       | 9/32 [12:54<27:51, 72.68s/it]Translating:  31%|███▏      | 10/32 [13:33<22:51, 62.32s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Translating:  34%|███▍      | 11/32 [15:34<28:02, 80.11s/it]Translating:  38%|███▊      | 12/32 [16:24<23:42, 71.13s/it]Translating:  41%|████      | 13/32 [17:10<20:06, 63.52s/it]Translating:  44%|████▍     | 14/32 [19:11<24:14, 80.78s/it]Translating:  47%|████▋     | 15/32 [20:07<20:46, 73.33s/it]Translating:  50%|█████     | 16/32 [20:45<16:45, 62.84s/it]Translating:  53%|█████▎    | 17/32 [22:46<20:03, 80.24s/it]Translating:  56%|█████▋    | 18/32 [24:47<21:33, 92.37s/it]Translating:  59%|█████▉    | 19/32 [25:38<17:20, 80.03s/it]Translating:  62%|██████▎   | 20/32 [27:40<18:30, 92.56s/it]Translating:  66%|██████▌   | 21/32 [29:38<18:24, 100.38s/it]Translating:  69%|██████▉   | 22/32 [30:33<14:26, 86.65s/it] Translating:  72%|███████▏  | 23/32 [32:33<14:31, 96.80s/it]Translating:  75%|███████▌  | 24/32 [33:19<10:50, 81.27s/it]Translating:  78%|███████▊  | 25/32 [35:18<10:49, 92.83s/it]Translating:  81%|████████▏ | 26/32 [37:19<10:07, 101.25s/it]Translating:  84%|████████▍ | 27/32 [39:20<08:55, 107.10s/it]Translating:  88%|████████▊ | 28/32 [41:21<07:24, 111.23s/it]Translating:  91%|█████████ | 29/32 [43:22<05:42, 114.11s/it]Translating:  94%|█████████▍| 30/32 [44:55<03:35, 107.74s/it]Translating:  97%|█████████▋| 31/32 [47:00<01:52, 112.90s/it]Translating: 100%|██████████| 32/32 [48:12<00:00, 100.68s/it]Translating: 100%|██████████| 32/32 [48:12<00:00, 90.38s/it] 
+0 / 31
+16 / 31
+32 / 31
+48 / 31
+64 / 31
+80 / 31
+96 / 31
+112 / 31
+128 / 31
+144 / 31
+160 / 31
+176 / 31
+192 / 31
+208 / 31
+224 / 31
+240 / 31
+256 / 31
+272 / 31
+288 / 31
+304 / 31
+320 / 31
+336 / 31
+352 / 31
+368 / 31
+384 / 31
+400 / 31
+416 / 31
+432 / 31
+448 / 31
+464 / 31
+480 / 31
+496 / 31
+Translations saved to /workspace/wiki_eval/sft_model_wiki_translations.jsonl
+Done at Sun Jul 13 15:15:51 UTC 2025

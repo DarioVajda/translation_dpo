@@ -1,0 +1,67 @@
+Starting translation job on aga1 at Fri Jul  4 19:57:28 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+There are 689 entries in the evaluation dataset.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:41<02:04, 41.44s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:42<00:11, 11.15s/it]Fetching 4 files: 100%|██████████| 4/4 [00:42<00:00, 10.63s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.02s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.06s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.11s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.08it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.02it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Device set to use cuda:0
+Initialized pipeline with model: DarioVajda/GaMS-DPO-Translator
+Translating:   0%|          | 0/44 [00:00<?, ?it/s]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating:   2%|▏         | 1/44 [02:41<1:55:53, 161.72s/it]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating:   5%|▍         | 2/44 [05:51<2:04:43, 178.18s/it]Translating:   7%|▋         | 3/44 [07:29<1:36:45, 141.61s/it]Translating:   9%|▉         | 4/44 [09:14<1:24:41, 127.04s/it]Translating:  11%|█▏        | 5/44 [10:45<1:14:17, 114.28s/it]Translating:  14%|█▎        | 6/44 [14:40<1:38:19, 155.26s/it]Translating:  16%|█▌        | 7/44 [16:15<1:23:28, 135.37s/it]Translating:  18%|█▊        | 8/44 [17:46<1:12:49, 121.37s/it]Translating:  20%|██        | 9/44 [19:26<1:06:52, 114.63s/it]Translating:  23%|██▎       | 10/44 [20:59<1:01:07, 107.88s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Translating:  25%|██▌       | 11/44 [22:46<59:11, 107.63s/it]  Translating:  27%|██▋       | 12/44 [24:42<58:45, 110.17s/it]Translating:  30%|██▉       | 13/44 [26:32<56:58, 110.28s/it]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating:  32%|███▏      | 14/44 [29:47<1:07:54, 135.82s/it]Translating:  34%|███▍      | 15/44 [31:19<59:15, 122.61s/it]  Translating:  36%|███▋      | 16/44 [33:05<54:53, 117.61s/it]Translating:  39%|███▊      | 17/44 [34:47<50:45, 112.80s/it]Translating:  41%|████      | 18/44 [36:01<43:51, 101.23s/it]Translating:  43%|████▎     | 19/44 [37:59<44:16, 106.25s/it]Translating:  45%|████▌     | 20/44 [39:51<43:14, 108.09s/it]Translating:  48%|████▊     | 21/44 [41:25<39:47, 103.79s/it]Translating:  50%|█████     | 22/44 [42:58<36:51, 100.50s/it]Translating:  52%|█████▏    | 23/44 [44:41<35:26, 101.26s/it]Translating:  55%|█████▍    | 24/44 [46:36<35:08, 105.43s/it]Translating:  57%|█████▋    | 25/44 [48:30<34:14, 108.12s/it]Translating:  59%|█████▉    | 26/44 [50:21<32:37, 108.74s/it]Translating:  61%|██████▏   | 27/44 [52:21<31:48, 112.24s/it]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating:  64%|██████▎   | 28/44 [55:05<34:05, 127.87s/it]Translating:  66%|██████▌   | 29/44 [56:45<29:52, 119.53s/it]Translating:  68%|██████▊   | 30/44 [58:11<25:29, 109.28s/it]Translating:  70%|███████   | 31/44 [59:57<23:28, 108.38s/it]Translating:  73%|███████▎  | 32/44 [1:01:33<20:55, 104.63s/it]Translating:  75%|███████▌  | 33/44 [1:03:27<19:42, 107.52s/it]Translating:  77%|███████▋  | 34/44 [1:05:25<18:25, 110.50s/it]Translating:  80%|███████▉  | 35/44 [1:07:27<17:06, 114.07s/it]Translating:  82%|████████▏ | 36/44 [1:09:20<15:10, 113.87s/it]Translating:  84%|████████▍ | 37/44 [1:11:18<13:25, 115.03s/it]Translating:  86%|████████▋ | 38/44 [1:13:19<11:40, 116.68s/it]Translating:  89%|████████▊ | 39/44 [1:14:54<09:11, 110.31s/it]Translating:  91%|█████████ | 40/44 [1:16:46<07:23, 110.85s/it]Translating:  93%|█████████▎| 41/44 [1:19:02<05:55, 118.38s/it]Translating:  95%|█████████▌| 42/44 [1:20:56<03:54, 117.14s/it]Translating:  98%|█████████▊| 43/44 [1:22:49<01:55, 115.67s/it]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating: 100%|██████████| 44/44 [1:24:14<00:00, 106.62s/it]Translating: 100%|██████████| 44/44 [1:24:14<00:00, 114.88s/it]
+0 / 43
+16 / 43
+32 / 43
+48 / 43
+64 / 43
+80 / 43
+96 / 43
+112 / 43
+128 / 43
+144 / 43
+160 / 43
+176 / 43
+192 / 43
+208 / 43
+224 / 43
+240 / 43
+256 / 43
+272 / 43
+288 / 43
+304 / 43
+320 / 43
+336 / 43
+352 / 43
+368 / 43
+384 / 43
+400 / 43
+416 / 43
+432 / 43
+448 / 43
+464 / 43
+480 / 43
+496 / 43
+512 / 43
+528 / 43
+544 / 43
+560 / 43
+576 / 43
+592 / 43
+608 / 43
+624 / 43
+640 / 43
+656 / 43
+672 / 43
+688 / 43
+Translations saved to /workspace/wiki_eval/test_translations.jsonl
+Done at Fri Jul  4 21:23:35 UTC 2025

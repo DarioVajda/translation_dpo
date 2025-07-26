@@ -39,14 +39,16 @@ def load_multilang_json(base_dir, subfile):
     return pd.DataFrame(all_data)
 
 folders = [ 
-    "/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/language_id/eurollm_translations",
-    "/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/language_id/gams_translations",
-    "/ceph/hpc/data/s24o01-42-users/translation_optimization/wiki_eval/language_id/gams_dpo_translations"
+    "./language_id/sft/eurollm_translations",
+    "./language_id/sft/gams_translations",
+    "./language_id/sft/gams_sft_translations"
+    # "./language_id/sft/gams_dpo_translations"
 ]
 subfiles = [
     "eurollm_translations.jsonl",
     "gams_translations.jsonl",
-    "gams_dpo_translations.jsonl"
+    "gams_sft_translations.jsonl"
+    # "gams_dpo_translations.jsonl"
 ]
 
 for folder, subfile in zip(folders, subfiles):

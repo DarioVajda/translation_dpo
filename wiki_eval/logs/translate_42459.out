@@ -1,0 +1,41 @@
+Starting translation job on ixh at Sun Jul 13 13:12:01 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+There are 689 entries in the evaluation dataset.
+Traceback (most recent call last):
+  File "/transformers/src/transformers/utils/hub.py", line 470, in cached_files
+    hf_hub_download(
+  File "/usr/local/lib/python3.10/dist-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/usr/local/lib/python3.10/dist-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': 'povejmo/models/hf_models/GaMS-9B-SFT_Translator-grouped'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/wiki_eval/get_translations.py", line 102, in <module>
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+  File "/transformers/src/transformers/models/auto/tokenization_auto.py", line 946, in from_pretrained
+    tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+  File "/transformers/src/transformers/models/auto/tokenization_auto.py", line 778, in get_tokenizer_config
+    resolved_config_file = cached_file(
+  File "/transformers/src/transformers/utils/hub.py", line 312, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/transformers/src/transformers/utils/hub.py", line 522, in cached_files
+    resolved_files = [
+  File "/transformers/src/transformers/utils/hub.py", line 523, in <listcomp>
+    _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+  File "/transformers/src/transformers/utils/hub.py", line 140, in _get_cache_file_to_return
+    resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+  File "/usr/local/lib/python3.10/dist-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/usr/local/lib/python3.10/dist-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': 'povejmo/models/hf_models/GaMS-9B-SFT_Translator-grouped'. Use `repo_type` argument if needed.
+srun: error: ixh: task 0: Exited with exit code 1
+Done at Sun Jul 13 13:12:24 UTC 2025

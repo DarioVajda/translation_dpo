@@ -1,0 +1,15 @@
+Starting translation job on ixh at Sun Jul 13 13:13:23 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+There are 689 entries in the evaluation dataset.
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]Loading checkpoint shards:  12%|█▎        | 1/8 [00:02<00:15,  2.24s/it]Loading checkpoint shards:  25%|██▌       | 2/8 [00:05<00:17,  2.89s/it]Loading checkpoint shards:  38%|███▊      | 3/8 [00:08<00:15,  3.08s/it]Loading checkpoint shards:  50%|█████     | 4/8 [00:12<00:12,  3.15s/it]Loading checkpoint shards:  62%|██████▎   | 5/8 [00:15<00:09,  3.21s/it]Loading checkpoint shards:  75%|███████▌  | 6/8 [00:18<00:06,  3.24s/it]Loading checkpoint shards:  88%|████████▊ | 7/8 [00:22<00:03,  3.26s/it]Loading checkpoint shards: 100%|██████████| 8/8 [00:23<00:00,  2.73s/it]Loading checkpoint shards: 100%|██████████| 8/8 [00:23<00:00,  2.96s/it]
+Device set to use cuda:0
+Initialized pipeline with model: /povejmo/models/hf_models/GaMS-9B-SFT_Translator-grouped
+Translating:   0%|          | 0/44 [00:00<?, ?it/s]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=6), device(type='cuda', index=1), device(type='cuda', index=2), device(type='cuda', index=3), device(type='cuda', index=4), device(type='cuda', index=5)
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+Translating:   2%|▏         | 1/44 [01:47<1:16:47, 107.16s/it]slurmstepd: error: *** STEP 42460.0 ON ixh CANCELLED AT 2025-07-13T13:16:22 ***
+slurmstepd: error: *** JOB 42460 ON ixh CANCELLED AT 2025-07-13T13:16:22 ***

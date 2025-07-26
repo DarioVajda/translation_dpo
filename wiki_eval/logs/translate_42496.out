@@ -1,0 +1,13 @@
+Starting translation job on ixh at Sun Jul 13 14:25:01 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+Traceback (most recent call last):
+  File "/workspace/wiki_eval/get_translations.py", line 74, in <module>
+    "Problematic_gams": gams_example["Problematic"],
+KeyError: 'Problematic'
+srun: error: ixh: task 0: Exited with exit code 1
+Done at Sun Jul 13 14:25:23 UTC 2025

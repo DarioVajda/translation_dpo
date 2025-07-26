@@ -112,7 +112,7 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
         bf16=True,                                                  # Use bf16 (mixed precision) instead of fp16
         bf16_full_eval=True,                                        # Use bf16 (mixed precision) for evaluation
         gradient_checkpointing=True,                                # Enable gradient checkpointing to save memory
-        # gradient_checkpointing_kwargs={"use_reentrant": False},     # DOCS SAID I SHOULD SET THIS (I HOPE)
+        gradient_checkpointing_kwargs={"use_reentrant": False},     # DOCS SAID I SHOULD SET THIS
         max_grad_norm=1.0,                                          # Max gradient norm for gradient clipping
 
         # WandB configuration:
@@ -187,6 +187,12 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
         args=dpo_config,
         # peft_config=peft_config,  # Pass the LoRA configuration
     )
+    # wrapped = getattr(dpo_trainer, "model_wrapped", None) or getattr(dpo_trainer.model, "module", None)
+    # if wrapped is not None and hasattr(wrapped, "_set_static_graph"):
+    #     print(">>> enabling static graph on", wrapped.__class__.__name__)
+    #     wrapped._set_static_graph()
+    # else:
+    #     print(">>> warning: could not find wrapped model to call _set_static_graph() on")
     if local_rank == 0: print("Set up DPO trainer")
     dpo_trainer.train()
     if local_rank == 0: print("Training complete")

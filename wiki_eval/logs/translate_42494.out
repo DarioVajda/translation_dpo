@@ -1,0 +1,4 @@
+Starting translation job on ixh at Sun Jul 13 14:23:13 UTC 2025
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 42494 ON ixh CANCELLED AT 2025-07-13T14:23:19 ***
+slurmstepd: error: *** STEP 42494.0 ON ixh CANCELLED AT 2025-07-13T14:23:19 ***

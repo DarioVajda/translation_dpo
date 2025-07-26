@@ -11,40 +11,48 @@ from datasets import load_from_disk
 from task_adapter import get_task_adapter
 
 def load_ccnews(year):
-    path = f"/ceph/hpc/data/s24o01-42-users/corpuses/ccnews/ccnews_{year}_en.hf"
+    path = f"/ceph/hpc/data/s24o01-42-users/corpuses/cc_news/ccnews_{year}_en.hf"
     if os.path.isdir(path):
         return load_from_disk(path)
     else:
         # print(f"⚠️  Skipping missing {path}")
         assert False, f"Dataset for year {year} not found at '{path}'"
 
-def load_data(input_path):
-    return load_ccnews(2020)
+def load_data():
+    return load_ccnews(2019)
 
 def fixed_selection(n, m, id, seed=42):
-    return [ i for i in range(n) if i % (300*20) == id ][:m]
+    return [ i for i in range(n) if i % (300) == id ][:m]
 
 
 def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_size, id):
     # data = load_from_disk(os.path.join(input_path, "train"))
-    data = load_from_disk('/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_en/train')
+    # data = load_from_disk('/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_en/train')
+    data = load_data()
     task_adapter = get_task_adapter(model_path)
 
     # Select first 100 examples
     # data = data.select(range(100))
 
     # Select random 1000 examples
-    data = data.select(fixed_selection(len(data), 1000, id))
+    data = data.select(fixed_selection(len(data), 20000, id))
     # data = data.select(range(200))
 
     data_size = len(data)
     print("Number of examples:", data_size)
 
+    # check if the model path is a local path or a Hugging Face ID
+    if os.path.isdir(model_path):
+        print("Using local model path:", model_path)
+    else:
+        print("Using Hugging Face model ID:", model_path)
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = LLM(
         model=model_path,
+        tokenizer=model_path,
         gpu_memory_utilization=gpu_memory_util,
         trust_remote_code=True,
+        enable_prefix_caching=False,
         tensor_parallel_size=tp_size,
         seed=42
     )
@@ -53,14 +61,22 @@ def correct_examples(model_path, input_path, output_path, gpu_memory_util, tp_si
 
     print("Preparing prompts ...")
     def example_to_prompt(example):
-        wikipedia_text = f"# {example['title']}\n\n{example['text']}"
+        wikipedia_text = f"# {example['title']}\n\n{example['plain_text']}"
         conversation = task_adapter.create_prompt(wikipedia_text)
         prompt = tokenizer.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
         problematic = len(tokenizer.encode(prompt)) > 4096
+        # if not problematic:
+        #     print("Prompt:")
+        #     print(prompt)
+        #     print("-"*50)
 
         return {"Prompt": prompt, "Problematic": problematic}
-    
-    prompt_data = data.map(example_to_prompt, num_proc=8)
+
+    prompt_data = data.map(
+        example_to_prompt, 
+        num_proc=8, 
+        cache_file_name=f"/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/__pycache__/ccnews_{id}/{model_path}.hf"
+    )
     prompt_data = prompt_data.filter(lambda example: not example["Problematic"], num_proc=8)
 
     prompts = prompt_data["Prompt"]

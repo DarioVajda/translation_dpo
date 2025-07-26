@@ -1,27 +1,25 @@
 #!/bin/bash
 #SBATCH --job-name=dpo_fine_tuning
 #SBATCH --output=dpo_test_run_output.txt
-#SBATCH --error=dpo_test_run_error.txt
 #SBATCH --time=16:00:00
-#SBATCH --partition=gpu
-#SBATCH --nodes=2
+#SBATCH --partition=frida
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:4
-#SBATCH --mem=256G
-#SBATCH --exclusive
-#SBATCH --reservation=s24o01-42-users
+#SBATCH --gres=gpu:H100:4
+#SBATCH --mem=128G
 
 # Get the list of hostnames from SLURM
-mapfile -t HOSTS < <(scontrol show hostnames "$SLURM_JOB_NODELIST")
+# mapfile -t HOSTS < <(scontrol show hostnames "$SLURM_JOB_NODELIST")
 
-HOSTFILE_PATH="/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_${SLURM_JOB_ID}"
-echo "Creating hostfile at ${HOSTFILE_PATH}"
-: > "${HOSTFILE_PATH}" # Clear/create
-mapfile -t SLURM_NODES < <(scontrol show hostnames "$SLURM_JOB_NODELIST" | sort -u)
-for NODE_NAME in "${SLURM_NODES[@]}"; do
-    echo "${NODE_NAME} slots=${SLURM_GPUS_ON_NODE}" >> "${HOSTFILE_PATH}"
-done
-cat "${HOSTFILE_PATH}"
+# HOSTFILE_PATH="/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_${SLURM_JOB_ID}"
+# echo "Creating hostfile at ${HOSTFILE_PATH}"
+# : > "${HOSTFILE_PATH}" # Clear/create
+# mapfile -t SLURM_NODES < <(scontrol show hostnames "$SLURM_JOB_NODELIST" | sort -u)
+# for NODE_NAME in "${SLURM_NODES[@]}"; do
+#     echo "${NODE_NAME} slots=${SLURM_GPUS_ON_NODE}" >> "${HOSTFILE_PATH}"
+# done
+# cat "${HOSTFILE_PATH}"
+
+grep ^tty /etc/group
 
 
 NUM_NODES=$SLURM_JOB_NUM_NODES      # Total number of nodes you are using
@@ -33,26 +31,15 @@ MASTER_PORT=29500                   # A free port on the MASTER node for communi
 TOTAL_PROCESSES=$(($NUM_NODES * $GPUS_PER_NODE))
 
 # Container path
-CONTAINER=/ceph/hpc/data/s24o01-42-users/containers/transformers_deepspeed_latest.sif
+CONTAINER=/shared/workspace/povejmo/containers/transformers_deepspeed_latest.sqsh
 
 # Path to your training script
 TRAINING_SCRIPT="train.py"
 
 # Get the parameters for the training script
-DPO_RANK=${1:-128}
-LEARNING_RATE=${2:-4e-7}
+DPO_RANK=${1:-64}
+LEARNING_RATE=${2:-1e-6}
 BETA=${3:-0.1}
-
-# Tests performed (lr, beta):
-# 1e-6, 0.1
-# 1e-6, 0.2
-# 4e-7, 0.1
-# 4e-7, 0.2
-# 1e-7, 0.1
-# 1e-7, 0.2
-
-# About to run tests:
-# 4e-6, 0.1
 
 # SSL Certificate Configuration
 CACERT_FILE_PATH="/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/cacert.pem"
@@ -72,10 +59,11 @@ ACCELERATE_CONFIG_FILE=/ceph/hpc/data/s24o01-42-users/translation_optimization/t
 export WANDB_API_KEY="79af9dbae290344f5c04c8069ac6475d3b231866"
 
 # Preparing the results directory and output files
-RESULTS_DIR="/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir"
+RESULTS_DIR="/shared/workspace/povejmo/translation_optimization/trl/result_dir"
 OUTFILE="${RESULTS_DIR}/rm-%j_%t.out"
 ERRFILE="${RESULTS_DIR}/rm-%j_%t.err"
-mkdir -p ${RESULTS_DIR}
+# mkdir -p ${RESULTS_DIR}
+
 
 # Writing the launch command using accelerate in the cmd variable
 read -r -d '' cmd <<EOF
@@ -95,7 +83,6 @@ echo "*******STARTING********" \
     --main_process_ip "$MASTER_ADDR" \
     --main_process_port "$MASTER_PORT" \
     --num_processes "$TOTAL_PROCESSES" \
-    --deepspeed_hostfile "$HOSTFILE_PATH" \
     --deepspeed_multinode_launcher "standard" \
     --rdzv_backend static \
     --same_network \
@@ -110,7 +97,6 @@ echo "*******STARTING********" \
     --main_process_ip "$MASTER_ADDR" \
     --main_process_port "$MASTER_PORT" \
     --num_processes "$TOTAL_PROCESSES" \
-    --deepspeed_hostfile "$HOSTFILE_PATH" \
     --deepspeed_multinode_launcher "standard" \
     --rdzv_backend static \
     --same_network \
@@ -121,17 +107,31 @@ echo "*******STARTING********" \
 EOF
 
 # Execute the command
+# srun \
+#     --cpu-bind=verbose \
+#     --job-name=${SLURM_JOB_NAME} \
+#     --nodes=${SLURM_JOB_NUM_NODES} \
+#     --ntasks-per-node=1 \
+#     --gpus-per-task=$GPUS_PER_NODE \
+#     --output=$OUTFILE \
+#     singularity exec \
+#         --nv \
+#         $CONTAINER \
+#         bash -c "${cmd}"
+
+echo "we got to here"
+
 srun \
     --cpu-bind=verbose \
     --job-name=${SLURM_JOB_NAME} \
+    --output=$OUTFILE \
     --nodes=${SLURM_JOB_NUM_NODES} \
     --ntasks-per-node=1 \
     --gpus-per-task=$GPUS_PER_NODE \
-    --output=$OUTFILE \
-    singularity exec \
-        --nv \
-        $CONTAINER \
-        bash -c "${cmd}"
+    --container-image=$CONTAINER \
+    --container-mounts /shared/workspace/povejmo:/ceph/hpc/data/s24o01-42-users \
+    --container-workdir /ceph/hpc/data/s24o01-42-users/translation_optimization/trl \
+    bash -c "${cmd}"
 
 echo "Training completed!"
 echo "Outputs are saved in ${RESULTS_DIR}"

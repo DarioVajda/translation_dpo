@@ -1,0 +1,23 @@
+Starting translation job on aga1 at Fri Jul  4 15:09:11 UTC 2025
+Starting the script...
+imported pipeline from transformers
+imported torch
+imported tqdm
+imported json
+imported load_from_disk from datasets
+There are 727 entries in the evaluation dataset.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:40<02:01, 40.65s/it]Fetching 4 files:  50%|█████     | 2/4 [01:04<01:01, 30.56s/it]Fetching 4 files: 100%|██████████| 4/4 [01:04<00:00, 16.04s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.10it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.12it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.14it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.28it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.22it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Device set to use cuda:0
+Initialized pipeline with model: DarioVajda/GaMS-DPO-Translator
+Translating:   0%|          | 0/46 [00:00<?, ?it/s]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating:   2%|▏         | 1/46 [02:42<2:01:39, 162.22s/it]Translating:   4%|▍         | 2/46 [04:20<1:31:15, 124.44s/it]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating:   7%|▋         | 3/46 [07:19<1:47:06, 149.46s/it]Translating:   9%|▊         | 4/46 [08:52<1:29:06, 127.29s/it]Translating:  11%|█         | 5/46 [10:39<1:21:51, 119.80s/it]Translating:  13%|█▎        | 6/46 [12:25<1:16:50, 115.25s/it]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating:  15%|█▌        | 7/46 [15:24<1:28:19, 135.89s/it]Translating:  17%|█▋        | 8/46 [17:11<1:20:20, 126.86s/it]Translating:  20%|█▉        | 9/46 [18:46<1:12:08, 116.98s/it]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+Translating:  22%|██▏       | 10/46 [21:29<1:18:42, 131.18s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Translating:  24%|██▍       | 11/46 [23:05<1:10:10, 120.31s/it]skipping cudagraphs due to skipping cudagraphs due to multiple devices: device(type='cuda', index=0), device(type='cuda', index=2), device(type='cuda', index=1)
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+Translating:  26%|██▌       | 12/46 [25:40<1:14:05, 130.75s/it]Translating:  28%|██▊       | 13/46 [27:32<1:08:53, 125.25s/it]Translating:  30%|███       | 14/46 [29:29<1:05:25, 122.69s/it]slurmstepd: error: *** STEP 41485.0 ON aga1 CANCELLED AT 2025-07-04T15:41:42 ***
+slurmstepd: error: *** JOB 41485 ON aga1 CANCELLED AT 2025-07-04T15:41:42 ***

@@ -57,14 +57,14 @@ def main(client=None, args=None, data_to_check=None, id=0):
     
     # Params
     # multilingual_data_path = f'/ceph/hpc/data/s24o01-42-users/corpuses/wikipedia/wikipedia_{data_to_check}_translation.jsonl'
-    multilingual_data_path = f'/ceph/hpc/data/s24o01-42-users/translation_optimization/comet_score/scored_{data_to_check}_translation{f'_{id}' if id>0 else ''}.jsonl'
+    multilingual_data_path = f'/workspace/comet_score/scored_data/ccnews_{data_to_check}{f'{id}' if id>0 else ''}.jsonl'
     language_separated_output_path = f'./{data_to_check}_language_id_with_scores{f'_{id}' if id>0 else ''}' # args.output_path
     # print("multilingual_data_path = ", multilingual_data_path)
 
     # Download a fastText language identification model
     # and see a list of supported languages here:
     # https://fasttext.cc/docs/en/language-identification.html
-    model_path = '/ceph/hpc/data/s24o01-42-users/translation_optimization/language_identification/model/lid.176.bin' # args.model_path
+    model_path = '/workspace/language_identification/model/lid.176.bin' # args.model_path
     language_field = "language"
 
 
@@ -135,13 +135,13 @@ if __name__ == "__main__":
 
 
     # Prepare samples for the classifier
-    with open('/ceph/hpc/data/s24o01-42-users/translation_optimization/language_identification/dask_config/client.json', "r") as config_file:
+    with open('/workspace/language_identification/dask_config/client.json', "r") as config_file:
         client_args = json.load(config_file)
     client = get_client(**client_args)
     print("Prepared client")
     
     for data_to_check in ['eurollm9b', 'gams9b']:
-        for id in [0, 1, 2]:
-        # for id in [1, 2]:
+        # for id in [0, 1, 2]:
+        for id in [1, 2]:
             # print(f"Processing {data_to_check} with id {id}")
             main(client=client, data_to_check=data_to_check, id=id)

@@ -1,0 +1,11 @@
+{"time":"2025-07-12T23:27:28.879333763Z","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250712_232728-1aoeicgt/logs/debug-core.log"}
+{"time":"2025-07-12T23:27:29.33157989Z","level":"INFO","msg":"created new stream","id":"1aoeicgt"}
+{"time":"2025-07-12T23:27:29.331617997Z","level":"INFO","msg":"stream: started","id":"1aoeicgt"}
+{"time":"2025-07-12T23:27:29.331797506Z","level":"INFO","msg":"writer: Do: started","stream_id":"1aoeicgt"}
+{"time":"2025-07-12T23:27:29.331812407Z","level":"INFO","msg":"handler: started","stream_id":"1aoeicgt"}
+{"time":"2025-07-12T23:27:29.331850887Z","level":"INFO","msg":"sender: started","stream_id":"1aoeicgt"}
+{"time":"2025-07-12T23:27:29.676587204Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-12T23:34:43.37786711Z","level":"ERROR","msg":"runconsolelogs: failed to write to file: failed to open file: open /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250712_232728-1aoeicgt/files/output.log: no such file or directory"}
+{"time":"2025-07-12T23:34:44.6778168Z","level":"ERROR","msg":"monitor: error sampling metrics: open /proc/net/dev: no such file or directory\nopen /proc/1962953/statm: no such file or directory\nopen /proc/1962953/stat: no such file or directory\nopen /proc/1962953/status: no such file or directory\nopen /proc/diskstats: no such file or directory"}
+{"time":"2025-07-12T23:34:45.183037784Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/slolama/GaMS-9B-Translation-DPO/1aoeicgt/file_stream\": dial tcp: lookup api.wandb.ai on [::1]:53: read udp [::1]:41390->[::1]:53: read: connection refused"}
+{"time":"2025-07-12T23:34:47.301435989Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/slolama/GaMS-9B-Translation-DPO/1aoeicgt/file_stream\": dial tcp: lookup api.wandb.ai on [::1]:53: read udp [::1]:35018->[::1]:53: read: connection refused"}
