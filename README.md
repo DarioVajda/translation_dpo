@@ -50,45 +50,6 @@ sbatch perform_eval.sbatch <model_id> <load_eval_dataset_script> <output_directo
 
 ***Note*** - Many paths were hardcoded into the code, using a different environment requires changing the paths in all the relevant locations.
 
-
-
-## Adapt for your project
-
-This code is ready for fine-tuning a language model for translation from language $L_1$ to language $L_2$, but it could be used for a more general problem with some minimal tweaks. Here, I will discuss two possible applicaitons:
-1. **Example 1**: Translation, not limited to $L_1 \rightarrow L_2$, but for any larger set of languages of interest $\{L_1,...L_n\}$ and translation between any pair $L_i \rightarrow L_j$ ($i,j=1,...n$).
-2. **Example 2**: General reasoning and problem solving tasks for an LLM.
-
-Both situations would require a number of changes to the three steps explained above.
-
-### Data generation
-Consider implementing the following changes to the data generation process:
-* Choosing two reliable models that will provide a good baseline and a source of data for the given problem.
-* Adapt the `get_translations/task_adapter.py` file and add a suitable prompt template for your problem. Create a new TaskAdapter class for both models and add them to the **get_task_adapter()** function.
-    * **Example 1**: Prompt could be something like this: "Translate the following text from $L_i$ to $L_j$.\n"
-    * **Example 2**: Prompt could be "You are given a math problem. Find a step by step solution.\n"
-* If needed, change the **example_to_prompt()** function in the `get_translations/translate_generic.py` file.
-* **Collect data** - you will need any unlabeled data for the problem you are trying to solve.
-    * **Example 1**: a corpus with data from any of the languages from $\{L_1,...L_n\}$.
-    * **Example 2**: a set of for example math problems, or any other task you are trying to optimise.
-* **Score the outputs**
-    * **Example 1**: Use COMET score or any other reference-less translation quality metric.
-    * **Example 2**: Mark the outputs with "YES" or "NO" depending on whether or not they are correct. Alternatively, have a linear scale for grading the outputs. 
-* **Your heuristics** - find some common problems with the model you are trying to optimise and write scripts creating training examples by automatically detecting those mistakes. See python programs in `preference_data/generic_scripts/` folder. 
-* Incorporate the preference data generation programs in the `data_pipeline/create_dataset.sbatch` script and run them.
-
-### Training
-* Change the path to training and validation data inside of the `trl/load_data.py` file. Make sure that both, training and validation data are lists with dictionaries, each containing *"prompt"*, *"chosen"* and *"rejected"* fields.
-* Change the base model in the `trl/train.py` script by changing the value of the **model_path** variable to one of the two base models.
-    * Potential experiment: train both of the original models used for data generation, keep the one with better results.
-* Play around with the hyperparameters in the `trl/train.sbatch` script.
-    * Adjust the LoRA rank, learning rate, DPO $\beta$ parameter and number of epochs default values (or pass new values through the command line).
-* If needed, change any other parameters to **DPOTrainer()** in the `trl/train.py` script.
-
-### Evaluation
-* Find a unseen dataset for evaluation without any overlap with the training data. 
-* **Example 1**: Keep most of the code for COMET scoring, possibly adjust your heuristic tests.
-* **Example 2**: Use your automatic grading + possible heuristic scoring you had used when generating the dataset.
-
 ## Citation
 If you use this code or find it helpful in your research, please cite our paper:
 ```
