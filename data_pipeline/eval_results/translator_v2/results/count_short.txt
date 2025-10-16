@@ -1,0 +1,3 @@
+cpu-bind=MASK - aga1, task  0  0 [1652026]: mask 0x300000000000000000000000000000003 set
+Number of examples with translation too short: 9 out of 978 (0.92%)
+Percentage of examples with translation too short: 0.93%

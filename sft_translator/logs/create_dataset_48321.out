@@ -1,0 +1,6 @@
+Translate file: /ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/translate_generic.py
+python3 translate_generic.py               --model_path=GaMS-Beta/GaMS-9B-SFT-Translator               --input_module=/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/load_data_scripts/load_nemotron.py               --output_path=test/translations_1.jsonl               --gpu_memory_util=0.95               --tp_size=1               --id=1
+cpu-bind=MASK - ixh, task  0  0 [3357789]: mask 0xf000000000000000000000000000f000000000000000 set
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 48321 ON ixh CANCELLED AT 2025-08-23T11:24:04 ***
+slurmstepd: error: *** STEP 48321.0 ON ixh CANCELLED AT 2025-08-23T11:24:04 ***

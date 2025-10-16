@@ -1,3 +1,0 @@
-cpu-bind=MASK - ana, task  0  0 [2833397]: mask 0x300000000000003000000000 set
-Number of examples with translation too short: 26 out of 969 (2.68%)
-Percentage of examples with translation too short: 2.94%

@@ -6,14 +6,17 @@ print("imported torch")
 from tqdm import tqdm
 print("imported tqdm")
 
+import torch._dynamo as dynamo
+dynamo.config.cache_size_limit = 2048
+
 # model_id = "cjvt/GaMS-9B-Instruct"
 # model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v2"
-model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3"
+# model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v3"
 # model_id = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curri-0"
 # model_id = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curri-2"
 # model_id = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-2"
 # model_id = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v4"
-
+model_id = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/GaMS-DPO-Translator-v2"
 
 pline = pipeline(
     "text-generation",
@@ -39,7 +42,7 @@ print("Initialized pipeline with model:", model_id)
 
 # Load the dataset and prepare messages for translation
 def get_messages():
-    ensl_dataset_path = "/ceph/hpc/data/s24o01-42-users/slobench/data/test_data/translation/slobench_ensl.en.txt"
+    ensl_dataset_path = "/ceph/hpc/data/s24o01-42-users/slobench_evaluation/data/test_data/translation/slobench_ensl.en.txt"
     with open(ensl_dataset_path, "r") as file:
         ensl_dataset = file.readlines()
     ensl_dataset = [line.strip() for line in ensl_dataset]
@@ -50,6 +53,10 @@ def get_messages():
 messages = get_messages()
 
 translation_list = []
+
+
+# check which device is being used
+print("Pipeline is running on device:", pline.device)
 
 # Iterate over the messages and generate translations
 for message in tqdm(messages, desc="Translating"):
@@ -63,7 +70,8 @@ for message in tqdm(messages, desc="Translating"):
 
 # Save the translations to a file
 # output_file_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/slobench_submissions/slobench_ensl_translations_curriculum_dpo2_second_half.txt"
-output_file_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/slobench_submissions/slobench_ensl_translations_dpo_v3.txt"
+# output_file_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/slobench_submissions/slobench_ensl_translations_dpo_v3.txt"
+output_file_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/slobench_submissions/dpo_translator_results_v2.txt"
 with open(output_file_path, "w") as output_file:
     for translation in translation_list:
         output_file.write(translation + "\n")

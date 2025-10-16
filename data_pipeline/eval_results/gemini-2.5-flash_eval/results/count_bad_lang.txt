@@ -1,0 +1,5 @@
+cpu-bind=MASK - ixh, task  0  0 [671090]: mask 0x3c0000000f0000000000000000003c0000000f00 set
+Total translations: 1433
+Slovene translations: 1428
+Percentage of Slovene translations: 99.65108164689462
+Bad translation error rate: 0.34891835310537334

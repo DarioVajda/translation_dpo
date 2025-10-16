@@ -30,7 +30,6 @@ echo "Starting COMET scoring"
 
 # run with singularity
 srun \
-  --output=$log_path \
   --cpu-bind=verbose \
   --container-image $container \
   --container-mounts $data_dir:/data,/shared/workspace/povejmo:/ceph/hpc/data/s24o01-42-users \

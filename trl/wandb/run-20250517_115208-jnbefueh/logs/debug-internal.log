@@ -1,7 +1,0 @@
-{"time":"2025-05-17T11:52:08.946207393+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/wandb/run-20250517_115208-jnbefueh/logs/debug-core.log"}
-{"time":"2025-05-17T11:52:09.259535737+02:00","level":"INFO","msg":"created new stream","id":"jnbefueh"}
-{"time":"2025-05-17T11:52:09.259590388+02:00","level":"INFO","msg":"stream: started","id":"jnbefueh"}
-{"time":"2025-05-17T11:52:09.259742268+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"jnbefueh"}
-{"time":"2025-05-17T11:52:09.262083979+02:00","level":"INFO","msg":"sender: started","stream_id":"jnbefueh"}
-{"time":"2025-05-17T11:52:09.262187759+02:00","level":"INFO","msg":"handler: started","stream_id":"jnbefueh"}
-{"time":"2025-05-17T11:52:09.589261527+02:00","level":"INFO","msg":"Starting system monitor"}

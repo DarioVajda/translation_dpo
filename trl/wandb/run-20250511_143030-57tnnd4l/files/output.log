@@ -1,5 +1,0 @@
-  0%|          | 0/266 [00:00<?, ?it/s]`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
-/usr/local/lib/python3.10/dist-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
-  warnings.warn(
-  0%|          | 1/266 [09:45<43:02:04, 584.62s/it]
-{'loss': 0.6914, 'grad_norm': 377.186767578125, 'learning_rate': 1.2500000000000002e-07, 'rewards/chosen': 0.0, 'rewards/rejected': 0.0, 'rewards/accuracies': 0.0, 'rewards/margins': 0.0, 'logps/chosen': -1792.0, 'logps/rejected': -1648.0, 'logits/chosen': nan, 'logits/rejected': nan, 'epoch': 0.01}

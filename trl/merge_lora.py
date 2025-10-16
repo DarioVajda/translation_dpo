@@ -13,8 +13,9 @@ base_model_name = "cjvt/GaMS-9B-Instruct"
 # adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-64_lr-1e-06_b-0.1_63057002/checkpoint-4032"
 # adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curriculum-0_r-64_lr-1e-07_b-0.1/checkpoint-1224"
 # adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curriculum-1_r-64_lr-4e-07_b-0.1/checkpoint-836"
-adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curriculum-2_r-64_lr-1e-06_b-0.1/checkpoint-418"
-save_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/Curriculum_DPO_models/GaMS-9B-DPO-Curriculum-2"  # New directory for merged model
+# adapter_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/curriculum-2_r-64_lr-1e-06_b-0.1/checkpoint-418"
+adapter_path = '/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/training_run/r-128_lr-1e-06_b-0.1_42429/checkpoint-3425'
+save_path = "/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/trained_models/GaMS-DPO-Translator-v2"
 # save_path = "/ceph/hpc/data/s24o01-42-users/models/hf_models/GaMS-9B-Instruct-translate-v4"
 
 # Load base model

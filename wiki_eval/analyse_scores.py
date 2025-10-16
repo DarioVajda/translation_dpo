@@ -4,19 +4,19 @@ from tqdm import tqdm
 
 # Load the GAMS translations from /shared/workspace/povejmo/translation_optimization/wiki_eval/comet_scores/eurollm_translations.jsonl
 gams_list = []
-with open("./comet_scores/sft/gams_translations.jsonl", "r") as file:
+with open("/workspace/data_pipeline/gams/language_id/SL/all_translation_0.jsonl", "r") as file:
     for line in tqdm(file, desc="Loading GAMS translations"):
         gams_list.append(json.loads(line.strip()))
 
 # load the Eurollm translations from /shared/workspace/povejmo/translation_optimization/wiki_eval/comet_scores/eurollm_translations.jsonl
 eurollm_list = []
-with open("./comet_scores/sft/eurollm_translations.jsonl", "r") as file:
+with open("/workspace/data_pipeline/eurollm/language_id/SL/all_translation_0.jsonl", "r") as file:
     for line in tqdm(file, desc="Loading Eurollm translations"):
         eurollm_list.append(json.loads(line.strip()))
 
 # load the GAMS DPO translations from /shared/workspace/povejmo/translation_optimization/wiki_eval/comet_scores/gams_dpo_translations.jsonl
 gams_dpo_list = []
-with open("./comet_scores/sft/gams_sft_translations.jsonl", "r") as file:
+with open("/workspace/data_pipeline/translator_v2/language_id/SL/all_translation_0.jsonl", "r") as file:
     for line in tqdm(file, desc="Loading GAMS DPO translations"):
         gams_dpo_list.append(json.loads(line.strip()))
 

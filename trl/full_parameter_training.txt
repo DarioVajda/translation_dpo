@@ -1,0 +1,7 @@
+Creating hostfile at /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_52848
+/var/spool/slurm/d/job52848/slurm_script: line 19: /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_52848: No such file or directory
+/var/spool/slurm/d/job52848/slurm_script: line 22: /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_52848: No such file or directory
+cat: /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/result_dir/hostfile_52848: No such file or directory
+tty:x:5:
+Training completed!
+Outputs are saved in /shared/workspace/povejmo/translation_optimization/trl/logs_dir_b200

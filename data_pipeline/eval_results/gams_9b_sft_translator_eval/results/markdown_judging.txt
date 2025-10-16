@@ -1,0 +1,7 @@
+Metric                   | Value 
+-------------------------+-------
+Total examples           | 452   
+Good markdown formatting | 314   
+Bad markdown formatting  | 138   
+Error rate (%)           | 30.53%
+Note: This is just an approximation, the actual error rate might differ by up to 5 percentage points due to the limitations of the judging model.

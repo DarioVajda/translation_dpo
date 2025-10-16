@@ -47,7 +47,7 @@ export SSL_CERT_FILE="${CACERT_FILE_PATH}"
 export REQUESTS_CA_BUNDLE="${CACERT_FILE_PATH}"
 
 # Training script arguments
-SCRIPT_ARGS="--rank=${DPO_RANK} --learning_rate=${LEARNING_RATE} --total_epochs=3 --beta=${BETA}"
+SCRIPT_ARGS="--rank=${DPO_RANK} --learning_rate=${LEARNING_RATE} --total_epochs=3 --beta=${BETA} --model=cjvt/GaMS-9B-Instruct"
 
 # Accelerate config file path
 ACCELERATE_CONFIG_FILE=/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml
@@ -118,8 +118,6 @@ EOF
 #         --nv \
 #         $CONTAINER \
 #         bash -c "${cmd}"
-
-echo "we got to here"
 
 srun \
     --cpu-bind=verbose \

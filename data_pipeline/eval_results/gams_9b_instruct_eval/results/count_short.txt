@@ -1,0 +1,3 @@
+cpu-bind=MASK - ana, task  0  0 [3885270]: mask 0xff00ff00000000ff00ff0000000 set
+Number of examples with translation too short: 60 out of 1437 (4.18%)
+Percentage of examples with translation too short: 4.83%

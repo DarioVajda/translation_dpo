@@ -1,7 +1,7 @@
 from trl import DPOConfig, DPOTrainer
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments
 
-from load_data import train_data, val_data
+from load_big_data import train_data, val_data
 from datasets import Dataset
 
 import os
@@ -58,13 +58,20 @@ def check_gradients(model):
         print("CRITICAL ERROR: NO TRAINABLE PARAMETERS FOUND!")
     print("------------------------------------------------------------")
 
-def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
+def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA, MODEL):
+    #train_data = train_data[:5000]
 
+    # model_path = "cjvt/GaMS-9B-Instruct"                           # Path to the model
+    # model_path = "GaMS-Beta/GaMS-9B-SFT-Translator"                  # Path to the model
+    model_path = MODEL
+    print("Model path:", model_path)
+    
     local_rank = int(os.environ.get("LOCAL_RANK", os.environ.get("ACCELERATE_LOCAL_RANK", 0)))
 
-    batch_size=16
-    micro_batch_size=1
+    # batch_size=16*2
+    micro_batch_size=8
     world_size = int(os.environ["WORLD_SIZE"])
+    batch_size = micro_batch_size * world_size
     if local_rank == 0: print("World size:", world_size)
     gradient_accumulation_steps = batch_size // (world_size * micro_batch_size)
     if local_rank == 0: print("Setting gradient accumulation steps to:", gradient_accumulation_steps)
@@ -76,19 +83,23 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
         print("Created datasets")
         print("Train dataset size:", len(train_dataset))
         print("Validation dataset size:", len(val_dataset))
-    
+
 
     STEPS_PER_EPOCH = len(train_dataset) // batch_size
     EVAL_STEPS = int(1/3 * STEPS_PER_EPOCH) # Evaluate 3 times per epoch
     if local_rank == 0: print("Steps per epoch:", STEPS_PER_EPOCH)
     if local_rank == 0: print("Evaluate each", EVAL_STEPS, "steps")
+
+    # create directory "training_run/{model_path.replace('/', '_')}/" if it doesn't exist
+    os.makedirs(f"training_run/{model_path.replace('/', '_')}/", exist_ok=True)
+
     # DPO Configuration (this is before loading the model because it is requered by deepspeed)
     dpo_config = DPOConfig(
         num_train_epochs=EPOCHS,                                    # Total number of training epochs to perform - vec epoh
         per_device_train_batch_size=micro_batch_size,               # Batch size per GPU/TPU core/CPU for training
         per_device_eval_batch_size=micro_batch_size,                # Batch size per GPU/TPU core/CPU for evaluation
         gradient_accumulation_steps=gradient_accumulation_steps,    # Number of updates steps to accumulate before performing a backward/update pass
-        output_dir=f"training_run/r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}_{os.getenv('SLURM_JOB_ID')}",     # Directory where the model predictions and checkpoints will be written
+        output_dir=f"training_run/{model_path.replace('/', '_')}/r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}_{os.getenv('SLURM_JOB_ID')}",     # Directory where the model predictions and checkpoints will be written
         logging_steps=10,                                           # Log every X updates steps
         save_strategy="steps",                                      # Save checkpoint every X epochs
         save_steps=EVAL_STEPS,                                      # Save checkpoint every X updates steps
@@ -106,6 +117,10 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
         max_prompt_length=None,                                     # Maximum length of the prompt
         max_completion_length=None,                                 # Maximum length of the completion (response) to generate
         max_length=2048,                                            # Maximum length of the input sequence (prompt + completion)
+
+        # Precompute ref probs:
+        # precompute_ref_log_probs=True,                              # Precompute the reference model log probabilities to speed up training
+        # precompute_ref_batch_size=1,                      # Tune for memory
 
         # Deepspeed configuration:
         # deepspeed="/ceph/hpc/data/s24o01-42-users/translation_optimization/trl/deepspeed_config.json",                          # Path to the deepspeed config file
@@ -129,10 +144,9 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
     if local_rank == 0: print("Set up DPO configuration")
 
     # Load the model
-    model_path = "cjvt/GaMS-9B-Instruct"                           # Path to the model
     model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation="eager")
     model.config.use_cache = False
-    if local_rank == 0: print("Loaded model")
+    if local_rank == 0: print("Loaded model from", model_path)
 
     # # Set input gradients to True
     # if hasattr(model, "enable_input_require_grads"):
@@ -199,7 +213,10 @@ def main(train_data, val_data, RANK, LEARNING_RATE, EPOCHS, BETA):
 
     if local_rank == 0: 
         print("Saving model")
-        model.save_pretrained(f"trained_models/Translation_DPO_GaMS-9B_r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}_{os.getenv('SLURM_JOB_ID')}") # Save the model
+        # create directory "trained_models/{model_path}/" if it doesn't exist
+        os.makedirs(f"trained_models", exist_ok=True)
+        os.makedirs(f"trained_models/{model_path.replace('/', '_')}", exist_ok=True)
+        model.save_pretrained(f"trained_models/{model_path.replace('/', '_')}/Translation_DPO_GaMS-9B_r-{RANK}_lr-{LEARNING_RATE}_b-{BETA}_{os.getenv('SLURM_JOB_ID')}") # Save the model
 
 
 
@@ -210,10 +227,11 @@ if __name__ == "__main__":
     parser.add_argument('--learning_rate', default=5e-6, type=float, help='How often to save a snapshot')
     parser.add_argument('--total_epochs', default=1, type=int, help='Total epochs to train the model')
     parser.add_argument('--beta', default=0.2, type=float, help='Beta parameter for the DPO loss')
+    parser.add_argument('--model', default="cjvt/GaMS-9B-Instruct", type=str, help='Model to fine-tune')
     args = parser.parse_args()
 
     print(args)
     print(args.learning_rate)
 
-    main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta)
+    main(train_data, val_data, args.rank, args.learning_rate, args.total_epochs, args.beta, args.model)
     # main(train_data[:1024], val_data[:128], args.rank, args.learning_rate, args.total_epochs, args.beta)

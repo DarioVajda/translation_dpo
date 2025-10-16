@@ -1,0 +1,16 @@
+Translate file: /ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/translate_generic.py
+python3 translate_generic.py               --model_path=GaMS-Beta/GaMS-9B-SFT-Translator               --input_module=/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/load_data_scripts/load_nemotron.py               --output_path=nemotron_translations/translations_1.jsonl               --gpu_memory_util=0.95               --tp_size=1               --id=1
+cpu-bind=MASK - gh1, task  0  0 [2665869]: mask 0xff set
+INFO 08-23 20:12:18 [__init__.py:239] Automatically detected platform cuda.
+Traceback (most recent call last):
+  File "/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/translate_generic.py", line 143, in <module>
+    input_module = import_module_from_path(args.input_module)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/translate_generic.py", line 137, in import_module_from_path
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/ceph/hpc/data/s24o01-42-users/translation_optimization/get_translations/load_data_scripts/load_nemotron.py", line 2, in <module>
+    from datasets import Dataset
+ModuleNotFoundError: No module named 'datasets'
+srun: error: gh1: task 0: Exited with exit code 1

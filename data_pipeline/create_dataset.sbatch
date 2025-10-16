@@ -3,7 +3,7 @@
 #SBATCH --output=log_create_dataset.txt
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=8:00:00
-#SBATCH --gres=gpu:H100:1
+#SBATCH --gres=gpu:A100_80GB:3
 #SBATCH --mem=64GB
 #SBATCH --partition=frida
 

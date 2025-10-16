@@ -1,0 +1,5 @@
+cpu-bind=MASK - ana, task  0  0 [531830]: mask 0xf00f0000000000f00f0 set
+Total translations: 1436
+Slovene translations: 1423
+Percentage of Slovene translations: 99.09470752089136
+Bad translation error rate: 0.9052924791086351

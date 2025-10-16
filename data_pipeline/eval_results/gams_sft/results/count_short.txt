@@ -1,0 +1,3 @@
+cpu-bind=MASK - ixh, task  0  0 [2434181]: mask 0x3000000000000000000000000000300000000000000 set
+Number of examples with translation too short: 21 out of 964 (2.18%)
+Percentage of examples with translation too short: 2.40%

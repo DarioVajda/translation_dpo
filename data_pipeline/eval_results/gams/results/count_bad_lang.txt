@@ -1,0 +1,5 @@
+cpu-bind=MASK - aga1, task  0  0 [1990739]: mask 0x3000000000000000000000000000000030000000000000000 set
+Total translations: 969
+Slovene translations: 887
+Percentage of Slovene translations: 91.53766769865841
+Bad translation error rate: 8.46233230134159

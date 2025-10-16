@@ -10,3 +10,13 @@ models/
 /language_identification/fasttext_model
 /get_translations/__pycache__
 /get_translations/hub
+/other
+/gemini_translation
+/trl/wandb/
+/trl/logs_dir_b200
+/trl/slobench_submissions/
+/trl/__pycache__/
+**/__pycache__/
+*.pyc
+
+!data_pipeline/eval_datasets/*

@@ -1,0 +1,46 @@
+cpu-bind=MASK - ana, task  0  0 [1610065]: mask 0xff000000000000ff00000000 set
+*******STARTING********
+--- Running on Node Rank: 0 ---
+Total Nodes: 1
+--- CUDA_VISIBLE_DEVICES for this srun task: 0,1 ---
+GPUs per Node: 2
+Master Address: ana
+Master Port: 29500
+-------------------------------------------
+accelerate launch     --config_file /ceph/hpc/data/s24o01-42-users/translation_optimization/trl/accelerate_config.yaml     --num_machines 1     --machine_rank 0     --main_process_ip ana     --main_process_port 29500     --num_processes 2     --deepspeed_multinode_launcher standard     --rdzv_backend static     --same_network     --mixed_precision bf16     "train.py"     --rank=128 --learning_rate=1e-7 --total_epochs=4 --model=cjvt/GaMS-9B-Instruct
+-------------------------------------------
+[2025-09-30 16:28:10,672] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+df: /root/.triton/autotune: No such file or directory
+W0930 16:28:12.493000 1610421 torch/distributed/run.py:792] 
+W0930 16:28:12.493000 1610421 torch/distributed/run.py:792] *****************************************
+W0930 16:28:12.493000 1610421 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0930 16:28:12.493000 1610421 torch/distributed/run.py:792] *****************************************
+[load_data.py]: Training data of type 'bad_lang_examples':    0
+[load_data.py]: Training data of type 'short_examples':       0
+[load_data.py]: Training data of type 'choose_examples':      0
+[load_data.py]: Training data of type 'bad_format_examples':  0
+[load_data.py]: Training data of type 'other_examples':       106454
+Namespace(rank=128, learning_rate=1e-07, total_epochs=4, beta=0.2, model='cjvt/GaMS-9B-Instruct')
+1e-07
+Model path: cjvt/GaMS-9B-Instruct
+[load_data.py]: Total training data size: 106454
+[load_data.py]: Total validation data size: 953
+Namespace(rank=128, learning_rate=1e-07, total_epochs=4, beta=0.2, model='cjvt/GaMS-9B-Instruct')
+1e-07
+Model path: cjvt/GaMS-9B-Instruct
+World size: 2
+Setting gradient accumulation steps to: 1
+[2025-09-30 16:28:38,715] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Created datasets
+Train dataset size: 106454
+Validation dataset size: 953
+Steps per epoch: 6653
+Evaluate each 2217 steps
+[2025-09-30 16:28:39,019] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-09-30 16:28:40,125] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-09-30 16:28:40,455] [INFO] [comm.py:669:init_distributed] cdb=None
+[2025-09-30 16:28:40,455] [INFO] [comm.py:700:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+Set up DPO configuration
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:22<01:07, 22.59s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:22<01:07, 22.66s/it]Fetching 4 files:  50%|█████     | 2/4 [00:23<00:19,  9.75s/it]Fetching 4 files: 100%|██████████| 4/4 [00:23<00:00,  5.84s/it]
+Fetching 4 files:  50%|█████     | 2/4 [00:23<00:19,  9.76s/it]Fetching 4 files: 100%|██████████| 4/4 [00:23<00:00,  5.84s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:14<00:44, 14.93s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:15<00:45, 15.31s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:30<00:30, 15.03s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:30<00:30, 15.08s/it]slurmstepd: error: *** STEP 52922.0 ON ana CANCELLED AT 2025-09-30T16:30:07 ***
